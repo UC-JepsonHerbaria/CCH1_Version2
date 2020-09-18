@@ -1,3 +1,10 @@
+#CCH directories and files to ignore
+
+# ignore all files in any directory with these names
+db/
+data_files/
+point_in_polygon_scripts/latlon_County_validator
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
