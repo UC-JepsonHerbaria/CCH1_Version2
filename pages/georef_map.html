@@ -2,53 +2,34 @@
 
 <html>
 
-<!-- Consortium: Participants -->
-
 <head>
 <title>
 Consortium of California Herbaria: Autogeographs
 </title>
-<Meta Name="keywords" Content="UC Berkeley Herbarium,
-California floristics, Consortium of California Herbaria, UC Santa Barbara,
-UC Irvine, UC Riverside, UC Davis, UC Santa Cruz, Santa Barbara Botanic Garden,
-Jepson Herbarium, Rancho Santa Ana Botanic Garden
-">
+<Meta Name="keywords" Content="">
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
+
 </head>
 <body>
 
-
-
-
 <!-- COMMON HEADER -->
-<table width="100%" class="banner" border="0" cellpadding="0" cellspacing="0">
-  <tr><td width="80" align="center"><img src="/consortium/images/CCH_logo_02_80.png" width="80" height="82"></td>
-  <td>
-        <table class="banner" width="100%" border="0">
-        <tr>
-        <td align="center">Consortium of California Herbaria</td>
-        </tr>
-        <tr><td>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                <td height="21" width="640" align="center">
-                <a href="http://ucjeps.berkeley.edu/consortium/participants.html" class="horizMenuActive">Participants</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://ucjeps.berkeley.edu/consortium/news.html" class="horizMenuActive">News</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://ucjeps.berkeley.edu/consortium/" class="horizMenuActive">Search</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://ucjeps.berkeley.edu/consortium/about.html" class="horizMenuActive">About</a>
-                    </td></tr>
-                </table>
-        </td></tr>
-        </table>
-</td></tr>
-</table>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
 
-<h2> Consortium of California Herbaria Records with Coordinates</h2>
+
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
+<!-- End of sidebar --> 
+
+
+
+
+<h2> CCH1 Records with Coordinates</h2>
 <blockquote>
-    These are maps of CCH records that have coordinates (think of it as an autogeograph). In the map at the right the pixels are colored according to the number of collections at an approximate location, giving a visual representation of collecting effort.
+    These are maps of CCH1 records that have coordinates (think of it as an autogeograph). In the map at the right the pixels are colored according to the number of collections at an approximate location, giving a visual representation of collecting effort.
 <P>
-    Note that this represents well over two thirds of the specimens in the CCH herbaria: 1778243  out of 2320817. 
+    Note that this represents well over two thirds of the California specimens in the CCH herbaria: 1778243  out of 2320817. 
 </blockquote>
 Thu Sep 20 16:24:37 2018
 
@@ -60,11 +41,11 @@ Thu Sep 20 16:24:37 2018
 all records
 <P>
 &nbsp;
-<img src="all_georef.gif">
+<img src="/consortium/hartman/all_georef.gif">
 </td>
 <td>
 blue pixels: 1 or 2 records, green pixels: 3 or 4 records, yellow pixels: 5-16 records, red pixels: 17-32 records, black pixels: > 32 records
-<img src="http://ucjeps.berkeley.edu/images/hartman.gif" alt="alternative text" usemap="#gifmap" />
+<img src="/consortium/hartman/hartman.gif" alt="alternative text" usemap="#gifmap" />
 <map name="gifmap">
 <area shape="rect" coords="0,0,10,15" href="http://ucjeps.berkeley.edu/cgi-bin/get_consort.pl?lat_min=42.75&lat_max=43&long_min=-125&long_max=-124.75" />
 <area shape="rect" coords="10,0,21,15" href="http://ucjeps.berkeley.edu/cgi-bin/get_consort.pl?lat_min=42.75&lat_max=43&long_min=-124.75&long_max=-124.5" />
