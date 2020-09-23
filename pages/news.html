@@ -1,39 +1,67 @@
-<html>
+<?php
+
+date_default_timezone_set('America/Los_Angeles');
+
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
 <head>
-<title>
-Consortium of California Herbaria: News
-</title>
-<Meta Name="keywords" Content="UC Berkeley Herbarium,
-California floristics, Consortium of California Herbaria, UC Santa Barbara, UC Irvine, UC Riverside, UC Davis, UC Santa Cruz, Santa Barbara Botanic Garden,
-Jepson Herbarium, California State University Chico, Rancho Santa Ana Botanic Garden, Humboldt State University, San Diego State University, Californiia Department of Agriculture, San Diego Natural History Museum, California Academy of Sciences
-">
+<title>CCH1: News</title> 
+<meta name="description" content="CCH1 serves as a gateway to bioinformatic data from California vascular plant specimens that are housed in herbaria, worldwide.">
+  <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
-</head>
-<body>
 
+
+<!-- Google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27128382-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- jquery functions -->
+
+</head>
+
+<body onload="initialize()">
 
 
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cchv2_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
 
-
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
+<!-- End of sidebar --> 
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr><td width="112" valign="top">
-<IMG SRC="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game" width="112" height="766">
-</td>
-  <td width="15" valign="top"></td>
-  <td valign="top">
-     <p><br />
-         <span class="pageName">General Consortium News </span><br />
-
-<br />
+  <tr>
+   <td style="width: 50px;">
+   </td>
+    <td class="bodyFull">
+    <p>
+	<span class="pageName"><a name="GEN" id="GEN"></a>General Consortium News </span><br /><br />
+    </p>
 <b>&nbsp;&nbsp;January 1, 2020</b>
-</span>
-         <span class="pageAuthorLine">
-<br>
+	</span>
+	<span class="pageAuthorLine">
+<br />
 Extensive changes to all CCH1 webpages will be completed in stages as the new database is created and populated with data from CCH2.  When fully updated with new data from CCH2, some search features currently present may be removed temporarily from the website until bugs can be fixed.  Any features taken offline or restored will be listed in the Update News section below.</span>		 
 <br />		 
 		 <span class="bodyText"><br />
@@ -125,16 +153,23 @@ i/10.1371/journal.pone.0002502">Botanical refugees: Climate change paper using C
 <br />
 <span class="bodyText"><br />
 <b>&nbsp;&nbsp;September 5, 2008</b>
-</span>
-         <span class="pageAuthorLine">
-<br>
+		</span>
+		<span class="pageAuthorLine">
+<br />
 <a href="http://www.stanford.edu/group/spatialhistory/Visualizations/BotanizingCA.html">Botanizing California: A visualization of the history of California botanical collection from the Spatial History group at Stanford using CCH data</a>
-<br>
+<br />
+<br />
+	</span>
+	</td>
+  </tr>
+</table>
 
-<br>
-
-</td></tr></table>
-
+</td><!--close td from sidebar file-->
+    <td class="cchRightMargin">
+    <img class="imagespacer" src="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game">
+	</td>
+  </tr>
+</table>
 
 <!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
