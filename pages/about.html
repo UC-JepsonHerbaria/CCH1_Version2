@@ -1,29 +1,64 @@
-<html>
+<?php
+
+date_default_timezone_set('America/Los_Angeles');
+
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
 <head>
-<title>
-Consortium of California Herbaria: About
-</title>
+<title>CCH1: About</title> 
+<meta name="description" content="CCH1 serves as a gateway to bioinformatic data from California vascular plant specimens that are housed in herbaria, worldwide.">
+  <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
+
+<!-- Google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27128382-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- jquery functions -->
 
 </head>
 <body>
 
-
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cchv2_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
 
 
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr><td width="112" valign="top">
-<IMG SRC="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game" width="112" height="766">
-</td>
-  <td width="15" valign="top"></td>
-
-<td valign="top"><br />
-<span class="pageName">About the Consortium</span><br /><br />
+  <tr>
+   <td>
+<img  class = "imagespacer" src="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game">
+	</td>
+    <td class="bodyFull">
+    <p>
+	<span class="pageName">About the Consortium</span><br /><br />
+    </p>
+	<span class="pageAuthorLine">
+<p>
+</p>
+</span><br />
+<span class="pageName"></span><br /><br />
 
 
 <table width="144" border="0" align="right" cellpadding="5" cellspacing="0">
@@ -141,16 +176,16 @@ include latitude and longitude. Georeferenced records returned from any Consorti
   Please send questions or comments regarding the development and use of these pages to Jason Alexander (<a href="mailto:jason_alexander@berkeley.edu">jason_alexander@berkeley.edu</a>).<br />
 </span><br />
 </td>
-
-<td width="15" valign="top">&nbsp;</td>
-</tr>
-</table>
 <br />
 
-<!-- Begin footer -->
+</td><!--close td from sidebar file-->
+    <td class="tdspacer1">&nbsp;</td>
+  </tr>
+</table>
+  
+<!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
-<!-- End footer -->
-
+<!--end footer-->
 
 </body>
 </html>
