@@ -1,422 +1,447 @@
-<html>
+<?php
+
+date_default_timezone_set('America/Los_Angeles');
+
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
 <head>
-<title>
-Consortium of California Herbaria: Update History
-</title>
-<Meta Name="keywords" Content="UC Berkeley Herbarium,
-California floristics, Consortium of California Herbaria, UC Santa Barbara, UC Irvine, UC Riverside, UC Davis, UC Santa Cruz, Santa Barbara Botanic Garden,
-Jepson Herbarium, California State University Chico, Rancho Santa Ana Botanic Garden, Humboldt State University, San Diego State University, Californiia Department of Agriculture, San Diego Natural History Museum, California Academy of Sciences
-">
+<title>CCH1: Update History Archive</title> 
+<meta name="description" content="CCH1 serves as a gateway to bioinformatic data from California vascular plant specimens that are housed in herbaria, worldwide.">
+ <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
+
+<!-- Google analytics -->
+<script type="text/javascript">
+
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-27128382-1']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+
+<!-- jquery functions -->
+
 </head>
 <body>
 
-
-
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
 
 
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
+<!-- End of sidebar --> 
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr><td width="112" valign="top">
-<img src="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game" width="112" height="766">
-</td>
-  <td width="15" valign="top"></td>
-  <td valign="top">
-     <p>
-         <span class="pageName">CCH Update History </span><br />
-         <span class="pageAuthorLine"><b>For current news and updates, see the <a href="news.html">CCH News page</a>.</b>
-     </p>
-<p>
-	<span class="pageAuthorLine"><b>Updates for 2020</b></span>
-<p class="bodyText">&nbsp;&nbsp;January 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Re-development of CCH1 is ongoing and a new database for CCH2 is being created.  The CCH1 is website is being redeveloped in stages.  A data upload from CCH2 is not yet enabled.</p>
-<p class="bodyText">&nbsp;&nbsp;</p>
-	<span class="pageAuthorLine"><b>Updates for 2019</b></span>
-<p class="bodyText">&nbsp;&nbsp;October 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Re-development of CCH1 has started.  CCH1 is running off the data from September 2018 until further notice.</p>
-<p class="bodyText">&nbsp;&nbsp;</p>
-	<span class="pageAuthorLine"><b>Updates for 2018</b></span>
-<p class="bodyText">&nbsp;&nbsp;September 20&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Last update before uploading of data to CCH2</p>
-<p class="bodyText">&nbsp;&nbsp;</p>
+ <tr>
+ <td class="tdspacer1">&nbsp;</td>
+ </td>
+ <td class="bodyFull">
+ <p>
+	<span class="pageName">CCH1 Update History Archive</span><br /><br />
+ </p>
+ <p>
+ <span class="pageAuthorLine"><b>For current updates, see the <a href="update_history.html">CCH1 Update History page</a>.</b>
+ </p>
+	<p><span class="pageAuthorLine"><b>Updates for 2020</b></span></p>
+<p class="pageAuthorLine">&nbsp;&nbsp;January 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Re-development of CCH1 is ongoing and a new database for CCH2 is being created. The CCH1 is website is being redeveloped in stages. A data upload from CCH2 is not yet enabled.</p>
+
+	<p><span class="pageAuthorLine"><b>Updates for 2019</b></span></p>
+<p class="pageAuthorLine">&nbsp;&nbsp;October 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Re-development of CCH1 has started. CCH1 is running off the data from September 2018 until further notice.</p>
+
+	<p><span class="pageAuthorLine"><b>Updates for 2018</b></span></p>
+<p class="pageAuthorLine">&nbsp;&nbsp;September 20&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Last update before uploading of data to CCH2</p>
+
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,320,817 <a href="/images/georef_map.html">(1,778,243 of which are georeferenced)</a></span></p>
-	<span class="pageAuthorLine"><b>Updates for 2018</b></span>
-	<br />
-<p class="bodyText">&nbsp;&nbsp;July 12&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SEINET updated; additional error and bug fixes</p>
-<p class="bodyText">&nbsp;&nbsp;</p>
-	<p class="bodyText">
+
+<p class="pageAuthorLine">&nbsp;&nbsp;July 12&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SEINET updated; additional error and bug fixes</p>
+
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1093633 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;598508 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81399 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;598508 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81399 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3451 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;127703 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;127703 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,323,435 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,780,418 of which are georeferenced)</a></span></p>
-<br /><br />
-
 	<br />
-<p class="bodyText">&nbsp;&nbsp;June 22&nbsp;&nbsp;&mdash;&nbsp;&nbsp;RSA, SD updated; additional error and bug fixes</p>
-<p class="bodyText">&nbsp;&nbsp;</p>
-	<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;June 22&nbsp;&nbsp;&mdash;&nbsp;&nbsp;RSA, SD updated; additional error and bug fixes</p>
+
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1089029 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;598584 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81435 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;598584 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81435 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;127422 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;127422 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,299,424 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,775,671 of which are georeferenced)</a></span></p>
 <br /><br />
-<p class="bodyText">&nbsp;&nbsp;June 07&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SDSU updated; additional error and bug fixes</p>
-<p class="bodyText">&nbsp;&nbsp;</p>
-	<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;June 07&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SDSU updated; additional error and bug fixes</p>
+
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1084789 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;599357 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81057 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;599357 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81057 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;127126 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;127126 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,294,891 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,772,077 of which are georeferenced)</a></span></p>
 <br /><br />	
 	
-<p class="bodyText">&nbsp;&nbsp;May 24&nbsp;&nbsp;&mdash;&nbsp;&nbsp;GMDRC, RSA, SD updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. UC/JEPS, CATA, CDA, HUH, HSC, OBI, UCSC.   Updated some poorly coverted dates that were causing anomalies in search results.</p>
-	<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;May 24&nbsp;&nbsp;&mdash;&nbsp;&nbsp;GMDRC, RSA, SD updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. UC/JEPS, CATA, CDA, HUH, HSC, OBI, UCSC. Updated some poorly coverted dates that were causing anomalies in search results.</p>
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1080258 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;599409 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;84125 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3392 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;599409 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;84125 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3392 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;126887 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;126887 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,294,597 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,770,672 of which are georeferenced)</a></span></p>
 <br /><br />	
-<p class="bodyText">&nbsp;&nbsp;March-April&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Error and bug fixes</p>
-<p class="bodyText">&nbsp;&nbsp;1. Updated some broken collector information links on the Acession Details page.</p>
-<p class="bodyText">&nbsp;&nbsp;2. Fixed a long-standing bug that was causing composite collection numbers (for example: 12-134-C, CL-123-35) to display as a long-integer (12134C, CL12335).  The number was being reported correctly in database download files in the respective CNUM-prefix, CNUM, and CNUM-suffix fields.  However, this was causing confusing results using some of the advanced search features and the sorting function of the search results table, which only uses the CNUM field data for sorting (in these two cases, 134 and 123, respectively).  The display has been fixed to show a space between the composite number fields, instead of the former display on an unbroken string of numbers and letters.</p>	
-<p class="bodyText">&nbsp;&nbsp;3. Sorting the date display on the search results page should now be more intuituive since it is displaying a formatted date, not the verbatim date (or the unfomatted date from the home database).  For reference, the unformatted date from the label is displayed on the verbatim date line in the Acession Details page, when present and different from the formatted date.</p>	
+<p class="pageAuthorLine">&nbsp;&nbsp;March-April&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Error and bug fixes</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. Updated some broken collector information links on the Acession Details page.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;2. Fixed a long-standing bug that was causing composite collection numbers (for example: 12-134-C, CL-123-35) to display as a long-integer (12134C, CL12335). The number was being reported correctly in database download files in the respective CNUM-prefix, CNUM, and CNUM-suffix fields. However, this was causing confusing results using some of the advanced search features and the sorting function of the search results table, which only uses the CNUM field data for sorting (in these two cases, 134 and 123, respectively). The display has been fixed to show a space between the composite number fields, instead of the former display on an unbroken string of numbers and letters.</p>	
+<p class="pageAuthorLine">&nbsp;&nbsp;3. Sorting the date display on the search results page should now be more intuituive since it is displaying a formatted date, not the verbatim date (or the unfomatted date from the home database). For reference, the unformatted date from the label is displayed on the verbatim date line in the Acession Details page, when present and different from the formatted date.</p>	
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,278,083 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,777,704 of which are georeferenced)</a></span>
 <br /><br />		
-<p class="bodyText">&nbsp;&nbsp;February 23&nbsp;&nbsp;&mdash;&nbsp;&nbsp;minor error and bug fixes</p>
-<p class="bodyText">&nbsp;&nbsp;1. Updated the georeference buffer tables to fix some yellow flag errors.</p>
-<p class="bodyText">&nbsp;&nbsp;2. Fixed a bug in the synonymy where searches were not returning synonymns in different genera.
+<p class="pageAuthorLine">&nbsp;&nbsp;February 23&nbsp;&nbsp;&mdash;&nbsp;&nbsp;minor error and bug fixes</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. Updated the georeference buffer tables to fix some yellow flag errors.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;2. Fixed a bug in the synonymy where searches were not returning synonymns in different genera.
 									<br />(i.e. Hemizona paniculata was not returning Deinandra paniculata also)</p>
-<p class="bodyText">&nbsp;&nbsp;3. Fixed a bug where the camera icon for images was not showing up on search results pages.</p>
-<p class="bodyText">&nbsp;&nbsp;4. There is still a known bug in a few Packera and Boechera specimens in UC/JEPS that are ID'd <br />only to genus due to bad characters in the species name.  These will be fixed in the next refresh.</p>
-	<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;3. Fixed a bug where the camera icon for images was not showing up on search results pages.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;4. There is still a known bug in a few Packera and Boechera specimens in UC/JEPS that are ID'd <br />only to genus due to bad characters in the species name. These will be fixed in the next refresh.</p>
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1062158 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;627675 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80998 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;627675 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;80998 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;120699 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;120699 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,278,083 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,777,704 of which are georeferenced)</a></span>
 <br /><br />
-<p class="bodyText">&nbsp;&nbsp;February 21&nbsp;&nbsp;&mdash;&nbsp;&nbsp;UCD updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. VVC&nbsp;&nbsp; Fixed a bug that kicked out most VVC records in the last refresh.</p>
-<p class="bodyText">&nbsp;&nbsp;2. Updated the georeference buffer tables to fix some yellow flag errors.</p>
-	<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;February 21&nbsp;&nbsp;&mdash;&nbsp;&nbsp;UCD updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. VVC&nbsp;&nbsp; Fixed a bug that kicked out most VVC records in the last refresh.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;2. Updated the georeference buffer tables to fix some yellow flag errors.</p>
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1061980 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;627676 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80998 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;627676 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;80998 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;120763 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;120763 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,277,844 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,777,527 of which are georeferenced)</a></span>
 <br /><br />
-	<p class="bodyText">&nbsp;&nbsp;February 8&nbsp;&nbsp;&mdash;&nbsp;&nbsp;CHSC, VVC updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. Updated the georeference buffer tables to fix some yellow flag errors.</p>
-	<p class="bodyText">
+	<p class="pageAuthorLine">&nbsp;&nbsp;February 8&nbsp;&nbsp;&mdash;&nbsp;&nbsp;CHSC, VVC updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. Updated the georeference buffer tables to fix some yellow flag errors.</p>
+	<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1055383 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;628539 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81595 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;628539 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81595 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;120285 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;120285 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,273,216 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,772,390 of which are georeferenced)</a></span>
 <br /><br />
-<p class="bodyText">&nbsp;&nbsp;January 26&nbsp;&nbsp;&mdash;&nbsp;&nbsp;JOTR, UCSC updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. JOTR&nbsp;&nbsp; Fixed some georeference and species determination errors.
+<p class="pageAuthorLine">&nbsp;&nbsp;January 26&nbsp;&nbsp;&mdash;&nbsp;&nbsp;JOTR, UCSC updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. JOTR&nbsp;&nbsp; Fixed some georeference and species determination errors.
 	</p>
-<p class="bodyText">&nbsp;&nbsp;2. UCSC&nbsp;&nbsp; Fixed some errors in the accession number field.
+<p class="pageAuthorLine">&nbsp;&nbsp;2. UCSC&nbsp;&nbsp; Fixed some errors in the accession number field.
 </p>
-<p class="bodyText">&nbsp;&nbsp;3. Updated the georeference buffer tables to fix some yellow flag errors.</p>
-<p class="bodyText">&nbsp;&nbsp;4. Further refinement in this refresh has excluded 2-3,000 more UC-JEPS specimens from Baja that map outside the CA-FP Baja boundary that also have an 'unknown' municipality.</p>
-<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;3. Updated the georeference buffer tables to fix some yellow flag errors.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;4. Further refinement in this refresh has excluded 2-3,000 more UC-JEPS specimens from Baja that map outside the CA-FP Baja boundary that also have an 'unknown' municipality.</p>
+<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1055066 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;628624 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81607 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;628624 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81607 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3385 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;119574 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;119574 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,272,595 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,772,170 of which are georeferenced)</a></span>
 <br /><br />
-<p class="bodyText">&nbsp;&nbsp;January 24&nbsp;&nbsp;&mdash;&nbsp;&nbsp;JROH, PGM, RSA, UCR updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. PGM&nbsp;&nbsp; PGM provided the first update in several years.  A new loading script was written for PGM to bring the data up to current standards.
+<p class="pageAuthorLine">&nbsp;&nbsp;January 24&nbsp;&nbsp;&mdash;&nbsp;&nbsp;JROH, PGM, RSA, UCR updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. PGM&nbsp;&nbsp; PGM provided the first update in several years. A new loading script was written for PGM to bring the data up to current standards.
 	</p>
-<p class="bodyText">&nbsp;&nbsp;2. YM&nbsp;&nbsp; Geocoordinates for YM have been appearing as integer degrees and have been highly inaccurate. This was a result of changes and updates to the refresh script for CCH. The loading script for YM has been updated and the geocoordinate problem has been fixed.
+<p class="pageAuthorLine">&nbsp;&nbsp;2. YM&nbsp;&nbsp; Geocoordinates for YM have been appearing as integer degrees and have been highly inaccurate. This was a result of changes and updates to the refresh script for CCH. The loading script for YM has been updated and the geocoordinate problem has been fixed.
 </p>
-<p class="bodyText">&nbsp;&nbsp;3. CSUSB, CLARK, IRVC, LA, MACF, PASA, SACT, UCSB, VVC&nbsp;&nbsp; These participants still have older, out-of-date datasets that are potentially being converted incorrectly when CCH is refreshed.  IRVC has a number of poorly converted coordinates, specifically that are a source of yellow flags.  These are next on the list for loading script updating.
+<p class="pageAuthorLine">&nbsp;&nbsp;3. CSUSB, CLARK, IRVC, LA, MACF, PASA, SACT, UCSB, VVC&nbsp;&nbsp; These participants still have older, out-of-date datasets that are potentially being converted incorrectly when CCH is refreshed. IRVC has a number of poorly converted coordinates, specifically that are a source of yellow flags. These are next on the list for loading script updating.
 </p>
-<p class="bodyText">&nbsp;&nbsp;4. Baja Specimens with 'Unknown' Municipalities&nbsp;&nbsp; Since May of 2016, it has been impossible to tell the difference between Baja California records and California records when the county/municipality field is "unknown".
+<p class="pageAuthorLine">&nbsp;&nbsp;4. Baja Specimens with 'Unknown' Municipalities&nbsp;&nbsp; Since May of 2016, it has been impossible to tell the difference between Baja California records and California records when the county/municipality field is "unknown".
 <br /> Further refinement in this refresh has excluded 2-3,000 more specimens from Baja that map outside the CA-FP Baja boundary that also have an 'unknown' municipality.
-<br /> Previously, these records were left in CCH, but the coordinates were nulled.  Ultimately, a State and Country field needs to be added to CCH to exclude all of these specimens from searches appropriately.  Until this is done, there will still be specimens from Baja showing up as California specimens with an 'unknown' county.
+<br /> Previously, these records were left in CCH, but the coordinates were nulled. Ultimately, a State and Country field needs to be added to CCH to exclude all of these specimens from searches appropriately. Until this is done, there will still be specimens from Baja showing up as California specimens with an 'unknown' county.
 </p>
-<p class="bodyText">
+<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1059805 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;629791 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81894 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;629791 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81894 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3447 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;119790 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;119790 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,282,341 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,778,364 of which are georeferenced)</a></span>
 <br /><br />
 
-	<span class="pageAuthorLine"><b>Updates for 2017</b></span>
-<br />
-<p class="bodyText">&nbsp;&nbsp;October 27&nbsp;&nbsp;&mdash;&nbsp;&nbsp;RSA updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. RSA/POM&nbsp;&nbsp; The new Specify database has been fully processed into CCH.  No longer will data from the old filemaker database be processed into CCH. The error from last week affecting the results of family searches has been fixed by loading this new database file.<br />
-Cleanup and reassignment of the georeference records for this change is ongoing.  More orphaned georeferences were corrected to the new accession numbers in this refresh.  There are ones that are still problematic. The georeferences are being checked for yellow flags and changed when necessary.
+	<p><span class="pageAuthorLine"><b>Updates for 2017</b></span></p>
+	<br />
+<p class="pageAuthorLine">&nbsp;&nbsp;October 27&nbsp;&nbsp;&mdash;&nbsp;&nbsp;RSA updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. RSA/POM&nbsp;&nbsp; The new Specify database has been fully processed into CCH. No longer will data from the old filemaker database be processed into CCH. The error from last week affecting the results of family searches has been fixed by loading this new database file.<br />
+Cleanup and reassignment of the georeference records for this change is ongoing. More orphaned georeferences were corrected to the new accession numbers in this refresh. There are ones that are still problematic. The georeferences are being checked for yellow flags and changed when necessary.
 	</p>
-<p class="bodyText">&nbsp;&nbsp;2. RSA/POM&nbsp;&nbsp; The bug present in the previous refresh that added erroneous RSA/POM records into family searches appears to have been fixed with the use of the new database file.
-<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;2. RSA/POM&nbsp;&nbsp; The bug present in the previous refresh that added erroneous RSA/POM records into family searches appears to have been fixed with the use of the new database file.
+<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1052424 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;630346 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81954 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;630346 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81954 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3444 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;129856 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;129856 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,275,718 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,772,217 of which are georeferenced)</a></span>
 <br /><br />
 	
 	<br />
-<p class="bodyText">&nbsp;&nbsp;October 25&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, no updates</p>
-<p class="bodyText">&nbsp;&nbsp;1. Fixed a bug where the data was not being created correctly for the GBIF IPT port of the CCH data. Fixed a bug where new records and new determinations were not displaying in the html pages accurately.
+<p class="pageAuthorLine">&nbsp;&nbsp;October 25&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, no updates</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. Fixed a bug where the data was not being created correctly for the GBIF IPT port of the CCH data. Fixed a bug where new records and new determinations were not displaying in the html pages accurately.
 </p>
-<p class="bodyText">&nbsp;&nbsp;2. RSA/POM&nbsp;&nbsp; A bug is still present where certain small subset of specimens are displaying in the wrong family when only a family is searched.
+<p class="pageAuthorLine">&nbsp;&nbsp;2. RSA/POM&nbsp;&nbsp; A bug is still present where certain small subset of specimens are displaying in the wrong family when only a family is searched.
 	</p>
-<p class="bodyText">&nbsp;&nbsp;In general, this update removed additional records from some collections that had missing data in all but the state field.  Also some additional specimens from outside the CA-FP boundary in Mexico (mostly with unknown in the municipality field) were removed from display in the CCH.  David set these specimens up to be included but because the georeferences were outside the CA-FP, the coordinates were nulled.  These records are now being excluded from CCH so they are not confused with specimens within the CA-FP Mexico boundary that have not been georeferenced.
+<p class="pageAuthorLine">&nbsp;&nbsp;In general, this update removed additional records from some collections that had missing data in all but the state field. Also some additional specimens from outside the CA-FP boundary in Mexico (mostly with unknown in the municipality field) were removed from display in the CCH. David set these specimens up to be included but because the georeferences were outside the CA-FP, the coordinates were nulled. These records are now being excluded from CCH so they are not confused with specimens within the CA-FP Mexico boundary that have not been georeferenced.
 	</p>
-<p class="bodyText">
+<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1044354 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;630494 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81954 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;630494 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81954 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3444 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;129522 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;129522 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,296,109 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,769,041 of which are georeferenced)</a></span>
 <br /><br />	
 	
 	<br />
-<p class="bodyText">&nbsp;&nbsp;October 5&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, no updates</p>
-<p class="bodyText">&nbsp;&nbsp;1. CAS&nbsp;&nbsp; Fixed a bug that deleted locations from some records
+<p class="pageAuthorLine">&nbsp;&nbsp;October 5&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, no updates</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. CAS&nbsp;&nbsp; Fixed a bug that deleted locations from some records
 </p>
-<p class="bodyText">&nbsp;&nbsp;2. RSA/POM&nbsp;&nbsp; Deleted some poorly converted special characters in the county field causing probems with the search page
+<p class="pageAuthorLine">&nbsp;&nbsp;2. RSA/POM&nbsp;&nbsp; Deleted some poorly converted special characters in the county field causing probems with the search page
 	</p>
-<p class="bodyText">&nbsp;&nbsp;3. UCR&nbsp;&nbsp; Fixed a bug with the julian dates used for the search field not being formatted correctly
+<p class="pageAuthorLine">&nbsp;&nbsp;3. UCR&nbsp;&nbsp; Fixed a bug with the julian dates used for the search field not being formatted correctly
 	</p>
-<p class="bodyText">
+<p class="generalText">
 	&nbsp;&nbsp;&nbsp;1048966 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;630425 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81927 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;630425 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;&nbsp;81927 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3387 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3674 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;129522 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;129522 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine">&nbsp;&nbsp;
 Record count: 2,296,109 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,769,041 of which are georeferenced)</a></span>
 <br /><br />	
 	
-<p class="bodyText">&nbsp;&nbsp;October 2&nbsp;&nbsp;&mdash;&nbsp;&nbsp;HSC, HUH, JOTR, OBI, and SBBG updated</p>
-<p class="bodyText">&nbsp;&nbsp;1. RSA POM&nbsp;&nbsp;
-A new database refresh is still being processed.  This new dataset eliminates the old filemaker program and has all specimens from California in the Specify database.  A future refresh will include these data and include a refresh of the Mexico specimens.  As with CAS, the primary record number will be changed for RSA and POM once these new data are loaded.  The old RSA and POM accession number will be included as an other record number once these data are online.</p>
-<p class="bodyText">&nbsp;&nbsp;To avoid the issue with the CAS georeference buffer, the georeference buffer records using the old RSA/POM accessions will retained until the RSA file has been completely re-formatted and processed. Conversion of the georeference buffer, linking the old accession numbers to the new ones, is ongoing simultaneously.  When the new RSA data is live, the successfully converted georeferences in the buffer will also be live.</p>
-<p class="bodyText">&nbsp;&nbsp;2. CAS&nbsp;&nbsp;
-			Around 200,000 more georeferences from the buffer have been added to this refresh.  The buffer georeferences using the old CAS and DS accession number were linked to the new accession number and loaded into this refresh.  Most, but not all, georeferences were linked to the new record numbers.  There were some that were not found and some that were duplicate accessions.  These georeferences were deleted from the buffer.</p>
-<p class="bodyText">&nbsp;&nbsp;3. HUH, CAS, RSA&nbsp;&nbsp;
-			Due to the time needed for converting the georeference buffer, character formatting errors are still present in these datasets (fractions , degrees, peoples names with special characters, etc displaying as unintelligible character strings).  I will be working on correcting these over the next month.</p>  
-<p class="bodyText">&nbsp;&nbsp;4. Missing records&nbsp;&nbsp;
-			Due to new specimen records and recent revisions of the taxon tables, there are ~5000 specimens across all recently updated collections that are currently being kicked out of the loading process due to the names being misspelled or unpublished.  This backlog is larger than in the past due to the cleaning up of the taxon tables. Fixing these problem names is a slow process that is being worked on periodically.  Many of these names also are cultivated taxa not yet in the taxon table.  If there are records for a taxon that were online previously and now are not, please e-mail me.  I can find why the record is being kicked out of the loading process and fix the problem before for the next refresh.</p>
-<p class="bodyText">&nbsp;&nbsp;5. Image records&nbsp;&nbsp;
-			This feature has not been updated since 2015, when David Baxter removed most image record links.  The links for most of the image records submitted in recent database updates have been restored.  The entire image file had to be recreated and revised.  The image links for UC and JEPS specimens are still broken and need to be reformatted again. Currently there are over 50,000 image links in the database, but over 30,000 of those are from SEINET.</p> 
-<p class="bodyText">
+<p class="pageAuthorLine">&nbsp;&nbsp;October 2&nbsp;&nbsp;&mdash;&nbsp;&nbsp;HSC, HUH, JOTR, OBI, and SBBG updated</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;1. RSA POM&nbsp;&nbsp;
+A new database refresh is still being processed. This new dataset eliminates the old filemaker program and has all specimens from California in the Specify database. A future refresh will include these data and include a refresh of the Mexico specimens. As with CAS, the primary record number will be changed for RSA and POM once these new data are loaded. The old RSA and POM accession number will be included as an other record number once these data are online.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;To avoid the issue with the CAS georeference buffer, the georeference buffer records using the old RSA/POM accessions will retained until the RSA file has been completely re-formatted and processed. Conversion of the georeference buffer, linking the old accession numbers to the new ones, is ongoing simultaneously. When the new RSA data is live, the successfully converted georeferences in the buffer will also be live.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;2. CAS&nbsp;&nbsp;
+			Around 200,000 more georeferences from the buffer have been added to this refresh. The buffer georeferences using the old CAS and DS accession number were linked to the new accession number and loaded into this refresh. Most, but not all, georeferences were linked to the new record numbers. There were some that were not found and some that were duplicate accessions. These georeferences were deleted from the buffer.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;3. HUH, CAS, RSA&nbsp;&nbsp;
+			Due to the time needed for converting the georeference buffer, character formatting errors are still present in these datasets (fractions , degrees, peoples names with special characters, etc displaying as unintelligible character strings). I will be working on correcting these over the next month.</p> 
+<p class="pageAuthorLine">&nbsp;&nbsp;4. Missing records&nbsp;&nbsp;
+			Due to new specimen records and recent revisions of the taxon tables, there are ~5000 specimens across all recently updated collections that are currently being kicked out of the loading process due to the names being misspelled or unpublished. This backlog is larger than in the past due to the cleaning up of the taxon tables. Fixing these problem names is a slow process that is being worked on periodically. Many of these names also are cultivated taxa not yet in the taxon table. If there are records for a taxon that were online previously and now are not, please e-mail me. I can find why the record is being kicked out of the loading process and fix the problem before for the next refresh.</p>
+<p class="pageAuthorLine">&nbsp;&nbsp;5. Image records&nbsp;&nbsp;
+			This feature has not been updated since 2015, when David Baxter removed most image record links. The links for most of the image records submitted in recent database updates have been restored. The entire image file had to be recreated and revised. The image links for UC and JEPS specimens are still broken and need to be reformatted again. Currently there are over 50,000 image links in the database, but over 30,000 of those are from SEINET.</p> 
+<p class="generalText">
 Georeference file buffer report:<br />
-&nbsp;&nbsp;&nbsp;876103 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;634206 georeference records from the Primary Buffer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;194580 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3925 georeference records from other user submitted files. <br />
+<li>&nbsp;876103 Records with decimal Lat/Long, processed from coordinates on the label. <br />
+<li>&nbsp;&nbsp;634206 georeference records from the Primary Buffer.<br />
+<li>&nbsp;&nbsp;194580 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3925 georeference records from other user submitted files. <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6792 georeference records from the Mexico buffer. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;122083 yellow-flagged georeference records<br /><br />
+<li>&nbsp;&nbsp;122083 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine"><br />&nbsp;&nbsp;
 Record count: 2,295,729 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,716,268 of which are georeferenced)</a><br /></span>
 </p>		<br /><br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;August 14 <br /><br />
-&nbsp;&nbsp;1. RSA POM
-			Fixed bug in scripts showing incorrect combined collectors when only a single collector present.  This bug appears to have been in the loading script for some time and has escaped detection.
-			Fixed a bug in the script that was deleting the subtaxon names of specimens loaded from the Filemaker pro version of the data.  More records from RSA and POM are present in this refresh than in the last couple refreshes.
+<span class="generalText"><br />
+<li>August 14 <br /><br />
+<li>1. RSA POM
+			Fixed bug in scripts showing incorrect combined collectors when only a single collector present. This bug appears to have been in the loading script for some time and has escaped detection.
+			Fixed a bug in the script that was deleting the subtaxon names of specimens loaded from the Filemaker pro version of the data. More records from RSA and POM are present in this refresh than in the last couple refreshes.
 <br />
 Georeference file buffer report:<br />
-&nbsp;&nbsp;1039322 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;474149 georeference records from the Primary Buffer (including Baja).<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;76413 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9254 georeference records from other user submitted files. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;117242 yellow-flagged georeference records<br /><br />
+<li>1039322 Records with decimal Lat/Long, processed from coordinates on the label. <br />
+<li>&nbsp;&nbsp;474149 georeference records from the Primary Buffer (including Baja).<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;76413 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9254 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;117242 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine"><br />&nbsp;&nbsp;
 Record count: 2,289,947 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,599,967 of which are georeferenced)</a><br /></span>
 		<br /><br />
-<span class="bodyText"><br />
+<span class="generalText"><br />
 
-		<span class="bodyText"><br />
-&nbsp;&nbsp;August 8&nbsp;&nbsp;&mdash;&nbsp;&nbsp;CAS-BOT-BC and SJSU updated<br /><br />
-&nbsp;&nbsp;1. CAS-BOT-BC (formerly CAS and DS) has been revised further.  The error that resulted in mis-mapping of a majority of CAS specimens in the July refresh has mostly been fixed.  As a result of the new herbarium code and barcode numbers, no georeference buffer records cannot be applied to this collection at this time.  Therefore, there are 200,000+ records that are not georeferenced in this refresh that were mapped in July.<br />
-A GIS-based fix for mapping the buffer coordinates (which use the old accession numbers) to the new herbarium codes is underway.  Most of the georeference buffer coordinates should be salvageable.	 There will be a considerable number of specimens left without coordinates after this fix.  These are old duplicate accessions that were kicked out previously, that after the change in herbarium codes, are now newly displayed on the CCH.  
+		<span class="generalText"><br />
+<li>August 8&nbsp;&nbsp;&mdash;&nbsp;&nbsp;CAS-BOT-BC and SJSU updated<br /><br />
+<li>1. CAS-BOT-BC (formerly CAS and DS) has been revised further. The error that resulted in mis-mapping of a majority of CAS specimens in the July refresh has mostly been fixed. As a result of the new herbarium code and barcode numbers, no georeference buffer records cannot be applied to this collection at this time. Therefore, there are 200,000+ records that are not georeferenced in this refresh that were mapped in July.<br />
+A GIS-based fix for mapping the buffer coordinates (which use the old accession numbers) to the new herbarium codes is underway. Most of the georeference buffer coordinates should be salvageable.	 There will be a considerable number of specimens left without coordinates after this fix. These are old duplicate accessions that were kicked out previously, that after the change in herbarium codes, are now newly displayed on the CCH. 
 <br />
-&nbsp;&nbsp;2. More coordinates and specimens from CHSC and RSA/POM were added due to further revisions of the loading scripts. The loading scripts for these three herbaria will be completely updated by the end of August. This is a complicated process and if you see any errors or problems, please let us know.<br /><br />
+<li>2. More coordinates and specimens from CHSC and RSA/POM were added due to further revisions of the loading scripts. The loading scripts for these three herbaria will be completely updated by the end of August. This is a complicated process and if you see any errors or problems, please let us know.<br /><br />
 <br />
 Georeference file buffer report:<br />
-&nbsp;&nbsp;1039315 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;474040 georeference records from the Primary Buffer (including Baja).<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;76419 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9251 georeference records from other user submitted files. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;117242 yellow-flagged georeference records<br /><br />
+<li>1039315 Records with decimal Lat/Long, processed from coordinates on the label. <br />
+<li>&nbsp;&nbsp;474040 georeference records from the Primary Buffer (including Baja).<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;76419 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9251 georeference records from other user submitted files. <br />
+<li>&nbsp;&nbsp;117242 yellow-flagged georeference records<br /><br />
 	<span class="pageAuthorLine"><br />&nbsp;&nbsp;
 Record count: 2,289,071 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,599,853 of which are georeferenced)</a><br /></span>
 		<br /><br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;July 24  &mdash; CAS and DS (as CAS-BOT-BC), SCFS, SDSU, UCSC, and UCD updated<br /><br />
-&nbsp;&nbsp;1. The loading scripts for CDA, CHSC, and RSA/POM were partially updated to the new version. 
+<span class="generalText"><br />
+<li>July 24&nbsp;&mdash;&nbsp;CAS and DS (as CAS-BOT-BC), SCFS, SDSU, UCSC, and UCD updated<br /><br />
+<li>1. The loading scripts for CDA, CHSC, and RSA/POM were partially updated to the new version. 
 Only a small proportion of the georeferenced specimens were being mapped online since April (only those records that had just decimal latitude and longitude as coordinates).
 The problem has now been corrected. The loading scripts for these three herbaria will be completely updated in August.
 This is a complicated process and if you see any errors or problems, please let us know.<br /><br />
-&nbsp;&nbsp;2. CAS/DS is now known as CAS-BOT-BC, as a result of their changeover to a Symbiota-based database. 
+<li>2. CAS/DS is now known as CAS-BOT-BC, as a result of their changeover to a Symbiota-based database. 
 The new herbarium code and accessions in their recent update have overwritten all of the old accessions present in the previous versions of CCH. 
 Additional fixes are underway to show the old CAS & DS accessions on the Accession Detail Results pages.<br /><br />
-&nbsp;&nbsp;3. A major update of the SEINET records from California were added in this refresh. 
+<li>3. A major update of the SEINET records from California were added in this refresh. 
 The new upload includes many more specimen records (over 123,000 records) and herbaria than included previously. The SEINET loader has been updated to the current format. <br /><br />
-&nbsp;&nbsp;4. Specimen records and georeferences from two new field station herbaria have been added to the CCH.
+<li>4. Specimen records and georeferences from two new field station herbaria have been added to the CCH.
 Specimens from BRFS (Blodgett Forest Research Station) and HREC (Hopland Research and Extension Center) were imaged and databased at UC-JEPS and will continue to be uploaded when the UC-JEPS data are refreshed.<br /><br />
-&nbsp;&nbsp;5. Specimen records and georeferences from the Sagehen Creek Field Station herbarium (SCFS) have been added to the CCH. 
+<li>5. Specimen records and georeferences from the Sagehen Creek Field Station herbarium (SCFS) have been added to the CCH. 
 <br /><br />
-&nbsp;&nbsp;6. Cleanup of the georeference buffer is mostly complete. 
+<li>6. Cleanup of the georeference buffer is mostly complete. 
 The remaining georeference coordinates missing in the past update are present in this one. 
 A previous issue with the georeferenced records from the Baldwin et al. 2017 study (see April 11, 2017 news above) overwriting georeferences from the primary buffer was corrected. 
 <br />
 Georeference file buffer report:<br />
-&nbsp;&nbsp;1359762 Records with decimal Lat/Long, processed from coordinates on the label. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;400257 georeference records from the Primary Buffer (including Baja).<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64340 georeference records from the Baldwin et al 2017.<br /> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10974 georeference records from other user submitted files. <br /><br />
+<li>1359762 Records with decimal Lat/Long, processed from coordinates on the label. <br />
+<li>&nbsp;&nbsp;400257 georeference records from the Primary Buffer (including Baja).<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;64340 georeference records from the Baldwin et al 2017.<br /> 
+<li>&nbsp;&nbsp;&nbsp;&nbsp;10974 georeference records from other user submitted files. <br /><br />
 </span>
-		         <span class="pageAuthorLine"><br />&nbsp;&nbsp;
+		 <span class="pageAuthorLine"><br />&nbsp;&nbsp;
 Record count: 2,250,827 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,833,380 of which are georeferenced)</a><br /></span>
 		<br /><br />
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;April 27  &mdash; <br />
-&nbsp;&nbsp;Cleanup of the georeference buffer is mostly complete.  The remaining georeference coordinates missing in the past update are present in this one.<br /><br />
-&nbsp;&nbsp;Baja California records without coordinates now will show up in the CCH.  These were being removed by scripts in previous updates. There are a little over 6700 Baja records without georeferences, some of which are being georeferenced by CONABIO via a grant with the UC-JEPS Herbarium.<br /><br />
-&nbsp;&nbsp;There is still a problem with Baja California records with "unknown" municipality not being able to be distinguished from California records with "unknown" county.  This is due to the lack of a Country Field.  This is currently being worked on and will be enabled in a future update.<br />
+<span class="generalText"><br />
+<li>April 27&nbsp;&mdash;&nbsp;<br />
+<li>Cleanup of the georeference buffer is mostly complete. The remaining georeference coordinates missing in the past update are present in this one.<br /><br />
+<li>Baja California records without coordinates now will show up in the CCH. These were being removed by scripts in previous updates. There are a little over 6700 Baja records without georeferences, some of which are being georeferenced by CONABIO via a grant with the UC-JEPS Herbarium.<br /><br />
+<li>There is still a problem with Baja California records with "unknown" municipality not being able to be distinguished from California records with "unknown" county. This is due to the lack of a Country Field. This is currently being worked on and will be enabled in a future update.<br />
 </span>
-		         <span class="pageAuthorLine"><br />&nbsp;&nbsp;
+		 <span class="pageAuthorLine"><br />&nbsp;&nbsp;
 Record count: 2,168,516 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,602,859 of which are georeferenced)</a><br /></span>
 		<br /><br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;April 18  &mdash; BLMAR, JROH, GMDRC, SD, UCR Updated<br />
-&nbsp;&nbsp;A revision of the data loading scripts of the above 4 participants plus CATA is complete. Phenology, habitat, associates, and other voucher data should now be displaying for these herbaria when present.  Additional updates to several other herbaria are in process. If you see any errors or problems, please let us know.
-&nbsp;&nbsp;Cultivated Specimens are now fully included in CCH Queries, but Phase Two (ability to choose to not query cultivated specimens) is not yet implemented<br />
-&nbsp;&nbsp;Cleanup of data, yellow flagging, and georeferenced coordinates is ongoing.  Due to some changes with the georeferencing buffer process, the total georeferenced specimens is lower this update.  More cleanup of the georeference buffer is planned and additional georeference coordinates will re-appear in a future update<br />
-&nbsp;&nbsp;Additional Baja California records now have geocoordinates due to the georeferencing efforts of Jon Rebman and the SDNHM.<br />
+<span class="generalText"><br />
+<li>April 18&nbsp;&mdash;&nbsp;BLMAR, JROH, GMDRC, SD, UCR Updated<br />
+<li>A revision of the data loading scripts of the above 4 participants plus CATA is complete. Phenology, habitat, associates, and other voucher data should now be displaying for these herbaria when present. Additional updates to several other herbaria are in process. If you see any errors or problems, please let us know.
+<li>Cultivated Specimens are now fully included in CCH Queries, but Phase Two (ability to choose to not query cultivated specimens) is not yet implemented<br />
+<li>Cleanup of data, yellow flagging, and georeferenced coordinates is ongoing. Due to some changes with the georeferencing buffer process, the total georeferenced specimens is lower this update. More cleanup of the georeference buffer is planned and additional georeference coordinates will re-appear in a future update<br />
+<li>Additional Baja California records now have geocoordinates due to the georeferencing efforts of Jon Rebman and the SDNHM.<br />
 </span>
-         <span class="pageAuthorLine"><br />&nbsp;&nbsp;
+ <span class="pageAuthorLine"><br />&nbsp;&nbsp;
 Record count: 2,161,735 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(869,111 of which are georeferenced)</a><br /></span>
 <br />
 	<span class="pageAuthorLine"><b>Updates for 2016</b>
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Dec 20  &mdash; JROH Updated<br />
-&nbsp;&nbsp;general error and bug corrections were completed to restore the CCH after data server was taken offline in November<br />	
+<span class="generalText"><br />
+<li>Dec 20&nbsp;&mdash;&nbsp;JROH Updated<br />
+<li>general error and bug corrections were completed to restore the CCH after data server was taken offline in November<br />	
 </span>
-         <span class="pageAuthorLine"><br />
+ <span class="pageAuthorLine"><br />
 Record count: 2,149,422 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,604,019 of which are georeferenced)</a><br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Sep 12  &mdash; UCR Updated<br />
-&nbsp;&nbsp;CCH welcomes the Inyo National Forest Herbarium (INF) in Bishop as a data provider<br />
-&nbsp;&nbsp;<font size="1">The import of INF records are not yet complete, but should be in the next month or two.</font><br />	
+<span class="generalText"><br />
+<li>Sep 12&nbsp;&mdash;&nbsp;UCR Updated<br />
+<li>CCH welcomes the Inyo National Forest Herbarium (INF) in Bishop as a data provider<br />
+<li><font size="1">The import of INF records are not yet complete, but should be in the next month or two.</font><br />	
 </span>
-         <span class="pageAuthorLine"><br />
+ <span class="pageAuthorLine"><br />
 Record count: 2,149,422 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,604,019 of which are georeferenced)</a> Sep 12 <br /></span>
 <br />		
 		
-<span class="bodyText"><br />
-&nbsp;&nbsp;May 27  &mdash; JROH, SBBG, SD, SEINET, SJSU Updated
-<br>&nbsp;&nbsp;Now serving CFP Baja records from CAS, RSA, UC, UCR
+<span class="generalText"><br />
+<li>May 27&nbsp;&mdash;&nbsp;JROH, SBBG, SD, SEINET, SJSU Updated
+<br />&nbsp;&nbsp;Now serving CFP Baja records from CAS, RSA, UC, UCR
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,147,910 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,602,611 of which are georeferenced)</a> May 27 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,147,910 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,602,611 of which are georeferenced)</a> May 27 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Apr 29  &mdash; CDA, UCD Updated
+<span class="generalText"><br />
+<li>Apr 29&nbsp;&mdash;&nbsp;CDA, UCD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,117,834 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,590,310 of which are georeferenced)</a> April 29 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,117,834 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,590,310 of which are georeferenced)</a> April 29 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Apr 25  &mdash; RSA, UCSB Updated
+<span class="generalText"><br />
+<li>Apr 25&nbsp;&mdash;&nbsp;RSA, UCSB Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,100,600 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,584,284 of which are georeferenced)</a> April 25 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,100,600 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,584,284 of which are georeferenced)</a> April 25 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Feb 17  &mdash; CAS, SDSU Updated
+<span class="generalText"><br />
+<li>Feb 17&nbsp;&mdash;&nbsp;CAS, SDSU Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,090,128 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,567,691 of which are georeferenced)</a> February 17 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,090,128 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,567,691 of which are georeferenced)</a> February 17 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Feb 5  &mdash; GMDRC, HSC Updated
+<span class="generalText"><br />
+<li>Feb 5&nbsp;&mdash;&nbsp;GMDRC, HSC Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,082,115 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,561,092 of which are georeferenced)</a> February 5 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,082,115 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,561,092 of which are georeferenced)</a> February 5 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 26  &mdash; CLARK, UCR Updated
+<span class="generalText"><br />
+<li>Jan 26&nbsp;&mdash;&nbsp;CLARK, UCR Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,078,164 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,559,109 of which are georeferenced)</a> January 26 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,078,164 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,559,109 of which are georeferenced)</a> January 26 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 19  &mdash; JROH Updated
+<span class="generalText"><br />
+<li>Jan 19&nbsp;&mdash;&nbsp;JROH Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,076,744 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,557,827 of which are georeferenced)</a> January 19 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,076,744 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,557,827 of which are georeferenced)</a> January 19 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 11  &mdash; UCSC, OBI Updated
+<span class="generalText"><br />
+<li>Jan 11&nbsp;&mdash;&nbsp;UCSC, OBI Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,076,532 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,557,657 of which are georeferenced)</a> January 11 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,076,532 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,557,657 of which are georeferenced)</a> January 11 <br /></span>
 <br />
 
 
@@ -426,991 +451,1047 @@ Record count: 2,149,422 <a href="http://ucjeps.berkeley.edu/images/georef_map.ht
 <br />
 
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Oct 23  &mdash; CATA, SD Updated
+<span class="generalText"><br />
+<li>Oct 23&nbsp;&mdash;&nbsp;CATA, SD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,069,584 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,540,764 of which are georeferenced)</a> October 23 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,069,584 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,540,764 of which are georeferenced)</a> October 23 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Oct 2  &mdash; UCR Updated
+<span class="generalText"><br />
+<li>Oct 2&nbsp;&mdash;&nbsp;UCR Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,065,567 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,539,152 of which are georeferenced)</a> October 2 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,065,567 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,539,152 of which are georeferenced)</a> October 2 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Sept 21  &mdash; JROH, SJSU Updated
+<span class="generalText"><br />
+<li>Sept 21&nbsp;&mdash;&nbsp;JROH, SJSU Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,060,073 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,531,239 of which are georeferenced)</a> September 26 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,060,073 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,531,239 of which are georeferenced)</a> September 26 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Aug 3  &mdash; CHSC, UCSC Updated
+<span class="generalText"><br />
+<li>Aug 3&nbsp;&mdash;&nbsp;CHSC, UCSC Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,058,967 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,521,914 of which are georeferenced)</a> August 26 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,058,967 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,521,914 of which are georeferenced)</a> August 26 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jun 26  &mdash; CAS Updated
+<span class="generalText"><br />
+<li>Jun 26&nbsp;&mdash;&nbsp;CAS Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,054,347 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,487,129 of which are georeferenced)</a> June 26 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,054,347 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,487,129 of which are georeferenced)</a> June 26 <br /></span>
 <br />
 
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jun 22  &mdash; RSA Updated
+<span class="generalText"><br />
+<li>Jun 22&nbsp;&mdash;&nbsp;RSA Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,023,297 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,470,818 of which are georeferenced)</a> June 22 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,023,297 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,470,818 of which are georeferenced)</a> June 22 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;May 8  &mdash; SD Updated
+<span class="generalText"><br />
+<li>May 8&nbsp;&mdash;&nbsp;SD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,015,927 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,458,827 of which are georeferenced)</a> May 8 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,015,927 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,458,827 of which are georeferenced)</a> May 8 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Apr 21  &mdash; CCH welcomes California State University, Fullerton (MACF) as a data provider
+<span class="generalText"><br />
+<li>Apr 21&nbsp;&mdash;&nbsp;CCH welcomes California State University, Fullerton (MACF) as a data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,013,018 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,452,633 of which are georeferenced)</a> April 21 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,013,018 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,452,633 of which are georeferenced)</a> April 21 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Apr 10  &mdash; SBBG, UCD Updated
+<span class="generalText"><br />
+<li>Apr 10&nbsp;&mdash;&nbsp;SBBG, UCD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,012,323 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,449,361 of which are georeferenced)</a> April 10 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,012,323 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,449,361 of which are georeferenced)</a> April 10 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Apr 3  &mdash; CCH welcomes the Catalina Island Conservancy (CATA) as a data provider
+<span class="generalText"><br />
+<li>Apr 3&nbsp;&mdash;&nbsp;CCH welcomes the Catalina Island Conservancy (CATA) as a data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,008,768 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,440,373 of which are georeferenced)</a> April 3 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,008,768 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,440,373 of which are georeferenced)</a> April 3 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Mar 10  &mdash; HSC Updated
+<span class="generalText"><br />
+<li>Mar 10&nbsp;&mdash;&nbsp;HSC Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,006,122 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,433,229 of which are georeferenced)</a> March 10 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,006,122 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,433,229 of which are georeferenced)</a> March 10 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Feb 13  &mdash; JROH, SJSU Updated
+<span class="generalText"><br />
+<li>Feb 13&nbsp;&mdash;&nbsp;JROH, SJSU Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,003,287 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,421,616 of which are georeferenced)</a> February 13 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,003,287 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,421,616 of which are georeferenced)</a> February 13 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Feb 6  &mdash; SEINET Updated<br>
-&nbsp;&nbsp;CCH welcomes Sweeney Granite Mountains Desert Research Center (GMDRC) as a data provider,<br>
-&nbsp;&nbsp;putting CCH over two million specimen records! 
+<span class="generalText"><br />
+<li>Feb 6&nbsp;&mdash;&nbsp;SEINET Updated<br />
+<li>CCH welcomes Sweeney Granite Mountains Desert Research Center (GMDRC) as a data provider,<br />
+<li>putting CCH over two million specimen records! 
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 2,002,998 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,417,708 of which are georeferenced)</a> February 6 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 2,002,998 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,417,708 of which are georeferenced)</a> February 6 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 16  &mdash; HUH Updated
+<span class="generalText"><br />
+<li>Jan 16&nbsp;&mdash;&nbsp;HUH Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,986,263 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,402,942 of which are georeferenced)</a> January 16 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,986,263 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,402,942 of which are georeferenced)</a> January 16 <br /></span>
 
 <br /><br />
 	<span class="pageAuthorLine"><b>Updates for 2014</b>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Dec 19  &mdash; UCR Updated
+<span class="generalText"><br />
+<li>Dec 19&nbsp;&mdash;&nbsp;UCR Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,985,750 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,394,920 of which are georeferenced)</a> December 19 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,985,750 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,394,920 of which are georeferenced)</a> December 19 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Nov 21  &mdash; RSA/POM, SD Updated
+<span class="generalText"><br />
+<li>Nov 21&nbsp;&mdash;&nbsp;RSA/POM, SD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,982,606 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,377,544 of which are georeferenced)</a> November 21 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,982,606 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,377,544 of which are georeferenced)</a> November 21 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Nov 7  &mdash; UCR Updated
+<span class="generalText"><br />
+<li>Nov 7&nbsp;&mdash;&nbsp;UCR Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,977,167 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,365,813 of which are georeferenced)</a> November 7 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,977,167 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,365,813 of which are georeferenced)</a> November 7 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Oct 31  &mdash; UCSB, YM Updated
+<span class="generalText"><br />
+<li>Oct 31&nbsp;&mdash;&nbsp;UCSB, YM Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,975,617 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,360,603 of which are georeferenced)</a> October 31 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,975,617 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,360,603 of which are georeferenced)</a> October 31 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Oct 24  &mdash; VVC Updated
+<span class="generalText"><br />
+<li>Oct 24&nbsp;&mdash;&nbsp;VVC Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,962,685 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,355,156 of which are georeferenced)</a> October 24 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,962,685 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,355,156 of which are georeferenced)</a> October 24 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Oct 17  &mdash; SD Updated
+<span class="generalText"><br />
+<li>Oct 17&nbsp;&mdash;&nbsp;SD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,962,151 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,350,004 of which are georeferenced)</a> October 17 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,962,151 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,350,004 of which are georeferenced)</a> October 17 <br /></span>
 
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Sept 26  &mdash; CLARK, UCD Updated. UCD now serving determination history
+<span class="generalText"><br />
+<li>Sept 26&nbsp;&mdash;&nbsp;CLARK, UCD Updated. UCD now serving determination history
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,959,970 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,326,749 of which are georeferenced)</a> September 26 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,959,970 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,326,749 of which are georeferenced)</a> September 26 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Sept 12  &mdash; OBI, CAS Updated
+<span class="generalText"><br />
+<li>Sept 12&nbsp;&mdash;&nbsp;OBI, CAS Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,956,852 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,324,332 of which are georeferenced)</a> September 12 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,956,852 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,324,332 of which are georeferenced)</a> September 12 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Sept 5  &mdash; CCH welcomes Pasadena City College Herbarium (PASA) as a data provider
+<span class="generalText"><br />
+<li>Sept 5&nbsp;&mdash;&nbsp;CCH welcomes Pasadena City College Herbarium (PASA) as a data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,949,558 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,317,943 of which are georeferenced)</a> September 5 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,949,558 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,317,943 of which are georeferenced)</a> September 5 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Aug 8  &mdash; UCR now serving determination history and specimen images
+<span class="generalText"><br />
+<li>Aug 8&nbsp;&mdash;&nbsp;UCR now serving determination history and specimen images
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,947,092 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,287,777 of which are georeferenced)</a> August 8 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,947,092 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,287,777 of which are georeferenced)</a> August 8 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Aug 1  &mdash; SJSU Updated
+<span class="generalText"><br />
+<li>Aug 1&nbsp;&mdash;&nbsp;SJSU Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,947,071 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,278,463 of which are georeferenced)</a> August 1 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,947,071 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,278,463 of which are georeferenced)</a> August 1 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jul 25  &mdash; CLARK, SDSU, UCR Updated
+<span class="generalText"><br />
+<li>Jul 25&nbsp;&mdash;&nbsp;CLARK, SDSU, UCR Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,946,867 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,271,048 of which are georeferenced)</a> July 25 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,946,867 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,271,048 of which are georeferenced)</a> July 25 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jun 26  &mdash; CAS Updated
+<span class="generalText"><br />
+<li>Jun 26&nbsp;&mdash;&nbsp;CAS Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,942,879 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,239,719 of which are georeferenced)</a> June 26 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,942,879 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,239,719 of which are georeferenced)</a> June 26 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;May 23  &mdash; HUH Updated
+<span class="generalText"><br />
+<li>May 23&nbsp;&mdash;&nbsp;HUH Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,923,306 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,219,196 of which are georeferenced)</a> May 23 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,923,306 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,219,196 of which are georeferenced)</a> May 23 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Apr 4  &mdash; RSA Updated
+<span class="generalText"><br />
+<li>Apr 4&nbsp;&mdash;&nbsp;RSA Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,922,851 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,200,778 of which are georeferenced)</a> April 4 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,922,851 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,200,778 of which are georeferenced)</a> April 4 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Mar 27  &mdash; UCR Updated
+<span class="generalText"><br />
+<li>Mar 27&nbsp;&mdash;&nbsp;UCR Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,919,553 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,193,662 of which are georeferenced)</a> March 27 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,919,553 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,193,662 of which are georeferenced)</a> March 27 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Mar 21  &mdash; CHSC Updated
+<span class="generalText"><br />
+<li>Mar 21&nbsp;&mdash;&nbsp;CHSC Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,915,935 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,185,625 of which are georeferenced)</a> March 21 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,915,935 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,185,625 of which are georeferenced)</a> March 21 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Mar 7  &mdash; SD Updated
+<span class="generalText"><br />
+<li>Mar 7&nbsp;&mdash;&nbsp;SD Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,915,419 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,172,550 of which are georeferenced)</a> March 7 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,915,419 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,172,550 of which are georeferenced)</a> March 7 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Feb 28  &mdash; SBBG Updated
+<span class="generalText"><br />
+<li>Feb 28&nbsp;&mdash;&nbsp;SBBG Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,914,499 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,167,007 of which are georeferenced)</a> February 28 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,914,499 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,167,007 of which are georeferenced)</a> February 28 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Feb 14  &mdash; Jasper Ridge Biological Preserve at Stanford University (JROH) welcomed as a data provider.
+<span class="generalText"><br />
+<li>Feb 14&nbsp;&mdash;&nbsp;Jasper Ridge Biological Preserve at Stanford University (JROH) welcomed as a data provider.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,913,541 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,151,950 of which are georeferenced)</a> February 14 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,913,541 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,151,950 of which are georeferenced)</a> February 14 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 31  &mdash; UCSB Updated
+<span class="generalText"><br />
+<li>Jan 31&nbsp;&mdash;&nbsp;UCSB Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,909,005 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,140,556 of which are georeferenced)</a> January 31 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,909,005 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,140,556 of which are georeferenced)</a> January 31 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 24  &mdash; SD, HUH Updated
+<span class="generalText"><br />
+<li>Jan 24&nbsp;&mdash;&nbsp;SD, HUH Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,903,565 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,136,808 of which are georeferenced)</a> January 24 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,903,565 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,136,808 of which are georeferenced)</a> January 24 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 17  &mdash; DAV Updated
+<span class="generalText"><br />
+<li>Jan 17&nbsp;&mdash;&nbsp;DAV Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,900,235 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,131,436 of which are georeferenced)</a> January 17 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,900,235 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,131,436 of which are georeferenced)</a> January 17 <br /></span>
 
 <br />
-<span class="bodyText"><br />
-&nbsp;&nbsp;Jan 10  &mdash; CAS, UCLA Updated
+<span class="generalText"><br />
+<li>Jan 10&nbsp;&mdash;&nbsp;CAS, UCLA Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,891,361 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,127,630 of which are georeferenced)</a> January 10 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,891,361 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,127,630 of which are georeferenced)</a> January 10 <br /></span>
 
 
 <br />
 <p>
 
-        <span class="pageAuthorLine"><b>Updates for 2013</b>
+ <span class="pageAuthorLine"><b>Updates for 2013</b>
 <br />
-        <span class="bodyText"><br />
-&nbsp;&nbsp;Dec 20  &mdash; CLARK Updated
+ <span class="generalText"><br />
+<li>Dec 20&nbsp;&mdash;&nbsp;CLARK Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,868,758 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,113,159 of which are georeferenced)</a> December 20 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,868,758 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,113,159 of which are georeferenced)</a> December 20 <br /></span>
 
 	<br />
-	<span class="bodyText"><br />
-&nbsp;&nbsp;Dec 13  &mdash; SJSU Updated
+	<span class="generalText"><br />
+<li>Dec 13&nbsp;&mdash;&nbsp;SJSU Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,868,318 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,101,318 of which are georeferenced)</a> December 13 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,868,318 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,101,318 of which are georeferenced)</a> December 13 <br /></span>
 
 	<br />
-	 <span class="bodyText"><br />
-&nbsp;&nbsp;Dec 6  &mdash; SDSU Updated
+	 <span class="generalText"><br />
+<li>Dec 6&nbsp;&mdash;&nbsp;SDSU Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,867,909 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,100,095 of which are georeferenced)</a> December 6 <br /></span>
-	<span class="bodyText"><br />
+ <span class="pageAuthorLine">
+<br />Record count: 1,867,909 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,100,095 of which are georeferenced)</a> December 6 <br /></span>
+	<span class="generalText"><br />
 	<br />
-&nbsp;&nbsp;Nov 15  &mdash; RSA Updated
+<li>Nov 15&nbsp;&mdash;&nbsp;RSA Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,867,693 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,097,505 of which are georeferenced)</a> November 15 <br /></span>
-	<span class="bodyText"><br />
+ <span class="pageAuthorLine">
+<br />Record count: 1,867,693 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,097,505 of which are georeferenced)</a> November 15 <br /></span>
+	<span class="generalText"><br />
 	<br />
-&nbsp;&nbsp;Nov 8  &mdash; OBI Updated
+<li>Nov 8&nbsp;&mdash;&nbsp;OBI Updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,864,682 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,094,139 of which are georeferenced)</a> November 8 <br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,864,682 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,094,139 of which are georeferenced)</a> November 8 <br /></span>
  
-	<span class="bodyText"><br />
+	<span class="generalText"><br />
 	<br />
-&nbsp;&nbsp;Nov 1  &mdash; Bureau of Land Management, Arcata Field Office (BLMAR) welcomed as data provider
+<li>Nov 1&nbsp;&mdash;&nbsp;Bureau of Land Management, Arcata Field Office (BLMAR) welcomed as data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,856,599 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,092,116 of which are georeferenced)</a> November 1 <br /></span>
-	<span class="bodyText"><br />
+ <span class="pageAuthorLine">
+<br />Record count: 1,856,599 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,092,116 of which are georeferenced)</a> November 1 <br /></span>
+	<span class="generalText"><br />
 <br />
-&nbsp;&nbsp;Oct 25  &mdash; CAS updated
+<li>Oct 25&nbsp;&mdash;&nbsp;CAS updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,855,981 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,090,387 of which are georeferenced)</a>  October 25<br /></span>
-         <span class="bodyText"><br />
-         <br />
-&nbsp;&nbsp;Oct 11  &mdash; UCR updated
+ <span class="pageAuthorLine">
+<br />Record count: 1,855,981 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,090,387 of which are georeferenced)</a> October 25<br /></span>
+ <span class="generalText"><br />
+<li>Oct 11&nbsp;&mdash;&nbsp;UCR updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,821,776 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,085,134 of which are georeferenced)</a>  October 11<br /></span>
-	 <span class="bodyText"><br />
-     	 <br />
-&nbsp;&nbsp;Sep 20  &mdash; UCLA, SEINET updated
+ <span class="pageAuthorLine">
+<br />Record count: 1,821,776 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,085,134 of which are georeferenced)</a> October 11<br /></span>
+	 <span class="generalText"><br />
+ 	 <br />
+<li>Sep 20&nbsp;&mdash;&nbsp;UCLA, SEINET updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,819,636 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,075,798 of which are georeferenced)</a>  September 20<br /></span>
-         <span class="bodyText"><br />
+ <span class="pageAuthorLine">
+<br />Record count: 1,819,636 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,075,798 of which are georeferenced)</a> September 20<br /></span>
+ <span class="generalText"><br />
 	 <br />
-&nbsp;&nbsp;Aug 16  &mdash; SD updated
+<li>Aug 16&nbsp;&mdash;&nbsp;SD updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,815,265<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,049,612 of which are georeferenced)</a>  August 16<br /></span>
-         <span class="bodyText"><br />
-       <br />
-&nbsp;&nbsp;Aug 14  &mdash; Cal State, Sacramento (SACT) welcomed as data provider; SEINET updated
+ <span class="pageAuthorLine">
+<br />Record count: 1,815,265<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,049,612 of which are georeferenced)</a> August 16<br /></span>
+ <span class="generalText"><br />
+ <br />
+<li>Aug 14&nbsp;&mdash;&nbsp;Cal State, Sacramento (SACT) welcomed as data provider; SEINET updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,812,461<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,046,946 of which are georeferenced)</a>  August 14<br /></span>
-         <span class="bodyText"><br />
-       <br />
-&nbsp;&nbsp;Aug 9  &mdash; SBBG, UCR updated
+ <span class="pageAuthorLine">
+<br />Record count: 1,812,461<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,046,946 of which are georeferenced)</a> August 14<br /></span>
+ <span class="generalText"><br />
+ <br />
+<li>Aug 9&nbsp;&mdash;&nbsp;SBBG, UCR updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,809,939<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,045,551 of which are georeferenced)</a>  August 9<br /></span>
-         <span class="bodyText"><br />
-       <br />
-&nbsp;&nbsp;Aug 2  &mdash; SEINET joins CCH
+ <span class="pageAuthorLine">
+<br />Record count: 1,809,939<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,045,551 of which are georeferenced)</a> August 9<br /></span>
+ <span class="generalText"><br />
+ <br />
+<li>Aug 2&nbsp;&mdash;&nbsp;SEINET joins CCH
 </span>
-         <span class="pageAuthorLine">
-<br>The Southwest Environmental Information Network is now providing California records from the following herbaria: UTC, ARIZ, DES, NMC, ASC, SJNM, UNM, CS, ASU, BRY, FLD, KHD, RM, UVSC, MNA, CCH, USON, WSC, FLFO, EPHR, RMBL, PRI, and TEUI. About 25,000 records went in. A semi-automatic upload system has been developed to facilitate updates.
+ <span class="pageAuthorLine">
+<br />The Southwest Environmental Information Network is now providing California records from the following herbaria: UTC, ARIZ, DES, NMC, ASC, SJNM, UNM, CS, ASU, BRY, FLD, KHD, RM, UVSC, MNA, CCH, USON, WSC, FLFO, EPHR, RMBL, PRI, and TEUI. About 25,000 records went in. A semi-automatic upload system has been developed to facilitate updates.
 
-         <span class="bodyText"><br />
-       <br />
-&nbsp;&nbsp;Jul 18  &mdash; RSA updated
+ <span class="generalText"><br />
+ <br />
+<li>Jul 18&nbsp;&mdash;&nbsp;RSA updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,780,787  July 18<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,780,787 July 18<br /></span>
 
-         <span class="bodyText"><br />
-       <br />
-&nbsp;&nbsp;Jun 28  &mdash; OBI updated
+ <span class="generalText"><br />
+ <br />
+<li>Jun 28&nbsp;&mdash;&nbsp;OBI updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,770,431<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,006,052 of which are georeferenced)</a>  June 28<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 22  &mdash; Clark Herbarium of the Riverside Metropolitan Museum welcomed as data provider
+ <span class="pageAuthorLine">
+<br />Record count: 1,770,431<a href="http://ucjeps.berkeley.edu/images/georef_map.html"> (1,006,052 of which are georeferenced)</a> June 28<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Jun 22&nbsp;&mdash;&nbsp;Clark Herbarium of the Riverside Metropolitan Museum welcomed as data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,763,662 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,001,563 of which are georeferenced)</a>  June 22<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 16  &mdash; UCD data updated  and augmented
+ <span class="pageAuthorLine">
+<br />Record count: 1,763,662 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(1,001,563 of which are georeferenced)</a> June 22<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Jun 16&nbsp;&mdash;&nbsp;UCD data updated and augmented
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,762,195 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(996,676 of which are georeferenced)</a>  June 16<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 12  &mdash; UCLA Herbarium welcomed as data provider
+ <span class="pageAuthorLine">
+<br />Record count: 1,762,195 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(996,676 of which are georeferenced)</a> June 16<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Jun 12&nbsp;&mdash;&nbsp;UCLA Herbarium welcomed as data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,757,608 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(991,818 of which are georeferenced)</a>  June 12<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;May 4  &mdash; CAS updated
+ <span class="pageAuthorLine">
+<br />Record count: 1,757,608 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(991,818 of which are georeferenced)</a> June 12<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>May 4&nbsp;&mdash;&nbsp;CAS updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,755,657 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(971,252 of which are georeferenced)</a>  May 4<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Apr 26  &mdash; UCSB, OBI, SDSU updated
+ <span class="pageAuthorLine">
+<br />Record count: 1,755,657 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(971,252 of which are georeferenced)</a> May 4<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Apr 26&nbsp;&mdash;&nbsp;UCSB, OBI, SDSU updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,720,184 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(966,062 of which are georeferenced)</a>  April 26<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 15  &mdash; RSA updated, Cal State Northridge (SFV) welcomed as data provider
+ <span class="pageAuthorLine">
+<br />Record count: 1,720,184 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(966,062 of which are georeferenced)</a> April 26<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Feb 15&nbsp;&mdash;&nbsp;RSA updated, Cal State Northridge (SFV) welcomed as data provider
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,699,161 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(934,865 of which are georeferenced)</a>  February 15<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 2  &mdash; HUH, UCD data updated  and augmented
+ <span class="pageAuthorLine">
+<br />Record count: 1,699,161 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(934,865 of which are georeferenced)</a> February 15<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Feb 2&nbsp;&mdash;&nbsp;HUH, UCD data updated and augmented
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,680,444 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(921,881 of which are georeferenced)</a>  February 2<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jan 26  &mdash; CHSC data updated  and augmented
+ <span class="pageAuthorLine">
+<br />Record count: 1,680,444 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(921,881 of which are georeferenced)</a> February 2<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Jan 26&nbsp;&mdash;&nbsp;CHSC data updated and augmented
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,669,758 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(919,435 of which are georeferenced)</a>  January 27<br /></span>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jan 7  &mdash; SBBG data updated  and augmented; ~2,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,669,758 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(919,435 of which are georeferenced)</a> January 27<br /></span>
+ <br />
+ <span class="generalText"><br />
+<li>Jan 7&nbsp;&mdash;&nbsp;SBBG data updated and augmented; ~2,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,669,401 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(912,166 of which are georeferenced)</a>  January 7<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,669,401 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(912,166 of which are georeferenced)</a> January 7<br /></span>
 
 <P>
-         <span class="pageAuthorLine"><b>Updates for 2012</b>
-       <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Dec 22  &mdash; JOTR records updated
+ <span class="pageAuthorLine"><b>Updates for 2012</b>
+ <br />
+ <span class="generalText"><br />
+<li> Dec 22&nbsp;&mdash;&nbsp;JOTR records updated
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,667,397 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(908,889
- of which are georeferenced)</a>  December 22<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,667,397 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(908,889
+ of which are georeferenced)</a> December 22<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Dec 14  &mdash; SD records updated (~2,500 new records)
+ <span class="generalText"><br />
+<li> Dec 14&nbsp;&mdash;&nbsp;SD records updated (~2,500 new records)
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,667,133 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(902,999
- of which are georeferenced)</a>  December 14<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,667,133 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(902,999
+ of which are georeferenced)</a> December 14<br /></span>
 
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Nov 20  &mdash; CAS data updated; 45,000+ new records, many revisions. Victor Valley College (~2000 records in initial shipment) welcomed as data provider.
+ <span class="generalText"><br />
+<li> Nov 20&nbsp;&mdash;&nbsp;CAS data updated; 45,000+ new records, many revisions. Victor Valley College (~2000 records in initial shipment) welcomed as data provider.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,662,545 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(892,553
- of which are georeferenced)</a>  November 20<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,662,545 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(892,553
+ of which are georeferenced)</a> November 20<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Nov 15  &mdash; DAV data updated; 11,500+ new records, many revisions
+ <span class="generalText"><br />
+<li> Nov 15&nbsp;&mdash;&nbsp;DAV data updated; 11,500+ new records, many revisions
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,616,534 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(886,907
- of which are georeferenced)</a>  November 15<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Oct 19  &mdash; UCSB, HUH data updated; 10,000+ new records, many revisions
+ <span class="pageAuthorLine">
+<br />Record count: 1,616,534 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(886,907
+ of which are georeferenced)</a> November 15<br /></span>
+ <span class="generalText"><br />
+<li> Oct 19&nbsp;&mdash;&nbsp;UCSB, HUH data updated; 10,000+ new records, many revisions
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,605,192 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(874,984
- of which are georeferenced)</a>  October 19<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Oct 15  &mdash; UCR data updated and augmented; 3000+ new records
+ <span class="pageAuthorLine">
+<br />Record count: 1,605,192 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(874,984
+ of which are georeferenced)</a> October 19<br /></span>
+ <span class="generalText"><br />
+<li> Oct 15&nbsp;&mdash;&nbsp;UCR data updated and augmented; 3000+ new records
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,594,863 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(874,816
- of which are georeferenced)</a>  October 15<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Oct 10 &mdash; Joshua Tree National Park (JOTR) welcomed as data provider. ~3,500 records added.
+ <span class="pageAuthorLine">
+<br />Record count: 1,594,863 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(874,816
+ of which are georeferenced)</a> October 15<br /></span>
+ <span class="generalText"><br />
+<li>Oct 10&nbsp;&mdash;&nbsp;Joshua Tree National Park (JOTR) welcomed as data provider. ~3,500 records added.
 </span>
-<br>
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Sep 29  &mdash; RSA/POM data updated and augmented
+<br />
+ <span class="generalText"><br />
+<li> Sep 29&nbsp;&mdash;&nbsp;RSA/POM data updated and augmented
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,588,003 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(863,304
- of which are georeferenced)</a>  September 29<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Aug 24  &mdash; CHSC data updated and augmented
+ <span class="pageAuthorLine">
+<br />Record count: 1,588,003 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(863,304
+ of which are georeferenced)</a> September 29<br /></span>
+ <span class="generalText"><br />
+<li> Aug 24&nbsp;&mdash;&nbsp;CHSC data updated and augmented
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,573,381 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(855,092
- of which are georeferenced)</a>  August 24<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp; Aug 21  &mdash; SDSU data updated and augmented
+ <span class="pageAuthorLine">
+<br />Record count: 1,573,381 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(855,092
+ of which are georeferenced)</a> August 24<br /></span>
+ <span class="generalText"><br />
+<li> Aug 21&nbsp;&mdash;&nbsp;SDSU data updated and augmented
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,572,393 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(851,091
- of which are georeferenced)</a>  August 21<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 30  &mdash; UCR and HUH data updated and augmented; ~3,000 records added.
+ <span class="pageAuthorLine">
+<br />Record count: 1,572,393 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(851,091
+ of which are georeferenced)</a> August 21<br /></span>
+ <span class="generalText"><br />
+<li>Jun 30&nbsp;&mdash;&nbsp;UCR and HUH data updated and augmented; ~3,000 records added.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,570,889 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(833,956
- of which are georeferenced)</a>  June 30<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,570,889 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(833,956
+ of which are georeferenced)</a> June 30<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 22 &mdash; California Polytechnic State University, San Luis Obispo (OBI) welcomed as data provider. ~11,000 records added.
+ <span class="generalText"><br />
+<li>Jun 22&nbsp;&mdash;&nbsp;California Polytechnic State University, San Luis Obispo (OBI) welcomed as data provider. ~11,000 records added.
 </span>
-<br>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 12  &mdash; UCSC and HUH data updated and augmented; ~3,000 records added.
+<br />
+ <span class="generalText"><br />
+<li>Jun 12&nbsp;&mdash;&nbsp;UCSC and HUH data updated and augmented; ~3,000 records added.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,555,295 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(816,951
- of which are georeferenced)</a>  June 12<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,555,295 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(816,951
+ of which are georeferenced)</a> June 12<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;May 8  &mdash; SD data updated and augmented; ~8,000 records added.
+ <span class="generalText"><br />
+<li>May 8&nbsp;&mdash;&nbsp;SD data updated and augmented; ~8,000 records added.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,549,130 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(793,089
- of which are georeferenced)</a>  May 8<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;May 4  &mdash; RSA/POM, CAS data updated and augmented; ~44,000 records added.
+ <span class="pageAuthorLine">
+<br />Record count: 1,549,130 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(793,089
+ of which are georeferenced)</a> May 8<br /></span>
+ <span class="generalText"><br />
+<li>May 4&nbsp;&mdash;&nbsp;RSA/POM, CAS data updated and augmented; ~44,000 records added.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,540,923 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(782,065
- of which are georeferenced)</a>  May 4<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,540,923 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(782,065
+ of which are georeferenced)</a> May 4<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Apr 15  &mdash; HUH data updated and augmented; ~5000 records added
+ <span class="generalText"><br />
+<li>Apr 15&nbsp;&mdash;&nbsp;HUH data updated and augmented; ~5000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,494,036 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(771,421 of which are georeferenced)</a>  April 15<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Mar 5  &mdash; UCR data updated  and augmented; >1,600 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,494,036 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(771,421 of which are georeferenced)</a> April 15<br /></span>
+ <span class="generalText"><br />
+<li>Mar 5&nbsp;&mdash;&nbsp;UCR data updated and augmented; >1,600 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,483,809 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(758,213 of which are georeferenced)</a>  March 5<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 25  &mdash; SBBG data updated  and augmented; ~7,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,483,809 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(758,213 of which are georeferenced)</a> March 5<br /></span>
+ <span class="generalText"><br />
+<li>Feb 25&nbsp;&mdash;&nbsp;SBBG data updated and augmented; ~7,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,482,133 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(756,499 of which are georeferenced)</a>  February 25<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,482,133 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(756,499 of which are georeferenced)</a> February 25<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 8  &mdash; DAV data updated  and augmented; ~20,000 records added
+ <span class="generalText"><br />
+<li>Feb 8&nbsp;&mdash;&nbsp;DAV data updated and augmented; ~20,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,475,306 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(745,455 of which are georeferenced)</a>  February 8<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,475,306 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(745,455 of which are georeferenced)</a> February 8<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 1  &mdash; RSA/POM data updated  and augmented; ~24,000 records added
+ <span class="generalText"><br />
+<li>Feb 1&nbsp;&mdash;&nbsp;RSA/POM data updated and augmented; ~24,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,456,018 February 1<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,456,018 February 1<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jan 19  &mdash; HUH data updated and augmented; ~1,500 records added
+ <span class="generalText"><br />
+<li>Jan 19&nbsp;&mdash;&nbsp;HUH data updated and augmented; ~1,500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,432,281 January 19<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,432,281 January 19<br /></span>
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jan 4  &mdash; UCR data updated and augmented; >1,600 records added
+ <span class="generalText"><br />
+<li>Jan 4&nbsp;&mdash;&nbsp;UCR data updated and augmented; >1,600 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,430,369 January 4<br /></span>
-<br>
-         <span class="pageAuthorLine"><b>News for 2011</b>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Dec 31 &mdash; Sagehen Creek Field Station is now a data provider. 1,000 SCFS records have been added.
+ <span class="pageAuthorLine">
+<br />Record count: 1,430,369 January 4<br /></span>
+<br />
+ <span class="pageAuthorLine"><b>News for 2011</b>
+ <span class="generalText"><br />
+<li>Dec 31&nbsp;&mdash;&nbsp;Sagehen Creek Field Station is now a data provider. 1,000 SCFS records have been added.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,428,745 December 31<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Dec 26 &mdash; HSC data updated and augmented; ~30,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,428,745 December 31<br /></span>
+ <span class="generalText"><br />
+<li>Dec 26&nbsp;&mdash;&nbsp;HSC data updated and augmented; ~30,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,427,702 December 26 <br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Dec 20 &mdash; CAS data updated and augmented; ~40,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,427,702 December 26 <br /></span>
+ <span class="generalText"><br />
+<li>Dec 20&nbsp;&mdash;&nbsp;CAS data updated and augmented; ~40,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,396,918 December 20 <br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Nov 28 &mdash; CHSC data updated and augmented; >2,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,396,918 December 20 <br /></span>
+ <span class="generalText"><br />
+<li>Nov 28&nbsp;&mdash;&nbsp;CHSC data updated and augmented; >2,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,357,890 November 28 <br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Nov 4  &mdash; UCR data updated and augmented; >4,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,357,890 November 28 <br /></span>
+ <span class="generalText"><br />
+<li>Nov 4&nbsp;&mdash;&nbsp;UCR data updated and augmented; >4,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,355,556 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(692,364 of which are georeferenced)</a>  November 4<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Nov 2  &mdash; SD data updated and augmented; >3,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,355,556 <a href="http://ucjeps.berkeley.edu/images/georef_map.html">(692,364 of which are georeferenced)</a> November 4<br /></span>
+ <span class="generalText"><br />
+<li>Nov 2&nbsp;&mdash;&nbsp;SD data updated and augmented; >3,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,351,330 November 2<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Oct 17 &mdash; Yosemite National Park (YM) welcomed as data provider. ~8,000 specimens
+ <span class="pageAuthorLine">
+<br />Record count: 1,351,330 November 2<br /></span>
+ <span class="generalText"><br />
+<li>Oct 17&nbsp;&mdash;&nbsp;Yosemite National Park (YM) welcomed as data provider. ~8,000 specimens
 from the Park and environs. The earliest collection dates from 1914. Half of the records are associated with geographic coordinates and thus can be mapped.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,347,289 October 17<br /></span> 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Oct 3  &mdash; Harvard University Herbaria (A, AMES, ECON, GH) welcomed as data provider. 4,000+ California specimens,
+ <span class="pageAuthorLine">
+<br />Record count: 1,347,289 October 17<br /></span> 
+ <span class="generalText"><br />
+<li>Oct 3&nbsp;&mdash;&nbsp;Harvard University Herbaria (A, AMES, ECON, GH) welcomed as data provider. 4,000+ California specimens,
 mostly types, mostly from early in California history, have been added. The detail display links back to Harvard's web site for additional information.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,339,447 October 3<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Sep 17  &mdash; RSA data updated and augmented; >32,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,339,447 October 3<br /></span>
+ <span class="generalText"><br />
+<li>Sep 17&nbsp;&mdash;&nbsp;RSA data updated and augmented; >32,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,335,166 September 17<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Aug 9  &mdash; SD data updated and augmented; ~4,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,335,166 September 17<br /></span>
+ <span class="generalText"><br />
+<li>Aug 9&nbsp;&mdash;&nbsp;SD data updated and augmented; ~4,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,303,051 August 9<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jul 22 &mdash; California State University at San Bernardino is now a data provider. 2,000 CSUSB records have been added.
+ <span class="pageAuthorLine">
+<br />Record count: 1,303,051 August 9<br /></span>
+ <span class="generalText"><br />
+<li>Jul 22&nbsp;&mdash;&nbsp;California State University at San Bernardino is now a data provider. 2,000 CSUSB records have been added.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,299,006 July 22<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Jun 7 &mdash; CAS data updated and augmented; ~30,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,299,006 July 22<br /></span>
+ <span class="generalText"><br />
+<li>Jun 7&nbsp;&mdash;&nbsp;CAS data updated and augmented; ~30,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,296,991 June 7<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Apr 8 &mdash; SBBG data updated and augmented; >10,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,296,991 June 7<br /></span>
+ <span class="generalText"><br />
+<li>Apr 8&nbsp;&mdash;&nbsp;SBBG data updated and augmented; >10,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,268,218 April 8<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Mar 22 &mdash; SD data updated and augmented; ~4,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,268,218 April 8<br /></span>
+ <span class="generalText"><br />
+<li>Mar 22&nbsp;&mdash;&nbsp;SD data updated and augmented; ~4,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,257,853 March 22<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Mar 21 &mdash; DAV data updated and augmented; ~8,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,257,853 March 22<br /></span>
+ <span class="generalText"><br />
+<li>Mar 21&nbsp;&mdash;&nbsp;DAV data updated and augmented; ~8,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,253,971 March 21<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 26 &mdash; RSA data updated and augmented; ~20,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,253,971 March 21<br /></span>
+ <span class="generalText"><br />
+<li>Feb 26&nbsp;&mdash;&nbsp;RSA data updated and augmented; ~20,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,245,930 February 26<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 18 &mdash; CDA data updated and augmented; >6,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,245,930 February 26<br /></span>
+ <span class="generalText"><br />
+<li>Feb 18&nbsp;&mdash;&nbsp;CDA data updated and augmented; >6,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,228,991 February 18<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;Feb 15 &mdash; UCR and CAS data updated and augmented; >21,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,228,991 February 18<br /></span>
+ <span class="generalText"><br />
+<li>Feb 15&nbsp;&mdash;&nbsp;UCR and CAS data updated and augmented; >21,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,222,974  February 15<br /></span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,222,974 February 15<br /></span>
 
 <P>
-         <span class="pageAuthorLine"><b>News for 2010</b>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;December 10 &mdash; HSC data updated and augmented; ~4,000 records added
+ <span class="pageAuthorLine"><b>News for 2010</b>
+ <span class="generalText"><br />
+<li>December 10&nbsp;&mdash;&nbsp;HSC data updated and augmented; ~4,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,201,097  December 10<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;November 2 &mdash; UCR data updated and augmented; ~1,200 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,201,097 December 10<br /></span>
+ <span class="generalText"><br />
+<li>November 2&nbsp;&mdash;&nbsp;UCR data updated and augmented; ~1,200 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,196,888  November 2<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 28 &mdash; SDSU has modified its representation of the accession number. Previously it was zero-padded to 5 digits. Now it is not zero-padded: SDSU00250 has become SDSU250. The internal consequences have been dealt with. However, anyone who has downloaded SDSU records heretofore will encounter mismatches.</br>
+ <span class="pageAuthorLine">
+<br />Record count: 1,196,888 November 2<br /></span>
+ <span class="generalText"><br />
+<li>October 28&nbsp;&mdash;&nbsp;SDSU has modified its representation of the accession number. Previously it was zero-padded to 5 digits. Now it is not zero-padded: SDSU00250 has become SDSU250. The internal consequences have been dealt with. However, anyone who has downloaded SDSU records heretofore will encounter mismatches.</br>
 </span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 28 &mdash; SD data updated and augmented; ~3,800 records added
+ <span class="generalText"><br />
+<li>October 28&nbsp;&mdash;&nbsp;SD data updated and augmented; ~3,800 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,195,623 October 28<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 27 &mdash; SDSU data updated and augmented; ~500 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,195,623 October 28<br /></span>
+ <span class="generalText"><br />
+<li>October 27&nbsp;&mdash;&nbsp;SDSU data updated and augmented; ~500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,191,847 October 27<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 26 &mdash; slight addition to interface capability. On the main return page, the feedback column now displays the comment date; sorting on that column will order the records by comment date.  Clicking on a column header will now toggle back and forth between sorting up and sorting down: that is, clicking once on "Elevation" will order the records so that the greatest elevation is on the first line; clicking a second time will order the records so that the greatest elevation is on the last line.</br>
+ <span class="pageAuthorLine">
+<br />Record count: 1,191,847 October 27<br /></span>
+ <span class="generalText"><br />
+<li>October 26&nbsp;&mdash;&nbsp;slight addition to interface capability. On the main return page, the feedback column now displays the comment date; sorting on that column will order the records by comment date. Clicking on a column header will now toggle back and forth between sorting up and sorting down: that is, clicking once on "Elevation" will order the records so that the greatest elevation is on the first line; clicking a second time will order the records so that the greatest elevation is on the last line.</br>
 </span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 8 &mdash; CAS/DS data updated and augmented; ~12,700 records added
+ <span class="generalText"><br />
+<li>October 8&nbsp;&mdash;&nbsp;CAS/DS data updated and augmented; ~12,700 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,191,361 October 8<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 1 &mdash; UCR, CHSC data updated and augmented; >3,500 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,191,361 October 8<br /></span>
+ <span class="generalText"><br />
+<li>October 1&nbsp;&mdash;&nbsp;UCR, CHSC data updated and augmented; >3,500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,178,587 October 1<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;September 3 &mdash; UCR data updated and augmented; >1,500 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,178,587 October 1<br /></span>
+ <span class="generalText"><br />
+<li>September 3&nbsp;&mdash;&nbsp;UCR data updated and augmented; >1,500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,174,859 September 3<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;July 30 &mdash; UCR data updated and augmented; ~1,500 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,174,859 September 3<br /></span>
+ <span class="generalText"><br />
+<li>July 30&nbsp;&mdash;&nbsp;UCR data updated and augmented; ~1,500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,172,964 July 30<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;July 28 &mdash; RSA data updated and augmented; ~14,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,172,964 July 30<br /></span>
+ <span class="generalText"><br />
+<li>July 28&nbsp;&mdash;&nbsp;RSA data updated and augmented; ~14,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,171,385 July 28<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;June 19 &mdash; UCR data updated and augmented; ~500 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,171,385 July 28<br /></span>
+ <span class="generalText"><br />
+<li>June 19&nbsp;&mdash;&nbsp;UCR data updated and augmented; ~500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,157,728 June 19<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;June 4 &mdash; HSC data updated and augmented; ~31,000 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,157,728 June 19<br /></span>
+ <span class="generalText"><br />
+<li>June 4&nbsp;&mdash;&nbsp;HSC data updated and augmented; ~31,000 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,157,139 June 4<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;April 15 &mdash; SD data updated and augmented; ~2500 records added
+ <span class="pageAuthorLine">
+<br />Record count: 1,157,139 June 4<br /></span>
+ <span class="generalText"><br />
+<li>April 15&nbsp;&mdash;&nbsp;SD data updated and augmented; ~2500 records added
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,126,186 April 13<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;April 13 &mdash; New York Botanical Garden is now a data provider. 13,000 NY records have been added. NY houses many type specimens of California plants.
+ <span class="pageAuthorLine">
+<br />Record count: 1,126,186 April 13<br /></span>
+ <span class="generalText"><br />
+<li>April 13&nbsp;&mdash;&nbsp;New York Botanical Garden is now a data provider. 13,000 NY records have been added. NY houses many type specimens of California plants.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,123,656 April 13<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;February 28 &mdash; UCR data (<a href="CCH_newrec.html">~2000 new records</a>) updated.
+ <span class="pageAuthorLine">
+<br />Record count: 1,123,656 April 13<br /></span>
+ <span class="generalText"><br />
+<li>February 28&nbsp;&mdash;&nbsp;UCR data (<a href="CCH_newrec.html">~2000 new records</a>) updated.
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,110,425 February 28<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;January 29 &mdash; Records of specimens collected by Reid Moran have been linked to scans of fieldbooks at <a href="http://bajaflora.org/MoranNotesSearch.aspx">SD</a>. Fieldbooks of Moran, W.L. Jepson, C.A. Purpus, and A.M. Alexander are available completely or in part via the CCH interface.</br>
+ <span class="pageAuthorLine">
+<br />Record count: 1,110,425 February 28<br /></span>
+ <span class="generalText"><br />
+<li>January 29&nbsp;&mdash;&nbsp;Records of specimens collected by Reid Moran have been linked to scans of fieldbooks at <a href="http://bajaflora.org/MoranNotesSearch.aspx">SD</a>. Fieldbooks of Moran, W.L. Jepson, C.A. Purpus, and A.M. Alexander are available completely or in part via the CCH interface.</br>
 There is now a graphic showing the proportion of records that have been <a href="http://ucjeps.berkeley.edu/consortium/CCH_numbers_table.html">databased</a>. New features for displaying data on BerkeleyMapper have been added: a geological map layer and a revised Jepson bioregion layer.
-<br>
-</span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;January 19 &mdash; SD and CAS/DS data updated and augmented: 3600 and 1600 <a href="CCH_newrec.html">new records</a> respectively
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,108,478 January 19<br /></span>
-<P>
-         <span class="pageAuthorLine"><b>News for 2009</b>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;December 21 &mdash; CAS/DS data updated and augmented: >8,000 <a href="CCH_newrec.html">new records</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,101,483 December 21<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;December 10 &mdash; RSA and UCR data updated and augmented: ~10,000 <a href="CCH_newrec.html">new records</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,093,333 December 10<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 30 &mdash; DAV data updated and augmented: ~1500 <a href="CCH_newrec.html">new records</a> and numerous records provided with coordinates
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,083,390 October 30<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 26 &mdash; UCR data updated and augmented: ~2000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,081,780 October 26<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;September 2 &mdash; SD data updated and augmented: ~3300 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,078,730 September 2<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;September 1 &mdash; DAV  data updated and augmented: ~4200 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,075,480 September 1<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;August 26 &mdash; SBBG  data updated and augmented: ~5600 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,071,015 August 26<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;August 20 &mdash; UCR  data updated and augmented: ~6700 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,065,380 August 20<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;July 11 &mdash; RSA data updated and augmented: ~20,000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-<br>Record count: 1,058,130 July 11<br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;June 12 &mdash; UCSC data updated: 2000 <a href="CCH_newrec.html">new records</a>.
-</span>
-<br>Record count: 1,038,965 June 12<br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;May 1 &mdash; SD data updated and augmented: ~2500 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,036,866 May 1<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;April 11 &mdash; CHSC data updated and augmented: >1500 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,034,198 April 11<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;January 20 &mdash; SD data updated and augmented: >1000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 1,031,910 January 20<br /></span>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;January 8 &mdash; RSA-POM and SBBG data updated and augmented: >35,000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: <font color="red">1,030,793</font> January 8<br /><br /></span><br />
-         <span class="pageAuthorLine"><b>News for 2008</b>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;December 14 &mdash; SDSU data updated and augmented: ~1000 new records.
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 990,036 December 14</span><br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;October 16 &mdash; CDA data updated and augmented: ~8000 new records. CDA records now have permanent record numbers; comments have been updated with new numbers. An itemization of new records and new determinations can be found on the <a href="curatorial.html">curatorial tools page.</a>
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 988,494 October 15</span><br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;September 29 &mdash; SD data updated and augmented: ~1500 new records, ~400 annotations
-</span>
-         <span class="pageAuthorLine">
-<br>Record count: 980,407 September 29</span><br />
 <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;September 5 &mdash; UCR data updated and augmented: ~5000 new records, ~500 annotations
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 977,965 September 5</span><br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;August 25 &mdash; DAV data updated and augmented
+ <span class="generalText"><br />
+<li>January 19&nbsp;&mdash;&nbsp;SD and CAS/DS data updated and augmented: 3600 and 1600 <a href="CCH_newrec.html">new records</a> respectively
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 973,086 August 25</span><br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;August 21 &mdash; CHSC data updated and augmented
+ <span class="pageAuthorLine">
+<br />Record count: 1,108,478 January 19<br /></span>
+<P>
+ <span class="pageAuthorLine"><b>News for 2009</b>
+ <span class="generalText"><br />
+<li>December 21&nbsp;&mdash;&nbsp;CAS/DS data updated and augmented: >8,000 <a href="CCH_newrec.html">new records</a>
 </span>
-         <span class="pageAuthorLine">
-<br>Record count: 970,268 August 21</span><br />
-         <span class="bodyText">
-<br>Totals August 21</span>
-       <br />
-<table class="bodyText"> <tr><td> CAS-DS</td><td>12393</td></tr> <tr><td> CDA</td><td>10154</td></tr> <tr><td> CHSC</td><td>62495</td></tr> <tr><td> DAV</td><td>33718</td></tr> <tr><td> HSC</td><td>3026</td></tr> <tr><td> IRVC</td><td>5676</td></tr> <tr><td> PGM</td><td>7591</td></tr> <tr><td> RSA-POM</td><td>208782</td></tr> <tr><td> SBBG</td><td>65137</td></tr> <tr><td> SD</td><td>73046</td></tr>
+ <span class="pageAuthorLine">
+<br />Record count: 1,101,483 December 21<br /></span>
+ <span class="generalText"><br />
+<li>December 10&nbsp;&mdash;&nbsp;RSA and UCR data updated and augmented: ~10,000 <a href="CCH_newrec.html">new records</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,093,333 December 10<br /></span>
+ <span class="generalText"><br />
+<li>October 30&nbsp;&mdash;&nbsp;DAV data updated and augmented: ~1500 <a href="CCH_newrec.html">new records</a> and numerous records provided with coordinates
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,083,390 October 30<br /></span>
+ <span class="generalText"><br />
+<li>October 26&nbsp;&mdash;&nbsp;UCR data updated and augmented: ~2000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,081,780 October 26<br /></span>
+ <span class="generalText"><br />
+<li>September 2&nbsp;&mdash;&nbsp;SD data updated and augmented: ~3300 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,078,730 September 2<br /></span>
+ <span class="generalText"><br />
+<li>September 1&nbsp;&mdash;&nbsp;DAV data updated and augmented: ~4200 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,075,480 September 1<br /></span>
+ <span class="generalText"><br />
+<li>August 26&nbsp;&mdash;&nbsp;SBBG data updated and augmented: ~5600 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,071,015 August 26<br /></span>
+ <span class="generalText"><br />
+<li>August 20&nbsp;&mdash;&nbsp;UCR data updated and augmented: ~6700 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,065,380 August 20<br /></span>
+ <span class="generalText"><br />
+<li>July 11&nbsp;&mdash;&nbsp;RSA data updated and augmented: ~20,000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+<br />Record count: 1,058,130 July 11<br />
+ <span class="generalText"><br />
+<li>June 12&nbsp;&mdash;&nbsp;UCSC data updated: 2000 <a href="CCH_newrec.html">new records</a>.
+</span>
+<br />Record count: 1,038,965 June 12<br />
+ <span class="generalText"><br />
+<li>May 1&nbsp;&mdash;&nbsp;SD data updated and augmented: ~2500 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,036,866 May 1<br /></span>
+ <span class="generalText"><br />
+<li>April 11&nbsp;&mdash;&nbsp;CHSC data updated and augmented: >1500 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,034,198 April 11<br /></span>
+ <span class="generalText"><br />
+<li>January 20&nbsp;&mdash;&nbsp;SD data updated and augmented: >1000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 1,031,910 January 20<br /></span>
+ <span class="generalText"><br />
+<li>January 8&nbsp;&mdash;&nbsp;RSA-POM and SBBG data updated and augmented: >35,000 <a href="CCH_newrec.html">new records</a> and numerous <a href="CCH_newdet_byaid.html">revisions.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: <font color="red">1,030,793</font> January 8<br /><br /></span><br />
+ <span class="pageAuthorLine"><b>News for 2008</b>
+ <span class="generalText"><br />
+<li>December 14&nbsp;&mdash;&nbsp;SDSU data updated and augmented: ~1000 new records.
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 990,036 December 14</span><br />
+ <span class="generalText"><br />
+<li>October 16&nbsp;&mdash;&nbsp;CDA data updated and augmented: ~8000 new records. CDA records now have permanent record numbers; comments have been updated with new numbers. An itemization of new records and new determinations can be found on the <a href="curatorial.html">curatorial tools page.</a>
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 988,494 October 15</span><br />
+ <span class="generalText"><br />
+<li>September 29&nbsp;&mdash;&nbsp;SD data updated and augmented: ~1500 new records, ~400 annotations
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 980,407 September 29</span><br />
+<br />
+ <span class="generalText"><br />
+<li>September 5&nbsp;&mdash;&nbsp;UCR data updated and augmented: ~5000 new records, ~500 annotations
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 977,965 September 5</span><br />
+ <span class="generalText"><br />
+<li>August 25&nbsp;&mdash;&nbsp;DAV data updated and augmented
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 973,086 August 25</span><br />
+ <span class="generalText"><br />
+<li>August 21&nbsp;&mdash;&nbsp;CHSC data updated and augmented
+</span>
+ <span class="pageAuthorLine">
+<br />Record count: 970,268 August 21</span><br />
+ <span class="generalText">
+<br />Totals August 21</span>
+ <br />
+<table class="generalText"> <tr><td> CAS-DS</td><td>12393</td></tr> <tr><td> CDA</td><td>10154</td></tr> <tr><td> CHSC</td><td>62495</td></tr> <tr><td> DAV</td><td>33718</td></tr> <tr><td> HSC</td><td>3026</td></tr> <tr><td> IRVC</td><td>5676</td></tr> <tr><td> PGM</td><td>7591</td></tr> <tr><td> RSA-POM</td><td>208782</td></tr> <tr><td> SBBG</td><td>65137</td></tr> <tr><td> SD</td><td>73046</td></tr>
 <tr><td> SDSU</td><td>14348</td></tr>
 <tr><td> SJSU</td><td>9556</td></tr>
 <tr><td> UC-JEPS</td><td>349388</td></tr> <tr><td> UCR</td><td>96761</td></tr> <tr><td> UCSB</td><td>14870</td></tr> <tr><td> UCSC</td><td>3327</td></tr> </table>
-         <span class="bodyText"><br />
-&nbsp;&nbsp;August 5 &mdash; SD data updated and augmented
+ <span class="generalText"><br />
+<li>August 5&nbsp;&mdash;&nbsp;SD data updated and augmented
 </span>
-         <br />
-         <span class="pageAuthorLine">
-<br>Record count: 965,369 August 5</span><br />
+ <br />
+ <span class="pageAuthorLine">
+<br />Record count: 965,369 August 5</span><br />
 
-         <span class="bodyText"><br />
-&nbsp;&nbsp;July 16 &mdash; ~2000 records from HSC added
-         <br />
-         <span class="pageAuthorLine">
-<br>Record count: 960,932 July 16</span><br />
+ <span class="generalText"><br />
+<li>July 16&nbsp;&mdash;&nbsp;~2000 records from HSC added
+ <br />
+ <span class="pageAuthorLine">
+<br />Record count: 960,932 July 16</span><br />
 
-&nbsp;&nbsp;May 5</span>
-         <span class="pageAuthorLine">
-<br>Record count: 958,566 April 21</span><br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;April 21 &mdash; First ~15,000 records from SDSU included
-         <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;April 14 &mdash; DAV records updated and augmented; ~6500 new records added
-         <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;April 10 &mdash; SBBG records updated and augmented; ~7000 new records added
-         <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;February 26 &mdash; SD records updated and augmented; georeferencing of Shasta County incorporated
-         <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;January 17 &mdash; UC Riverside records updated and augmented
-         <br />
-         <span class="bodyText"><br />
-&nbsp;&nbsp;January 11 &mdash; First records from Humboldt State University (HSC) included
-         <br />
-         <br />
-&nbsp;&nbsp;January 10 &mdash; All Rancho Santa Ana (RSA-POM) records refreshed, with the addition of many new records.
-         <br />
-         <br />
+<li>May 5</span>
+ <span class="pageAuthorLine">
+<br />Record count: 958,566 April 21</span><br />
+ <span class="generalText"><br />
+<li>April 21&nbsp;&mdash;&nbsp;First ~15,000 records from SDSU included
+ <br />
+ <span class="generalText"><br />
+<li>April 14&nbsp;&mdash;&nbsp;DAV records updated and augmented; ~6500 new records added
+ <br />
+ <span class="generalText"><br />
+<li>April 10&nbsp;&mdash;&nbsp;SBBG records updated and augmented; ~7000 new records added
+ <br />
+ <span class="generalText"><br />
+<li>February 26&nbsp;&mdash;&nbsp;SD records updated and augmented; georeferencing of Shasta County incorporated
+ <br />
+ <span class="generalText"><br />
+<li>January 17&nbsp;&mdash;&nbsp;UC Riverside records updated and augmented
+ <br />
+ <span class="generalText"><br />
+<li>January 11&nbsp;&mdash;&nbsp;First records from Humboldt State University (HSC) included
+ <br />
+<li>January 10&nbsp;&mdash;&nbsp;All Rancho Santa Ana (RSA-POM) records refreshed, with the addition of many new records.
+ <br />
 </span>
-         <span class="pageAuthorLine"><b>News for 2007</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Record count: 891,322 
+ <span class="pageAuthorLine"><b>News for 2007</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Record count: 891,322 
 (Dec 22 2007)</span><br />
-         <span class="bodyText"><br />
+ <span class="generalText"><br />
 				 
-&nbsp;&nbsp;December 21 &mdash; Georeferencing completed for Trinity County.
-         <br />
-         <br />
-&nbsp;&nbsp;December 5 &mdash; All San Diego (SD) records refreshed, with the addition of more than 2,500 new records.
-         <br />
-         <br />
-&nbsp;&nbsp;October 16 &mdash; The first 10,000 records from the California Department of Food and Agriculture Plant Pest Diagnostics, Botany Laboratory and Herbarium (CDA)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have been added. The records come from <a href="http://ucjeps.berkeley.edu/cgi-bin/make_county_graph.pl?inst=CDA&so=HM"> every California county,</a> with most coming from  San Luis Obispo, Sacramento, and Plumas.
-         <br />
-         <br />
-&nbsp;&nbsp;October 8 &mdash; The first 12,000 records from the California Academy of Sciences (CAS-DS) have been added. Most of these additions are from <a href="http://ucjeps.berkeley.edu/cgi-bin/make_county_graph.pl?inst=CAS&so=HM">Modoc Co.</a> <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAS-DS has more databased records from Modoc than the rest of the Consortium herbaria combined.<br />
-         <br />
+<li>December 21&nbsp;&mdash;&nbsp;Georeferencing completed for Trinity County.
+ <br />
+<li>December 5&nbsp;&mdash;&nbsp;All San Diego (SD) records refreshed, with the addition of more than 2,500 new records.
+ <br />
+<li>October 16&nbsp;&mdash;&nbsp;The first 10,000 records from the California Department of Food and Agriculture Plant Pest Diagnostics, Botany Laboratory and Herbarium (CDA)<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;have been added. The records come from <a href="http://ucjeps.berkeley.edu/cgi-bin/make_county_graph.pl?inst=CDA&so=HM"> every California county,</a> with most coming from San Luis Obispo, Sacramento, and Plumas.
+ <br />
+<li>October 8&nbsp;&mdash;&nbsp;The first 12,000 records from the California Academy of Sciences (CAS-DS) have been added. Most of these additions are from <a href="http://ucjeps.berkeley.edu/cgi-bin/make_county_graph.pl?inst=CAS&so=HM">Modoc Co.</a> <br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;CAS-DS has more databased records from Modoc than the rest of the Consortium herbaria combined.<br />
 
-&nbsp;&nbsp;September 17 &mdash; UC Riverside (UCR) records have been updated bringing total Consortium specimen record count to nearly 867,000 <br />
-         <br />
+<li>September 17&nbsp;&mdash;&nbsp;UC Riverside (UCR) records have been updated bringing total Consortium specimen record count to nearly 867,000 <br />
 
-&nbsp;&nbsp;August 17 &mdash; More than 2,000 new records from San Diego (SD) added bringing total Consortium specimen record count to 861,350 <br />
-         <br />
+<li>August 17&nbsp;&mdash;&nbsp;More than 2,000 new records from San Diego (SD) added bringing total Consortium specimen record count to 861,350 <br />
 
-&nbsp;&nbsp;July 7 &mdash; Santa Barbara Botanic Garden (SBBG) records updated; about 7,000 records added <br />
-         <br />
+<li>July 7&nbsp;&mdash;&nbsp;Santa Barbara Botanic Garden (SBBG) records updated; about 7,000 records added <br />
 
-&nbsp;&nbsp;April 30 &mdash; New records from San Diego (SD) added bringing total Consortium specimen record count to about 851,000 <br />
-         <br />
+<li>April 30&nbsp;&mdash;&nbsp;New records from San Diego (SD) added bringing total Consortium specimen record count to about 851,000 <br />
 
-&nbsp;&nbsp;April 2 &mdash; Chico (CHSC) data refreshed bringing total Consortium specimen record count to nearly 840,000 <br />
-         <br />
+<li>April 2&nbsp;&mdash;&nbsp;Chico (CHSC) data refreshed bringing total Consortium specimen record count to nearly 840,000 <br />
 
-&nbsp;&nbsp;March 1 &mdash; <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Irvine data refreshed<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Consortium database now has 833,484 specimen records total<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bar graphs showing distribution of participant herbaria holdings across counties are now available at <a href="bargraphs/">ucjeps.berkeley.edu/consortium/bargraphs</a><br />
+<li>March 1&nbsp;&mdash;&nbsp;<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Irvine data refreshed<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Consortium database now has 833,484 specimen records total<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Bar graphs showing distribution of participant herbaria holdings across counties are now available at <a href="bargraphs/">ucjeps.berkeley.edu/consortium/bargraphs</a><br />
 <br />
 				 
 				 
 				 
-  &nbsp;&nbsp;February 2 &mdash; <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About 14,000 corrected or new records from RSA-POM 
-      have been added<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Consortium specimen record count exceeds 825,000 <br />
-       <br />
+ &nbsp;&nbsp;February 2&nbsp;&mdash;&nbsp;<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;About 14,000 corrected or new records from RSA-POM 
+ have been added<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Current Consortium specimen record count exceeds 825,000 <br />
+ <br />
 
 
-&nbsp;&nbsp;January 29 &mdash; <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome <a href="http://www.pgmuseum.org/">Pacific Grove Museum of Natural History</a> (PGM), ~8,000 new records, mostly from Monterey and San Benito Counties<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Consortium database now has 810,949 specimen records total<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Georeferencing completed for Tulare County<br />
-       <BR>
-       </span>
-       
-       
-       <span class="pageAuthorLine"><b>News for 2006</b></span><br />
-       <span class="bodyText"><br />
-&nbsp;&nbsp;October 22 &mdash; UC Irvine (IRVC) data refreshed bringing total Consortium specimen record count to 801,334 <BR>
-         <BR>
-&nbsp;&nbsp;October 16 &mdash; UC Riverside (UCR) data refreshed bringing total Consortium specimen record count to 798,504 <BR>
-         <BR>
-&nbsp;&nbsp;September 14 &mdash; Georeferencing completed for Lake County; Shasta and Trinity counties are now in progress <BR>
-         <BR>
-&nbsp;&nbsp;August 28 &mdash; <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome <a href="http://www.sdnhm.org/research/botany/">San Diego Natural History Museum</a> (SD), ~50,000 new records<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RSA-POM data refresh, including ~20,000 new records<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Consortium database now has ~791,000 specimen records total<br />
-         <BR>
-&nbsp;&nbsp;July 26 &mdash; Georeferencing completed for Mendocino County; Kern County is now in progress<BR>
-         <BR>
-&nbsp;&nbsp;July 13 &mdash; UC Davis (DAV) data refreshed, ~1000 records added<BR>
-         <BR>
-&nbsp;&nbsp;May 23 &mdash; UC Riverside (UCR) data refreshed, bringing total UCR records to nearly 87,000<BR>
-         <BR>
-&nbsp;&nbsp;March 20 &mdash; Consortium pages have a new look<BR>
-         <BR>
-&nbsp;&nbsp;UCR, DAV data refreshed and augmented<BR>
-         <BR>
-&nbsp;&nbsp;SBBG data   refreshed, more than doubled (30,000+ records added)<BR>
-         <BR>
-&nbsp;&nbsp;SJSU data added   (~10,000 records)<BR>
-         <BR>
-&nbsp;&nbsp;RSA-POM data refreshed (~5000 records), ~2000 records   added<BR>
-         <BR>
-        </span>
-     </p>
+<li>January 29&nbsp;&mdash;&nbsp;<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Welcome <a href="http://www.pgmuseum.org/">Pacific Grove Museum of Natural History</a> (PGM), ~8,000 new records, mostly from Monterey and San Benito Counties<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Consortium database now has 810,949 specimen records total<br />
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Georeferencing completed for Tulare County<br />
+ <br />
+ </span>
+ 
+ 
+	<p><span class="pageAuthorLine"><b>Updates for 2006</b></span></p>
+	<br />
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;October 22&nbsp;&nbsp;&mdash;&nbsp;&nbsp;IRVC</p>
+
+	<p class="generalText">
+<li>&nbsp;UC Irvine (IRVC) data refreshed<br />
+ <br />
+	<span class="pageAuthorLine">&nbsp;&nbsp;
+Record count: 801,334</span></p>
+	<br />
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;October 16&nbsp;&nbsp;&mdash;&nbsp;&nbsp;UCR</p>
+
+	<p class="generalText">
+<li>&nbsp;UC Riverside (UCR) data refreshed<br />
+ <br />
+	<span class="pageAuthorLine">&nbsp;&nbsp;
+Record count: 798,504</span></p>
+	<br />
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;September 14&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</p>
+
+	<p class="generalText">
+<li>&nbsp;Georeferencing completed for Lake County; Shasta and Trinity counties are now in progress<br />
+ <br />
+	<span class="pageAuthorLine">&nbsp;&nbsp;
+Record count: ~791,000</span></p>
+	<br />
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;September 14&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Georef. update</p>
+	<p class="generalText"><ul>
+<li>&nbsp;Georeferencing completed for Lake County; Shasta and Trinity counties are now in progress</li>
+<li><span class="pageAuthorLine">&nbsp;&nbsp;
+Record count: ~791,000</span></li>
+</ul><br /></p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->	
+<p class="pageAuthorLine">&nbsp;&nbsp;August 28&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SD, RSA</p>
+	<p class="generalText"><ul>
+<li>&nbsp;Welcome San Diego Natural History Museum</a> (SD), ~50,000 new records</li>
+<li>&nbsp;RSA-POM data refresh, including ~20,000 new records</li>
+<li><span class="pageAuthorLine">&nbsp;&nbsp;
+Record count: ~791,000</span></li>
+</ul><br /></p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;July 26&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Georef. update</p>
+	<p class="generalText"><ul>
+<li>Georeferencing completed for Mendocino County; Kern County is now in progress</li>
+</ul><br /></p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;July 13&nbsp;&nbsp;&mdash;&nbsp;&nbsp;DAV</p>
+	<p class="generalText"><ul>
+<li>UC Davis (DAV) data refreshed, ~1000 records added</li>
+</ul><br /></p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;May 23&nbsp;&nbsp;&mdash;&nbsp;&nbsp;UCR</p>
+	<p class="generalText"><ul>
+<li>UC Riverside (UCR) data refreshed, bringing total UCR records to nearly 87,000</li>
+	</ul><br /></p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLine">&nbsp;&nbsp;March 20&nbsp;&nbsp;&mdash;&nbsp;&nbsp;DAV, SBBG, SJSU, RSA, UCR</p>
+	<p class="generalText"><ul>
+<li>Consortium pages have a new look</li>
+<li>UCR, DAV data refreshed and augmented</li>
+<li>SBBG data refreshed, more than doubled (30,000+ records added)</li>
+<li>SJSU data added (~10,000 records)</li>
+<li>RSA-POM data refreshed (~5000 records), ~2000 records added</li>
+	</ul><br /></p>
+<!--END DATE ENTRY-->
+
+ </span>
+ </p>
 
 
-</td></tr></table>
+	</td>
+ </tr>
+</table>
+
+</td><!--close td from sidebar file-->
+ <td class="cchRightMargin">
+ <img class="imagespacer" src="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game">
+	</td>
+ </tr>
+</table>
 
 <!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
-i<!--end footer-->
+<!--end footer-->
+
 </body>
 </html>
+
