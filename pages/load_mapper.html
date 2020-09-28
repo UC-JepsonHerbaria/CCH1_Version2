@@ -2,64 +2,49 @@
 <head>
 <Meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <title>UC/JEPS: Consortium Accession Results</title>
-<link href="../consortium/style_consortium.css" rel="stylesheet" type="text/css">
+	<!--<link href="/common/styles/cch_dropdowns.css" rel="stylesheet" type="text/css" /> -->
+<link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
+
+	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 </head>
 <body>
 
-
 <!-- COMMON HEADER -->
-<table width="100%" class="banner" border="0" cellpadding="0" cellspacing="0">
-  <tr><td width="80" align="center"><img src="images/CCH_logo_02_80.png" width="80" height="82"></td>
-  <td>
-	<table class="banner" width="100%" border="0">
-  	<tr>
-    	<td align="center">Consortium of California Herbaria</td>
-  	</tr>
-	<tr><td>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  		<tr>
-    		<td height="21" width="640" align="center">
-	  	<a href="http://ucjeps.berkeley.edu/consortium/participants.html" class="horizMenuActive">Participants</a>
-	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://ucjeps.berkeley.edu/consortium/news.html" class="horizMenuActive">News</a>
-	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://ucjeps.berkeley.edu/consortium/" class="horizMenuActive">Search</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://ucjeps.berkeley.edu/consortium/about.html" class="horizMenuActive">About</a>
-  		    </td></tr>
-		</table>
-	</td></tr>
-	</table>
-</td></tr>
-</table>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1_header_new.php'); ?>
 <!-- COMMON HEADER ENDS -->
 
-
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch.php'); ?>
+<!-- End of sidebar --> 
 
 <center>
 <h3>
-Map coordinates submitted to BerkeleyMapper
+Georeference Verification Mapping Tool:<br />
+For submitting sets of coordinates to BerkeleyMapper<br />
+
 </h3>
 <table width="50%" align="center" bgcolor="#336699" cellpadding="10">
 <tr>
 <td colspan=2>
 <font color="#ffffff">
-Paste latitude and longitude into the form below using the following
-format:
+<p>This tool is useful for verifying that county records are correctly
+georeferenced (turn on US County Boundaries under the Layers tab in BerkeleyMapper).</p>
+<p>To start, paste latitude and longitude into the form below using the following
+format:</p>
 <pre>
 38.3452, -122.456
-38.556, -122.456
-(Separate latitude and longitude with a comma and one or more spaces.
-Use a minus sign for west longitude.)
-</pre>
-or this format:
+38.556, -122.456</pre>
+<p>(Separate latitude and longitude with a comma and one or more spaces.
+Use a minus sign for west longitude.)</p>
+<p>or this format (comma delimited with quotes):</p>
 <pre>
 "UC1795736","37.5405","-121.5733","NAD 27","reference source","435","m"
 </pre>
-or this:
+or this (comma delimited format):
 <pre>
 GLAFUSC,0,sew00028,-18.20755576,145.7618865,WGS84
 </pre>
-<P>
-This is useful for verifying that county records are correctly
-georeferenced (turn on US County Boundaries under the Layers tab).
+
 </font>
 </td>
 </tr>
@@ -71,29 +56,27 @@ georeferenced (turn on US County Boundaries under the Layers tab).
 </form>
 </td>
 <td align="bottom">
-<img src="grabbed.png">
+<img src="/common/images/cch/grabbed.png">
 </td>
 </tr>
 </table>
 </center>
 
-<table width="100%">
-  <tr class=banner>
-    <td colspan="6" bgcolor="#9FBFFF"><img src="http://ucjeps.berkeley.edu/common/images/common_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-  </tr>
-  <tr>
-    <td height="20"><span class="copyrightText">&nbsp;&nbsp;<a href="http://ucjeps.berkeley.edu/main/copyright.html">Copyright</a> &copy; 2007 Regents of the University of California &mdash; Updated May 9, 2007</span></td>
-  </tr>
-</table>
 
-<!--
+</tr>
+</table>
+<!--begin footer-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
+<!--end footer-->
+
+
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">
 _uacct = "UA-1304595-1";
 urchinTracker();
 </script>
--->
+
 
 </body>
 </html>
