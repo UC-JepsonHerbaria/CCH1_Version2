@@ -1,0 +1,483 @@
+<?php
+
+date_default_timezone_set('America/Los_Angeles');
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
+<head>
+<title>CCH1: Search Page</title> 
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
+  <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-43909100-3');
+
+</script>
+
+<!-- probably the 2010 or before version of the google analytics script-->
+<!-- this is even a different account then the one on other CCH pages, and I am not sure anyone has access to this account anymore-->
+<!--<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--_uacct = "UA-1304595-1";
+urchinTracker();-->
+<!--</script>-->
+
+<!-- 2012 -2015 CCH Google analytics tag-->
+<!-- this had to be disabled and a new one created as the  admin e-mail address for californiaherbaria@gmail.com is not itself,-->
+<!-- cannot make any admin changes to this account anymore-->
+<!--<script type="text/javascript">-->
+
+<!--  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27128382-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();-->
+
+<!--</script>-->
+</head>
+<body>
+
+<table id="normaltable">
+  <tr>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+ <div class="cch-top-image-xy002crop">
+<!-- COMMON HEADER -->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
+<!-- COMMON HEADER ENDS -->
+ </div>
+</div>
+<div >
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;">
+		<table id = "sideLinks"><tr>
+			<td style="background-color: #9090AA;width: 175px;"> <!-- <<background test>> -->
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
+<!-- End of sidebar --> 
+		</td>
+		</tr>
+		</table>
+	</td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td style="padding-top: 5px;vertical-align: top;">
+
+			<table border=0>
+			<tr class="bodyText">
+    			<td width="1" >&nbsp;</td>
+			<td colspan="2" class="bodyText">
+
+<p><b>CCH1</b> serves as a gateway to information from California vascular plant specimens that are housed in herbaria, worldwide. Currently, the database includes <b>over 2.2 million specimen records</b> from <b>50 institutions</b>.</p>	
+
+<p>If you are looking for non-California or non-vascular collections from CCH members, use CCH2 - <a href="http://cch2.org/portal/">cch2.org/portal/</a></p>
+
+<p>Please cite data retrieved from this page: <em>Data provided by the Consortium of California Herbaria (ucjeps.berkeley.edu/consortium/</em>).</p>
+			</td>
+			</tr>
+</table>
+
+<center>
+<form method = "POST" action="/cgi-bin/get_consort.pl">
+<table cellspacing=10 width="96%" border=0>
+
+<tr>
+	<!--BEGIN Left Side UPPER Content-->	
+	<td width="50%" valign="top">
+	<table>
+		<tr><td><img alt="" height="" src="construct.bmp"></td><td><font color="red"> This site is under re-development.  Results of searches may occasionally not work as expected. A CCH2-compatible data structure is being implemented in stages and the website is being constantly upgraded as a result.</font></td>
+	</tr><br /><br />
+	</table>
+	<table><p class="pageSubheading">Scientific Name<br />
+		<input name = "taxon_name" size = 50 MAXLENGTH = 255><br />
+	<span class="bodySmallerText">e.g.:
+	<a href="/cgi-bin/get_consort.pl?taxon_name=Platanaceae">Platanaceae</a>;
+	<a href="/cgi-bin/get_consort.pl?taxon_name=Dudl">Dudl</a>;
+	<a href="/cgi-bin/get_consort.pl?taxon_name=Dudleya%20bloch">Dudleya bloch</a>;
+	<a href="/cgi-bin/get_consort.pl?taxon_name=blochmaniae">blochmaniae</a>;
+	<br />
+	<a href="/cgi-bin/get_consort.pl?taxon_name=Dudleya%20blochmaniae%20insul">Dudleya blochmaniae insul</a>;<a href="/cgi-bin/get_consort.pl?taxon_name=Quercus%20X%20alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a>.
+	</span></p>
+
+	</table>
+	<table>
+		<!--<tr>-->
+		<!--<td colspan="2">-->
+		<p class="pageSubheading">Geographic Locality<br />
+		<input name = "loc" size = 50 MAXLENGTH = 255><br />
+		<span class="bodySmallerText">e.g.:
+		<a href="/cgi-bin/get_consort.pl?loc=Round%20Meadow">Round Meadow</a>;
+		<a href="/cgi-bin/get_consort.pl?loc=Forester">Forester</a>
+		</span>
+		<br /><br />
+		<!-- <span class="bodySmallerText">N.B.: When multiple words are searched for, only records that contain all words (in any order) will be returned. Words may be truncated. Wild card characters are not used in searches. Words of fewer than 3 characters are disregarded.</span> -->
+		</p>
+	</table>
+	<table>
+	<p class="pageSubheading">Elevation (metric): 
+		Lower <input name = "lo_e" size = 5 MAXLENGTH = 5>
+		Upper <input name = "hi_e" size = 5 MAXLENGTH = 5>
+	</p>
+	<br /><br />
+	</table>
+	
+	<!--</td>-->
+	<!--</tr>-->
+	<table>
+	<tr>
+		<td valign="top" class="bodysmallerText">
+		<p><span class="pageSubheading">County </span><br />
+			<select name="county" size = 12 multiple>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_county_options.php'); ?>
+			</select>
+			<br />
+			(1 or more; default is all counties)&nbsp;
+		</p>
+		</td>
+		
+
+		<td  class="bodySmallerText" valign="top">
+		<span  class="pageSubheading">Geographic Region</span>
+		<br />
+		<select name="sugg_loc" size=12>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_region_options.php'); ?>
+		</select>
+		<br />
+		(Regions defined by bounding-box)
+		</td>
+		</tr>
+	</table>
+	
+	
+	</td>
+	<!--END Left Side UPPER Content-->	
+
+		
+	<!--BEGIN Right Side UPPER Content-->	
+	<td width="50%" valign="top" >
+	<p>
+	<span class="pageSubheading2"><b>Source</b> </span><span class="bodySmallerText">(1 or more; default is all sources)</span>
+	<br />
+	<SELECT NAME="source" size=27 multiple>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_participants_options.php'); ?>
+	</SELECT>	
+	</p>	
+	</td>
+</tr>
+<!--END Left Side UPPER Content-->
+
+	
+	
+	
+<tr>
+	<!--BEGIN Left Side LOWER Content-->
+	<td >
+		<span  class="pageSubheading">Refine or Expand Search</span>
+		<br >
+		<table align="left" border=1>
+		<tr>
+			<td class="taglist">
+				<input type="checkbox" name="YF" value="1">
+					Enable yellow flags to display possible range discrepancies
+				<br />
+				<input type="checkbox" name="baja" value="1">
+					Include records from the California Floristic Province portion of Baja California
+				<br />
+				<input type ="checkbox" name="CNPS_listed" value=1 >
+					CNPS Inventory
+				<span class="exampleLinkText">(return only names in California Native Plant Society Inventory)</span>
+				<br />
+				<input type ="checkbox" name="weed" value=1 >  Noxious weeds / invasives  
+				<span class="exampleLinkText">(return only records of CAL-IPC or CDFA covered weeds)</span>
+				<br />
+				<input type ="checkbox" name="non_native" value=1 >
+					Non-natives 
+				<span class="exampleLinkText">(return only records of naturalized species)</span>
+				<br />
+				<!-- CULT checkbox
+				<input type ="checkbox" name="cultivated" value=1 >
+				Cultivated specimens 
+				<span class="exampleLinkText">(include records of specimens labeled as cultivated)</span>
+				<br />-->
+				<input type="checkbox" name="geo_only" value="1">
+ 					Specimens with coordinates 
+				<br />
+				<input type="checkbox" name="geo_no" value="1">
+ 					Specimens without coordinates
+ 				<br >
+ 				<input type="checkbox" name="VTM" value="1">
+ 					Vegetation Type Map specimens 
+				<br> 
+				<input type ="checkbox" name="make_tax_list" value=1 >
+ 					Name list 
+				<span class="exampleLinkText">(return only one record for each name)</span>
+
+			</td>
+		</tr>
+		</table>
+	</td>
+	<!--END Left Side LOWER Content-->
+	
+	
+	<!--BEGIN Right Side LOWER Content-->
+	<td>
+	<p class="pageSubheading">Collector
+    <span class="bodySmallerText">(last name only; e.g.:
+	<a href="/cgi-bin/get_consort.pl?collector=Muir">Muir</a>;
+  	<a href="/cgi-bin/get_consort.pl?collector=Moref">Moref</a>)
+	</span>
+	<br />
+        <input name = "collector" size = 42 MAXLENGTH = 255>
+	</p>
+	<p class="pageSubheading">Collection Number
+	<span class="bodySmallerText">(numerical part only)</span>
+	<br />
+	<input name = "coll_num" size = 42 MAXLENGTH = 40>
+	</p>
+		
+		
+	<p class="pageSubheading">Collection Date			
+	<span class="bodySmallerText">(Note: Before and After is by Year only)</span></p>
+<!-- date grid -->
+	<table width="200" border="0" cellpadding="0" cellspacing="2">
+		<tr>
+		<td class="pageSubheading">Month</td>
+		<td class="pageSubheading">Day </td>
+		<td class="pageSubheading">Year </td>
+		<td class="pageSubheading">Before </td>
+		<td class="pageSubheading">After </td>
+		<td class="pageSubheading">Exact Date</td>
+		<td class="pageSubheading">Reset</td>
+		</tr>
+
+		<tr>
+		<td valign="top">
+		<select name="collmonth">
+			<option value = "" SELECTED>
+			<option value = 1>Jan
+			<option value = 2>Feb
+			<option value = 3>Mar
+			<option value = 4>Apr
+			<option value = 5>May
+			<option value = 6>Jun
+			<option value = 7>Jul
+			<option value = 8>Aug
+			<option value = 9>Sep
+			<option value = 10>Oct
+			<option value = 11>Nov
+			<option value = 12>Dec
+			<!-- <option value = 12>Spring
+			<option value = 12>Summer
+			<option value = 12>Fall
+			<option value = 12>Winter -->
+		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+
+		<td valign="top">
+		<select name="collday">
+			<option value = "" SELECTED>
+			<option value = 1>1
+			<option value = 2>2
+			<option value = 3>3
+			<option value = 4>4
+			<option value = 5>5
+			<option value = 6>6
+			<option value = 7>7
+			<option value = 8>8
+			<option value = 9>9
+			<option value = 10>10
+			<option value = 11>11
+			<option value = 12>12
+			<option value = 13>13
+			<option value = 14>14
+			<option value = 15>15
+			<option value = 16>16
+			<option value = 17>17
+			<option value = 18>18
+			<option value = 19>19
+			<option value = 20>20
+			<option value = 21>21
+			<option value = 22>22
+			<option value = 23>23
+			<option value = 24>24
+			<option value = 25>25
+			<option value = 26>26
+			<option value = 27>27
+			<option value = 28>28
+			<option value = 29>29
+			<option value = 30>30
+			<option value = 31>31
+		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+		<td valign="top">
+		<input NAME = "collyear" SIZE = 4 MAXLENGTH = 4>
+		</td>
+		<td class="pageSubheading" valign="top" align="center">
+		<input type="radio" name="before_after" value="1">
+		</td>
+		<td class="pageSubheading" valign="top" align="center">
+		<input type="radio" name="before_after" value="2">
+		<br>
+		</td>
+		<td class="pageSubheading" valign="top" align="center">
+		<input type="radio" name="before_after" value="3">
+		</td>
+		<td class="pageSubheading" valign="top" align="center">
+		<input type="radio" name="before_after" value="0">
+		</td>
+		</tr>
+	</table>
+<!-- END date grid -->
+	
+	</td>
+</tr>
+<!-- BEGIN USE TERMS LEFT-->
+	<tr>
+		<td>
+			<input TYPE="submit" VALUE="Accept data-use terms, conduct search" >&nbsp;&nbsp;&nbsp;&nbsp;			
+			<span class="pageSubheading"><a href="/consortium/data_use_terms.html">Read&nbsp;use&nbsp;terms</a></span>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input TYPE="reset" VALUE="Reset Form">
+		</td>
+<!-- END USE TERMS LEFT-->
+		
+		
+<!-- BEGIN USE TERMS RIGHT-->		
+		<td>
+			<span class="pageSubheading">2000 records is the default maximum. For larger data requests contact
+				<a href="mailto:jason_alexander@berkeley.edu">Jason Alexander</a>
+			</span>
+		</td>
+	</tr>
+<!-- END USE TERMS RIGHT-->
+</table>
+</form>
+</center>
+<hr>
+<table cellspacing=10 width="90%" border=0>
+<tr>
+	<td width="3%">&nbsp;</td>
+	<td align="left"><p class="pageSubheading">
+		<a href="/consortium/georef_tools.html#coords">Search here using latitude and longitude</a>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td width="3%">&nbsp;</td>
+	<td align="left">
+		<form action="/cgi-bin/new_detail.pl" method="GET">
+			<p class="pageSubheading"><a href="/consortium/detail_help.html">Search here using specimen number</a>
+			<input name = "accn_num" size = 20 MAXLENGTH = "25" value="JEPS2760" >
+			<input type="submit" value="Get single record"></p>
+		</form>
+	</td>
+</tr>
+<tr>
+	<td width="3%">&nbsp;</td>
+	<td align="left">
+	<p class="pageSubheading">Recent comments
+	<span class="bodySmallerText">
+	<a href="/cgi-bin/get_consort.pl?last_comments=today&amp;SO=10">Last day</a>
+	|
+ 	<a href="/cgi-bin/get_consort.pl?last_comments=1&amp;SO=10">Last week</a>
+	|
+	<a href="/cgi-bin/get_consort.pl?last_comments=2&amp;SO=10">Last 2 weeks</a>
+	|
+	<a href="/cgi-bin/get_consort.pl?last_comments=5&amp;SO=10">Last 5 weeks</a>
+	|
+	<a href="/cgi-bin/get_consort.pl?last_comments=10&amp;SO=10">Last 10 weeks</a>
+	</span></p>
+	</td>
+</tr>
+<tr>
+	<td width="3%">&nbsp;</td>
+	<td align="left">	
+	<p class="pageSubheading"><a href="/consortium/curatorial.html">Recent changes and curatorial tools</a></p>
+	</td>
+</tr>
+</table>
+	<table>
+	<td width="3%">&nbsp;</td>
+	<td width="30%"><hr></td>
+	<td align="center" width="10%"><a href="/consortium/detail_help.html" class="pageSubheading">About this page</a></td><td width="30%"><hr></td>
+	</table>
+
+
+<table width="100%">
+  	<tr class=banner>
+    	<td height="18"><img src="/common/images/common_spacer.gif" alt="" width="1" height="1" border="0" >
+	</td>
+  	</tr>
+
+	<tr>
+	<td>
+		<table width="100%" >
+			<tr>
+			<td width="1" bgcolor="#FFFFFF">&nbsp;</td>
+			<td width="80%">
+			<span class="bodySmallerText">
+			Use this page to search for  specimen records. Any combination of fields may be searched. The links with the fields provide examples.
+			If you select "Search using latitude and longitude" you will go to a separate geographic search page.
+			If you select "Name list", a list of names that satisfy the search criteria will be returned; one record for each name will be included.
+			If you want to search using common names, go to <a href="/interchange/">the Jepson Interchange</a>.
+			The possibility of making comments or viewing comments is provided on each return page.
+			</span>
+			</td>
+			<td width="40%">&nbsp;
+			</td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+
+	<tr>
+	<td>Comments/questions to <a href="mailto:jason_alexander@berkeley.edu">Jason Alexander</a></td>
+  	</tr>
+</table>
+
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
+<!--begin footer-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
+<!--end footer-->
+
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
+
+
+</body>
+</html>

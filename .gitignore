@@ -4,6 +4,7 @@
 db/
 data_files/
 point_in_polygon_scripts/latlon_County_validator
+hartman/
 
 # Packages #
 ############

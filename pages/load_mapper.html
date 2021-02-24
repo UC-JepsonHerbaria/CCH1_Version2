@@ -1,35 +1,80 @@
-<html>
-<head>
-<Meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<title>UC/JEPS: Consortium Accession Results</title>
-	<!--<link href="/common/styles/cch_dropdowns.css" rel="stylesheet" type="text/css" /> -->
-<link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
+<?php
 
+date_default_timezone_set('America/Los_Angeles');
+
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
+<head>
+<title>CCH1: Georeference Verification Mapping Tool</title> 
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
+  <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-43909100-3');
+
+</script>
+
+<!-- jquery functions -->
+
 </head>
 <body>
 
 
+<table id="normaltable" style="vertical-align: top;">
+  <tr>
+   <td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+ <div class="cch-top-image-xy002crop">
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
+</div>
 
+<div>
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;width: 175px;">
+		<table id = "sideLinks">
+		<tr>
+			<td style="background-color: #9090AA;width: 175px;"> <!--background test -->
 <!-- Start of sidebar menu-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
 <!-- End of sidebar --> 
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td style="vertical-align: top;">
 
+	<p><span class="pageNameB">&nbsp;Georeference Verification Mapping Tool</span></p>
+	<p><span class="pageNameB">For submitting sets of coordinates to BerkeleyMapper</span>
+    </p>
 
+<table id ="loadmapper">
+	<tr>
+		<td>
 
-<center>
-<h3>
-Georeference Verification Mapping Tool:<br />
-For submitting sets of coordinates to BerkeleyMapper<br />
-
-</h3>
-<table width="50%" align="center" bgcolor="#336699" cellpadding="10">
-<tr>
-<td colspan=2>
-<font color="#ffffff">
 <p>This tool is useful for verifying that county records are correctly
 georeferenced (turn on US County Boundaries under the Layers tab in BerkeleyMapper).</p>
 <p>To start, paste latitude and longitude into the form below using the following
@@ -48,7 +93,6 @@ or this (comma delimited format):
 GLAFUSC,0,sew00028,-18.20755576,145.7618865,WGS84
 </pre>
 
-</font>
 </td>
 </tr>
 <tr>
@@ -63,14 +107,26 @@ GLAFUSC,0,sew00028,-18.20755576,145.7618865,WGS84
 </td>
 </tr>
 </table>
-</center>
 
 
-</tr>
-</table>
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
 <!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
 <!--end footer-->
+
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
 
 </body>
 </html>

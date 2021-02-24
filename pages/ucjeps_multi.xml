@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bnhmmaps>
+<metadata>
+ <name>Load Multi Mapper File</name>
+  <relatedinformation>https://ucjeps.berkeley.edu/</relatedinformation>
+   <abstract> configuration file for mapping CCH search results</abstract>
+    <mapkeyword keyword="specimens"></mapkeyword>
+	 <header location="https://ucjeps.berkeley.edu/consortium/code_banner.html"></header>
+	  <linkbackheader location="https://ucjeps.berkeley.edu/"></linkbackheader>
+	  </metadata>
+	  <colors method="field" fieldname="darwin:institutioncode" label="Museums" >
+	  <gisdata>
+<layer title="Jepson Ecoregions (California)" legend="1" active="1" url="https://ucjeps.berkeley.edu/"><![CDATA[https://ucjeps.berkeley.edu/jepcodes-v7.kmz]]></layer>
+<layer title="California counties" legend="1" active="1" url="https://ucjeps.berkeley.edu/"> <![CDATA[https://ucjeps.berkeley.edu/c_county.kmz]]></layer>
+	  </gisdata>
+<color key="RED" red="255" green="0" blue="0" symbol="4" size="6" label="Search1" />
+<color key="CYA" red="0" green="255" blue="255" symbol="4" size="6" label="Search2" />
+<color key="WHT" red="255" green="255" blue="255" symbol="4" size="6" label="Search3" />
+<color key="BLK" red="0" green="0" blue="0" symbol="4" size="6" label="Search4" />
+<color key="ORG" red="255" green="165" blue="0" symbol="4" size="6" label="Search5" />
+<color key="default" red="200" green="200" blue="200" symbol="4" size="6" label="default" />
+<dominantcolor webcolor="336699" />
+<subdominantcolor webcolor="ddddff" />
+<textdominantcolor webcolor="ffcc33" />
+</colors>
+<settings>
+<datumshift value="true"></datumshift>
+	  </settings>
+	  <recordlinkback>
+	  <linkback method="root" linkurl="https://ucjeps.berkeley.edu/cgi-bin/new_detail.pl" text="View Details" fieldname="Link Back" key1="uk" value1="darwin:catalognumbertext" />
+	  </recordlinkback>
+	  <concepts xmlns:darwin="http://digir.net/schema/conceptual/darwin/2003/1.0">
+	  <concept viewlist="1" datatype="darwin:institutioncode" alias="Multi Code" />
+	  <concept viewlist="1" datatype="darwin:catalognumbertext" alias="Catalog Number" />
+	  <concept viewlist="1" datatype="darwin:scientificname" alias="Scientific Name" />
+	  <concept viewlist="1" datatype="darwin:county" alias="County" />
+	  <concept viewlist="0" datatype="darwin:decimallatitude" alias="DecimalLatitude" />
+	  <concept viewlist="0" datatype="darwin:decimallongitude" alias="DecimalLongitude" />
+	  <concept viewlist="0" datatype="darwin:horizontaldatum" alias="HorizontalDatum" />
+	  </concepts>
+	  <annotation show="1">
+	  <annotation_replyto_email value="consortium_ch@lists.berkeley.edu" />
+	  </annotation>
+	  </bnhmmaps>

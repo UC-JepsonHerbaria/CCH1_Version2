@@ -12,25 +12,22 @@ date_default_timezone_set('America/Los_Angeles');
 
 <head>
 <title>CCH1: Autogeographs</title> 
-<meta name="description" content="CCH1 serves as a gateway to bioinformatic data from California vascular plant specimens that are housed in herbaria, worldwide.">
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
   <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 
-<!-- Google analytics -->
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27128382-1']);
-  _gaq.push(['_trackPageview']);
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  gtag('config', 'UA-43909100-3');
 
 </script>
 
@@ -39,73 +36,81 @@ date_default_timezone_set('America/Los_Angeles');
 </head>
 <body>
 
+<table id="normaltable" style="vertical-align: top;">
+  <tr>
+   <td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+ <div class="cch-top-image-xy002crop">
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
+</div>
 
-
+<div>
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;width: 175px;">
+		<table id = "sideLinks">
+		<tr>
+			<td style="background-color: #9090AA;width: 175px;"> <!--background test -->
 <!-- Start of sidebar menu-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
 <!-- End of sidebar --> 
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td style="vertical-align: top;">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="tdspacer1">&nbsp;</td>
-    <td class="bodyspacer">&nbsp;</td>
-    <td class="tdspacer1">&nbsp;</td>
-  </tr>
-  <tr>
-    <td class="tdspacer1">&nbsp;</td>
-    <td class="bodyFull"><span class="bodyText">
 
-<h2> CCH1 Records with Coordinates</h2>
+<p><img alt="" src="construct.bmp"><br /><font color="red"> This site is under re-development.  This page page will display current records as soon as CCH2 data are imported into CCH1.</font>
+    </p>
+	<span class="aboutAbove">
+	<p><span class="pageNameB">&nbsp;CCH1 Records with Coordinates</span></p>
 
-<p>
+	<p>
 These are maps of CCH1 records that have coordinates (think of it as an autogeograph). In the map at the right the pixels are colored according to the number of collections at an approximate location, giving a visual representation of collecting effort.
 </p>
-<p>
+	<p>
 Note that this represents well over two thirds of the California specimens in the CCH herbaria: 1778243  out of 2320817. 
 </p>
-<p>
+	<p>
 Thu Sep 20 16:24:37 2018
 </p>
-</span>
-	</td>
-	<td class="tdspacer1">&nbsp;</td>
-  </tr>
-</table>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="tdspacer1">&nbsp;</td>
-    <td class="bodyhalf">
-
-		<table class = "hartmanborder">
- 	  <span class = "hartmansize">
+	</span>
+	
+	<span class="sidebarLeft">
+		<table id ="hartmanTable" style="border-style: ridge;width: 60%;">
 		 <tr>
-    		<td>
-&nbsp;&nbsp;all records<br />&nbsp;<br />
+    		<td style="border-style: ridge;">
+&nbsp;&nbsp;all records<br />&nbsp;<br /><br />
 			</td>
 		 </tr>
 		 <tr>
-			<td>
-<img class = "hartman" src="/consortium/hartman/all_georef.gif">
+			<td style="border-style: ridge;">
+<img src="/consortium/hartman/all_georef.gif" alt="" style="max-width:500px; min-width: 100%;">
 			</td>
 		 </tr>
-	  </span>
 		</table>
+	</span>
 
-		
-		<table class = "hartmanborder">
-	  <span class = "hartmansize">
+
+	<span class="sidebarLeft">
+		<table id ="hartmanTable" style="border-style: ridge;width: 60%;">
 		 <tr>
-    		<td>
-&nbsp;&nbsp;blue pixels: 1 or 2 records, green pixels: 3 or 4 records, yellow pixels: 5-16 records, red pixels: 17-32 records, black pixels: > 32 records
+    		<td style="border-style: ridge;">
+&nbsp;&nbsp;blue pixels: 1 or 2 records, green pixels: 3 or 4 records<br />
+&nbsp;&nbsp;yellow pixels: 5-16 records, red pixels: 17-32 records<br /> 
+&nbsp;&nbsp;black pixels: > 32 records
 			</td>
 		 </tr>
 		 <tr>
-    		<td>
-<img class = "hartman" src="/consortium/hartman/hartman.gif" alt="alternative text" usemap="#gifmap" />
+    		<td style="border-style: ridge;">
+<img src="/consortium/hartman/hartman.gif" alt="" usemap="#gifmap" style="max-width:500px; min-width: 100%;">
 <map name="gifmap">
 <area shape="rect" coords="0,0,10,15" href="https://ucjeps.berkeley.edu/cgi-bin/get_consort.pl?lat_min=42.75&lat_max=43&long_min=-125&long_max=-124.75" />
 <area shape="rect" coords="10,0,21,15" href="https://ucjeps.berkeley.edu/cgi-bin/get_consort.pl?lat_min=42.75&lat_max=43&long_min=-124.75&long_max=-124.5" />
@@ -2135,18 +2140,28 @@ Thu Sep 20 16:24:37 2018
 </map>
 			</td>
 		 </tr>
-	  </span>
 		</table>
+	</span>
 
 
-</td><!--close td from sidebar file-->
-    <td class="tdspacer1">&nbsp;</td>
-  </tr>
-</table>
-  
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
 <!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
 <!--end footer-->
+
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
 
 </body>
 </html>

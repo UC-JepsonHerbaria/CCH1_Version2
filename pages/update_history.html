@@ -11,26 +11,23 @@ date_default_timezone_set('America/Los_Angeles');
 ?>
 
 <head>
-<title>CCH1: Update History</title> 
-<meta name="description" content="CCH1 serves as a gateway to bioinformatic data from California vascular plant specimens that are housed in herbaria, worldwide.">
+<title>CCH1: History</title> 
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
   <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 
-<!-- Google analytics -->
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27128382-1']);
-  _gaq.push(['_trackPageview']);
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  gtag('config', 'UA-43909100-3');
 
 </script>
 
@@ -38,43 +35,59 @@ date_default_timezone_set('America/Los_Angeles');
 
 </head>
 <body>
-
+<table id="normaltable" style="vertical-align: top;">
+  <tr>
+   <td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+ <div class="cch-top-image-xy002crop">
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
-
-
+</div>
+<div>
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;width: 175px;">
+		<table id = "sideLinks">
+		<tr>
+			<td style="background-color: #9090AA;width: 175px;"> <!--background test -->
 <!-- Start of sidebar menu-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
 <!-- End of sidebar --> 
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td style="vertical-align: top;">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-   <td class="tdspacer1">&nbsp;</td>
-   </td>
-    <td class="bodyFull">
-    <p>
-	<span class="pageName">CCH1 Recent Updates</span><br /><br />
+<p><img alt="" src="construct.bmp"><br /><font color="red"> This site is under re-development.  This page page will display accurate update data as soon as CCH2 data are imported into CCH1.</font>
     </p>
 
-	<p><span class="pageAuthorLine"><b>Updates for 2020</b></span></p>
-	<br />
+	<p><span class="pageNameB">CCH1 Recent Updates</span><br /><br />
+    </p>
+
+	<p><span class="pageAuthorLineB">Updates for 2020</span></p>
 
 <!--BEGIN DATE ENTRY-->
-<p class="pageAuthorLine">&nbsp;&nbsp;September 20&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug and georef. fixes</p>
+<p class="pageAuthorLineB">&nbsp;&nbsp;September 20&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug and georef. fixes</p>
 	<p class="generalText">
 <ol>
 <li>&nbsp;Last update before uploading of data to CCH2.</li>
 </ol>
 <ul>
-<li><span class="pageAuthorLine">
-Record count: 2,320,817 <a href="/images/georef_map.html">(1,778,243 of which are georeferenced)</a></span></li>
-</ul></p>
+<li><span class="pageAuthorLineB">Record count: 2,320,817 <a href="/images/georef_map.html">(1,778,243 of which are georeferenced)</a></span></li>
+</ul>
+	</p>
+
 <!--END DATE ENTRY-->
 
 
 <!--BEGIN DATE ENTRY-->
-<p class="pageAuthorLine">&nbsp;&nbsp;July 12&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SEINET</p>
+<p class="pageAuthorLineB">&nbsp;&nbsp;July 12&nbsp;&nbsp;&mdash;&nbsp;&nbsp;SEINET</p>
 	<p class="generalText">
 <ol>
 <li>&nbsp;SEINET updated; additional error and bug fixes.</li>
@@ -86,25 +99,32 @@ Record count: 2,320,817 <a href="/images/georef_map.html">(1,778,243 of which ar
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3386 georeference records from other user submitted files.</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3451 georeference records from the Mexico buffer.</li>
 <li>&nbsp;&nbsp;127703 yellow-flagged georeference records.</li>
-<li><span class="pageAuthorLine">
+<li><span class="pageAuthorLineB">
 Record count: 2,323,435 <a href="">(1,780,418 of which are georeferenced)</a></span>
 </ul></p>
 <!--END DATE ENTRY-->
 
-	</td>
-  </tr>
-</table>
 
-</td><!--close td from sidebar file-->
-    <td class="cchRightMargin">
-    <img class="imagespacer" src="/common/images/strips/strip_oak_woodland.jpg" alt="California oak woodland - Photo credit: John Game">
-	</td>
-  </tr>
-</table>
 
+
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
 <!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
 <!--end footer-->
+
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
 
 </body>
 </html>

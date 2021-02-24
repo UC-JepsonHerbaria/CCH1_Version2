@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bnhmmaps>
+<metadata>
+ <name>FEM Load-Mapper File</name>
+  <relatedinformation>https://ucjeps.berkeley.edu/</relatedinformation>
+   <abstract> configuration file for mapping arbitrary coordinates</abstract>
+    <mapkeyword keyword="specimens"></mapkeyword>
+	 <header location="https://ucjeps.berkeley.edu/consortium/code_banner.html"></header>
+	  <linkbackheader location="https://ucjeps.berkeley.edu/"></linkbackheader>
+	  </metadata>
+	  <colors method="field" fieldname="darwin:institutioncode" label="Museums" >
+<gisdata>
+<layer title="Jepson Ecoregions (California)" legend="1" active="1" url="https://ucjeps.berkeley.edu/"><![CDATA[https://ucjeps.berkeley.edu/jepcodes-v7.kmz]]></layer>
+<layer title="California counties" legend="1" active="1" url="https://ucjeps.berkeley.edu/"> <![CDATA[https://ucjeps.berkeley.edu/c_county.kmz]]></layer>
+</gisdata>
+<color key="default" red="255" green="0" blue="0" symbol="4" size="6" label="Specimen" />
+	  <dominantcolor webcolor="336699" />
+	  <subdominantcolor webcolor="ddddff" />
+	  <textdominantcolor webcolor="ffcc33" />
+	  </colors>
+	  <settings>
+	  </settings>
+	  <recordlinkback>
+	  <linkback method="root" linkurl="https://ucjeps.berkeley.edu/cgi-bin/new_detail.pl" text="View Details" fieldname="Link Back" key1="uk" value1="darwin:catalognumbertext" />
+	  </recordlinkback>
+	  <concepts xmlns:darwin="http://digir.net/schema/conceptual/darwin/2003/1.0">
+	  <concept viewlist="1" datatype="darwin:institutioncode" alias="Institution Code" />
+	  <concept viewlist="1" datatype="darwin:catalognumbertext" alias="Catalog Number" />
+	  <concept viewlist="1" datatype="darwin:scientificname" alias="Scientific Name" />
+	  <concept viewlist="1" datatype="darwin:county" alias="County" />
+	  <concept viewlist="0" datatype="darwin:decimallatitude" alias="DecimalLatitude" />
+	  <concept viewlist="0" datatype="darwin:decimallongitude" alias="DecimalLongitude" />
+	  <concept viewlist="0" datatype="darwin:horizontaldatum" alias="HorizontalDatum" />
+	  </concepts>
+	  <annotation show="1">
+	  <annotation_replyto_email value="consortium_ch@lists.berkeley.edu" />
+	  </annotation>
+	  </bnhmmaps>
+

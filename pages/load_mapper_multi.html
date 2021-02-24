@@ -1,123 +1,143 @@
-<html>
-<head>
-<title>
-Consortium of California Herbaria: Load Coords, start page
-</title>
-<Meta Name="keywords" Content="UC Berkeley Herbarium,
-California floristics, Consortium of California Herbaria, UC Santa Barbara,
-UC Irvine, UC Riverside, UC Davis, UC Santa Cruz, Santa Barbara Botanic Garden,
-Jepson Herbarium
-">
-<link href="http://ucjeps.berkeley.edu/consortium/style_consortium.css" rel="stylesheet" type="text/css">
-</head>
+<?php
 
+date_default_timezone_set('America/Los_Angeles');
+
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
+<head>
+<title>CCH1: Multi-Mapper Tool</title> 
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
+  <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-43909100-3');
+
+</script>
+
+<!-- jquery functions -->
+
+</head>
 <body>
 
-<table class="banner" width="100%" border="0">
-  			<tr>
-    			<td align="center">Consortium of California Herbaria</td>
-  			</tr>
 
-  			<tr>
-    			<td class="bannerHerbs" align="center">
-  			<font  face="Times New Roman, Times, serif" color="#FEFEFE">
-<!-- <a href="http://www.calacademy.org/research/botany/" target="_blank" class="bannerHerbs"> CAS-DS</a> &middot; 
-<a href="http://cdfa.ca.gov/phpps/PPD/herbarium.html" target="_blank" class="bannerHerbs"> CDA</a> &middot; 
-<a href="http://www.csuchico.edu/biol/Herb/" target="_blank" class="bannerHerbs"> CHSC</a> &middot; 
-<a href="http://herbarium.ucdavis.edu/" target="_blank" class="bannerHerbs"> DAV</a> &middot; 
-<a href="http://www.humboldt.edu/~herb/" target="_blank" class="bannerHerbs"> HSC</a> &middot; 
-<a href="http://ucjeps.berkeley.edu/consortium/irvc.html" target="_blank" class="bannerHerbs"> IRVC</a> &middot; 
-<a href="http://www.calpoly.edu/~bio/Herbarium.html" target="_blank" class="bannerHerbs"> OBI</a> &middot;
-<a href="http://www.pgmuseum.org/" target="_blank" class="bannerHerbs"> PGM</a> &middot;
-<a href="http://www.rsabg.org/" target="_blank" class="bannerHerbs"> RSA-POM</a> &middot; 
-<a href="http://www.sbbg.org/" target="_blank" class="bannerHerbs"> SBBG</a> &middot; 
-<a href="http://www.sdnhm.org/research/botany/" target="_blank" class="bannerHerbs"> SD</a> &middot; 
-<a href="http://www.sci.sdsu.edu/herb" target="_blank" class="bannerHerbs"> SDSU</a> &middot; 
-<a href="http://www2.sjsu.edu/depts/herbarium/" target="_blank" class="bannerHerbs"> SJSU</a>  &middot; 
-<a href="http://ucjeps.berkeley.edu/" target="_blank" class="bannerHerbs"> UC-JEPS</a>  &middot; 
-<a href="http://www.herbarium.ucr.edu/" target="_blank" class="bannerHerbs"> UCR</a> &middot; 
-<a href="http://ccber.lifesci.ucsb.edu/collections/botanical/" target="_blank" class="bannerHerbs"> UCSB</a> &middot; 
-<a href="http://mnhc.ucsc.edu/" target="_blank" class="bannerHerbs"> UCSC</a> 
--->
-</font>	  
-</td>
-  			</tr>
-</table>
 
-<!-- Beginning of horizontal menu -->
-<table class=horizMenu width="100%" border="0" cellspacing="0" cellpadding="0">
+<table id="normaltable" style="vertical-align: top;">
   <tr>
-    <td height="21" width="640" align="right">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="http://ucjeps.berkeley.edu/consortium/participants.html" class="horizMenuActive">
-    Participants</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="http://ucjeps.berkeley.edu/consortium/news.html" class="horizMenuActive">News</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="http://ucjeps.berkeley.edu/consortium/" class="horizMenuActive">Search</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="http://ucjeps.berkeley.edu/consortium/about.html" class="horizMenuActive">About</a>
-    </td>
-<td />
-  </tr>
- <tr>
-    <td colspan="6" bgcolor="#9FBFFF"><img src="/common/images/common_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-  </tr>
-</table>
-<!-- End of horizontal menu -->
+   <td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+ <div class="cch-top-image-xy002crop">
+<!-- COMMON HEADER -->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
+<!-- COMMON HEADER ENDS -->
+</div>
 
-<table cellpadding=10><tr><td>
-<span class="bodyText">
-<H2> Multi-mapper, start page</h2>
-<h3>
-Map multiple record sets with coordinates using BerkeleyMapper
-</h3>
-<table width="100%" align="left" cellpadding="10">
-<tr>
-<td colspan=2>
-<OL class="bodyText">
-<LI>Run a search from the <a href="http://ucjeps.berkeley.edu/consortium/" target="_blank">CCH</a> search interface;
-<LI>Select some or all of the records with coordinates;
-<LI>Display the results as tab-separated text.
-<LI>Copy CCH tab-separated output.
-<LI>Paste CCH tab-separated output into the form below:
-(depending on browser/OS, you may have to "view source" of the results and copy that)
-<LI> Click on "Map it"
-<LI> Add additional record sets from the subsequent page
-</OL>
-<span class="bodyText">
-&nbsp;&nbsp;You can also paste in input formatted like this:<br>
-37.0234, -120.1234<br>
-36.111, -120.004<br>
-&nbsp;&nbsp;or this:<br>
-JEPS70123, 37.0234, -120.1234<br>
-UC66456, 36.111, -120.004<br>
-</span>
-</td>
-</tr>
-<tr>
-<td align="left">
-<form action="http://ucjeps.berkeley.edu/cgi-bin/mapper_multi.pl" method="POST">
-<INPUT TYPE=submit name="mapit" VALUE="Map it"> </P>
-<INPUT TYPE=hidden name="multi" VALUE="1"> </P>
-<textarea name="coords", rows="40", cols="150"></textarea>
-</form>
-</td>
-<td align="bottom">
-</td>
-</tr>
-</table>
-</span>
-</td></tr></table>
-
+<div>
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;width: 175px;">
+		<table id = "sideLinks">
+		<tr>
+			<td style="background-color: #9090AA;width: 175px;"> <!--background test -->
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
+<!-- End of sidebar --> 
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td style="vertical-align: top;">
+	
+    <p>
+	<span class="pageNameB">Multi-mapper Start Page
+   </p>
+    <p>
+<span class="pageAuthorLineB">&nbsp;&nbsp;Map multiple record sets with coordinates using BerkeleyMapper</span>
+   </p>
+   
+		<span class="generalText">
 <table width="100%">
-  <tr class=banner>
-    <td colspan="6" bgcolor="#9FBFFF"><img src="http://ucjeps.berkeley.edu/images/common_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-  </tr>
-  <tr>
-    <td height="20"><span class="copyrightText">&nbsp;&nbsp;<a href="http://ucjeps.berkeley.edu/main/copyright.html">Copyright</a> &copy; 2007 Regents of the University of California &mdash; Updated Dec 9, 2011</span></td>
-  </tr>
+<tr>
+<td>
+<ol>
+<li>Run a search from the <a href="/consortium/" target="_blank">CCH</a> search interface</li>
+<li>Select some or all of the records with coordinates</li>
+<li>Display the results as tab-separated text</li>
+<li>Copy CCH tab-separated output</li>
+<li>Click on "Start Multi Mapper"</li>
+<li>Paste CCH tab-separated output into the form on the next page
+(depending on browser/OS, you may have to "view source" of the results and copy that)</li>
+
+<li>Add additional record sets on subsequent pages, if desired</li>
+</ol>
+<p>
+&nbsp;&nbsp;You can also paste in input formatted like this:<br />
+37.0234, -120.1234<br />
+36.111, -120.004<br />
+&nbsp;&nbsp;or this:<br />
+JEPS70123, 37.0234, -120.1234<br />
+UC66456, 36.111, -120.004<br />
+</p>
+</td>
+</tr>
+
+<tr>
+<td>
+
+<p>
+<form action="/cgi-bin/mapper_multi_add.pl" method="POST">
+<INPUT TYPE=hidden name="cumul" VALUE="1">
+<INPUT TYPE=submit name="start" VALUE="Start Multi Mapper">
+<INPUT TYPE=hidden name="multi" VALUE="0">
+</form>
+</p>
+
+
+
+</td>
+</tr>
 </table>
+
+
+
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
+<!--begin footer-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
+<!--end footer-->
+
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
 
 </body>
 </html>

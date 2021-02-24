@@ -1,601 +1,170 @@
 <?php
 
 date_default_timezone_set('America/Los_Angeles');
+require '/usr/local/web/ucjeps_data/cch_config/config.php';
+$db = new SQLite3($database_location);
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php 
 //add note or other code here for variables
 ?>
 
 <head>
-<title>CCH1: Members</title> 
-<meta name="description" content="CCH1 serves as a gateway to bioinformatic data from California vascular plant specimens that are housed in herbaria, worldwide.">
+<title>CCH: Members</title> 
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
   <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 
-<!-- Google analytics -->
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27128382-1']);
-  _gaq.push(['_trackPageview']);
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  gtag('config', 'UA-43909100-3');
 
 </script>
+
+<style type="text/css">
+
+
+#list tr:nth-child(even) {
+    background-color: #EEEEEE;
+}
+
+#list tr:nth-child(odd) {
+    background-color: white;
+}
+
+</style>
+
+
 
 <!-- jquery functions -->
 
 </head>
 <body>
 
-
+<table id="normaltable">
+  <tr>
+   <td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+ <div class="cch-top-image-xy5crop">
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cchv2_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cchv2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
+ </div>
 
+<div >
+
+
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;width:200px;">
+		<table id = "sideLinks" style="width:100%;">
+		<tr>
+			<td> <!-- <<background test>> -->
+				<div style="border-right-style: solid;border-right-color: #9090AA;border-left-style: solid;border-left-color: #9090AA;">
 <!-- Start of sidebar menu-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
 <!-- End of sidebar --> 
-
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="tdspacer1">&nbsp;</td>
-    <td class="bodyspacer">&nbsp;</td>
-    <td class="tdspacer1">&nbsp;</td>
-  </tr>
-  <tr>
-    <td class="tdspacer1">&nbsp;</td>
-    <td class="bodyFull"><span class="bodyText">
-
-		<table border=0 width="96%" align="center" cellpadding=10 cellspacing=10>
-<a name="CA" id="CA"></a>
-		<tr>
-			<td colspan=3>
-				<table bgcolor="black">
-					<tr>
-						<td>&nbsp;<font color="white">Members</font>
-						</td>
-					</tr>
-				</table>
+				</div>
 			</td>
 		</tr>
-<!-- 1 collid 2-->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF">Bureau of Land Management, Arcata Field Office </td>
-  <td width = 60% bgcolor="#FFFFFF"> BLMAR.<br />
-The BLMAR herbarium contains approximately 700 vascular plant specimens and over 300 bryophyte and lichen specimens dating from the early 1990s. The collection covers all the lands managed by the Bureau of Land Management Arcata Field Office in California, as well as other nearby public lands. Nearly all of the specimens were collected in Humboldt, Mendocino, or Trinity Counties. The collection includes some endangered and listed species as well as some potential range extensions and other species of interest.
-  </td>
-  <td bgcolor="#FFFFFF"> Contact: Jennifer Wheeler (<a href="mailto:jswheele@blm.gov">jswheele&#64;blm.gov</a>)<br />
-   <br />
-   Website: <a href="https://www.blm.gov/office/arcata-field-office">www.blm.gov/office/arcata-field-office</a> </td>
-
-<!-- 2 CCH2 collid 1-->	
-</tr>
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE">California Academy of Sciences </td>
-  <td bgcolor="#EEEEEE">CAS, DS.<br /> 
-Worldwide, nearly 1.9 million specimens (27% from California); more  than 95% vascular seed plants; the remainder are ferns and a growing  collection of bryophytes.  Emphasis is on California, North America, Latin  America (especially western and southern Mexico and the Galapagos) and Asia  (especially China). Vascular plant families and genera that are particularly  well represented include Acanthaceae, Brassicaceae, <em>Carex,</em> <em>Eriogonum,</em> Hydrophyllaceae, <em>Lupinus,</em> Asteraceae (particularly Madinae), Malvaceae,  Melastomataceae, Onagraceae, <em>Penstemon,</em> Poaceae, Polemoniaceae and <em>Quercus.</em> The herbarium also contains the largest collection of ornamental plants in  California. </td>
-  <td bgcolor="#EEEEEE">Contact: Debra Trock (<a href="mailto:dtrock@calacademy.org">dtrock&#64;calacademy.org</a>)<br />
-   <br />
-   Website: <a href="https://www.calacademy.org/botany-collections" target="_blank">www.calacademy.org/botany-collections</a></td>
-</tr>
-
-<!-- 3 -->	
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF">California Department of Food and Agriculture </td>
-  <td bgcolor="#FFFFFF"> CDA.<br /> 
-<p>Founded in 1921, the Botany Lab and Herbarium of the California Department of Food and Agriculture (Plant Pest Diagnostics Center) serves as the plant diagnostic and identification service for California, and is the repository for the state collection of noxious weed and agricultural plant specimens.
-Size of collection: 55,000 plant specimens. Notable collections include those of M. K. Bellue, T. C. Fuller, G. Douglas Barbe, G. F. Hrusa, D. G. Kelch, and G. L. Stout (plant disease collection, BPS).
-The CDFA Seed Herbarium has ca. 50,000 accessions in the Seed and Fruit Collection (CDA SFC). Notable collections include those of M. K. Bellue, B. Crampton, P. B. Kennedy, D. Baxter, B. M. Browning, D. Decker-Walters, and C. Dremann.</p>
-</td>
-  <td bgcolor="#FFFFFF"> Contact: Genevieve Walden, Curator and Senior Plant Taxonomist (<a href="mailto:genevieve.walden@cdfa.ca.gov">genevieve.walden&#64;cdfa.ca.gov</a>)<br />
-<a href="http://www.cdfa.ca.gov/plant/ppd/herbarium.html">www.cdfa.ca.gov/plant/ppd/herbarium.html</a><br />
-G. Fred Hrusa Senior Plant Taxonomist, Emeritus (<a href="mailto:fred.hrusa@cdfa.ca.gov">fred.hrusa&#64;cdfa.ca.gov</a>)<br />
-Deborah J. Meyer, Curator and Senior Seed Botanist (<a href="mailto:deborah.meyer@cdfa.ca.gov">deborah.meyer&#64;cdfa.ca.gov</a>)<br />
-<a href="https://www.cdfa.ca.gov/plant/ppd/seedherbarium.html">www.cdfa.ca.gov/plant/ppd/seedherbarium.html</a><br />
-		 </td>
-</tr>
-
-<!-- 4: CCH2 collid 48 -->	
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE">California Department of Parks and Recreation, Colorado Desert District</td>
-<td bgcolor="#EEEEEE">BSCA.<br />
-<br />*future contributor
-</td>
-<td bgcolor="#EEEEEE">Contact: Larry Hendrickson (<a href="mailto:Larry.Hendrickson@cdfa.ca.gov">Larry.Hendrickson&#64;cdfa.ca.gov</a>)<br />
-</td>
-</tr>
-
-<!-- 5: CCH2 collid 12 -->	
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF">California Polytechnic State University, San Luis Obispo</td>
-<td bgcolor="#FFFFFF">OBI. <br /> 
-<p>The Robert F. Hoover Herbarium houses 85,000+ specimens of vascular plants, algae, lichens, and bryophytes. The geographic focus is San Luis Obispo County, California. The collection also includes many specimens from other areas of California, other states of the US, particularly Arizona, and some from other regions of the world, especially Mexico. Emphasis areas in the collection include Asteraceae, Lupinus, and cultivated Eucalyptus. Major collections include Robert F. Hoover (1946–1969), David J. Keil (1966–present), Rhonda Riggins (1970s–2000), Tracy Call (mostly Apiaceae—late 1940s–1960s), and Robert J. Rodin (1940s–1977). The collection is used extensively in undergraduate teaching and training.   Robert F. Hoover's collections were the basis for <i>The Vascular Plants of San Luis Obispo County, California</i> (1970).</p>
-</td> 
-<td bgcolor="#FFFFFF"> Contact: Jenn Yost, (<a href="mailto:jyost@calpoly.edu">jyost&#64;calpoly.edu</a>)</td>
-</tr>	
-
-<!-- 6: CCH2 collid 44 -->
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE"> California State University, Chico</td>
-  <td bgcolor="#EEEEEE"> CHSC.<br />
-Chico State Herbarium at California State University, Chico is the most complete repository of plant specimens from northeastern California. The emphasis is on the local flora, and includes a number of rare, threatened, and endangered plant species. Size of collection: 95,300, 77% from California. </td>
-  <td bgcolor="#EEEEEE"> Contact: Colleen Hatfield (<a href="mailto:chatfield@csuchico.edu">chatfield&#64;csuchico.edu</a>), Director<br />
-    Data Contact: Lawrence Janeway (<a href="mailto:LJaneway@csuchico.edu">LJaneway&#64;csuchico.edu</a>), Curator<br />
-	<br />
-    Website: <a href="https://www.csuchico.edu/herbarium/index.shtml" target="_blank">www.csuchico.edu/herbarium/index.shtml</a></td>
-</tr>
-
-<!-- 7: CCH2 collid 38 -->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF"> California State University, Fresno</td>
-<td bgcolor="#FFFFFF">FSC.<br />
-The geographical specialty of the FSC is Fresno County and parts of surrounding Inyo, Kern, Madera, Mono, and Tulare Counties: including the Sierra Nevada mountains, the San Joaquin Valley, and the Mojave Desert. About nine-tenths of the accessioned collection, or 31,500 specimens, is from California, with the remaining tenth from other states and countries. We estimate that half of the California collections are from high Sierra Nevada ecosystems (above 7000 feet), as this was Quibell’s focal collecting area. The other half of the collection represents the San Joaquin Valley itself, including riverine ecosystems, vernal pools, and agricultural ecosystems; the western Diablo Range region between Panoche and Coalinga; and the eastern slope of the Sierra Nevada, including the northern extent of the Mojave Desert. There is no particular taxonomic speciality among vascular plants, and only about ~100 of the specimens are federally or state listed as rare, threatened, or endangered (representing 29 taxa). Collectors who frequently contributed to the FSC collection: Charles H. Quibell (founder of the herbarium in 1925 and Fresno State biology professor); John "Jack" Springer, a USFS employee whose private herbarium of 1930s California grass collections was donated to FSC; Rimo C. Bacigalupi, first curator of the Jepson Herbarium, with collections from the 1950s and 1960s; Philip A. Munz from Rancho Santa Ana Botanic Garden and Pomona College, who collected in the 1920s-1950s and provided many of the FSC specimen determinations for specimens collected by Charles H. Quibell; James R. Shevock, associated with California Academy of Sciences and RSA, who worked on the floristics of the Sierra Nevada mountains; John “Jack” Rockwell, who collected in the Fresno area in the mid-20th century and whose specimens are almost entirely confined to FSC; and John H. Weiler, FSC Herbarium curator and Scrophulariaceae specialist.
-<br />*future contributor
-</td>
-<td bgcolor="#FFFFFF">Contact: Katherine Waselkov (<a href="mailto:kwaselkov@csufresno.edu">kwaselkov&#64;csufresno.edu</a>)<br />
-<br />
-	  Website: <a href="http://www.fresnostate.edu/csm/biology/about/herbarium.html">www.fresnostate.edu/csm/biology/about/herbarium.html</a>
-<br />
-<a href="https://waselkovlab.com/herbarium/">waselkovlab.com/herbarium/</a>
-</td>
-</tr>	
-
-<!-- 8: CCH2 collid 36 -->	
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE"> California State University, Fullerton</td>
-<td bgcolor="#EEEEEE">MACF.<br />
-The MacFadden Herbarium, located in the Department of Biological Science at California State University Fullerton, is named for Fay A. MacFadden, who sold her extensive collection of plants to the university just prior to her death in 1964. The collection encompasses specimens collected from the 1800s through today and includes approximately 25,000 vascular plant, 12,000 bryophyte, and 800 lichen specimens, as well as special seed, pollen, and cacti collections. The herbarium has been under restoration since 2012 and is currently in the process of being updated and databased.
-</td> 
-<td bgcolor="#EEEEEE">Curator: Joshua Der (<a href="mailto:jder@fullerton.edu">jder&#64;fullerton.edu</a>)<br />
-<br />
-	  Website: <a href="http://www.fullerton.edu/biology/">www.fullerton.edu/biology/</a>
-</td>
-</tr>
-
-<!-- 9: CCH2 collid 19 -->
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> California State University, Long Beach</td>
-<td bgcolor="#FFFFFF">LOB.<br />  
-The LOB Herbarium has approximately 18,000 specimens preserved as dried, pressed specimens.
-<br />*future contributor
-</td> 
-<td bgcolor="#FFFFFF"> Contact: Amanda Fisher, (<a href="mailto:Amanda.Fisher@csulb.edu">Amanda.Fisher&#64;csulb.edu</a>)</td>
-</tr>
-	
-<!-- 10: CCH2 collid 42 -->
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> California State University, Los Angeles</td>
-<td bgcolor="#EEEEEE">CSLA.<br />  
-The CSLA Herbarium holds approximately 35,000 dry-mounted vascular plant specimens from around the world, with particular collection emphasis in Southern California and Northern Mexico. Founded in 1956, CSLA contains significant collections from J. Henrickson, B. Prigge, and R. M. Straw.
-<br />*future contributor
-</td> 
-<td bgcolor="#EEEEEE"> Contact: Kirsten Fisher, (<a href="mailto:kfisher2@calstatela.edu">kfisher2&#64;calstatela.edu</a>)</td>
-</tr>
-
-<!-- 11: CCH2 collid 41 -->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF"> California State University, Northridge</td>
-<td bgcolor="#FFFFFF">SFV.<br />
-Founded in 1958.  23,000 specimens (13,000 databased) of vascular plants, bryophytes, and a small number of lichens.  Primary representation is from California (particularly southern California) but with specimens from other parts of North America and the world.
-</td> 
-<td bgcolor="#FFFFFF"> Contact: James N. Hogue, Collections Manager (<a href="mailto:james.n.hogue@csun.edu">james.n.hogue&#64;csun.edu</a>).<br />
-</td>
-
-<!-- 12 -->
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE"> California State University, Sacramento</td>
-<td bgcolor="#EEEEEE">SACT.<br />
-California State University, Sacramento herbarium contains vascular plants mostly from California with an emphasis on Placer County flora. Size of collection: ~20,000 specimens.
-</td> 
-<td bgcolor="#EEEEEE"> Contact: Shannon Datwyler (<a href="mailto:datwyler@csus.edu">datwyler&#64;csus.edu</a>), Collection Manager<br />
-Travis Lawrence (<a href="mailto:tl584@saclink.csus.edu">tl584&#64;saclink.csus.edu</a>), Data Manager<br />
-</td>
-</tr>
-
-<!-- 13: CCH2 collid 47 -->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF"> California State University, San Bernardino</td>
-<td bgcolor="#FFFFFF">CSUSB.<br />
-	California, with special attention to San Bernardino, Riverside, Orange, and San Diego counties. Size of collection: 4,800 specimens.</td> 
-<td bgcolor="#FFFFFF"> Contact: Kimberlyn Williams (<a href="mailto:williams@csusb.edu">williams&#64;csusb.edu</a>)</td>
-</tr>	
-	
-<!-- 14 -->	
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE">Catalina Island Conservancy </td>
-  <td bgcolor="#EEEEEE">CATA.<br /> 
- The Catalina Island Conservancy Herbarium houses about 3,700 vascular plant specimens. All specimens were collected on Santa Catalina Island. 73% of the specimens were collected in the 1970's and 1990's by Mark L. Hoefs. </td>
-  <td bgcolor="#EEEEEE">Contacts:<br />
-Ryan Murdoff, Plant Conservation Manager and Curator (<a href="mailto:rmurdoff@catalinaconservancy.org">rmurdoff&#64;catalinaconservancy.org</a>)<br />
-Seth Kauppinen, Botanist and Native Plant Manager, Curator (<a href="mailto: SKauppinen@catalinaconservancy.org">SKauppinen&#64;catalinaconservancy.org</a>)<br />
-
-<br />
-	  Website: <a href="https://www.catalinaconservancy.org/index.php?s=about&p=about_cic" 
-	   target="_blank">www.catalinaconservancy.org</a></td>
-</tr>
-
-<!-- 15: CCH2 collid 45 -->	
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF">Humboldt State University </td>
-  <td bgcolor="#FFFFFF"><p>HSC. <br />
- Vascular plants from California,  especially northwestern California. In addition, a large collection from southwestern Oregon and grasses from North America. Size of collection: 100,000 specimens, 80% California.</p></td>
-  <td bgcolor="#FFFFFF">Contact: Michael Mesler (<a href="mailto:mrm1@humboldt.edu">mrm1&#64;humboldt.edu</a>), Director<br />
-    Data contact: Robin Bencie (<a href="mailto:mrb1@humboldt.edu">mrb1&#64;humboldt.edu</a>), Collections Manager<br />
-	  <br />
-    Website: <a href="https://www2.humboldt.edu/herbarium/welcome" target="_blank">www2.humboldt.edu/herbarium/welcome</a></td>
-</tr>
-
-<!-- 16 CCH2 collid 5 -->		
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE">Huntington Botanical Gardens</td>
-  <td bgcolor="#EEEEEE">HNT. 
-  <p>The Huntington Botanical Gardens Herbarium (HNT) was founded in the 1960’s by Myron Kimnach, director of the botanical gardens from 1962 to 1986. It is a depository of mostly exotic plant specimens used in research and teaching. The purpose of these specimens is to serve as voucher documentation for research projects, and as resources for plant identification. With over 10,000 specimens, it is an archive of vascular plants from around the world, with particular emphasis on plants from Mexico, Central America and South America. Important collections include those of F. Boutin, J. P. Folsom, D. R. Hodel, D. de Laubenfels, M. Kimnach and R. Moran. Plant families well-represented include Arecaceae, Cactaceae, Crassulaceae, Euphorbiaceae, and desert plants worldwide. In addition, the herbarium receives and provides loans of plant specimens used in active systematic research.</td>
-  <td bgcolor="#EEEEEE">HNT Contact: Tim Thibault (<a href="mailto:tthibault@huntington.org">tthibault&#64;huntington.org</a>)<br />
-	<br />
-	Website: <a href="https://www.huntington.org/herbarium" target="_blank">www.huntington.org/herbarium</a></td>
-</tr>	
-
-
-<!-- 17 -->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF"> Inyo National Forest Herbarium, Bishop</td>
-  <td bgcolor="#FFFFFF"> INF.<br />	
-The INF herbarium houses approximately 4000 vascular plant specimens, primarily from eastern California over the last century, plus over 100 bryophyte specimens.  The location is shared with an additional herbarium collection belonging to the Bureau of Land Management Bishop Field Office.  The collection also includes Mary DeDecker’s original field notes and personal botanical library. 
-<br />*future contributor
-</td>
-  <td bgcolor="#FFFFFF"> Contact:<br /> Michèle Slaton (<a href="mailto:mslaton02@fs.fed.us">mslaton02&#64;fs.fed.us</a>) <br />
-  </td>		
-	
-<!-- 18 -->
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> Jasper Ridge Biological Preserve, Stanford University</td>
-<td bgcolor="#EEEEEE"> JROH.<br />
-The Oakmead Herbarium at Jasper Ridge Biological Preserve was founded in 1996. All specimens were collected from the 1198 acres (485 ha) now comprising the Jasper Ridge Biological Preserve of Stanford University, San Mateo County, California. Size of collection: ~5500 specimens. </td>
-<td bgcolor="#EEEEEE">Contact: John Rawlings (<a href="mailto:rawlings@stanford.edu">rawlings&#64;stanford.edu</a>)<br />
-	Nona Chiariello (<a href="mailto:nonajrbp@stanford.edu">nonajrbp&#64;stanford.edu</a>), Staff Scientist<br />
-	Ann Lambrecht (<a href="mailto:alambrec@stanford.edu">alambrec&#64;stanford.edu</a>)<br />
-	Toni Corelli (<a href="mailto:corelli@coastside.net">corelli&#64;coastside.net</a>)<br />
-	Diane Renshaw (<a href="mailto:dlr@ecosystem.com">dlr&#64;ecosystem.com</a>)<br />
-	<br />
-	Website: <a href="http://jrbp.stanford.edu/db/plants/plantdb.php" target="_blank">jrbp.stanford.edu/db/plants/plantdb.php</a> </td>
-</tr>
-
-<!-- 19 -->
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> Joshua Tree National Park</td>
-<td bgcolor="#FFFFFF"> JOTR.<br />
-The JOTR herbarium contains vascular plant, lichen, and bryophyte specimens from the area within the National Park boundary. The focus of this herbarium is to provide a synoptic collection representing a minimum of 90% of species known to occur in the Park. The collection is mainly used for resource management and educational purposes, however, researchers are encouraged to utilize the specimens as well.
- </td> 
-<td bgcolor="#FFFFFF"> Contact: Tasha La Doux (<a href="mailto:tasha.ladoux@ucr.edu">tasha.ladoux&#64;ucr.edu</a>)<br />
-</tr>
-
-<!-- 20 CCH2 collid 10 -->	
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE"> Klamath National Forest Herbarium</td>
-  <td bgcolor="#EEEEEE"> KNFY.<br />	
-The Klamath National Forest encompasses nearly 1.7 million acres of land straddling the California and Oregon border in the Klamath-Siskiyou Mountain Ranges. In the mountains to the west, the terrain is steep and rugged, while the east-side has gentler, rolling terrain of volcanic origin, sprinkled with buttes and valleys. Elevations range from 450 to 9,001 feet above sea level at Thompson Peak, on the Siskiyou-Trinity County divide. The Klamath National Forest is one of America’s most biologically diverse regions, due to the blending of four floristic provinces and boasts a center of coniferous diversity (19 species) in the Russian Wilderness. The Klamath National Forest Herbarium aims to preserve and record the many rare and endemic species unique to the region. 
-<br />*future contributor
-</td>
-  <td bgcolor="#EEEEEE"> Contact: Erin Lonergan (<a href="mailto:erinrlonergan@fs.fed.us">erinrlonergan&#64;fs.fed.us</a>) <br />
-  </td>			
-</tr>
-
-<!-- 21 -->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF">Pacific Grove Museum of Natural History</td>
-  <td bgcolor="#FFFFFF">PGM. <br />
-The herbarium of the Pacific Grove Museum of Natural History contains approximately 7,500 specimens which are concerned principally with the vascular plants of Monterey County, California and the adjacent inner coast range mountains which border it, including collections from San Benito, western Fresno, and portions of Kings County.  
-Ninety percent of the collections are from Monterey County, California. 
-The herbarium includes the Monterey County collections of Beatrice F. Howitt, duplicates of specimens sent to CAS and identified by J.T. Howell resulting in: <em>The Vascular Plants of Monterey County, California</em> by Beatrice F. Howeitt and John Thomas Howell, The Wasmann Journal of Biology, Vol. 22, No. 1, Spring 1964 and <em>Supplement</em> published by The Pacific Grove Museum of   Natural History Assoc, July, 1973. </td>
-  <td bgcolor="#FFFFFF">Contact: Paul Vandecarr (<a href="mailto:Vandecarr@pgmuseum.org">Vandecarr&#64;pgmuseum.org</a>)<br />
-	  <br />
-	Website: <a href="https://www.pgmuseum.org/" target="_blank">pgmuseum.org</a></td>
-</tr>
-
-
-<!-- 16 CCH2 collid XX -->		
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE">Pasadena City College Herbarium</td>
-  <td bgcolor="#EEEEEE">PASA. 
-  <p>The Pasadena City College Herbarium, is a small collection (ca. 2,400 sheets) of vascular plants from S. California. Many of the specimens were collected during the 1920's and 1930's. Notable collectors include early collections from Annetta Carter. The collection was formally given to HNT in 2008.</p>
-  <td bgcolor="#EEEEEE">PASA Contact: Sean Lahmeyer (<a href="mailto:slahmeyer@huntington.org">slahmeyer&#64;huntington.org</a>)<br />
-	<br />
-	Website: <a href="https://www.huntington.org/herbarium" target="_blank">www.huntington.org/herbarium</a></td>
-</tr>	
-
-
-<!-- 22 CCH2 collid 17 -->	
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF">Rancho Santa Ana Botanic Garden </td>
-<td bgcolor="#FFFFFF"> RSA, POM. <br />
-The combined Herbarium of Rancho Santa Ana Botanic Garden (RSA) and Pomona College (POM) is a museum-quality collection of vascular plant and bryophyte specimens. With current holdings totaling over 1,230,000 specimens, the Herbarium is the third largest in California. The Herbarium is recognized throughout the world for its strength in documenting the diversity, distribution, variation, and ecology of more than 6,500 species of flowering plants, conifers, and ferns in California, which constitutes nearly 50% of the total collection. The holdings from Southern California exceed 250,000 and are unsurpassed by any other herbarium. Approximately 95% of the collection is composed of mounted sheets and filed according to a standardized system of classification. Ancillary collections that augment the collection include a cone and fruit collection, wood collection, fluid preserved collection, and pollen and anatomy slide collection.</td>
-<td bgcolor="#FFFFFF">Contact: Mare Nazaire (<a href="mailto:mnazaire@rsabg.org">mnazaire&#64;rsabg.org</a>), Collections Manager<br />
-	Lucinda McDade (<a href="mailto:Lucinda.McDade@cgu.edu">Lucinda.McDade&#64;cgu.edu</a>), Director of Research<br />
-	Joy England (<a href="mailto:jengland@rsabg.org">jengland&#64;rsabg.org</a>), Curatorial Assistant II<br />
-	Rachel Poutasse (<a href="mailto:rpoutasse@rsabg.org">rpoutasse&#64;rsabg.org</a>), Herbarium Workroom Manager<br />
-	Naomi Fraga (<a href="mailto:nfraga@rsabg.org">nfraga&#64;rsabg.org</a>), Conservation Botanist <br />
-<br /> 
-	Website: <a href="https://www.rsabg.org/collections/herbarium" target="_blank"> www.rsabg.org/collections/herbarium</a></td>
-</tr>
-	
-<!-- 23 -->	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE">Riverside Metropolitan Museum</td>
-<td bgcolor="#EEEEEE">CLARK.<br />
-The Clark Herbarium (founded in 1949) serves as a reference library to the plant diversity and changes of Southern California. With almost 10,000 specimens, the Clark Herbarium includes dry botanical mounts, most of which were collected from the Riverside region and surrounding counties by J. C. Roos and other botanists between 1920 and 1990. A small collection of lichens and fungi was assembled during the 1930s by Edmund C. Jaeger, and was later donated to the Museum during his tenure as Curator of Plants. All these materials now represent an important database describing the distribution of native plant species in the southwestern U.S., which is now a vastly altered environmental setting.
-</td>
-<td bgcolor="#EEEEEE">Data Contact: Brenda Focht (<a href="mailto:BFOCHT@riversideca.gov">BFOCHT&#64;riversideca.gov</a>)<br />
-	<br />
-	Website: <a href="https://www.riversideca.gov/museum/na-plantcom.asp">www.riversideca.gov/museum/na-plantcom.asp</a>
-</td>
-</tr>	
-
-<!-- 24 -->
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF">Sagehen Creek Field Station, University of California, Berkeley</td>
-<td bgcolor="#FFFFFF">SCFS. <br />
-The Sagehen Herbarium is comprised of two related collections: Flora of the Sagehen Basin (approx. 1600 specimens) and Flora of the Chickering American River Reserve (approx. 200 specimens). Both are designed to be synoptic teaching collections for their respective regions. Sagehen Basin is approximately 8000 acres, and encompasses a diverse cross section of the Sierra Nevada from the Pacific Crest (el. 8000 ft) to the eastern slope (el. 6400 ft). Habitats include yellow pine, mixed conifer, and red fir forests, as well as brushfields, scattered mountain meadows, and fens. Major collectors include E. Davidson, W. Savage, B. Trowbridge, L. Loeblich, J. Ammirati, R. Schmid, M. Fleshner, and J. Brooks.  The Chickering American River Reserve encompasses the headwaters of the North Fork American River, on the west slope of the Sierra Nevada. It includes habitats such as black oak woodlands, montane and subalpine coniferous forests, aspen groves, willow thickets, mixed riparian woodland, wet and dry subalpine meadows, montane chaparral, alpine lake margins, and fell fields. Major collectors are R. Palmer, B. Corbin, S. Chickering, E. Krimmel, and F. Felix. Flora of the Chickering American River is a new collection as of Summer 2013, with the goal of establishing voucher specimens to document this reserve's plant list. Both the Sagehen Creek and Chickering American River collections are actively being added to at a rate of 50-300 per field season.
-</td>
-<td bgcolor="#FFFFFF">Contact: Jeff Brown (<a href="mailto:sagehen@berkeley.edu">sagehen&#64;berkeley.edu</a>), Director<br />
-	Data Contact: Faerthen Felix (<a href="mailto:ffelix@berkeley.edu">ffelix&#64;berkeley.edu</a>)<br />
-	Data Contact: Erica Krimmel (<a href="mailto:ekrimmel@berkeley.edu">ekrimmel&#64;berkeley.edu</a>)<br />
-	<br />
-	Website: <a href="https://sagehen.ucnrs.org/research/resources-data/sagehen-collections/" target="_blank">sagehen.ucnrs.org/research/resources-data/sagehen-collections/</a></td>
-</tr>
-
-<!-- 25 CCH2 collid 43 -->	
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE"> San Diego Natural History Museum</td>
-  <td bgcolor="#EEEEEE"> SD. <br />
-The herbarium holds over 200,000 specimens dating from the 1870s, primarily vascular plants, but including ~5000 marine algae. 
-We are working on building our collection of local nonvascular plants, particularly lichens. 
-Emphasis is on plants of the southwestern United States and northern Mexico, particularly southern California and the Baja California peninsula and its adjacent islands. 
-Taxonomic specialties are Cactaceae and Crassulaceae. 50% of specimens are from California.
-    </td>
-<td bgcolor="#EEEEEE">Contact: Jon Rebman (<a href="mailto:jrebman@sdnhm.org">jrebman&#64;sdnhm.org</a>), Curator<br />
-    Data Contact: Judy Gibson (<a href="mailto:jgibson@sdnhm.org">jgibson&#64;sdnhm.org</a>), Collections Manager <br />
-	Data Contact: Layla Aerne Hains (<a href="mailto:laerne@sdnhm.org">laerne&#64;sdnhm.org</a>), Collections Manager<br />
-	<br />
-	Website:<a href="https://www.sdnhm.org/science/botany/" target="_blank">www.sdnhm.org/science/botany/</a> <br />
-    <a href="https://www.sdnhm.org/science/botany/collections/search-type-collection/" target="_blank">Types database</a> <br />
-    <a href="https://www.sdnhm.org/science/botany/projects/plant-atlas/" target="_blank">San Diego Plant Atlas</a></td>
-</tr>
-	
-<!-- 26 CCH2 collid 6 -->
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF">San Diego State University</td>
-<td bgcolor="#FFFFFF"> SDSU. <br />
-The SDSU herbarium houses over 19,000 specimens of vascular plants, used for teaching and research.  The bulk (89%) of our collection is from California, 60% of these from San Diego County. Additional collections are primarily from the southwestern U.S., Baja California peninsula, Australia, Chile, and the south Pacific. 
-	<td bgcolor="#FFFFFF">Contact: Michael G. Simpson (<a href="mailto:msimpson@mail.sdsu.edu">msimpson&#64;mail.sdsu.edu</a>), Curator<br />
-	<br />
-	Website: <a href="http://www.sci.sdsu.edu/herb/"> www.sci.sdsu.edu/herb</a><br />
-	Plant Systematics Resources: <a href="http://www.sci.sdsu.edu/plants/plantsystematics/">Plant Systematics Resources as SDSU/a><br />
+		</table>
 	</td>
-</tr>	
-
-<!-- 27 CCH2 collid 40 -->	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE">San Francisco State University</td>
-<td bgcolor="#EEEEEE">SFSU. <br />
-The Harry D. Thiers Herbarium at San Francisco State University maintains over 113,000 specimens. Its primary research focus is mycological, but there are roughly 10,000 vascular plant specimens. Most vascular plant specimens were collected from approximately the 1990s to 2010s by Bob Patterson, V. Thomas Parker, and their students. Special vascular plant collections of SFSU include the California Polemoniaceae, an robust collection of most Arctostaphylos (Ericaceae) taxa, and a current collection focus on taxonomically diverse genera of the California Floristic Province such as Ceanothus (Rhamnaceae) and Eriogonum (Polygonaceae). The vascular plant collection is curated by Jason T. Cantley. 
-<br />*future contributor
-</td>
-<td bgcolor="#EEEEEE">Contact: Jason T. Cantley (<a href="mailto:cantley@sfsu.edu">cantley&#64;sfsu.edu</a>), Curator<br />
-	<br />
-</td>
-</tr>	
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td style="padding-top: 5px;vertical-align: top;width=80vw;">
 	
+		<span class="generalText">
 
-<!-- 28 CCH2 collid 18 -->	
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF">San Jose State University</td>
-<td bgcolor="#FFFFFF">SJSU. <br />
-Founded in 1945 by Dr. Carl Sharsmith, the herbarium at San Jose State University houses a collection of more than 18,500 dried plant specimens. Many specimens were collected over Dr. Sharsmith's long career as a university professor and natural history ranger at Yosemite National Park. The collection is actively curated with approximately 500 new specimens being added every year. </td>
-<td bgcolor="#FFFFFF">Contact: Benjamin Carter (<a href="mailto:benjamin.carter@sjsu.edu">benjamin.carter&#64;sjsu.edu</a>), 		Director<br />
-	Data contact: Lars Rosengreen (<a href="mailto:lars.rosengreen@sjsu.edu">lars.rosengreen&#64;sjsu.edu</a>), Curator<br />
-	<br />
-	Website: <a href="http://www.sjsu.edu/herbarium/" target="_blank">www.sjsu.edu/herbarium/</a></td>
-</tr>
+<table id ="list">
 
-<!-- 29 CCH2 collid 16 -->		
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> Santa Barbara Botanic Garden </td>
-<td bgcolor="#EEEEEE"> SBBG. <br />
-Clifton Smith Herbarium. The SBBG Herbarium represents the region's largest scientific collection of preserved central coast plants. Collectively, the specimens document the ecology and geography of the region's plant diversity. The information content of such specimens can not be duplicated in words, photographs, or other media, and forms the basis for ongoing scientific research in ecology, floristics, taxonomy, and conservation biology.</td>
-<td bgcolor="#EEEEEE">C. Matt Guilliams (<a href="mailto:mguilliams@sbbg.org">mguilliams&#64;sbbg.org</a>), Curator and Tucker 		Plant Systematist<br />
-	Dieter Wilken (<a href="mailto:dwilken@sbbg.org">dwilken&#64;sbbg.org</a>), Curator Emeritus<br />
-	<br />
-	Website: <a href="https://www.sbbg.org/get-involved/volunteer/conservation-research" target="_blank">www.sbbg.org</a></td>
-</tr>
+		<tr><td><img alt="" src="construct.bmp"></td><td><font color="red"> This site is under re-development.  This page is now reading from the CCH2 member table.  Format and contents of the Member table are incomplete. The format will closely match the old page when finished.</font></td>
 
-<!-- 30 CCH2 collid 9 -->		
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> Sweeney Granite Mountains Desert Research Center</td>
-<td bgcolor="#FFFFFF"> GMDRC. <br />
-The Sweeney Granite Mountains Desert Research Center Herbarium houses 10,000 vascular plant specimens, available to visiting researchers and classes at the GMDRC. This facility is part of the University of California's Natural Reserve System, which serves the mission of promoting a better understanding and wise management of arid lands, especially the California deserts. This regional herbarium holds specimens from the eastern Sierra Nevada, Mojave, Great Basin, and Sonoran Desert bioregions, with the primary focus being the eastern Mojave Desert of California. Our collection is completely databased (Filemaker Pro).</td>
-<td bgcolor="#FFFFFF"> Contact: Jim Andr&eacute; (<a href="mailto:granites@telis.org">granites&#64;telis.org</a>), Director<br />
-	Tasha La Doux (<a href="mailto:tasha.ladoux@ucr.edu">tasha.ladoux&#64;ucr.edu</a>), Assistant Director<br />
-	<br />
-	Website: <a href="https://granite.ucnrs.org/" target="_blank">granites.ucnrs.org/ </a> </td>
-</tr>
-
-<!-- 31 CCH2 collid 46 -->	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> Blodgett Forest Research Station, University of California, Berkeley</td>
-<td bgcolor="#EEEEEE"> BFRS,<br />
-BFRS Herbarium, Blodgett Forest Research Station.</td> 
-<td bgcolor="#EEEEEE"> 
-	Contact: Collections Staff (<a href="mailto:ucjeps-collections@berkeley.edu">ucjeps-collections&#64;berkeley.edu</a>)<br>
-	Data Contact: Jason Alexander (<a href="mailto:jason_alexander@berkeley.edu">jason_alexander&#64;berkeley.edu</a>)<br />
-	<br />
-  	Website: <a href="https://forests.berkeley.edu/forests/blodgett" target="_blank"> Blodgett Forest Research Station </a> </td>
-</tr>
-
-<!-- 31 CCH2 collid 46 -->	
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> Hopland Research and Extension Center, University of California, Berkeley</td>
-<td bgcolor="#FFFFFF"> HREC. <br />
-HREC Herbarium, Hopland Research and Extension Center.</td> 
-<td bgcolor="#FFFFFF"> 
-	Contact: Collections Staff (<a href="mailto:ucjeps-collections@berkeley.edu">ucjeps-collections&#64;berkeley.edu</a>)<br>
-	Data Contact: Jason Alexander (<a href="mailto:jason_alexander@berkeley.edu">jason_alexander&#64;berkeley.edu</a>)<br />
-	<br />
-  	Website: <a href="http://hrec.ucanr.edu/About_Us/" target="_blank"> Hopland Research and Extension Center </a> </td>
-</tr>
-
-<!-- 31 CCH2 collid 46 -->	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> University of California, Berkeley</td>
-<td bgcolor="#EEEEEE"> UC, JEPS, <br />
-JEPS (Jepson Herbarium: Vascular plants of California), UC (University Herbarium: Plants from around the world).  Size of combined collections: 2,200,000 specimens, 16% from California (databased).  </td> 
-<td bgcolor="#EEEEEE"> 
-	Contact: Collections Staff (<a href="mailto:ucjeps-collections@berkeley.edu">ucjeps-collections&#64;berkeley.edu</a>)<br>
-	Data Contact: Jason Alexander (<a href="mailto:jason_alexander@berkeley.edu">jason_alexander&#64;berkeley.edu</a>)<br />
-	<br />
-  	Website: <a href="https://ucjeps.berkeley.edu/" target="_blank"> ucjeps.berkeley.edu </a> </td>
-</tr>
-
-<!-- 32 CCH2 collid 39 -->
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> University of California, Davis</td>
-<td bgcolor="#FFFFFF"> DAV and AHUC combined. <br />
-	Worldwide collection, with emphasis on California, North America, and neotropics (especially Ecuador and Baja California); <em>Quercus</em>, Fagaceae, and <em>Arctostaphylos</em>, Ericaceae of New World; Euphorbiaceae; Poaceae; <em>Clarkia</em> (Onagraceae);  <em>Lycianthes</em> and <em>Lycopersicon</em> (Solanaceae); <em>Stephanomeria</em> and tarweed genera (Asteraceae); <em>Navarretia</em> (Polemoniaceae); <em>Allium</em> (Alliaceae); <em>Trifolium</em> (Fabaceae); <em>Prunus</em> (Rosaceae); Central Valley of California vernal pool species; weedy and poisonous species of California and Mediterranean-climate regions; range plants of California; alpine flora of western North America.  Size of collection: 320,000 specimens, 50% from California.  </td> 
-<td bgcolor="#FFFFFF"> Contact: Teri Barry (<a href="mailto:tcbarry@ucdavis.edu">tcbarry&#64;ucdavis.edu</a>), Collections Manager<br />
-	Alison Colwell (<a href="mailto:aelcolwell@ucdavis.edu">aelcolwell&#64;ucdavis.edu</a>), Curator<br />
-Dan Potter (<a href="mailto:dpotter@ucdavis.edu">dpotter&#64;ucdavis.edu</a>), Director<br />
-	<br />
- 	Website: <a href="https://herbarium.ucdavis.edu/" target="_blank"> herbarium.ucdavis.edu</a><br /></td>
-</tr>
-
-<!-- 33 CCH2 collid 37 -->	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> University of California, Irvine </td>
-<td bgcolor="#EEEEEE"> IRVC. <br />
-	Western U.S., especially southern California and Orange County; Baja California, Mexico.  Size of collection: 35,000 vascular plant specimens, 5000 lichens and algae. 86% from California. </td> 
-<td bgcolor="#EEEEEE">Contact: Rebecca Crowe  (<a href="mailto:rcrowe@uci.edu">rcrowe&#64;uci.edu</a>), Director<br /></td>
-</tr>
-
-<!-- 34 CCH2 collid 34 -->	
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> University of California, Los Angeles</td>
-<td bgcolor="#FFFFFF"> LA.<br />
-Worldwide collection of ca. 190,000 specimens of vascular plants, 25% from California (primarily southern California); 3% cultivated.  Significant collections include:  Apiaceae (<i>Cymopterus</i>, <i>Lomatium</i>), Lamiaceae (<i>Monardella,</i> <i>Salvia,</i> <i>Trichostoma),</i> Loasaceae (<i>Mentzelia),</i> Onagraceae (<i>Camissonia,</i> <i>Clarkia,</i> <i>Epilobium),</i>  Ranunculaceae (<i>Delphinium),</i> and Primulaceae (<i>Dodecatheon).</i>  
-</td> 
-<td bgcolor="#FFFFFF"> Contact:  Tom Huggins (<a href="mailto:huggins@ucla.edu">huggins&#64;ucla.edu</a>) </td>
-</tr>
-
-<!-- 35 CCH2 collid 37 -->	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> University of California, Riverside </td>
-<td bgcolor="#EEEEEE">UCR. <br />
-About 280,000 specimens total (270,105  databased): 253,184 vascular plants (both wild and cultivated) from the Americas, especially the southwestern U.S. and Mexico, including 173,339 from California (5463 of those cultivated); c. 16,921 lichens &amp; allied fungi, world-wide but especially southern California; about 10,000 other fungi. Except for the general fungi and some mosses, the entire collection has been databased. All of the UCR native/naturalized CA vascular plant records are displayed in CCH. We have completed the georeferencing of our California collections, including 5050 from the state of Baja California, Mexico: 100% of our records from the CA Floristic Province are now in CCH. Records from outside CA can be accessed at <a href="www.herbarium.ucr.edu">www.herbarium.ucr.edu</a>, as can more detailed information related to the records displayed by CCH.
-</td>
-<td bgcolor="#EEEEEE">Contact: Andrew Sanders (<a href="mailto:andrew.sanders@ucr.edu">andrew.sanders&#64;ucr.edu</a>)<br />
-	Giles Waines (<a href="mailto:waines@citrus.ucr.edu">waines&#64;citrus.ucr.edu</a>), Director<br />
-	<br />
-	Website:<a href="https://herbarium.ucr.edu/" target="_blank"> www.herbarium.ucr.edu </a> </td>
-</tr>
-
-<!-- 36 CCH2 collid 37 -->
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> University of California, Santa Barbara </td>
-<td bgcolor="#FFFFFF"> UCSB. <br />
-The University of California, Santa Barbara (UCSB) Herbarium has approximately 120,000 herbarium specimens of vascular plants, lichens, bryophytes, and marine macroalgae. The herbarium is housed at the Cheadle Center for Biodiversity and Ecological Restoration on the campus of UCSB. The vascular plant collection consist mainly of specimens from Santa Barbara County, including the northern Channel Islands, with many additional collections from San Luis Obispo, Kern, and Ventura Counties, the southern Sierra Nevada region, southern California, and northern Mexico. Special collections include the J. R. Haller pine collection (5,000 specimens), with emphasis on population-level sampling of many western North American pine species, and the Cornelius H. Muller oak collection, with ca. 7,000 specimens from the USA and Mexico. Also conserved in the herbarium are ca. 69,000 slide preparations and spirit collections of Vernon I. Cheadle and Katherine Esau. There are 43 type specimens of plants and marine macroalgae, and ca. 550 kleptotypes of Quercus collected from major American and European herbaria by C. H. Muller in the 1960s. Incorporated collections include the Santa Rosa Island Reserve (SCIR) herbarium (1,500) and the marine macroalgae of the Santa Barbara Museum of Natural History (1,035), which contains some of the earliest collections of California seaweeds. Greg Wahlert is the current collections manager. Taxonomy and nomenclature follow the second edition of the Jepson Manual (Baldwin et al., 2012).</td> 
-<td bgcolor="#FFFFFF">  Contact: Greg Wahlert (<a href="mailto:wahlert@ccber.ucsb.edu">wahlert&#64;ccber.ucsb.edu</a>)<br />
-	<br />
-	Website:<a href="https://www.ccber.ucsb.edu/" target="_blank">www.ccber.ucsb.edu/</a></td>
-</tr>
-
-<!-- 37 CCH2 collid 13 -->
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> University of California, Santa Cruz </td>
-<td bgcolor="#EEEEEE">UCSC. <br />
-The UCSC Herbarium at the Kenneth S. Norris Center for Natural History houses more than 10,000 vascular plants, algae, lichens, and bryophytes. The collection is focused primarily on Santa Cruz County and the University of California Reserves but also contains important specimens from throughout California. The collection archives research and publication voucher specimens and is also a student education resource. Notable collections include those of R. Morgan (1969-2017), David Styer (Fort Ord National Monument, 2006-present), and Dylan Neubauer.</td> 
-<td bgcolor="#EEEEEE"> Contact: Chris Lay (<a href="mailto:cml@ucsc.edu">cml&#64;ucsc.edu</a>), Director<br />
-	<br />
-	Website:<a href="https://norriscenter.ucsc.edu/" target="_blank">norriscenter.ucsc.edu/</a></td>
-</tr>
-
-<!-- 38 -->
-<tr bgcolor="#FFFFFF">
-  <td bgcolor="#FFFFFF"> Victor Valley College</td>
-<td bgcolor="#FFFFFF"> VVC. <br />
- A. Louise Baartz Memorial Herbarium.  A. Louise Baartz was a former biology professor at Victor Valley College who began an herbarium collection under the supervision of Dr. Wilbur Mayhew of the University of California at Riverside.  In 1973 she registered the Victor Valley College herbarium collection, then with only around 300 specimens, with the California Department of Agriculture. The collection now contains 5,000+ (2,000+ accessioned and georeferenced) specimens from the Mojave Desert, San Bernardino Mountains, the southeastern Sierra Nevada, southern San Joaquin Valley, and southeastern Arizona.
-<td bgcolor="#FFFFFF"> Contact: Tim Thomas (<a href="mailto:timthom@verizon.net">timthom&#64;verizon.net</a>)<br />
-	Pam Mackay  (<a href="mailto:pamela.mackay@vvc.edu">pamela.mackay&#64;vvc.edu</a>)<br />
-	<br />
-	Website: <a href="https://www.vvc.edu/academic/biology/herbarium.shtml">www.vvc.edu/academic/biology/herbarium.shtml</a>
-</td>
-</tr>
-
-<!-- 39 -->	
-<tr bgcolor="#EEEEEE">
-  <td bgcolor="#EEEEEE"> Yosemite National Park Herbarium</td>
-<td bgcolor="#EEEEEE">YM. <br />
-	YM is a significant regional collection, with 8,000 specimens, dating from the early part of the 20th century to the present with the bulk of specimens dating from the 1920s to the 1960s. This is an actively growing herbarium, with over 3,000 vascular plant specimens added in the last ten years.  The herbarium is a valuable component of the park's museum collections and is an essential tool for resource management: fire management, exotics programs, and vegetation management. It is also a valuable source of information to the scientific community about Yosemite's complex flora.  Access to the collections is granted to researchers by advance appointment.</td> 
-<td bgcolor="#EEEEEE"> Contact: Sara Hay (<a href="mailto:sara_hay@nps.gov">sara_hay&#64;nps.gov</a>)<br />
-	<br />
-	Website: <a href="https://www.nps.gov/yose/learn/historyculture/collections.htm">www.nps.gov/yose/historyculture/collections.htm</a>
-</td>
-</tr>
-
-<a name="NON" id="NON"></a><tr><td colspan=3><table bgcolor="black"><tr><td>&nbsp;<font color="white">Extra-California institutions</font></td></tr></table></td></tr>
-
-<tr bgcolor="#FFFFFF">
-<td>Harvard University Herbaria</td>
-<td>Consisting of A (Herbarium of the Arnold Arboretum), AMES (Oakes Ames Orchid Herbarium), GH (Gray Herbarium), &amp; ECON (Economic Herbarium of Oakes Ames). <br />4000+ California type specimens and many historically important records.</td> 
-<td>
-Director: Charles Davis (cdavis at oeb.harvard.edu)<br />
-Data Contact: Paul Morris (mole at morris.net)<br />
-<a href="https://huh.harvard.edu/">Harvard University Herbaria</a></td>
-</tr>
-	
-<tr bgcolor="#EEEEEE">
-<td bgcolor="#EEEEEE"> Steere Herbarium, New York Botanical Garden</td>
-<td bgcolor="#EEEEEE"> NY.<br /> 
-	15,000 California specimens</td>
-<td bgcolor="#EEEEEE">Contact: <br />
-Data Contact: <br />
-<br />
-Website: <a href="http://sweetgum.nybg.org/science/vh/" target="_blank">C.V. Starr Virtual Herbarium</a></td>
-	</tr>
-	
-<tr bgcolor="#FFFFFF">
-<td bgcolor="#FFFFFF"> Southwest Environmental Information Network</td>
-<td bgcolor="#FFFFFF"> SEINet. 25,000 California specimens not otherwise represented in the consortium</td>
-<td bgcolor="#FFFFFF">
-  <a href="http://swbiodiversity.org/portal/index.php" target="_blank">SEINet</a>
-<br>
-Contact: Edward Gilbert (egbiodiversity at gmail.com)
-</td>
-</tr>
-</table>
-
-<!-- Footer begins -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="18" bgcolor="9090AA"><img src="/common/images/common_spacer.gif" alt="" width="1" height="1" border="0" /></td>
+    <td bgcolor="black" style="color:white">Members</td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
   </tr>
-</table>
 
+  <tr>
+    <td>Herbarium Code - Name</td>
+    <td>Description</td>
+    <td>CCH2 Database Contact</td>
+  </tr>
+
+<?php
+
+$results = $db->query('SELECT *
+						FROM cch_members
+						ORDER BY institutionCode');
+
+
+//while ($row = $results->fetchArray(1)) {
+			
+			
+while($row=$results->fetchArray(SQLITE3_ASSOC)){
+        echo '<tr>';
+        echo "<td>$row[collectionName]</td><td>$row[fullDescription]</td><td>$row[contact]</td>";
+        echo '</tr>';
+    }
+#var_dump($row); 
+/*var_dump prints the whole row in a databased format
+which is useful for seeing what you're getting
+but is pretty ugly
+*/
+
+//echo '<td>'.$row[$i]['collectionName'].'</td>';
+//echo '<td><table><tr><td>'.$row[$i]['fullDescription'].'</td></tr>';
+//echo '<tr><td>Database Type: '.$row[$i]['managementType'].'</td></tr>';
+//echo '<tr><td>Rights: '.$row[$i]['rights'].'</td></tr>';
+//echo '<tr><td>Data in GBIF: '.$row[$i]['GBIF'].'</td></tr>';
+//echo '<tr><td>Data in iDigBio: '.$row[$i]['IDIGBIO'].'</td></tr></table></td>';
+//echo '<td><table><tr><td>';
+//echo 'Contact: '.$row[$i]['contact'].'</td></tr>';
+//echo '<tr><td>Email: '.$row[$i]['email'].'</td></tr>';
+//echo '<tr><td>Homepage: '.$row[$i]['homepage'].'</td></tr></table></td>';
+//echo '</tr>'
+
+echo '</table>';
+
+?>
+
+
+		</div>
+
+		</span>
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
+<!--begin footer-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
+<!--end footer-->
+
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
 
 
-<!-- Footer ends -->
-
-</span>
 </body>
 </html>
