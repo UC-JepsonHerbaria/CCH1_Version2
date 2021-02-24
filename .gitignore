@@ -22,6 +22,7 @@ bulkload/input/AID_GUID/DUPS/
 bulkload/input/AID_GUID/output/
 bulkload/input/AID_GUID/output_*/
 bulkload/input/AID_GUID/log*.txt
+bulkload/log*.txt
 
 # Packages #
 ############
@@ -38,9 +39,15 @@ bulkload/input/AID_GUID/log*.txt
 
 # Logs and databases #
 ######################
+saved_convert_logs.txt
+saved_CCH1_convert_logs.txt
+test_pattern.pl
+bulkload/CCH2_bulkload_logs.txt
 *.log
 *.sql
 *.sqlite
+*.db
+config.php
 
 # OS generated files #
 ######################
