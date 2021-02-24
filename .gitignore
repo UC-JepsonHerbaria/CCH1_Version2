@@ -3,8 +3,25 @@
 # ignore all files in any directory with these names
 db/
 data_files/
-point_in_polygon_scripts/latlon_County_validator
+point_in_polygon_scripts/latlon_County_validator/
 hartman/
+bulkload/logs/
+bulkload/output/
+bulkload/input/CAS/
+bulkload/input/CCH1_hash_files/
+bulkload/input/cch1_logs/
+bulkload/input/cch1_timestamps/
+bulkload/input/CCH2-exports/
+bulkload/input/HUH/
+bulkload/input/NY/
+bulkload/input/SEINET_11072019
+bulkload/input/processed_det_files/
+bulkload/input/RSA/
+bulkload/input/processed_timestamps
+bulkload/input/AID_GUID/DUPS/
+bulkload/input/AID_GUID/output/
+bulkload/input/AID_GUID/output_*/
+bulkload/input/AID_GUID/log*.txt
 
 # Packages #
 ############
