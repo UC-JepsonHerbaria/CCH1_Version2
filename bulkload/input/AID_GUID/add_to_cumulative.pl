@@ -2,7 +2,7 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '../../Jepson-eFlora/Modules';
+use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
 #my $dirdate = "2021_APR16";
@@ -18,8 +18,7 @@ my $dirdate="2022_MAR02";
 my $filedate="03022022";
 
 
-my $today_JD = &CCH::get_today;
-#my $today_JD = &get_today_julian_day;
+my $today_JD = &get_today_julian_day;
 
 my %ACC_HERB;
 my %ACC_MOD;
@@ -56,6 +55,7 @@ my ($collId, $recordId, $references) = "";#83
 my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
 
+
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
 
 open(BAD, ">output/AID_to_ADD_CCH2_missing.txt") || die;
@@ -77,8 +77,9 @@ while(<IN>){
 }
 close(IN);
 
+
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
-my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
+my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
@@ -248,9 +249,11 @@ $references
 #The array @fields is made up on these 85 scalars, in this order, for Darwin Core
 #The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
 
+
 ++$included;
 
 $herb = $institutionCode;
+
 
 	if (length ($genus) > 1){
 		if($exclude{$genus}){	
@@ -285,6 +288,7 @@ $herb = $institutionCode;
 
 	}
 
+
  }
 
 print <<EOP;
@@ -298,8 +302,10 @@ CCH2 NONVASC EXCL: $non
 
 EOP
 
+
 close(IN);
 close(NON);
+
 
 
 
@@ -308,6 +314,7 @@ my $included;
 #my $file = "2459518";
 #my $file = "2459522";
 my $file = "2459648";
+
 
 
 my $addFile = 'output/AID_to_ADD_'.$file.'.txt';
@@ -322,8 +329,10 @@ open (IN, $addFile) or die $!;
 #RSA	RSA0196312	POM accession #: 452	3883920	POM452	RSA0196312 BARCODE		NONDUP	4291dd75-d3a6-4068-b295-d109038cb918	Tropidocarpum gracile var. dubium	Los Angeles
 #RSA	RSA0205106	RSA accession #: 678528	3912466	RSA678528	RSA0205106 BARCODE		NONDUP	142fa477-637a-4d7e-9933-e7eb166ea76e	Verbena tenuisecta	Ventura
 
+
 $barcode = $cch_barcode;
 $barcode =~ s/ +BARCODE$/-BARCODE/;
+
 
 ++$included;
 #old_cchid is the old CCH accession number, before barcodes were introduced
@@ -335,6 +344,7 @@ $barcode =~ s/ +BARCODE$/-BARCODE/;
 
 #warn "$count_record\n" unless $count_record % 1009;
 printf {*STDERR} "%d\r", ++$count_record;
+
 
    if (($catb =~ m/^ *$/) && ($ocatb =~ m/^ *$/)){
 		++$null;
@@ -357,6 +367,7 @@ CCH MAIN null Barcodes and CatNumbers: $null (this should be null, if not someth
 processed CCH1 accessions linked to CCH2 ID: $CCH1_CAT
 
 EOP
+
 
 close(IN);
 close(OUT);

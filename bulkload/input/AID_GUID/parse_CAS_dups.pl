@@ -2,9 +2,11 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '/home/jason/UCJEPS-CLONE/Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
+
 my $today_JD = &get_today_julian_day;
+warn "Today is $today_JD\n";
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
 

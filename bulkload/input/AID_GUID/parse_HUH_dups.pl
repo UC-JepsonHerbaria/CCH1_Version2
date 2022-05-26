@@ -1,203 +1,419 @@
 
-#use strict;
+use strict;
 #use warnings;
 #use diagnostics;
 use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD;
-$today_JD = &get_today_julian_day;
+my $today_JD = &get_today_julian_day;
 
-$herb="HUH";
-#$filedate="11072019";
-$filedate="09272017";
+$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
+
+my $herb="HUH";
+
+my $dirdate="2022_FEB28";
+
+my $filedate="02282022";
+
 
 my %month_hash = &month_hash;
 
+my $records_file='../../output/HUH-CCH2_out_'.$filedate.'.txt';
+#only harvesting the CCH2 ID's and CCH1 ids from this file here
+
+open(DUPLOG, ">DUPS/dup_log_".$today_JD.".txt") || die; 
+open(OUT, ">DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
+
+	print OUT "herb\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tGBIF_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tscientificName\tcounty\n";
 
 
-open(OUT, ">DUPS/DUPS_".$herb."_list.txt") || die; #this only needs to be active once to generate a list of duplicated accessions
+#declare variables
 
-print OUT "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\n";
+#counts
+my ($skipped, $included, %seen, %duplicate_FOUND_CAT, %duplicate_FOUND_OTH,@fields) = "";
+my ($dups,$dups_B,$ALTER, $ORTH, %DUP_FOUND,%duplicate_OTH,%duplicate_CAT,$count_record) = "";
 
-#id	type	modified	language	institutionCode	collectionCode	basisOfRecord	occurrenceID	catalogNumber	occurrenceRemarks	recordNumber	recordedBy	otherCatalogNumbers	eventDate	startDayOfYear	year	month	day	verbatimEventDate	habitat	higherGeography	continent	country	stateProvince	county	municipality	locality	verbatimElevation	minimumElevationInMeters	maximumElevationInMeters	verbatimLatitude	verbatimLongitude	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	georeferenceProtocol	georeferenceVerificationStatus	identifiedBy	dateIdentified	typeStatus	scientificName	higherClassification	kingdom	phylum	class	order	family	genus	specificEpithet	infraspecificEpithet	verbatimTaxonRank	scientificNameAuthorship	nomenclaturalCode
-#urn:catalog:CAS:BOT-BC:522744	PhysicalObject	2016-10-19 09:19:30.0	en	CAS	BOT-BC	PreservedSpecimen	urn:catalog:CAS:BOT-BC:522744	522744	Shrub 10 feet tall	41804	Breedlove, D E	urn:catalog:CAS:DS:702772 | DS 702772	1976-11		1976	11		22 November 1976	Steep slopes and dry ravines	North America; Mexico; Chiapas; Amatenango de la Frontera Municipio	North America	Mexico	Chiapas	Amatenango de la Frontera Municipio		along Río Cuilco between Nuevo Amatenango and Frontera Comalapa	1100 m	1100	1100												Croton guatemalensis  Lotsy	Plantae; Magnoliophyta; Magnoliopsida; Euphorbiales; Euphorbiaceae	Plantae	Magnoliophyta	Magnoliopsida	Euphorbiales	Euphorbiaceae	Croton	guatemalensis			Lotsy	ICBN
 
+#out file variables for CCH2 compatibility
+my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
 
-my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/HUH/huh_'.$filedate.'_out.tab';
-open (IN, $mainFile) or die $!;
+#HUH occid infile
+my ($OC,$IC,$CO,$OCC,$CA,$OCA,%OCCID) = "";
+
+#HUH IN file
+my ($institutionCode, $CCH2id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
+my ($occurrenceID, $catalogNumber, $otherCatalogNumbers, $kingdom, $phylum) = "";#10
+my ($class, $order, $family, $scientificName, $taxonID) = "";#15
+my ($scientificNameAuthorship, $genus, $specificEpithet, $taxonRank, $infraspecificEpithet) = "";#20
+my ($identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks) = "";#25
+my ($identificationQualifier, $typeStatus, $recordedBy, $associatedCollectors, $recordNumber) = "";#30
+my ($eventDate, $year, $month, $day, $startDayOfYear) = "";#35
+my ($endDayOfYear, $verbatimEventDate, $occurrenceRemarks, $habitat, $substrate, $verbatimAttributes, $fieldNumber) = "";#40
+my ($informationWithheld, $dataGeneralizations, $dynamicProperties, $associatedTaxa, $reproductiveCondition) = "";#45
+my ($establishmentMeans, $cultivationStatus, $lifeStage, $sex, $individualCount) = "";#50
+my ($preparations, $country, $stateProvince, $verbatimCounty, $municipality) = "";#55
+my ($locality, $locationRemarks, $localitySecurity, $localitySecurityReason, $latitude) = "";#60
+my ($longitude, $geodeticDatum, $coordinateUncertaintyInMeters, $verbatimCoordinates, $georeferencedBy) = "";#65
+my ($georeferenceProtocol, $georeferenceSources, $georeferenceVerificationStatus, $georeferenceRemarks, $minimumElevationInMeters) = "";#70
+my ($maximumElevationInMeters, $minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation) = "";#75
+my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "";#80
+my ($collId, $recordId, $references,$dateflag,$eventDate_parse) = "";#83
+my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
+my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences,$origDetName) = "";
+my ($elevationInFeet,$CCH_elevationWarning,$elevationInMeters,$county,$decimalLatitude) = "";
+my ($decimalLongitude,$EJD,$LJD,$verbatimDate,$origDet,$displayName) = "";#
+my ($oldCCHID,$hybrid_formula,$id,$hybrid_formula,$qualifier,$CCHbarcode) = "";
+
+open (IN, "<", $records_file) or die $!;
 Record: while(<IN>){
 	chomp;
 
-#fix some data quality and formatting problems that make import of fields of certain records problematic
-	
-    if ($. == 1){#activate if need to skip header lines
+        if ($. == 1){#activate if need to skip header lines
+			next Record;
+		}
+		
+
+		my @fields=split(/\t/,$_,100);
+
+		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+
+			warn "$#fields bad field number $_\n";
+
 			next Record;
 		}
 
+		($CCH2id,
+		$institutionCode,
+		$catalogNumber,
+		$otherCatalogNumbers,
+		$CCHbarcode,
+		$oldCCHID,
+		$occurrenceID,
+		$scientificName,
+		$displayName,
+		$origDet,
+		$hybrid_formula,
+		$qualifier,
+		$identifiedBy,
+		$dateIdentified,
+		$identificationRemarks,
+		$typeStatus,
+		$recordedBy,
+		$recordNumber,
+		$verbatimDate,
+		$eventDate_parse,
+		$EJD,
+		$LJD,
+		$country,
+		$stateProvince,
+		$verbatimCounty,
+		$locality,
+		$occurrenceRemarks,
+		$habitat,
+		$associatedTaxa,
+		$verbatimAttributes,
+		$reproductiveCondition,
+		$cultivationStatus,
+		$CCH_elevationWarning,
+		$elevationInMeters,
+		$elevationInFeet,
+		$verbatimElevation,
+		$verbatimCoordinates,
+		$decimalLatitude,
+		$decimalLongitude,
+		$geodeticDatum,
+		$coordinateUncertaintyInMeters,
+		$georeferencedBy,
+		$georeferenceSources,
+		$georeferenceRemarks,
+		$modified,
+		$dateflag,
+		$county
+		) = @fields;	
+#The array @fields is made up on these 47 scalars, in this order, GBIF modified export
 
+#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
+#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
 
-		my @fields=split(/\t/,$_,100);
-		
-	foreach(@fields){
-		s/^"//;
-		s/"$//;
-		s/""/"/g;
-	}
-
-    unless( $#fields == 49){ #if the number of values in the columns array is exactly 50
-
-	&CCH::log_skip("$#fields bad field number $_\n");
-	++$skipped{one};
-	next Record;
-	}
-#InstitutionCode	occid	occurrenceID	catalogNumber	otherCatalogNumbers	5
-#Sciname	tidinterpreted	taxonRemarks	identificationQualifier	identifiedBy	10
-#dateIdentified	identificationRemarks	typeStatus	recordedBy	associatedCollectors	15
-#recordNumber	year	month	day	verbatimEventDate	20
-#country	stateProvince	county	locality	locationRemarks	25
-#decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	verbatimCoordinates	30
-#verbatimEventDate	georeferencedBy	georeferenceSources	georeferenceRemarks	minimumElevationInMeters	35
-#maximumElevationInMeters	verbatimElevation	habitat	occurrenceRemarks	associatedTaxa	40
-#verbatimAttributes	reproductiveCondition	cultivationStatus	dateLastModified	44
-
-	($institution,
-$collectioncode,
-$collectionid,
-$catalognumber,
-$catalognumbernumeric,
-$dc_type,
-$basisofrecord,
-$collectornumber,
-$collector,
-$sex,
-$reproductiveStatus,
-$preparations,
-$verbatimdate,
-$eventdate,
-$year,
-$month,
-$day,
-$startdayofyear,
-$enddayofyear,
-$startdatecollected,
-$enddatecollected,
-$habitat,
-$highergeography,
-$continent,
-$country,
-$stateprovince,
-$islandgroup,
-$county,
-$island,
-$municipality,
-$locality,
-$minimumelevationmeters,
-$maximumelevationmeters,
-$verbatimelevation,
-$decimallatitude,
-$decimallongitude,
-$geodeticdatum,
-$identifiedby,
-$dateidentified,
-$identificationqualifier,
-$identificationremarks,
-$identificationreferences,
-$typestatus,
-$scientificname,
-$scientificnameauthorship,
-$family,
-$informationwitheld,
-$datageneralizations,
-$othercatalognumbers,
-$update)=@fields;
 
 #filter by herbarium code
-if ($collectioncode =~ m/^(GH|A|ECON)$/){
-	$code=$1;
+  if ($institutionCode =~ m/^(GH|A|AMES|ECON)$/){
 
-#warn "$count_record\n" unless $count_record % 1009;
+
 printf {*STDERR} "%d\r", ++$count_record;
-
 
 
 ########ACCESSION NUMBER
 #check for nulls
-	if ($catalognumbernumeric=~/^ *$/){
-		$catalognumbernumeric = "NULL";
+	if ($CCH2id=~/^ *$/){
+		&CCH::log_skip("Record with no CCH2 ID $_");
+		++$skipped;
+		next Record;
 	}
-
 
 #extract old herbarium and aid numbers
-if (length ($catalognumbernumeric) >= 1){
 
-	if ($catalognumbernumeric =~ m/^(\d+)$/){
-		$otherID=$1;
-		$old_AID=$code.$otherID;
-		$oldA = "HUH".$otherID; #at one point HUH was added as the code for all of harvard, dont know how common this error is
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
+	if ($oldCCHID =~ m/^(GH|A|AMES|ECON) *0*([1-9][0-9]*)[a-zA-Z]*$/){
+		$oldCCHID = $1.$2;
+		$duplicate_OTH{$oldCCHID}++;
+		#print "HERB(2)\t$old_AID\t$id==>$catalogNumber==>$otherCatalogNumbers\n"";
 	}
-	elsif ($catalognumbernumeric =~ m/NULL/){
-		$otherID="";
-		$oldA = $old_AID="";
+	elsif ($otherCatalogNumbers =~ m/^(NULL| *)$/){
+		$otherCatalogNumbers = "";
+		$oldCCHID="";
 	}
 	else{
-		&CCH::log_change("BAD CatalogNumber==>$catalognumbernumeric==>$catalognumber==>\t$_");
-		print "BAD CatalogNumber==>$catalognumbernumeric==>$catalognumber\n";
-		$otherID="";
-		$oldA = $old_AID="";
-	}
-}
-else{
-		$otherID="";
+		&CCH::log_change("BAD Accession==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
+		print "BAD otherCatalogNumbers==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
+		print DUPLOG "BAD otherCatalogNumbers==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
 		$otherCatalogNumbers = "";
-		$oldA = $old_AID="";
-}
-#Add prefix to unique identifier field, two format, choose one and add to the code above
-#$ALT_CCH_BARCODE=$aidcode.$aid;
-#$ALT_CCH_BARCODE=$herb.$catalogNumber;
-#$ALT_CCH_BARCODE=$catalogNumber; #use this format if the old CCH herbarium code is correctly added in the catalog number field
-
-$otherCatalogNumbers = "NULL";
-$CCH2id = "NULL";
-$occurrenceID = "NULL";
-$ALT_CCH_BARCODE = "";
-#find duplicates
-if ($old_AID !~ m/^ *$/){
-	if ($duplicate{$old_AID}++){
-	++$dups;
-	#warn "Duplicate number: $old_AID\n";
-	#&log_change("ACC: Old duplicate accession number found==>OLD:$old_AID NEW:$id GUID:$occurrenceID");
-	#dont log this here as it will only print one of the two dups, this log should happen in the next step
-	#prints a file of all of the known duplicate numbers, the next step will to exclude all records with those numbers
-	#for example, the worst case is CAS520791, which has 17 specimens that were labeled with this number over the years.
-	print OUT "$catalognumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tDUP\t$occurrenceID\n"; 
+		$oldCCHID="";
 	}
+
+
+#construct catalog numbers
+	if ($CCHbarcode =~ m/^(GH|A|AMES|ECON)([0-9]+)-BARCODE$/){
+		$duplicate_CAT{$CCHbarcode}++;#count to find duplicates
+		#print "HERB(3)\t$ALT_CCH_BARCODE\t$id==>$catalogNumber==>$otherCatalogNumbers\n";
+	}
+	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
+		$catalogNumber = "";
+		$CCHbarcode="";
+	}
+	else{
+		&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
+		print "BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
+		print DUPLOG "BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
+		$catalogNumber = "";
+		$ALT_CCH_BARCODE="";
+	}
+
+   if (length ($catalogNumber) >= 1){
+	if ($duplicate_CAT{$CCHbarcode} >= 2){
+		$duplicate_FOUND_CAT{$CCHbarcode}++;
+		++$dups;
+	}
+   }
+  
+   if (length ($otherCatalogNumbers) >= 1){
+	if ($duplicate_OTH{$oldCCHID} >= 2){
+		$duplicate_FOUND_OTH{$oldCCHID}++;
+		++$dups;
+	}
+   }
+
+  }
 }
+#for testing
+	#foreach $ALT_CCH_BARCODE (sort keys %duplicate_CAT) {
+    #printf "%-31s %s\n", $ALT_CCH_BARCODE, $duplicate_CAT{$ALT_CCH_BARCODE} if ($duplicate_CAT{$ALT_CCH_BARCODE} >= 2);
+	#}
 
-
-
-}
-
-}
-
+  #foreach $old_AID (sort keys %duplicate_OTH) {
+    #printf "%-31s %s\n", $old_AID, $duplicate_OTH{$old_AID} if ($duplicate_OTH{$old_AID} >= 2);
+  #}
 
 print <<EOP;
+
+
+$herb DUP COUNT
+TOTAL: $count_record
 UNIQUE DUPS FOUND: $dups
+
+BEGIN DUPICATE UPLOAD
+EOP
+
+print DUPLOG <<EOP;
+
+
+$herb DUP COUNT
+TOTAL: $count_record
+UNIQUE DUPS FOUND: $dups
+EOP
+
+close(IN);
+
+#now reload and extract all of the duplicates based on the values found above
+#declare variables
+
+#declare variables
+
+#counts
+my ($skipped, $included, %seen) = "";
+my ($dups,$dups_B,$ALTER, $ORTH, $count_record) = "";
+
+#out file variables for CCH2 compatibility
+my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+
+#HUH IN file
+my ($institutionCode, $CCH2id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
+my ($occurrenceID, $catalogNumber, $otherCatalogNumbers, $kingdom, $phylum) = "";#10
+my ($class, $order, $family, $scientificName, $taxonID) = "";#15
+my ($scientificNameAuthorship, $genus, $specificEpithet, $taxonRank, $infraspecificEpithet) = "";#20
+my ($identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks) = "";#25
+my ($identificationQualifier, $typeStatus, $recordedBy, $associatedCollectors, $recordNumber) = "";#30
+my ($eventDate, $year, $month, $day, $startDayOfYear) = "";#35
+my ($endDayOfYear, $verbatimEventDate, $occurrenceRemarks, $habitat, $substrate, $verbatimAttributes, $fieldNumber) = "";#40
+my ($informationWithheld, $dataGeneralizations, $dynamicProperties, $associatedTaxa, $reproductiveCondition) = "";#45
+my ($establishmentMeans, $cultivationStatus, $lifeStage, $sex, $individualCount) = "";#50
+my ($preparations, $country, $stateProvince, $verbatimCounty, $municipality) = "";#55
+my ($locality, $locationRemarks, $localitySecurity, $localitySecurityReason, $latitude) = "";#60
+my ($longitude, $geodeticDatum, $coordinateUncertaintyInMeters, $verbatimCoordinates, $georeferencedBy) = "";#65
+my ($georeferenceProtocol, $georeferenceSources, $georeferenceVerificationStatus, $georeferenceRemarks, $minimumElevationInMeters) = "";#70
+my ($maximumElevationInMeters, $minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation) = "";#75
+my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "";#80
+my ($collId, $recordId, $references,$dateflag,$eventDate_parse) = "";#83
+my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
+my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences,$origDetName) = "";
+my ($elevationInFeet,$CCH_elevationWarning,$elevationInMeters,$county,$decimalLatitude) = "";
+my ($decimalLongitude,$EJD,$LJD,$verbatimDate,$origDet,$displayName) = "";#
+my ($oldCCHID,$hybrid_formula,$id,$hybrid_formula,$qualifier,$CCHbarcode) = "";
+
+
+open (IN, "<", $records_file) or die $!;
+Record: while(<IN>){
+	chomp;
+
+        if ($. == 1){#activate if need to skip header lines
+			next Record;
+		}
+		
+
+		my @fields=split(/\t/,$_,100);
+
+		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+
+			warn "$#fields bad field number $_\n";
+
+			next Record;
+		}
+
+		($CCH2id,
+		$institutionCode,
+		$catalogNumber,
+		$otherCatalogNumbers,
+		$CCHbarcode,
+		$oldCCHID,
+		$occurrenceID,
+		$scientificName,
+		$displayName,
+		$origDet,
+		$hybrid_formula,
+		$qualifier,
+		$identifiedBy,
+		$dateIdentified,
+		$identificationRemarks,
+		$typeStatus,
+		$recordedBy,
+		$recordNumber,
+		$verbatimDate,
+		$eventDate_parse,
+		$EJD,
+		$LJD,
+		$country,
+		$stateProvince,
+		$verbatimCounty,
+		$locality,
+		$occurrenceRemarks,
+		$habitat,
+		$associatedTaxa,
+		$verbatimAttributes,
+		$reproductiveCondition,
+		$cultivationStatus,
+		$CCH_elevationWarning,
+		$elevationInMeters,
+		$elevationInFeet,
+		$verbatimElevation,
+		$verbatimCoordinates,
+		$decimalLatitude,
+		$decimalLongitude,
+		$geodeticDatum,
+		$coordinateUncertaintyInMeters,
+		$georeferencedBy,
+		$georeferenceSources,
+		$georeferenceRemarks,
+		$modified,
+		$dateflag,
+		$county
+		) = @fields;	
+#The array @fields is made up on these 47 scalars, in this order, GBIF modified export
+
+#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
+#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+
+
+#filter by herbarium code
+  if ($institutionCode =~ m/^(GH|A|AMES|ECON)$/){
+
+
+printf {*STDERR} "%d\r", ++$count_record;
+
+
+########ACCESSION NUMBER
+#check for nulls
+	if ($CCH2id=~/^ *$/){
+		&CCH::log_skip("Record with no CCH2 ID $_");
+		++$skipped;
+		next Record;
+	}
+
+#extract old herbarium and aid numbers
+
+	if ($oldCCHID =~ m/^(GH|A|AMES|ECON) *0*([1-9][0-9]*)[a-zA-Z]*$/){
+		$oldCCHID = $1.$2;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(NULL| *)$/){
+		$otherCatalogNumbers = "";
+		$oldCCHID="";
+	}
+	else{
+		$otherCatalogNumbers = "";
+		$oldCCHID="";
+	}
+
+
+#construct catalog numbers
+	if ($CCHbarcode =~ m/^(GH|A|AMES|ECON)([0-9]+)-BARCODE$/){
+		#do nothing
+	}
+	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
+		$catalogNumber = "";
+		$CCHbarcode="";
+	}
+	else{
+		$catalogNumber = "";
+		$CCHbarcode="";
+	}
+
+#exclude ALL duplicates 
+	if ($duplicate_FOUND_OTH{$oldCCHID}) {
+	#prints a file of all of the known duplicate numbers, the next step will to exclude all records with those numbers
+	#for example, the worst case is CAS520791, which has 17 specimens that were labeled with this number over the years.
+		print OUT "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$oldCCHID\t$CCHbarcode\t\tDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
+		++$dups_B;
+	}
+	
+	if ($duplicate_FOUND_CAT{$CCHbarcode}) {
+	#prints a file of all of the known duplicate numbers, the next step will to exclude all records with those numbers
+	#for example, the worst case is CAS520791, which has 17 specimens that were labeled with this number over the years.
+		print OUT "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$oldCCHID\t$CCHbarcode\t\tDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
+		++$dups_B;
+	}
+
+  }
+}
+
+print <<EOP;
+TOTAL DUPS ADDED TO FILE: $dups_B
+
+
+EOP
+
+print DUPLOG <<EOP;
+TOTAL DUPS ADDED TO FILE: $dups_B
 
 
 EOP
 
 close(IN);
 close(OUT);
-
-
-
-
-
-
-
-
-
-
-
-
+close(DUPLOG);

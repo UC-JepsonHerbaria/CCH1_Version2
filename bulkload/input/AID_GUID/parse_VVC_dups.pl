@@ -4,7 +4,9 @@ use strict;
 #use diagnostics;
 use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD = &get_today_julian_day;
+
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 
 open(DUPLOG, ">>DUPS/dup_log_".$today_JD.".txt") || die; 
 
