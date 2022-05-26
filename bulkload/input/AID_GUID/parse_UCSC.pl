@@ -2,15 +2,17 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '../../../Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD = &get_today_julian_day;
+
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 
 my $otherID; #unique to UCSC
 
-open(BULKLOG, ">>../../output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
+open(BULKLOG, ">>output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
-#open(BULKLOG, ">>../../output/CCH2_bulkload_log_2459351.txt") || die; 
+#open(BULKLOG, ">>output/CCH2_bulkload_log_2459351.txt") || die; 
 
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
@@ -31,7 +33,7 @@ my $dirdate="2022_MAR02";
 my $filedate="03022022";
 
 
-my %month_hash = &month_hash;
+my %month_hash = &CCH::month_hash;
 
 
 #declare variables
@@ -67,9 +69,8 @@ my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRa
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
 
 
-open(IN, "DUPS/DUPS_".$herb.$today_JD.".txt") || die;
-#open(IN, "DUPS/DUPS_CAS-BOT.txt") || die;
-
+open(IN, "input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die;
+ 
 local($/)="\n";
 while(<IN>){
 	chomp;
@@ -82,14 +83,14 @@ close(IN);
 
 
 #CAS is first on the list, so it opens a new file for these two, while all others append
-open(OUT3, ">>DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
-open(OUT2, ">>output/AID_to_ADD_".$today_JD.".txt") || die;
+open(OUT3, ">>input/AID_GUID/DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
+open(OUT2, ">>input/AID_GUID/output/AID_to_ADD_".$today_JD.".txt") || die;
 
 #print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 #print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
-my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
+my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){

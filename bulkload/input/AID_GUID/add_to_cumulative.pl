@@ -2,7 +2,7 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '../../../Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
 #my $dirdate = "2021_APR16";
@@ -18,7 +18,9 @@ my $dirdate="2022_MAR02";
 my $filedate="03022022";
 
 
-my $today_JD = &get_today_julian_day;
+
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 
 my %ACC_HERB;
 my %ACC_MOD;
@@ -79,7 +81,7 @@ close(IN);
 
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
-my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
+my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){

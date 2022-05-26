@@ -5,7 +5,9 @@ use strict;
 use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
-my $today_JD = &get_today_julian_day;
+
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 warn "Today is $today_JD\n";
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
@@ -21,13 +23,13 @@ my $dirdate="2021_AUG28";
 my $filedate="08282021";
 
 
-my %month_hash = &month_hash;
+my %month_hash = &CCH::month_hash;
 
-my $records_file='../../output/CAS-CCH2_out_'.$filedate.'.txt';
+my $records_file='output/CAS-CCH2_out_'.$filedate.'.txt';
 #only harvesting the CCH2 ID's and CCH1 ids from this file here
 
-open(DUPLOG, ">DUPS/dup_log_".$today_JD.".txt") || die; 
-open(OUT, ">DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
+open(DUPLOG, ">input/AID_GUID/DUPS/dup_log_".$today_JD.".txt") || die; 
+open(OUT, ">input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
 
 	print OUT "herb\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tGBIF_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tscientificName\tcounty\n";
 

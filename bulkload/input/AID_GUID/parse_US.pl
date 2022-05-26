@@ -2,11 +2,13 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '../../../Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD = &get_today_julian_day;
 
-open(BULKLOG, ">>../../output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
+
+open(BULKLOG, ">>output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
@@ -18,7 +20,7 @@ my $dirdate="2022_APR28";
 my $filedate="04282022";
 
 
-my %month_hash = &month_hash;
+my %month_hash = &CCH::month_hash;
 
 
 #declare variables
@@ -66,9 +68,8 @@ my ($oldCCHID,$hybrid_formula,$id,$hybrid_formula,$qualifier,$CCHbarcode) = "";
 #CAS	616749	CAS 800069	2239722878	CAS800069	CAS-BOT616749 BARCODE		DUP	urn:catalog:CAS:BOT-BC:616749	Marah oregana (Torr. & A.Gray) Howell	Mendocino
 
 
-open(IN, "DUPS/DUPS_".$herb.$filedate.".txt") || die;
-#open(IN, "DUPS/DUPS_CAS-BOT.txt") || die;
-
+open(IN, "input/AID_GUID/DUPS/DUPS_".$herb.$filedate.".txt") || die;
+ 
 local($/)="\n";
 while(<IN>){
 	chomp;
@@ -83,8 +84,8 @@ close(IN);
 
 #InstitutionCode	occid	occurrenceID	catalogNumber	otherCatalogNumbers	Sciname	tidinterpreted	taxonRemarks	identificationQualifier	identifiedBy	dateIdentified	identificationRemarks	typeStatus	recordedBy	associatedCollectors	recordNumber	year	month	day	verbatimEventDate	country	stateProvince	county	locality	locationRemarks	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	verbatimCoordinates	verbatimEventDate	georeferencedBy	georeferenceSources	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	verbatimElevation	habitat	occurrenceRemarks	associatedTaxa	verbatimAttributes	reproductiveCondition	cultivationStatus	dateLastModified
 
-open(OUT3, ">>DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
-open(OUT2, ">>output/AID_to_ADD_".$today_JD.".txt") || die;
+open(OUT3, ">>input/AID_GUID/DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
+open(OUT2, ">>input/AID_GUID/output/AID_to_ADD_".$today_JD.".txt") || die;
 
 print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";

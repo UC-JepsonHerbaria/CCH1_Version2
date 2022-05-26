@@ -2,13 +2,15 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '../../../Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD = &get_today_julian_day;
+
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 
 my $otherID; #unique to UCSC
 
-open(DUPLOG, ">>DUPS/dup_log_".$today_JD.".txt") || die; 
+open(DUPLOG, ">>input/AID_GUID/DUPS/dup_log_".$today_JD.".txt") || die; 
 
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
@@ -27,7 +29,7 @@ my $dirdate="2022_MAR02";
 my $filedate="03022022";
 
 
-my %month_hash = &month_hash;
+my %month_hash = &CCH::month_hash;
 
 #counts
 my ($skipped, $included, %seen, %duplicate_FOUND_CAT, %duplicate_FOUND_OTH) = "";
@@ -61,12 +63,12 @@ my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRa
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
 
 
-open(OUT, ">DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
+open(OUT, ">input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
 
 	print OUT "herb\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tscientificName\tcounty\n";
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
-my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
+my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
@@ -457,7 +459,7 @@ my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) 
 
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
-my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
+my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){

@@ -4,8 +4,9 @@ use strict;
 #use diagnostics;
 use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD = &get_today_julian_day;
 
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 print $today_JD."\n";
 open(BULKLOG, ">>output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
@@ -28,7 +29,7 @@ my $dirdate="2022_MAR02";
 my $filedate="03022022";
 
 
-my %month_hash = &month_hash;
+my %month_hash = &CCH::month_hash;
 
 
 #declare variables

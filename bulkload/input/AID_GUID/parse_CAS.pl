@@ -2,11 +2,13 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '../../../Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
-my $today_JD = &get_today_julian_day;
 
-open(BULKLOG, ">>../../output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
+
+open(BULKLOG, ">>output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
@@ -21,7 +23,7 @@ my $dirdate="2021_AUG28";
 my $filedate="08282021";
 
 
-my %month_hash = &month_hash;
+my %month_hash = &CCH::month_hash;
 
 
 #declare variables
@@ -69,9 +71,8 @@ my ($oldCCHID,$hybrid_formula,$id,$hybrid_formula,$qualifier,$CCHbarcode) = "";
 #CAS	616749	CAS 800069	2239722878	CAS800069	CAS-BOT616749 BARCODE		DUP	urn:catalog:CAS:BOT-BC:616749	Marah oregana (Torr. & A.Gray) Howell	Mendocino
 
 
-open(IN, "DUPS/DUPS_CAS-BOT_FULL_LIST.txt") || die;
-#open(IN, "DUPS/DUPS_CAS-BOT.txt") || die;
-
+open(IN, "input/AID_GUID/DUPS/DUPS_CAS-BOT_FULL_LIST.txt") || die;
+ 
 local($/)="\n";
 while(<IN>){
 	chomp;
@@ -94,7 +95,7 @@ open(OUT2, ">output/AID_to_ADD_".$today_JD.".txt") || die;
 print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 
-my $mainFile='../../output/CAS-CCH2_out_'.$filedate.'.txt';
+my $mainFile='output/CAS-CCH2_out_'.$filedate.'.txt';
 #only harvesting the CCH2 ID's and CCH1 ids from this file here
 #my $mainFile='/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CAS/CAS_2022_MAR01.tab';
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'.txt';
