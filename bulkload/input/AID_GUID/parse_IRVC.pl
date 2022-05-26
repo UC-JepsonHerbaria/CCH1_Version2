@@ -1,105 +1,128 @@
 
-#use strict;
+use strict;
 #use warnings;
 #use diagnostics;
-use lib '/Users/Shared/Jepson-Master/Jepson-eFlora/Modules';
+use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
+my $today_JD = &get_today_julian_day;
 
-my $today_JD;
+open(BULKLOG, ">>../../output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
-$herb="IRVC";
+
+$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
+my $herb = "IRVC";
+
+#my $dirdate = "2021_APR16";
+#my $dirdate="2021_AUG28";
+#my $dirdate="2022_JAN26";
+my $dirdate="2022_MAR02";
 #$filedate="11072019";
-#$filedate="12052019";
-$filedate="01292020";
+#my $filedate="12052019";
+#my $filedate = "01292020";
+#my $filedate = "04162021";
+#my $filedate="08282021";
+#my $filedate="01262022";
+my $filedate="03022022";
 
 
-open(IN, "/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_".$herb."_list.txt") || die;
+my %month_hash = &month_hash;
+
+
+#declare variables
+#counts
+my ($skipped, $included, %seen, %DUP,$count_record,$dups,$null) = "";
+
+#out file variables for CCH2 compatibility
+my ($CCH2id,$ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+
+#DUPs IN file
+my ($HN,$CN,$OCN,$GID,$old,$bar,$alt,$stat,$GUID,$SCN,$VC) = "";
+
+#IN TABLE
+#CCH2 symbiota table
+my ($institutionCode, $id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
+my ($occurrenceID, $catalogNumber, $otherCatalogNumbers, $kingdom, $phylum) = "";#10
+my ($class, $order, $family, $scientificName, $taxonID) = "";#15
+my ($scientificNameAuthorship, $genus, $specificEpithet, $taxonRank, $infraspecificEpithet) = "";#20
+my ($identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks) = "";#25
+my ($identificationQualifier, $typeStatus, $recordedBy, $associatedCollectors, $recordNumber) = "";#30
+my ($eventDate, $year, $month, $day, $startDayOfYear) = "";#35
+my ($endDayOfYear, $verbatimEventDate, $occurrenceRemarks, $habitat, $substrate, $verbatimAttributes, $fieldNumber) = "";#40
+my ($informationWithheld, $dataGeneralizations, $dynamicProperties, $associatedTaxa, $reproductiveCondition) = "";#45
+my ($establishmentMeans, $cultivationStatus, $lifeStage, $sex, $individualCount) = "";#50
+my ($preparations, $country, $stateProvince, $verbatimCounty, $municipality) = "";#55
+my ($locality, $locationRemarks, $localitySecurity, $localitySecurityReason, $latitude) = "";#60
+my ($longitude, $geodeticDatum, $coordinateUncertaintyInMeters, $verbatimCoordinates, $georeferencedBy) = "";#65
+my ($georeferenceProtocol, $georeferenceSources, $georeferenceVerificationStatus, $georeferenceRemarks, $minimumElevationInMeters) = "";#70
+my ($maximumElevationInMeters, $minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation) = "";#75
+my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "";#80
+my ($collId, $recordId, $references) = "";#83
+my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
+my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+
+
+open(IN, "DUPS/DUPS_".$herb.$today_JD.".txt") || die;
+#open(IN, "DUPS/DUPS_CAS-BOT.txt") || die;
+
 local($/)="\n";
 while(<IN>){
 	chomp;
-	($CN,$OCN,$ID,$acc,$alt,@residue)=split(/\t/);
+	($HN,$CN,$OCN,$GID,$old,$bar,$alt,$stat,$GUID,$SCN,$VC)=split(/\t/);
 
-	if (length ($acc) >= 1){
-		$DUP{$acc}++;
-	}
+		$DUP{$GID}++;
 }
 
 close(IN);
 
-$today_JD = &get_today_julian_day;
-my %month_hash = &month_hash;
-
-my %DUP_FOUND;
-my %duplicate;
-my $included;
-my %temp_skipped;
-my $countNoteTemp;
-my $countFail;
-my %ICPN_ENTRY;
-my %skipped;
-my $line_store;
-my $count;
-my $seen;
-my %seen;
-my $det_string;
-my $count_record;
-my $GUID;
-my %GUID_old;
-my %GUID;
-my $old_AID;
-my $barcode;
-my %TYPE;
-
-
-#InstitutionCode	occid	occurrenceID	catalogNumber	otherCatalogNumbers	Sciname	tidinterpreted	taxonRemarks	identificationQualifier	identifiedBy	dateIdentified	identificationRemarks	typeStatus	recordedBy	associatedCollectors	recordNumber	year	month	day	verbatimEventDate	country	stateProvince	county	locality	locationRemarks	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	verbatimCoordinates	verbatimEventDate	georeferencedBy	georeferenceSources	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	verbatimElevation	habitat	occurrenceRemarks	associatedTaxa	verbatimAttributes	reproductiveCondition	cultivationStatus	dateLastModified
-
 
 #CAS is first on the list, so it opens a new file for these two, while all others append
-open(OUT3, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_excluded.txt") || die;
-open(OUT2, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD.txt") || die;
+open(OUT3, ">>DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
+open(OUT2, ">>output/AID_to_ADD_".$today_JD.".txt") || die;
 
-print OUT2 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
-print OUT3 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
+#print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
+#print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 
+#my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
+my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
-
-#id	type	modified	language	institutionCode	collectionCode	basisOfRecord	occurrenceID	catalogNumber	occurrenceRemarks	recordNumber	recordedBy	otherCatalogNumbers	eventDate	startDayOfYear	year	month	day	verbatimEventDate	habitat	higherGeography	continent	country	stateProvince	county	municipality	locality	verbatimElevation	minimumElevationInMeters	maximumElevationInMeters	verbatimLatitude	verbatimLongitude	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	georeferenceProtocol	georeferenceVerificationStatus	identifiedBy	dateIdentified	typeStatus	scientificName	higherClassification	kingdom	phylum	class	order	family	genus	specificEpithet	infraspecificEpithet	verbatimTaxonRank	scientificNameAuthorship	nomenclaturalCode
-#urn:catalog:CAS:BOT-BC:522744	PhysicalObject	2016-10-19 09:19:30.0	en	CAS	BOT-BC	PreservedSpecimen	urn:catalog:CAS:BOT-BC:522744	522744	Shrub 10 feet tall	41804	Breedlove, D E	urn:catalog:CAS:DS:702772 | DS 702772	1976-11		1976	11		22 November 1976	Steep slopes and dry ravines	North America; Mexico; Chiapas; Amatenango de la Frontera Municipio	North America	Mexico	Chiapas	Amatenango de la Frontera Municipio		along Río Cuilco between Nuevo Amatenango and Frontera Comalapa	1100 m	1100	1100												Croton guatemalensis  Lotsy	Plantae; Magnoliophyta; Magnoliopsida; Euphorbiales; Euphorbiaceae	Plantae	Magnoliophyta	Magnoliopsida	Euphorbiales	Euphorbiaceae	Croton	guatemalensis			Lotsy	ICBN
-
-
-my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/CCH2_export_'.$filedate.'.txt';
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
 	chomp;
 
-#fix some data quality and formatting problems that make import of fields of certain records problematic
-	
-    if ($. == 1){#activate if need to skip header lines
+        if ($. == 1){#activate if need to skip header lines
 			next Record;
 		}
+		
 
 		my @fields=split(/\t/,$_,100);
 
-    unless( $#fields == 84){ #if the number of values in the columns array is exactly 85
+		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
+		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
 
-	&CCH::log_skip("$#fields bad field number $_\n");
-	++$skipped{one};
-	next Record;
-	}
+			warn "$#fields bad field number $_\n";
 
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers
+			next Record;
+		}
+
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
+#higherClassification	kingdom	
 ($CCH2id,
 $institutionCode,
 $collectionCode,
-$ownerInstitutionCode,	#added 2016
+$ownerInstitutionCode,
+#$collectionID,  #this keeps appearing and disappearing, I think it is in the Darwin Core export and not Symbiota Native
 $basisOfRecord,
 $occurrenceID,
 $catalogNumber,
 $otherCatalogNumbers,
+$higherClassification,
 $kingdom,
-$phylum,
 #10
-#kingdom	phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
+#specificEpithet	
+#$kingdom,
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+$phylum,
 $class,
 $order,
 $family,
@@ -107,216 +130,253 @@ $scientificName,
 $taxonID,
 $scientificNameAuthorship,
 $genus,
+$subgenus,
 $specificEpithet,
-$taxonRank,
-$infraspecificEpithet,
-$identifiedBy,
 #20
-#taxonRank	infraspecificEpithet	identifiedBy	dateIdentified	identificationReferences	identificationRemarks	
-#taxonRemarks	identificationQualifier	typeStatus	recordedBy	associatedCollectors	recordNumber	eventDate	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
+#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+$verbatimTaxonRank,
+$infraspecificEpithet,
+$taxonRank,
+$identifiedBy,
 $dateIdentified,
-$identificationReferences,	#added 2015, not processed
-$identificationRemarks,	#added 2015, not processed
-$taxonRemarks,	#added 2015
+$identificationReferences,
+$identificationRemarks,
+$taxonRemarks,
 $identificationQualifier,
 $typeStatus,
+#30
+#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
+#verbatimEventDate	
 $recordedBy,
-##$recordedByID,			#added 2016, not in 2017 download
-$associatedCollectors,	#added 2016, not in 2017 download, combined within recorded by with a ";"
+$associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
-#30
-#year	month	day	startDayOfYear	endDayOfYear	verbatimEventDate	occurrenceRemarks	habitat	substrate	
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
 $verbatimEventDate,
+#40
+#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
+#dynamicProperties	associatedOccurrences	
 $occurrenceRemarks,
 $habitat,
-$substrate,			#added 2016
-$verbatimAttributes, #added 2016
-#40
-#verbatimAttributes	fieldNumber	informationWithheld	dataGeneralizations	dynamicProperties	associatedTaxa	
-#reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	
+$substrate, #This is in Symbiota Native and not Darwin Core
+$verbatimAttributes, #This is in Symbiota Native and not Darwin Core
 $fieldNumber,
+$eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
-$dataGeneralizations,	#added 2015, not processed, field empty as of 2016
-$dynamicProperties,	#added 2015, not processed
+$dataGeneralizations,
+$dynamicProperties,
+$associatedOccurrences,
+#$associatedTaxa,
+#$reproductiveCondition,
+#$establishmentMeans,
+#50
+#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
+#individualCount	preparations	country	
+$associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
-$establishmentMeans,	#added 2015, not processed
-$cultivationStatus,	#added 2016
+$establishmentMeans,
+$cultivationStatus, #This is in Symbiota Native and not Darwin Core
 $lifeStage,
-$sex,	#added 2015, not processed
-#50
-#sex	individualCount	preparations	country	stateProvince	county	municipality	locality	
-#locationRemarks	localitySecurity
-$individualCount,	#added 2015, not processed
-$preparations,	#added 2015, not processed
+$sex,
+$individualCount,
+$preparations,
 $country,
+#$stateProvince,
+#$verbatimCounty,
+#$municipality,
+#$locality,
+#$locationRemarks,
+#60
+#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	
 $stateProvince,
-$county,
+$verbatimCounty,
 $municipality,
 $locality,
-$locationRemarks, #newly added 2015-10, not processed
-$localitySecurity,		#added 2016, not processed
-$localitySecurityReason,	#added 2016, not processed
-#60
-#localitySecurityReason	decimalLatitude	decimalLongitude	geodeticDatum	
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	
-$verbatimLatitude,
-$verbatimLongitude,
+$locationRemarks,
+$localitySecurity, #This is in Symbiota Native and not Darwin Core
+$localitySecurityReason, #This is in Symbiota Native and not Darwin Core
+$latitude,
+$longitude,
 $geodeticDatum,
+#$coordinateUncertaintyInMeters,
+#$verbatimCoordinates,
+#$georeferencedBy,
+#$georeferenceProtocol,
+#$georeferenceSources,
+#$georeferenceVerificationStatus,
+#$georeferenceRemarks,
+#70
+#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
+#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
-$georeferencedBy,	#added 2015, not processed
-$georeferenceProtocol,	#added 2015, not processed
-$georeferenceSource,
-$georeferenceVerificationStatus,	#added 2015, not processed
-$georeferenceRemarks,	#added 2015, not processed
-#70
-#georeferenceRemarks	minimumElevationInMeters	
-#maximumElevationInMeters	minimumDepthInMeters	maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
-#language	recordEnteredBy
+$georeferencedBy,
+$georeferenceProtocol,
+$georeferenceSources,
+$georeferenceVerificationStatus,
+$georeferenceRemarks,
 $minimumElevationInMeters,
-$maximumElevationInMeters, #not processed for now
-$minimumDepthInMeters, #newly added 2015-10, not processed
-$maximumDepthInMeters, #newly added 2015-10, not processed
-$verbatimDepth, #newly added 2015-10, not processed
-$verbatimElevation,
-$disposition,	#added 2015, not processed
-$language,	#added 2015, not processed
-$recordEnteredBy, #newly added 2015-10, not processed
-$modified,	#added 2015, not processed
+$maximumElevationInMeters,
+$minimumDepthInMeters,
+#$verbatimDepth,
+#$verbatimElevation,
+#$disposition,
+#$language,
+#$recordEnteredBy,
+#$modified,
 #80
-#modified	sourcePrimaryKey-dbpk	collId	recordId	references
-$sourcePrimaryKey,  #added 2016, not processed
-$collID,	#added 2016, not processed
-$recordId,	#added 2015, not processed
-$references	#added 2016, not processed
-)=@fields;	#The array @columns is made up on these 85 scalars, in this order
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
+#sourcePrimaryKey-dbpk	collId	recordId	references
+$maximumDepthInMeters,
+$verbatimDepth,
+$verbatimElevation,
+$disposition,
+$language,
+$recordEnteredBy,
+$modified,
+$sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
+#$rights,  #This is in Darwin Core and not Symbiota Native
+#$rightsHolder, #This is in Darwin Core and not Symbiota Native
+#$accessRights, #This is in Darwin Core and not Symbiota Native
+$collId, #This is in Symbiota Native and not Darwin Core
+$recordId,
+#90
+$references	
+) = @fields;	
+#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
+#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code
-if ($institutionCode =~ m/^IRVC$/){
+  if ($institutionCode =~ m/^IRVC$/){
 
 
 #warn "$count_record\n" unless $count_record % 1009;
-printf {*STDERR} "%d\r", ++$count_record;
-
+  printf {*STDERR} "%d\r", ++$count_record;
 
 
 ########ACCESSION NUMBER
 #check for nulls
-	if ($CCH2id=~/^ *$/){
+	if ($CCH2id =~ m/^ *$/){
 		&CCH::log_skip("Record with no CCH2 ID $_");
-		++$skipped{one};
+		++$skipped;
 		next Record;
 	}
 
-my $oldA="";
-	$catalogNumber =~ s/^irvc/IRVC/i; #fix some lack of capitalizations in IRVC accessions
-	$otherCatalogNumbers =~ s/^(irvc|IRVVC|IRCV)/IRVC/i; #fix some other of problems in IRVC accessions
-	$otherCatalogNumbers =~ s/^(irvc)$//i;
+	$catalogNumber =~ s/^irvc(\d)/IRVC$1/i; #fix some lack of capitalizations in IRVC accessions
+	$otherCatalogNumbers =~ s/^(irvc|IRVVC|IRCV|IRV|IR)(\d)/IRVC$2/i; #fix some other of problems in IRVC accessions
+	$otherCatalogNumbers =~ s/^[A-Za-z.]+$//;
 
-#no leading zeros in IRVC
+
 #extract old herbarium and aid numbers
-if (length ($otherCatalogNumbers) >= 1){
-	if ($otherCatalogNumbers =~ m/^(IRVC) (\d+)[ABab]?$/){
-		$old_AID=$1.$2;
-		#print "HERB(1)\t$old_AID\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
-	}
-	elsif ($otherCatalogNumbers =~ m/^(IRVC)(\d+)[ABab]?$/){
-		$old_AID=$1.$2;
-		#print "HERB(1)\t$old_AID\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
+   if (length ($otherCatalogNumbers) >= 1){
+
+#construct the 3rd variant, which is a form without leading zeros
+	if ($otherCatalogNumbers =~ m/^IRVC *0+([1-9][0-9]*)[A-Za-z]*$/){
+		$old_AID = $herb.$1;
+		$oldA = $otherCatalogNumbers;
+		$oldA =~ s/[A-Za-z]+$//;
+		$oldA =~ s/ //g;
 	}
 	elsif ($otherCatalogNumbers =~ m/^(\d+)$/){#some IRVC otherCatalogNumbers do not have herbarium codes
 		$old_AID=$herb.$1;
-		#print "HERB(2)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
 	}
-	elsif ($otherCatalogNumbers =~ m/NULL|s\.n\./){#there are a few IRVC with s.n. in otherCatalogNumbers
+	elsif ($otherCatalogNumbers =~ m/^IRVC *([1-9][0-9]*)[A-Za-z]*$/){ 
+		$old_AID = $herb.$1;
+		$oldA = $otherCatalogNumbers;
+		$oldA =~ s/[A-Za-z]+$//;
+		$oldA =~ s/ //g;
+	}
+	elsif ($otherCatalogNumbers =~ m/^0*([1-9][0-9]*)[A-Za-z]*$/){ 
+		$old_AID = $herb.$1;
+		$oldA = $herb.$otherCatalogNumbers;
+		$oldA =~ s/[A-Za-z]+$//;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(NULL| *)$/){
 		$otherCatalogNumbers = "";
-		$old_AID="";
+		$oldA = $old_AID = "";
 	}
 	else{
-		&CCH::log_change("BAD Accession==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
-		print "BAD otherCatalogNumbers==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
 		$otherCatalogNumbers = "";
-		$old_AID = "";
+		$oldA = $old_AID = "";
 	}
-}
-else{
+   }
+   else{
 		$otherCatalogNumbers = "";
-		$old_AID="";
-}
+		$oldA = $old_AID = "";
+   }
 
-#convert to form without leading zeros
-	if ($old_AID =~ m/^(IRVC)0+(\d+)$/){
-		$oldA = $old_AID;
-		$old_AID=$1.$2;
-		#print "HERB(2)\t$oldA\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n"";
-	}
-	
+
 #construct catalog numbers
-if (length ($catalogNumber) >= 1){
+   if (length ($catalogNumber) >= 1){
 
-	if ($catalogNumber =~ m/^(IRVC)(\d+)$/){
-		$ALT_CCH_BARCODE=$1."-BC".$2;
-		#print "HERB(3)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
+	if ($catalogNumber =~ m/^IRVC(0*[1-9][0-9]*)$/){
+		$ALT_CCH_BARCODE = $herb.$1."-BARCODE";
 	}
-	elsif ($catalogNumber =~ m/NULL/){#there are a few IRVC with s.n. in otherCatalogNumbers
+	elsif ($catalogNumber =~ m/^(NULL| *)$/){
 		$catalogNumber = "";
-		$ALT_CCH_BARCODE="";
+		$ALT_CCH_BARCODE = "";
 	}
 	else{
-		&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
-		print "BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
 		$catalogNumber = "";
-		$ALT_CCH_BARCODE="";
+		$ALT_CCH_BARCODE = "";
 	}
-}
-else{
+   }
+   else{
 		$catalogNumber = "";
-		$ALT_CCH_BARCODE="";
-}
-#Add prefix to unique identifier field, two format, choose one and add to the code above
-#$ALT_CCH_BARCODE=$aidcode.$aid;
-#$ALT_CCH_BARCODE=$herb.$catalogNumber;
-#$ALT_CCH_BARCODE=$catalogNumber; #use this format if the old CCH herbarium code is correctly added in the catalog number field
+		$ALT_CCH_BARCODE = "";
+   }
+   
 
-
+   if (($catalogNumber =~ m/^ *$/) && ($otherCatalogNumbers =~ m/^ *$/)){
+		&log_skip("$herb ALL AIDs NULL: $CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");	#run the &log_skip function, printing the following message to the error log
+		++$null;
+		next Record;
+   }
+   else{
 #Remove duplicates
-	if($DUP{$old_AID}){
-		print OUT3 "$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tDUP\t$occurrenceID\t$scientificName\t$county\n";
+	if($DUP{$CCH2id}){
+		print OUT3 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
 #print "EXCL $old_AID\n";
 ++$dups;
 	}
 	else{
-		print OUT2 "$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tNONDUP\t$occurrenceID\t$scientificName\t$county\n";
+		print OUT2 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tNONDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
 #print "INCL $old_AID\n";
 ++$included;
 	}
+   }
 
-
-}
-
-
-
-
-
+  }
 }
 print <<EOP;
+
 $herb INCL: $included
-$herb EXCL: $dups
+$herb DUPS: $dups
 $herb NULL: $null
 
 $herb TOTAL: $count_record
 
 EOP
 
+print BULKLOG <<EOP;
+
+$herb INCL: $included
+$herb DUPS: $dups
+$herb NULL: $null
+
+$herb TOTAL: $count_record
+
+EOP
 
 close(IN);
 close(OUT2);
 close(OUT3);
+close(BULKLOG);

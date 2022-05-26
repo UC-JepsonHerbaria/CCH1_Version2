@@ -2,7 +2,7 @@
 #use strict;
 #use warnings;
 #use diagnostics;
-use lib '/Users/Shared/Jepson-Master/Jepson-eFlora/Modules';
+use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 my $today_JD;
 $today_JD = &get_today_julian_day;
@@ -15,7 +15,7 @@ my %month_hash = &month_hash;
 
 
 
-open(OUT, ">/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_".$herb."_list.txt") || die; #this only needs to be active once to generate a list of duplicated accessions
+open(OUT, ">DUPS/DUPS_".$herb."_list.txt") || die; #this only needs to be active once to generate a list of duplicated accessions
 
 print OUT "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\n";
 

@@ -2,7 +2,7 @@
 #use strict;
 #use warnings;
 #use diagnostics;
-use lib '/Users/Shared/Jepson-Master/Jepson-eFlora/Modules';
+use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
 my $today_JD;
@@ -13,7 +13,7 @@ $filedate="09272017";
 
 #CCH2_catalogNumber	CCH2_otherCatalogNumbers	CCH2_ID	OLD_CCH_AID	ALT_CCH_ID	ALT_CCH_AID_SPACE	Status	GUID-occurrenceID
 
-open(IN, "/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_".$herb."_list.txt") || die;
+open(IN, "DUPS/DUPS_".$herb."_list.txt") || die;
 local($/)="\n";
 while(<IN>){
 	chomp;
@@ -55,8 +55,8 @@ my %TYPE;
 
 
 #this herb is first on the list, so it opens a new file for these two, while all others append
-open(OUT3, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_excluded.txt") || die;
-open(OUT2, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD.txt") || die;
+open(OUT3, ">>DUPS/DUPS_excluded.txt") || die;
+open(OUT2, ">>output/AID_to_ADD.txt") || die;
 
 print OUT2 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 print OUT3 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";

@@ -2,46 +2,71 @@
 use strict;
 #use warnings;
 #use diagnostics;
-use lib '/Users/Shared/Jepson-Master/Jepson-eFlora/Modules';
+use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
-my $today_JD;
+#my $dirdate = "2021_APR16";
+#my $dirdate="2021_AUG28";
+#my $dirdate="2022_JAN26";
+my $dirdate="2022_MAR02";
+#$filedate="11072019";
+#my $filedate="12052019";
+#my $filedate = "01292020";
+#my $filedate = "04162021";
+#my $filedate="08282021";
+#my $filedate="01262022";
+my $filedate="03022022";
+
+
+my $today_JD = &CCH::get_today;
+#my $today_JD = &get_today_julian_day;
 
 my %ACC_HERB;
 my %ACC_MOD;
 my %ACC_FOUND;
 my %UNQ_ID;
 my %skipped;
-my ($BAD_REM, $CCH1_CAT, $excluded, $bad2, $bad1, $non, $skipped, $ocatb, $catb, $cchidb, $cch2idb, $occid, $count_record) = "";
-my ($aidStatus, $altcchidb, $aidSpace, $aidName, $uniqueID, $aidCounty, $aidGUID, $herb, $included) = "";
-my ($ss, $HERB, $NULL, $gg, $filedate, $aidCounty, $aidGUID, $herb, $included) = "";
 
-my ($modified, $catalogNumber, $otherCatalogNumbers, $scientificName, $key, $value, $collID) = "";
-my ($phylum, $kingdom, $occurrenceID, $basisOfRecord, $ownerInstitutionCode, $collectionCode) = "";
-my ($infraspecificEpithet, $taxonRank, $specificEpithet, $genus, $scientificNameAuthorship, $class, $order, $family) = "";
-my ($minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation, $disposition, $language, $recordId, $sourcePrimaryKey, $institutionCode) = "";
-my ($verbatimCoordinates, $georeferencedBy, $georeferenceProtocol, $georeferenceSource, $maximumElevationInMeters, $minimumElevationInMeters, $georeferenceRemarks, $georeferenceVerificationStatus) = "";
-my ($localitySecurity, $localitySecurityReason, $verbatimLatitude, $verbatimLongitude, $geodeticDatum, $coordinateUncertaintyInMeters, $recordEnteredBy, $references) = "";
-my ($individualCount, $preparations, $county, $country, $stateProvince, $municipality, $locality, $locationRemarks) = "";
-my ($substrate, $habitat, $associatedTaxa, $reproductiveCondition, $establishmentMeans, $cultivationStatus, $lifeStage, $sex) = "";
-my ($occurrenceRemarks, $endDayOfYear, $startDayOfYear, $dynamicProperties, $dataGeneralizations, $informationWithheld, $fieldNumber, $verbatimAttributes) = "";
-my ($recordedBy, $associatedCollectors, $recordNumber, $eventDate, $year, $month, $day, $verbatimEventDate) = "";
-my ($taxonID, $identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks, $identificationQualifier, $typeStatus) = "";
+#IN files
+my ($BAD_REM, $CCH1_CAT, $excluded, $bad2, $bad1, $non, $skipped, $ocatb, $catb, $cch2idb, $occid) = "";
+my ($aidStatus, $aidName, $uniqueID, $aidCounty, $aidGUID, $herb, $included, $count_record) = "";
+my ($HERB, $gg, $NULL, $aidCounty, $aidGUID, $herb, $included, $herbcode) = "";
 
+my ($dups, $old_cchid,$cch_barcode,$cch_alt_aid, $null, $barcode) = "";
 
-#$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
+#IN TABLE
+#CCH2 symbiota table
+my ($institutionCode, $id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
+my ($occurrenceID, $catalogNumber, $otherCatalogNumbers, $kingdom, $phylum) = "";#10
+my ($class, $order, $family, $scientificName, $taxonID) = "";#15
+my ($scientificNameAuthorship, $genus, $specificEpithet, $taxonRank, $infraspecificEpithet) = "";#20
+my ($identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks) = "";#25
+my ($identificationQualifier, $typeStatus, $recordedBy, $associatedCollectors, $recordNumber) = "";#30
+my ($eventDate, $year, $month, $day, $startDayOfYear) = "";#35
+my ($endDayOfYear, $verbatimEventDate, $occurrenceRemarks, $habitat, $substrate, $verbatimAttributes, $fieldNumber) = "";#40
+my ($informationWithheld, $dataGeneralizations, $dynamicProperties, $associatedTaxa, $reproductiveCondition) = "";#45
+my ($establishmentMeans, $cultivationStatus, $lifeStage, $sex, $individualCount) = "";#50
+my ($preparations, $country, $stateProvince, $verbatimCounty, $municipality) = "";#55
+my ($locality, $locationRemarks, $localitySecurity, $localitySecurityReason, $latitude) = "";#60
+my ($longitude, $geodeticDatum, $coordinateUncertaintyInMeters, $verbatimCoordinates, $georeferencedBy) = "";#65
+my ($georeferenceProtocol, $georeferenceSources, $georeferenceVerificationStatus, $georeferenceRemarks, $minimumElevationInMeters) = "";#70
+my ($maximumElevationInMeters, $minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation) = "";#75
+my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "";#80
+my ($collId, $recordId, $references) = "";#83
+my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
+my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
 
-#$filedate="12052019";
-$filedate="01292020";
+$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
 
-open(BAD, ">/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD_CCH2_missing.txt") || die;
+open(BAD, ">output/AID_to_ADD_CCH2_missing.txt") || die;
 
-open(OUT, ">/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD_cumulative.txt") || die;
-open(NON, ">/Users/Shared/Jepson-Master/CCHV2/bulkload/output/bulkload_nonvasc_excluded.txt") || die;
+open(OUT, ">output/AID_to_ADD_CCH2_mod.txt") || die;
+open(NON, ">../../output/bulkload_nonvasc_excluded.txt") || die;
 
-		print OUT "institutionCode\tCCH2_ID\tCCH2_dateLastModified\tstatus\tCCH1_AID\tALT_CCH1_AID\tALT_CCH1_AID_B\tSciName\tCounty\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tGUID-occurrenceID\n";
-		print BAD "institutionCode\tCCH2_ID\tCCH2_dateLastModified\tstatus\tCCH1_AID\tALT_CCH1_AID\tALT_CCH1_AID_B\tSciName\tCounty\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tGUID-occurrenceID\n";
+	print OUT "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\n";
+	print BAD "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\n";
 
+		
 
 open(IN, "/Users/Shared/Jepson-Master/Jepson-eFlora/synonymy/input/mosses.txt") || die "CCH.pm couldnt open mosses for non-vascular exclusion $!\n";
 while(<IN>){
@@ -52,51 +77,47 @@ while(<IN>){
 }
 close(IN);
 
+#my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
+my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
-#CCH2_catalogNumber	CCH2_otherCatalogNumbers	CCH2_ID	OLD_CCH_AID	ALT_CCH_ID	ALT_CCH_AID_SPACE	Status	GUID-occurrenceID	SciName	County
-#BFRS407		2960780	BFRS407	BFRS407	BFRS 407	NONDUP	01611011-703c-4c46-a0d8	Viola glabella	El Dorado
-#BFRS90		2960815	BFRS90	BFRS90	BFRS 90	NONDUP	0399d2a4-bcf9-47ec-ac83	Juncus tenuis	El Dorado
-#CCH2_catalogNumber	CCH2_otherCatalogNumbers	CCH2_ID	OLD_CCH_AID	ALT_CCH_ID	ALT_CCH_AID_SPACE	Status	GUID-occurrenceID	SciName	County
-#522744	urn:catalog:CAS:DS:702772 | DS 702772	2270135	DS702772	CAS-BOT-BC522744		NONDUP	urn:catalog:CAS:BOT-BC:522744	Croton guatemalensis	
-#319960	urn:catalog:CAS:BOT:1060568 | CAS 1060568	2270137	CAS1060568	CAS-BOT-BC319960		NONDUP	urn:catalog:CAS:BOT-BC:319960	Skimmia arborescens	Dulongjiang Xiang
-#504936	urn:catalog:CAS:BOT:674815 | CAS 674815	2270138	CAS674815	CAS-BOT-BC504936		NONDUP	urn:catalog:CAS:BOT-BC:504936	Ficus petenensis	
-#65174	urn:catalog:CAS:BOT:1118164 | CAS 1118164	2270140	CAS1118164	CAS-BOT-BC65174		NONDUP	urn:catalog:CAS:BOT-BC:65174	Pholistoma membranaceum	
-
-
-
-my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/CCH2_export_'.$filedate.'.txt';
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
 	chomp;
 
-#fix some data quality and formatting problems that make import of fields of certain records problematic
-	
-    if ($. == 1){#activate if need to skip header lines
+        if ($. == 1){#activate if need to skip header lines
 			next Record;
 		}
+		
 
 		my @fields=split(/\t/,$_,100);
 
-    unless( $#fields == 84){ #if the number of values in the columns array is exactly 85
+		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
+		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
 
-	&CCH::log_skip("$#fields bad field number $_\n");
-	++$skipped{one};
-	next Record;
-	}
+			warn "$#fields bad field number $_\n";
 
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers
-($occid,
+			next Record;
+		}
+
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
+#higherClassification	kingdom	
+($id,
 $institutionCode,
 $collectionCode,
-$ownerInstitutionCode,	#added 2016
+$ownerInstitutionCode,
+#$collectionID,  #this keeps appearing and disappearing, I think it is in the Darwin Core export and not Symbiota Native
 $basisOfRecord,
 $occurrenceID,
 $catalogNumber,
 $otherCatalogNumbers,
+$higherClassification,
 $kingdom,
-$phylum,
 #10
-#kingdom	phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
+#specificEpithet	
+#$kingdom,
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+$phylum,
 $class,
 $order,
 $family,
@@ -104,100 +125,132 @@ $scientificName,
 $taxonID,
 $scientificNameAuthorship,
 $genus,
+$subgenus,
 $specificEpithet,
-$taxonRank,
-$infraspecificEpithet,
-$identifiedBy,
 #20
-#taxonRank	infraspecificEpithet	identifiedBy	dateIdentified	identificationReferences	identificationRemarks	
-#taxonRemarks	identificationQualifier	typeStatus	recordedBy	associatedCollectors	recordNumber	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
+#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+$verbatimTaxonRank,
+$infraspecificEpithet,
+$taxonRank,
+$identifiedBy,
 $dateIdentified,
-$identificationReferences,	#added 2015, not processed
-$identificationRemarks,	#added 2015, not processed
-$taxonRemarks,	#added 2015
+$identificationReferences,
+$identificationRemarks,
+$taxonRemarks,
 $identificationQualifier,
 $typeStatus,
+#30
+#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
+#verbatimEventDate	
 $recordedBy,
-$associatedCollectors,	#added 2016, not in 2017 download, combined within recorded by with a ";"
+$associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
-#30
-#eventDate	year	month	day	startDayOfYear	endDayOfYear	verbatimEventDate	occurrenceRemarks	habitat	substrate	
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
 $verbatimEventDate,
+#40
+#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
+#dynamicProperties	associatedOccurrences	
 $occurrenceRemarks,
 $habitat,
-$substrate,			#added 2016
-$verbatimAttributes, #added 2016
-#40
-#verbatimAttributes	fieldNumber	informationWithheld	dataGeneralizations	dynamicProperties	associatedTaxa	
-#reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	
+$substrate, #This is in Symbiota Native and not Darwin Core
+$verbatimAttributes, #This is in Symbiota Native and not Darwin Core
 $fieldNumber,
+$eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
-$dataGeneralizations,	#added 2015, not processed, field empty as of 2016
-$dynamicProperties,	#added 2015, not processed
+$dataGeneralizations,
+$dynamicProperties,
+$associatedOccurrences,
+#$associatedTaxa,
+#$reproductiveCondition,
+#$establishmentMeans,
+#50
+#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
+#individualCount	preparations	country	
+$associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
-$establishmentMeans,	#added 2015, not processed
-$cultivationStatus,	#added 2016
+$establishmentMeans,
+$cultivationStatus, #This is in Symbiota Native and not Darwin Core
 $lifeStage,
-$sex,	#added 2015, not processed
-#50
-#sex	individualCount	preparations	country	stateProvince	county	municipality	locality	
-#locationRemarks	localitySecurity
-$individualCount,	#added 2015, not processed
-$preparations,	#added 2015, not processed
+$sex,
+$individualCount,
+$preparations,
 $country,
+#$stateProvince,
+#$verbatimCounty,
+#$municipality,
+#$locality,
+#$locationRemarks,
+#60
+#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	
 $stateProvince,
-$county,
+$verbatimCounty,
 $municipality,
 $locality,
-$locationRemarks, #newly added 2015-10, not processed
-$localitySecurity,		#added 2016, not processed
-$localitySecurityReason,	#added 2016, not processed
-#60
-#localitySecurityReason	decimalLatitude	decimalLongitude	geodeticDatum	
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	
-$verbatimLatitude,
-$verbatimLongitude,
+$locationRemarks,
+$localitySecurity, #This is in Symbiota Native and not Darwin Core
+$localitySecurityReason, #This is in Symbiota Native and not Darwin Core
+$latitude,
+$longitude,
 $geodeticDatum,
+#$coordinateUncertaintyInMeters,
+#$verbatimCoordinates,
+#$georeferencedBy,
+#$georeferenceProtocol,
+#$georeferenceSources,
+#$georeferenceVerificationStatus,
+#$georeferenceRemarks,
+#70
+#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
+#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
-$georeferencedBy,	#added 2015, not processed
-$georeferenceProtocol,	#added 2015, not processed
-$georeferenceSource,
-$georeferenceVerificationStatus,	#added 2015, not processed
-$georeferenceRemarks,	#added 2015, not processed
-#70
-#georeferenceRemarks	minimumElevationInMeters	
-#maximumElevationInMeters	minimumDepthInMeters	maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
-#language	recordEnteredBy
+$georeferencedBy,
+$georeferenceProtocol,
+$georeferenceSources,
+$georeferenceVerificationStatus,
+$georeferenceRemarks,
 $minimumElevationInMeters,
-$maximumElevationInMeters, #not processed for now
-$minimumDepthInMeters, #newly added 2015-10, not processed
-$maximumDepthInMeters, #newly added 2015-10, not processed
-$verbatimDepth, #newly added 2015-10, not processed
-$verbatimElevation,
-$disposition,	#added 2015, not processed
-$language,	#added 2015, not processed
-$recordEnteredBy, #newly added 2015-10, not processed
-$modified,	#added 2015, not processed
+$maximumElevationInMeters,
+$minimumDepthInMeters,
+#$verbatimDepth,
+#$verbatimElevation,
+#$disposition,
+#$language,
+#$recordEnteredBy,
+#$modified,
 #80
-$sourcePrimaryKey,  #added 2016, not processed
-$collID,	#added 2016, not processed
-$recordId,	#added 2015, not processed
-$references	#added 2016, not processed, 84
-)=@fields;	#The array @columns is made up on these 84 scalars, in this order
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
+#sourcePrimaryKey-dbpk	collId	recordId	references
+$maximumDepthInMeters,
+$verbatimDepth,
+$verbatimElevation,
+$disposition,
+$language,
+$recordEnteredBy,
+$modified,
+$sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
+#$rights,  #This is in Darwin Core and not Symbiota Native
+#$rightsHolder, #This is in Darwin Core and not Symbiota Native
+#$accessRights, #This is in Darwin Core and not Symbiota Native
+$collId, #This is in Symbiota Native and not Darwin Core
+$recordId,
+#90
+$references	
+) = @fields;	
+#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
+#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
 
 ++$included;
 
 $herb = $institutionCode;
-$herb =~ s/^YM-YOSE$/YM/;
-
 
 	if (length ($genus) > 1){
 		if($exclude{$genus}){	
@@ -217,14 +270,13 @@ $herb =~ s/^YM-YOSE$/YM/;
 
 	}
 
-	if($occid =~ m/^ *$/) {	
+	if($id =~ m/^ *$/) {	
 			++$NULL;
 			next Record;
 	}
 	else{
-			$ACC_FOUND{$occid}++;
-			$ACC_HERB{$occid} = $herb;
-			$ACC_MOD{$occid} = $modified;
+			$ACC_FOUND{$id}++;
+			$ACC_MOD{$id} = $modified;
 
 		if(($catalogNumber =~ m/^ *$/) && ($otherCatalogNumbers =~ m/^ *$/)){	
 			++$skipped;
@@ -233,93 +285,78 @@ $herb =~ s/^YM-YOSE$/YM/;
 
 	}
 
+ }
 
- 	}
+print <<EOP;
+CCH2 TOTAL RECORDS: $included
+
+CCH2 NULL Barcodes and CatNumbers: $skipped
+
+CCH2 records without OCCID: $NULL
+
+CCH2 NONVASC EXCL: $non
+
+EOP
+
 close(IN);
 close(NON);
 
 
 
+my $included;
+#my $file = "2459325"; #LJD of the date AID file was processed
+#my $file = "2459518";
+#my $file = "2459522";
+my $file = "2459648";
 
 
-my $addFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD.txt';
+my $addFile = 'output/AID_to_ADD_'.$file.'.txt';
 open (IN, $addFile) or die $!;
 	while(<IN>){
 		chomp;
-		($catb,$ocatb,$cch2idb,$cchidb,$altcchidb,$aidSpace,$aidStatus,$aidGUID,$aidName,$aidCounty)=split(/\t/);
+		($herbcode,$catb,$ocatb,$cch2idb,$old_cchid,$cch_barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty)=split(/\t/);
 
-		$altcchidb =~ s/^UCLA(\d)/UC-LA$1/g;#fix an error that needs to be fixed in a later update
+#herbcode	CCH2_catalogNumber	CCH2_otherCatalogNumbers	CCH2_ID	OLD_CCH_AID	CCH_BARCODE_ID	ALT_CCH_AID	Status	GUID-occurrenceID	SciName	County
+#RSA	RSA0192510	RSA accession #: 108712	3875886	RSA108712	RSA0192510 BARCODE		NONDUP	1dd12db8-a87b-4901-ab1f-a47fff2e7058	Astragalus calycosus	Mono
+#RSA	RSA0193859	RSA accession #: 646835	3881743	RSA646835	RSA0193859 BARCODE		NONDUP	8e957584-4ea6-402d-a68b-5df418067c37	Astragalus cottonii	Clallam
+#RSA	RSA0196312	POM accession #: 452	3883920	POM452	RSA0196312 BARCODE		NONDUP	4291dd75-d3a6-4068-b295-d109038cb918	Tropidocarpum gracile var. dubium	Los Angeles
+#RSA	RSA0205106	RSA accession #: 678528	3912466	RSA678528	RSA0205106 BARCODE		NONDUP	142fa477-637a-4d7e-9933-e7eb166ea76e	Verbena tenuisecta	Ventura
 
-#delete leading zeros that are still creeping in where not wanted
-			if ($altcchidb =~ m/^(SCFS|PASA)0+([1-9][0-9]+)$/){
-				$altcchidb = $1.$2;
-			}
-			
-#delete spaces zeros that are still creeping in where not wanted
-			if ($altcchidb =~ m/^(CAS|DS) *([0-9]+)$/){
-				$altcchidb = $1.$2;
-			}
-			
-			if ($cchidb =~ m/^(CAS|DS) *([0-9]+)$/){
-				$cchidb = $1.$2;
-			}
+$barcode = $cch_barcode;
+$barcode =~ s/ +BARCODE$/-BARCODE/;
 
-			if ($aidSpace =~ m/^(CAS|DS) *([0-9]+)$/){
-				$aidSpace = $1.$2;
-			}
+++$included;
+#old_cchid is the old CCH accession number, before barcodes were introduced
+#cch_barcode is a the barcode accession in the format: herbarium+barcode+space 'BARCODE' appended at the end
+  #blank if the barcode does not exist
+  #same as cchidb for herbaria that do not create a new barcode number		
+#cch_alt_aid is a variant that some herbaria have changed from (or to), sometimes this is the same
+  #mostly this is a variant with leading zeros
 
-#cchidb is the old CCH1 accession number
-#altcchid is a variant that some herbaria have changed from (or to), sometimes this is the same
-#$ss is a variant without leading zeros in some collections
-		
-		if ($ss =~ m/^([A-Z]+ +|UCJEPS \d+)$/){#there are some bad Alt2 cat numbers generated that will be fixed in later loads
-			++$bad1;
-		}
-		
-		if ($catb =~ m/^([A-Z]+ +|UCLA\d+)$/){#there are some bad cat numbers generated that will be fixed in later loads
-			++$bad2;
-		}
-
-	if ($cchidb !~ m/^(SEINET|A|NY|GH|ECON|AMES)\d+/){
-		if ($ACC_FOUND{$cch2idb}){
-
-			++$CCH1_CAT;
 #warn "$count_record\n" unless $count_record % 1009;
 printf {*STDERR} "%d\r", ++$count_record;
 
-print OUT join("\t",$ACC_HERB{$cch2idb},$cch2idb,$ACC_MOD{$cch2idb},$aidStatus,$cchidb,$altcchidb,$aidSpace,$aidName,$aidCounty,$catb,$ocatb,$aidGUID),"\n";
-
-		}
-		else{
-print  BAD join("\t",$ACC_HERB{$cch2idb},$cch2idb,$ACC_MOD{$cch2idb},$aidStatus,$cchidb,$altcchidb,$aidSpace,$aidName,$aidCounty,$catb,$ocatb,$aidGUID),"\n";
-
-			print "MISSING CCH2_ID==>$cch2idb==>$ACC_HERB{$cch2idb}-->$cchidb($catb==>$ocatb)\n";
-			#most of the ones kicked out here are missing accessions and barcodes in CCH2
-			#they should be added to CCH1 as these fields are populated
-			#however this count will grow and contract as as specimens are added
-			++$BAD_REM;
-		}
-	}
+   if (($catb =~ m/^ *$/) && ($ocatb =~ m/^ *$/)){
+		++$null;
+		next;
+   }
+   else{
+   
+print OUT join("\t",$herbcode,$catb,$ocatb,$cch2idb,$old_cchid,$barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$ACC_MOD{$cch2idb}),"\n";
+	++$CCH1_CAT;
+   }
 
 }
 print <<EOP;
-CCH2 Main TOTAL RECORDS: $included
 
-CCH2 NULL Barcodes and CatNumbers: $skipped
+AID PROCESSED REPORT:
+CCH MAIN TOTAL RECORDS: $included
 
-CCH2 NONVASC EXCL: $non
+CCH MAIN null Barcodes and CatNumbers: $null (this should be null, if not something is wrong)
 
-BAD ACCESSION format 1: $bad1
-BAD ACCESSION format 2: $bad2
-
-MAIN RECORD EXCL: $excluded
-
-CCH1 accession WITH CCH2 ID: $CCH1_CAT
-
-CCH1 Numbers NOT FOUND IN CCH2: $BAD_REM
+processed CCH1 accessions linked to CCH2 ID: $CCH1_CAT
 
 EOP
-
 
 close(IN);
 close(OUT);

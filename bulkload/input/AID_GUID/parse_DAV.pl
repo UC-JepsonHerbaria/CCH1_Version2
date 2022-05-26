@@ -1,103 +1,145 @@
 
-#use strict;
+use strict;
 #use warnings;
 #use diagnostics;
-use lib '/Users/Shared/Jepson-Master/Jepson-eFlora/Modules';
+use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
+my $today_JD = &get_today_julian_day;
 
-my $today_JD;
+open(BULKLOG, ">>../../output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
-$herb="DAV";
+
+$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
+my $herb = "DAV";
+
+#my $dirdate = "2021_APR16";
+#my $dirdate="2021_AUG28";
+#my $dirdate="2022_JAN26";
+my $dirdate="2022_MAR02";
 #$filedate="11072019";
-#$filedate="12052019";
-$filedate="01292020";
+#my $filedate="12052019";
+#my $filedate = "01292020";
+#my $filedate = "04162021";
+#my $filedate="08282021";
+#my $filedate="01262022";
+my $filedate="03022022";
 
 
-open(IN, "/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_".$herb."_list.txt") || die;
-local($/)="\n";
-while(<IN>){
-	chomp;
-	($CN,$OCN,$ID,$acc,$alt,@residue)=split(/\t/);
-
-	$DUP{$alt}++;
-}
-
-close(IN);
-
-$today_JD = &get_today_julian_day;
 my %month_hash = &month_hash;
 
-my %DUP_FOUND;
-my %duplicate;
-my $included;
-my %temp_skipped;
-my $countNoteTemp;
-my $countFail;
-my %ICPN_ENTRY;
-my %skipped;
-my $line_store;
-my $count;
-my $seen;
-my %seen;
-my $det_string;
-my $count_record;
-my $GUID;
-my %GUID_old;
-my %GUID;
-my $old_AID;
-my $barcode;
-my %TYPE;
+
+#declare variables
+#counts
+my ($skipped, $included, %seen, %DUP,$count_record,$dups,$null) = "";
+my (%duplicate_FOUND_CAT, %duplicate_FOUND_OTH) = "";
+my (%DUP_FOUND,%duplicate_OTH,%duplicate_CAT) = "";
+
+#out file variables for CCH2 compatibility
+my ($CCH2id,$ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+
+#DUPs IN file
+my ($HN,$CN,$OCN,$GID,$old,$bar,$alt,$stat,$GUID,$SCN,$VC) = "";
+
+#IN TABLE
+#CCH2 symbiota table
+my ($institutionCode, $id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
+my ($occurrenceID, $catalogNumber, $otherCatalogNumbers, $kingdom, $phylum) = "";#10
+my ($class, $order, $family, $scientificName, $taxonID) = "";#15
+my ($scientificNameAuthorship, $genus, $specificEpithet, $taxonRank, $infraspecificEpithet) = "";#20
+my ($identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks) = "";#25
+my ($identificationQualifier, $typeStatus, $recordedBy, $associatedCollectors, $recordNumber) = "";#30
+my ($eventDate, $year, $month, $day, $startDayOfYear) = "";#35
+my ($endDayOfYear, $verbatimEventDate, $occurrenceRemarks, $habitat, $substrate, $verbatimAttributes, $fieldNumber) = "";#40
+my ($informationWithheld, $dataGeneralizations, $dynamicProperties, $associatedTaxa, $reproductiveCondition) = "";#45
+my ($establishmentMeans, $cultivationStatus, $lifeStage, $sex, $individualCount) = "";#50
+my ($preparations, $country, $stateProvince, $verbatimCounty, $municipality) = "";#55
+my ($locality, $locationRemarks, $localitySecurity, $localitySecurityReason, $latitude) = "";#60
+my ($longitude, $geodeticDatum, $coordinateUncertaintyInMeters, $verbatimCoordinates, $georeferencedBy) = "";#65
+my ($georeferenceProtocol, $georeferenceSources, $georeferenceVerificationStatus, $georeferenceRemarks, $minimumElevationInMeters) = "";#70
+my ($maximumElevationInMeters, $minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation) = "";#75
+my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "";#80
+my ($collId, $recordId, $references) = "";#83
+my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
+my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+
+#DAV conversion file
+my ($herbcode,$cch2idb,$old_DAV,$barcode_DAV,$alt_DAV,%CONV_DAV,%NEW_DAV,$countDAV) = "";
 
 
-#InstitutionCode	occid	occurrenceID	catalogNumber	otherCatalogNumbers	Sciname	tidinterpreted	taxonRemarks	identificationQualifier	identifiedBy	dateIdentified	identificationRemarks	typeStatus	recordedBy	associatedCollectors	recordNumber	year	month	day	verbatimEventDate	country	stateProvince	county	locality	locationRemarks	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	verbatimCoordinates	verbatimEventDate	georeferencedBy	georeferenceSources	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	verbatimElevation	habitat	occurrenceRemarks	associatedTaxa	verbatimAttributes	reproductiveCondition	cultivationStatus	dateLastModified
+local($/)="\n";
+
+open(IN, "/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH1_hash_files/DAV_OLD_to_NEW_AID.txt") || die;
+
+while(<IN>){#read in the DAV conversion file
+#These are the old Access record ID, which were used as accessions in the old CCH1
+		chomp;
+		($herbcode,$cch2idb,$old_DAV,$barcode_DAV,$alt_DAV)=split(/\t/);
+
+		$CONV_DAV{$old_DAV}=$cch2idb;
+		$NEW_DAV{$cch2idb}=$old_DAV;
+
+}
+close(IN);
+
+open(IN, "DUPS/DUPS_".$herb.$today_JD.".txt") || die;
+#open(IN, "DUPS/DUPS_CAS-BOT.txt") || die;
+while(<IN>){
+	chomp;
+	($HN,$CN,$OCN,$GID,$old,$bar,$alt,$stat,$GUID,$SCN,$VC)=split(/\t/);
+
+		$DUP{$GID}++;
+}
+close(IN);
 
 
 #CAS is first on the list, so it opens a new file for these two, while all others append
-open(OUT3, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_excluded.txt") || die;
-open(OUT2, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD.txt") || die;
+open(OUT3, ">>DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
+open(OUT2, ">>output/AID_to_ADD_".$today_JD.".txt") || die;
 
-print OUT2 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
-print OUT3 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
+#print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
+#print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 
+#my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
+my $mainFile='../../output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
-
-#id	type	modified	language	institutionCode	collectionCode	basisOfRecord	occurrenceID	catalogNumber	occurrenceRemarks	recordNumber	recordedBy	otherCatalogNumbers	eventDate	startDayOfYear	year	month	day	verbatimEventDate	habitat	higherGeography	continent	country	stateProvince	county	municipality	locality	verbatimElevation	minimumElevationInMeters	maximumElevationInMeters	verbatimLatitude	verbatimLongitude	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	georeferenceProtocol	georeferenceVerificationStatus	identifiedBy	dateIdentified	typeStatus	scientificName	higherClassification	kingdom	phylum	class	order	family	genus	specificEpithet	infraspecificEpithet	verbatimTaxonRank	scientificNameAuthorship	nomenclaturalCode
-#urn:catalog:CAS:BOT-BC:522744	PhysicalObject	2016-10-19 09:19:30.0	en	CAS	BOT-BC	PreservedSpecimen	urn:catalog:CAS:BOT-BC:522744	522744	Shrub 10 feet tall	41804	Breedlove, D E	urn:catalog:CAS:DS:702772 | DS 702772	1976-11		1976	11		22 November 1976	Steep slopes and dry ravines	North America; Mexico; Chiapas; Amatenango de la Frontera Municipio	North America	Mexico	Chiapas	Amatenango de la Frontera Municipio		along Río Cuilco between Nuevo Amatenango and Frontera Comalapa	1100 m	1100	1100												Croton guatemalensis  Lotsy	Plantae; Magnoliophyta; Magnoliopsida; Euphorbiales; Euphorbiaceae	Plantae	Magnoliophyta	Magnoliopsida	Euphorbiales	Euphorbiaceae	Croton	guatemalensis			Lotsy	ICBN
-
-
-my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/CCH2_export_'.$filedate.'.txt';
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
 	chomp;
 
-#fix some data quality and formatting problems that make import of fields of certain records problematic
-	
-    if ($. == 1){#activate if need to skip header lines
+        if ($. == 1){#activate if need to skip header lines
 			next Record;
 		}
+		
 
 		my @fields=split(/\t/,$_,100);
 
-    unless( $#fields == 84){ #if the number of values in the columns array is exactly 85
+		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
+		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
 
-	&CCH::log_skip("$#fields bad field number $_\n");
-	++$skipped{one};
-	next Record;
-	}
+			warn "$#fields bad field number $_\n";
 
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers
+			next Record;
+		}
+
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
+#higherClassification	kingdom	
 ($CCH2id,
 $institutionCode,
 $collectionCode,
-$ownerInstitutionCode,	#added 2016
+$ownerInstitutionCode,
+#$collectionID,  #this keeps appearing and disappearing, I think it is in the Darwin Core export and not Symbiota Native
 $basisOfRecord,
 $occurrenceID,
 $catalogNumber,
 $otherCatalogNumbers,
+$higherClassification,
 $kingdom,
-$phylum,
 #10
-#kingdom	phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
+#specificEpithet	
+#$kingdom,
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+$phylum,
 $class,
 $order,
 $family,
@@ -105,25 +147,27 @@ $scientificName,
 $taxonID,
 $scientificNameAuthorship,
 $genus,
+$subgenus,
 $specificEpithet,
-$taxonRank,
-$infraspecificEpithet,
-$identifiedBy,
 #20
-#taxonRank	infraspecificEpithet	identifiedBy	dateIdentified	identificationReferences	identificationRemarks	
-#taxonRemarks	identificationQualifier	typeStatus	recordedBy	associatedCollectors	recordNumber	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
+#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+$verbatimTaxonRank,
+$infraspecificEpithet,
+$taxonRank,
+$identifiedBy,
 $dateIdentified,
-$identificationReferences,	#added 2015, not processed
-$identificationRemarks,	#added 2015, not processed
-$taxonRemarks,	#added 2015
+$identificationReferences,
+$identificationRemarks,
+$taxonRemarks,
 $identificationQualifier,
 $typeStatus,
-$recordedBy,
-#$recordedByID,			#added 2016, not in 2017 download
-$associatedCollectors,	#added 2016, not in 2017 download, combined within recorded by with a ";"
-$recordNumber,
 #30
-#eventDate	year	month	day	startDayOfYear	endDayOfYear	verbatimEventDate	occurrenceRemarks	habitat	substrate	
+#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
+#verbatimEventDate	
+$recordedBy,
+$associatedCollectors, #This is in Symbiota Native and not Darwin Core
+$recordNumber,
 $eventDate,
 $year,
 $month,
@@ -131,238 +175,252 @@ $day,
 $startDayOfYear,
 $endDayOfYear,
 $verbatimEventDate,
+#40
+#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
+#dynamicProperties	associatedOccurrences	
 $occurrenceRemarks,
 $habitat,
-$substrate,			#added 2016
-#40
-#verbatimAttributes	fieldNumber	informationWithheld	dataGeneralizations	dynamicProperties	associatedTaxa	
-#reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	
-$verbatimAttributes, #added 2016
+$substrate, #This is in Symbiota Native and not Darwin Core
+$verbatimAttributes, #This is in Symbiota Native and not Darwin Core
 $fieldNumber,
+$eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
-$dataGeneralizations,	#added 2015, not processed, field empty as of 2016
-$dynamicProperties,	#added 2015, not processed
+$dataGeneralizations,
+$dynamicProperties,
+$associatedOccurrences,
+#$associatedTaxa,
+#$reproductiveCondition,
+#$establishmentMeans,
+#50
+#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
+#individualCount	preparations	country	
+$associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
-$establishmentMeans,	#added 2015, not processed
-$cultivationStatus,	#added 2016
+$establishmentMeans,
+$cultivationStatus, #This is in Symbiota Native and not Darwin Core
 $lifeStage,
-#50
-#sex	individualCount	preparations	country	stateProvince	county	municipality	locality	
-#locationRemarks	localitySecurity
-$sex,	#added 2015, not processed
-$individualCount,	#added 2015, not processed
-$preparations,	#added 2015, not processed
+$sex,
+$individualCount,
+$preparations,
 $country,
+#$stateProvince,
+#$verbatimCounty,
+#$municipality,
+#$locality,
+#$locationRemarks,
+#60
+#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	
 $stateProvince,
-$county,
+$verbatimCounty,
 $municipality,
 $locality,
-$locationRemarks, #newly added 2015-10, not processed
-$localitySecurity,		#added 2016, not processed
-#60
-#localitySecurityReason	decimalLatitude	decimalLongitude	geodeticDatum	
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	
-$localitySecurityReason,	#added 2016, not processed
-$verbatimLatitude,
-$verbatimLongitude,
+$locationRemarks,
+$localitySecurity, #This is in Symbiota Native and not Darwin Core
+$localitySecurityReason, #This is in Symbiota Native and not Darwin Core
+$latitude,
+$longitude,
 $geodeticDatum,
+#$coordinateUncertaintyInMeters,
+#$verbatimCoordinates,
+#$georeferencedBy,
+#$georeferenceProtocol,
+#$georeferenceSources,
+#$georeferenceVerificationStatus,
+#$georeferenceRemarks,
+#70
+#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
+#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
-$georeferencedBy,	#added 2015, not processed
-$georeferenceProtocol,	#added 2015, not processed
-$georeferenceSource,
-$georeferenceVerificationStatus,	#added 2015, not processed
-#70
-#georeferenceRemarks	minimumElevationInMeters	
-#maximumElevationInMeters	minimumDepthInMeters	maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
-#language	recordEnteredBy
-$georeferenceRemarks,	#added 2015, not processed
+$georeferencedBy,
+$georeferenceProtocol,
+$georeferenceSources,
+$georeferenceVerificationStatus,
+$georeferenceRemarks,
 $minimumElevationInMeters,
-$maximumElevationInMeters, #not processed for now
-$minimumDepthInMeters, #newly added 2015-10, not processed
-$maximumDepthInMeters, #newly added 2015-10, not processed
-$verbatimDepth, #newly added 2015-10, not processed
-$verbatimElevation,
-$disposition,	#added 2015, not processed
-$language,	#added 2015, not processed
-$recordEnteredBy, #newly added 2015-10, not processed
+$maximumElevationInMeters,
+$minimumDepthInMeters,
+#$verbatimDepth,
+#$verbatimElevation,
+#$disposition,
+#$language,
+#$recordEnteredBy,
+#$modified,
 #80
-#modified	sourcePrimaryKey-dbpk	collId	recordId	references
-$modified,	#added 2015, not processed
-$sourcePrimaryKey,  #added 2016, not processed
-$collID,	#added 2016, not processed
-$recordId,	#added 2015, not processed
-$references	#added 2016, not processed
-)=@fields;	#The array @columns is made up on these 85 scalars, in this order
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
+#sourcePrimaryKey-dbpk	collId	recordId	references
+$maximumDepthInMeters,
+$verbatimDepth,
+$verbatimElevation,
+$disposition,
+$language,
+$recordEnteredBy,
+$modified,
+$sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
+#$rights,  #This is in Darwin Core and not Symbiota Native
+#$rightsHolder, #This is in Darwin Core and not Symbiota Native
+#$accessRights, #This is in Darwin Core and not Symbiota Native
+$collId, #This is in Symbiota Native and not Darwin Core
+$recordId,
+#90
+$references	
+) = @fields;	
+#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
+#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code
-if ($institutionCode =~ m/^DAV$/){
+  if ($institutionCode =~ m/^DAV$/){
 
 
 #warn "$count_record\n" unless $count_record % 1009;
-printf {*STDERR} "%d\r", ++$count_record;
-
+  printf {*STDERR} "%d\r", ++$count_record;
 
 
 ########ACCESSION NUMBER
 #check for nulls
 	if ($CCH2id=~/^ *$/){
 		&CCH::log_skip("Record with no CCH2 ID $_");
-		++$skipped{one};
+		++$skipped;
 		next Record;
 	}
-
-my $oldA ="";
-	$catalogNumber =~ s/^DAV307257DAV307257/DAV307257/; #there is one bad record here that needed fixed
-	$catalogNumber =~ s/^(03533599101294|004805021602)$//; #there two more records here that needed fixed
-
 	
+#construct the old CCH1 aid, add it to the 3rd alt field
+	my $temp = $NEW_DAV{$CCH2id};
+   #print "$temp\n";
+   if ($temp =~ m/^UCD\d+$/){
+		$oldA = $temp;
+		++$countDAV;
+   }
+   else{
+   		$oldA = "";
+   }
+	
+	
+	$catalogNumber =~ s/^DAV307257DAV307257/DAV307257/; #there is one bad record here that needed fixed
+	$catalogNumber =~ s/^(40533599107568|03533599101294|004805021602)$//; #there two more records here that needed fixed
+	$otherCatalogNumbers =~ s/^[A-Z]+$//; #BAD otherCatalogNumbers==>3934182==>==>CORD
+	$otherCatalogNumbers =~ s/^c;(.*)/$1/; #BAD otherCatalogNumbers==>1354957==>DAV329645==>c; UCD101726
+	
+
 #extract old herbarium and aid numbers
-if (length ($otherCatalogNumbers) >= 1){
-	if ($otherCatalogNumbers =~ m/^(DAV|AHUC)([0-9]+[A-Z]*); *(UCD[0-9]+)$/){ #DAV is unique as it has a combined otherCatalogNumber field
-														#it has to be split into two components, one is the old CCH AID; DAV122395; UCD125896
-		$oldA= $1.$2;
-		$old_AID = $3;
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
-	}
-	elsif ($otherCatalogNumbers =~ m/^(JOTR|PORE|YOSE|OSE)([0-9]+); *(UCD[0-9]+)$/){ #DAV some other accessioned entered in the otherCatalogNumber field
-														#it has to be split into two components, one is the old CCH AID; DAV122395; UCD125896
-														#YOSE is Yousemite, PORE is Point Reyes
-		$oldA= $1.$2;
-		$old_AID = $3;
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
-	}
-	elsif ($otherCatalogNumbers =~ m/^(AV|DV|DA|DAAV|DAC|DAVA|DFAV)([0-9]+)[AB]?; *(UCD[0-9]+)$/){ #DAV has typo herbarium codes in the otherCatalogNumber field
-														#it has to be split into two components, one is the old CCH AID; DAV122395; UCD125896
-		$oldA= "DAV".$2;
-		$old_AID = $3;
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
-	}
-	elsif ($otherCatalogNumbers =~ m/^(HUC|AHUCL|AUHC|AUHC|AHUCA|AUC|AHUV)([0-9]+); *(UCD[0-9]+)$/){ #DAV has typo herbarium codes in the otherCatalogNumber field
-														#it has to be split into two components, one is the old CCH AID; DAV122395; UCD125896
-		$oldA= "AHUC".$2;
-		$old_AID = $3;
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
-	}
-	elsif ($otherCatalogNumbers =~ m/^(UCD[0-9]+); *$/){ #DAV is unique as with this variant
-		$old_AID = $1;
-		$oldA= "";
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
-	}
-	elsif ($otherCatalogNumbers =~ m/^(DAV|AHUC)([0-9]+)[AB]?$/){ #DAV has some records without old Access record ID in otherCatalogNumber field
+   if (length ($otherCatalogNumbers) >= 1){
+	if ($otherCatalogNumbers =~ m/^(JOTR|PORE|YOSE|OSE)([0-9]+)$/){ 
 		$old_AID = "";
-		$oldA= $1.$2;
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
 	}
-	elsif ($otherCatalogNumbers =~ m/NULL/){
+	elsif ($otherCatalogNumbers =~ m/^(DAV|AV|DV|DA|DAAV|DAC|DAVA|DFAV)([0-9]+)[A-Za-z]*$/i){
+		$old_AID = "DAV".$2;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(DAV|AV|DV|DA|DAAV|DAC|DAVA|DFAV) +([0-9]+)[A-Za-z]*$/i){ 
+		$old_AID = "DAV".$2;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(DAV|AV|DV|DA|DAAV|DAC|DAVA|DFAV)([0-9]+)[A-Za-z]*[,;].*$/i){ 
+		$old_AID = "DAV".$2;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(HUC|AHUCL|AUHC|AHUC|AHUCA|AUC|AHUV)([0-9]+)[A-Za-z]*$/i){ 
+		$old_AID = "AHUC".$2;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(UCD[0-9]+);? *.+$/){ #DAV unique variant
+		$old_AID = "";
+	}
+	elsif ($otherCatalogNumbers =~ m/^(BIBE) *([0-9]+)[A-Za-z]*$/i){ 
+		$old_AID = "";
+		$oldA = "";
+	}
+	elsif ($otherCatalogNumbers =~ m/^(NULL| *)$/){
 		$otherCatalogNumbers = "";
-		$oldA="";
-		$old_AID="";
+		$old_AID = "";
 	}
 	else{
-		&CCH::log_change("BAD Accession==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
-		print "BAD otherCatalogNumbers==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
 		$otherCatalogNumbers = "";
-		$oldA="";
-		$old_AID="";
+		$old_AID = "";
 	}
-}
-else{
+   }
+   else{
 		$otherCatalogNumbers = "";
-		$oldA="";
-		$old_AID="";
-}
+		$old_AID = "";
+   }
 
 #construct catalog numbers
-#daV has some anomalies that are not barcodes added to catalogNumber; examples of the many records below
-#BAD catalogNumber==>3699265==>AHUC100618==>AHUC37713
-#BAD catalogNumber==>1354161==>AHUC101868==>AHUC24153; UCD100910
-#BAD catalogNumber==>1354195==>YOSE230658==>YOSE230658; UCD100945
-#BAD otherCatalogNumbers==>1354643==>NULL==>UCD101408;
-#BAD otherCatalogNumbers==>1354660==>NULL==>UCD101425;
 
-
-if (length ($catalogNumber) >= 1){
-	
-	if ($catalogNumber =~ m/^(DAV)(\d+)$/){ #DAV is adding barcodes incrementally, so not all old CCH numbers have them
-
-		$ALT_CCH_BARCODE = $1."-BC".$2;
-		#$ALT_CCH_BARCODE=$catalogNumber; DAV has 3 different barcodes, so catalog number cannot be assigned here
-		#print "HERB(3)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
+   if (length ($catalogNumber) >= 1){
+	if ($catalogNumber =~ m/^(DAV|AHUC)(0*[1-9][0-9]*)$/){ #DAV is adding barcodes incrementally, so not all old CCH numbers have them
+		$ALT_CCH_BARCODE = $1.$2."-BARCODE";
+		$duplicate_CAT{$ALT_CCH_BARCODE}++;#count to find duplicates
 	}
-	elsif ($catalogNumber =~ m/^(AHUC)(\d+)$/){ #AHUC is part of DAV and it appears they are not adding DAV to these barcodes
-
-		$ALT_CCH_BARCODE = $1."-BC".$2;
-		#$ALT_CCH_BARCODE=$catalogNumber; DAV has 3 different barcodes, so catalog number cannot be assigned here
-		#print "HERB(3)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
+	elsif ($catalogNumber =~ m/^(dav)(0*[1-9][0-9]*)$/){ #DAV is adding barcodes incrementally, so not all old CCH numbers have them
+		$ALT_CCH_BARCODE = "DAV".$2."-BARCODE";
+		$duplicate_CAT{$ALT_CCH_BARCODE}++;#count to find duplicates
 	}
 	elsif ($catalogNumber =~ m/^(YOSE)(\d+)$/){ #YOSE is NOT is part of DAV; they do not appear to eb re-assinging DAV barcodes to these
-												#these will conflict with YOSE, so make the catalogNumber for these NULL
 		$ALT_CCH_BARCODE = "";
 		$catalogNumber = "";
-		#$ALT_CCH_BARCODE=$catalogNumber; DAV has 3 different barcodes, so catalog number cannot be assigned here
-		#print "HERB(3)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/98/g;
 	}
-	elsif ($catalogNumber =~ m/NULL/){
+	elsif ($catalogNumber =~ m/^(NULL| *)$/){
 		$catalogNumber = "";
-		$ALT_CCH_BARCODE ="";
+		$ALT_CCH_BARCODE="";
 	}
 	else{
-		&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
-		print "BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
 		$catalogNumber = "";
-		$ALT_CCH_BARCODE ="";
+		$ALT_CCH_BARCODE="";
 	}
-}
-else{
+   }
+   else{
 		$catalogNumber = "";
-		$ALT_CCH_BARCODE ="";
-}
-#Add prefix to unique identifier field, two format, choose one and add to the code above
-#$ALT_CCH_BARCODE=$aidcode.$aid;
-#$ALT_CCH_BARCODE=$herb.$catalogNumber;
-#$ALT_CCH_BARCODE=$catalogNumber; #use this format if the old CCH herbarium code is correctly added in the catalog number field
-
-
-
-if (($catalogNumber =~ m/^ *$/) && ($otherCatalogNumbers =~ m/^ *$/)){
+		$ALT_CCH_BARCODE="";
+   }
+   
+   
+   if (($catalogNumber =~ m/^ *$/) && ($otherCatalogNumbers =~ m/^ *$/)){
 		&log_skip("$herb ALL AIDs NULL: $CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");	#run the &log_skip function, printing the following message to the error log
 		++$null;
 		next Record;
-}
-else{
+   }
+   else{
 #Remove duplicates
-	if($DUP{$old_AID}){#these should not have duplicates, but some are
-		print OUT3 "$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tDUP\t$occurrenceID\t$scientificName\t$county\n";
+	if($DUP{$CCH2id}){
+		print OUT3 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
 #print "EXCL $old_AID\n";
 ++$dups;
 	}
 	else{
-		print OUT2 "$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tNONDUP\t$occurrenceID\t$scientificName\t$county\n";
+		print OUT2 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tNONDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
 #print "INCL $old_AID\n";
 ++$included;
 	}
-}
+   }
 
-}
-
-
-
-
-
+  }
 }
 print <<EOP;
+
 $herb INCL: $included
-$herb EXCL: $dups
+$herb DUPS: $dups
 $herb NULL: $null
+UCD alt accessions: $countDAV
 
 $herb TOTAL: $count_record
 
 EOP
 
+print BULKLOG <<EOP;
+
+$herb INCL: $included
+$herb DUPS: $dups
+$herb NULL: $null
+UCD alt accessions: $countDAV
+
+$herb TOTAL: $count_record
+
+EOP
 
 close(IN);
 close(OUT2);
 close(OUT3);
+close(BULKLOG);

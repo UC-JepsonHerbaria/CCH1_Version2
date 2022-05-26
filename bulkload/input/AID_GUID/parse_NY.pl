@@ -1,214 +1,247 @@
 
-#use strict;
+use strict;
 #use warnings;
 #use diagnostics;
-use lib '/Users/Shared/Jepson-Master/Jepson-eFlora/Modules';
+use lib '../../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
+my $today_JD = &get_today_julian_day;
 
-my $today_JD;
+open(BULKLOG, ">>../../output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
-#$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
-$herb="NY";
-#$filedate="11072019";
-$filedate="01302013";
 
-open(IN,"/Users/Shared/Jepson-Master/Jepson-eFlora/synonymy/input/smasch_taxon_ids.txt") || die;
-while(<IN>){
-	chomp;
-	#s/× /&times;/;
-	($code,$name)=split(/\t/);
-	$NAME_TO_CODE{$name}=$code;
-	$CODE_TO_NAME{$code}=$name;
-}
-close(IN);
+$| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
 
-#CCH2_catalogNumber	CCH2_otherCatalogNumbers	CCH2_ID	OLD_CCH_AID	ALT_CCH_ID	ALT_CCH_AID_SPACE	Status	GUID-occurrenceID
+my $herb="NY";
 
-open(IN, "/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_".$herb."_list.txt") || die;
+my $dirdate="2022_APR28";
+
+my $filedate="04282022";
+
+
+my %month_hash = &month_hash;
+
+
+#declare variables
+
+#counts
+my ($skipped, $included, %seen, %duplicate_FOUND_CAT, %duplicate_FOUND_OTH) = "";
+my ($dups,$dups_B,$ALTER, $ORTH, %DUP_FOUND,%duplicate_OTH,%duplicate_CAT) = "";
+my ($count_record,@fields,$null) = "";
+
+#out file variables for CCH2 compatibility
+my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+
+#NY occid infile
+my ($OC,$IC,$CO,$OCC,$CA,$OCA,%OCCID) = "";
+
+#NY dup infile
+my ($HN,$CN,$OCN,$GID,$old,$bar,$alt,$stat,$GUID,$SCN,$VC,%DUP) = "";
+
+#NY IN file
+my ($institutionCode, $CCH2id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
+my ($occurrenceID, $catalogNumber, $otherCatalogNumbers, $kingdom, $phylum) = "";#10
+my ($class, $order, $family, $scientificName, $taxonID) = "";#15
+my ($scientificNameAuthorship, $genus, $specificEpithet, $taxonRank, $infraspecificEpithet) = "";#20
+my ($identifiedBy, $dateIdentified, $identificationReferences, $identificationRemarks, $taxonRemarks) = "";#25
+my ($identificationQualifier, $typeStatus, $recordedBy, $associatedCollectors, $recordNumber) = "";#30
+my ($eventDate, $year, $month, $day, $startDayOfYear) = "";#35
+my ($endDayOfYear, $verbatimEventDate, $occurrenceRemarks, $habitat, $substrate, $verbatimAttributes, $fieldNumber) = "";#40
+my ($informationWithheld, $dataGeneralizations, $dynamicProperties, $associatedTaxa, $reproductiveCondition) = "";#45
+my ($establishmentMeans, $cultivationStatus, $lifeStage, $sex, $individualCount) = "";#50
+my ($preparations, $country, $stateProvince, $verbatimCounty, $municipality) = "";#55
+my ($locality, $locationRemarks, $localitySecurity, $localitySecurityReason, $latitude) = "";#60
+my ($longitude, $geodeticDatum, $coordinateUncertaintyInMeters, $verbatimCoordinates, $georeferencedBy) = "";#65
+my ($georeferenceProtocol, $georeferenceSources, $georeferenceVerificationStatus, $georeferenceRemarks, $minimumElevationInMeters) = "";#70
+my ($maximumElevationInMeters, $minimumDepthInMeters, $maximumDepthInMeters, $verbatimDepth, $verbatimElevation) = "";#75
+my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "";#80
+my ($collId, $recordId, $references,$dateflag,$eventDate_parse) = "";#83
+my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
+my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences,$origDetName) = "";
+my ($elevationInFeet,$CCH_elevationWarning,$elevationInMeters,$county,$decimalLatitude) = "";
+my ($decimalLongitude,$EJD,$LJD,$verbatimDate,$origDet,$displayName) = "";#
+my ($oldCCHID,$hybrid_formula,$id,$hybrid_formula,$qualifier,$CCHbarcode) = "";
+
+
+#herb	CCH2_catalogNumber	CCH2_otherCatalogNumbers	GBIF_ID	OLD_CCH_AID	ALT_CCH_ID	ALT_CCH_AID_SPACE	Status	GUID-occurrenceID	scientificName	county
+#CAS	616749	CAS 800069	2239722878	CAS800069	CAS-BOT616749 BARCODE		DUP	urn:catalog:CAS:BOT-BC:616749	Marah oregana (Torr. & A.Gray) Howell	Mendocino
+
+
+open(IN, "DUPS/DUPS_".$herb.$filedate.".txt") || die;
+#open(IN, "DUPS/DUPS_CAS-BOT.txt") || die;
+
 local($/)="\n";
 while(<IN>){
 	chomp;
-	($CN,$OCN,$ID,$acc,$alt,@residue)=split(/\t/);
-
-	if (length ($acc) >= 1){
-		$DUP{$acc}++;
-	}
+	($HN,$CN,$OCN,$GID,$old,$bar,$alt,$stat,$GUID,$SCN,$VC)=split(/\t/);
+		#GID is not the GBIF ID, it is the guid for all GBIF downloads
+		$DUP{$GID}++;
 }
 
 close(IN);
 
-$today_JD = &get_today_julian_day;
-my %month_hash = &month_hash;
-
-#this herb is first on the list, so it opens a new file for these two, while all others append
-open(OUT3, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/DUPS/DUPS_excluded.txt") || die;
-open(OUT2, ">>/Users/Shared/Jepson-Master/CCHV2/bulkload/input/AID_GUID/output/AID_to_ADD.txt") || die;
-
-#print OUT2 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
-print OUT3 "CCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tALT_CCH_ID\tALT_CCH_AID_SPACE\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 
 
+#InstitutionCode	occid	occurrenceID	catalogNumber	otherCatalogNumbers	Sciname	tidinterpreted	taxonRemarks	identificationQualifier	identifiedBy	dateIdentified	identificationRemarks	typeStatus	recordedBy	associatedCollectors	recordNumber	year	month	day	verbatimEventDate	country	stateProvince	county	locality	locationRemarks	decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	verbatimCoordinates	verbatimEventDate	georeferencedBy	georeferenceSources	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	verbatimElevation	habitat	occurrenceRemarks	associatedTaxa	verbatimAttributes	reproductiveCondition	cultivationStatus	dateLastModified
 
-my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/NY/CDL_Main_NY_'.$filedate.'.txt';
-open (IN, $mainFile) or die $!;
+open(OUT3, ">>DUPS/DUPS_to_be_excluded_".$today_JD.".txt") || die;
+open(OUT2, ">>output/AID_to_ADD_".$today_JD.".txt") || die;
+
+print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
+print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
+
+my $mainFile='../../output/NY-CCH2_out_'.$filedate.'.txt';
+#only harvesting the CCH2 ID's and CCH1 ids from this file here
+open (IN, "<", $mainFile) or die $!;
 Record: while(<IN>){
 	chomp;
 
-	
-
-#fix some data quality and formatting problems that make import of fields of certain records problematic
-	
-#    if ($. == 1){#activate if need to skip header lines
-#			next Record;
-#		}
-
-
+        if ($. == 1){#activate if need to skip header lines
+			next Record;
+		}
+		
 
 		my @fields=split(/\t/,$_,100);
-		
-			foreach(@fields){
-		s/^"//;
-		s/"$//;
-		s/""/"/g;
-	}
 
-    unless( $#fields == 17){ #if the number of values in the columns array is exactly 18
+		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
 
-	&CCH::log_skip("$#fields bad field number $_\n");
-	next Record;
-	}
-#key = id
-#name = fields[0] = scientificName
-#fields[1] = collectors
-#fields[2] = CNUM_prefix
-#fields[3] = CNUM
-#fields[4] = CNUM_suffix
-#fields[5] = EJD
-#fields[6] = LJD
-#fields[7] = verbatimDate
-#fields[8] = county
-#fields[9] = elevation
-#fields[10] = locality
-#fields[11] = latitude
-#fields[12] = longitude
-#fields[13] = datum
-#fields[14] = georefSource
-#fields[15] = townshipRangeSection
-#fields[16] = errorRadius
-#fields[17] = ERunits
-#fields[18] = Yellow flag (1 if YF)
+			warn "$#fields bad field number $_\n";
 
+			next Record;
+		}
 
-	($key,
-$collectors,
-$CNUM_prefix,
-$CNUM,
-$CNUM_suffix,
-$EJD,
-$LJD,
-$verbatimDate,
-$county,
-$elevation,
-$locality,
-$latitude,
-$longitude,
-$datum,
-$georefSource,
-$townshipRangeSection,
-$errorRadius,
-$ERunits)=@fields;
+		($CCH2id,
+		$institutionCode,
+		$catalogNumber,
+		$otherCatalogNumbers,
+		$CCHbarcode,
+		$oldCCHID,
+		$occurrenceID,
+		$scientificName,
+		$displayName,
+		$origDet,
+		$hybrid_formula,
+		$qualifier,
+		$identifiedBy,
+		$dateIdentified,
+		$identificationRemarks,
+		$typeStatus,
+		$recordedBy,
+		$recordNumber,
+		$verbatimDate,
+		$eventDate_parse,
+		$EJD,
+		$LJD,
+		$country,
+		$stateProvince,
+		$verbatimCounty,
+		$locality,
+		$occurrenceRemarks,
+		$habitat,
+		$associatedTaxa,
+		$verbatimAttributes,
+		$reproductiveCondition,
+		$cultivationStatus,
+		$CCH_elevationWarning,
+		$elevationInMeters,
+		$elevationInFeet,
+		$verbatimElevation,
+		$verbatimCoordinates,
+		$decimalLatitude,
+		$decimalLongitude,
+		$geodeticDatum,
+		$coordinateUncertaintyInMeters,
+		$georeferencedBy,
+		$georeferenceSources,
+		$georeferenceRemarks,
+		$modified,
+		$dateflag,
+		$county
+		) = @fields;	
+#The array @fields is made up on these 47 scalars, in this order, GBIF modified export
 
-	$taxon_id=$key;
-	$taxon_id =~ s/^NY\d+[A-Za-z]? (\d+)$/$1/;
-	$acc=$key;
-	$acc =~ s/^(NY\d+[A-Za-z]?) \d+$/$1/;
-	$collectioncode=$key;
-	$collectioncode =~ s/^(NY)(\d+[A-Za-z]?) \d+$/$1/;
-#NY1154119 21287	M. K. Brandegee				2419769	2420133	1913	Inyo		Silver Canon	37.4049778	-118.2648417					
+#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
+#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code
-if ($collectioncode =~ m/^NY$/){
+  if ($institutionCode =~ m/^(NY)$/){
 
-$oldA = "";
-$ALT_CCH_BARCODE = "NULL";
 
-#warn "$count_record\n" unless $count_record % 1009;
 printf {*STDERR} "%d\r", ++$count_record;
-
 
 
 ########ACCESSION NUMBER
 #check for nulls
-	if ($acc=~/^ *$/){
-		$acc = "NULL";
+	if ($CCH2id=~/^ *$/){
+		&CCH::log_skip("Record with no CCH2 ID $_");
+		++$skipped;
+		next Record;
 	}
-
 
 #extract old herbarium and aid numbers
-#NY numbers are only barcodes, they never had accessions stamped except from the herbaria from which certain specimens were bought
-#those purchased specimens accessions are not entered in NY database
-#the data loaded here are from CCH1 and not the original file given in 2013 
-#this will need changed when an actual NY file is obtained with new data
-if (length ($acc) >= 1){
 
-	if ($acc =~ m/^(NY)(\d+)$/){
-		$old_AID=$1.$2;
-		$oldA=$1."-BC".$2;
-		#print "HERB(1)\t$herbcode$aid\t$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n" if $otherCatalogNumbers =~ m/DS 98/g;
+	if ($oldCCHID =~ m/^(NY) *([0-9]+)[a-zA-Z]*$/){
+		$oldCCHID = $1.$2;
+		$duplicate_OTH{$oldCCHID}++;
 	}
-	elsif ($acc =~ m/NULL/){
-		$old_AID="";
+	elsif ($otherCatalogNumbers =~ m/^(NULL| *)$/){
+		$otherCatalogNumbers = "";
+		$oldCCHID="";
 	}
 	else{
-		&CCH::log_change("BAD CatalogNumber==>$acc==>\t$_");
-		print "BAD CatalogNumber==>$acc\n";
-		$old_AID="";
+		$otherCatalogNumbers = "";
+		$oldCCHID="";
 	}
-}
-else{
-		$old_AID="";
-}
-#Add prefix to unique identifier field, two format, choose one and add to the code above
-#$ALT_CCH_BARCODE=$aidcode.$aid;
-#$ALT_CCH_BARCODE=$herb.$catalogNumber;
-#$ALT_CCH_BARCODE=$catalogNumber; #use this format if the old CCH herbarium code is correctly added in the catalog number field
 
 
-$otherCatalogNumbers = "";
-$CCH2id = "NULL";
-$occurrenceID = "NULL";
-
-$name=$CODE_TO_NAME{$taxon_id};
-
-
-if ($acc =~ m/^ *$/){
-		&log_skip("$herb ALL AIDs NULL: $CCH2id==>$acc\t$_");	#run the &log_skip function, printing the following message to the error log
+#construct catalog numbers
+	if ($CCHbarcode =~ m/^(NY)([0-9]+)[a-zA-Z]*(-BARCODE)$/){
+		$CCHbarcode = $1.$2.$3;
+	}
+	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
+		$catalogNumber = "";
+		$CCHbarcode="";
+	}
+	else{
+		$catalogNumber = "";
+		$CCHbarcode="";
+	}
+   
+   if (($catalogNumber =~ m/^ *$/) && ($otherCatalogNumbers =~ m/^ *$/)){
+		&log_skip("$herb ALL AIDs NULL: $CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");	#run the &log_skip function, printing the following message to the error log
 		++$null;
 		next Record;
-}
-else{
-#Remove duplicates
-	if($DUP{$old_AID}){
-		print OUT3 "$acc\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tDUP\t$occurrenceID\t$name\t$county\n";
+   }
+   else{
+#Remove duplicate
+	if($DUP{$CCH2id}){#excludes based on the CAS GUID 
+		print OUT3 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$oldCCHID\t$CCHbarcode\t\tDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
 #print "EXCL $old_AID\n";
 ++$dups;
 	}
 	else{
-		print OUT2 "$acc\t$otherCatalogNumbers\t$CCH2id\t$old_AID\t$ALT_CCH_BARCODE\t$oldA\tNONDUP\t$occurrenceID\t$name\t$county\n";
+		print OUT2 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$oldCCHID\t$CCHbarcode\t\tNONDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
 #print "INCL $old_AID\n";
 ++$included;
 	}
+   }
+
+  }
 }
 
-}
 
-
-
-}
 print <<EOP;
+
 $herb INCL: $included
-$herb EXCL: $dups
+$herb DUPS: $dups
+$herb NULL: $null
+
+$herb TOTAL: $count_record
+EOP
+
+print BULKLOG <<EOP;
+$herb INCL: $included
+$herb DUPS: $dups
 $herb NULL: $null
 
 $herb TOTAL: $count_record
@@ -219,3 +252,4 @@ EOP
 close(IN);
 close(OUT2);
 close(OUT3);
+close(BULKLOG);
