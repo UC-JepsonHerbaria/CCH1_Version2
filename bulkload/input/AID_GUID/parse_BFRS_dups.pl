@@ -1,11 +1,18 @@
+#add new line example
+#perl -0777 -p -i -e 's/my \(\$rightsHolder,\$rights,\$associatedOccurrences,\$eventID,\$associatedSequences\) = "";\n\n/my (\$rightsHolder,\$rights,\$associatedOccurrences,\$eventID,\$associatedSequences) = "";\nmy (\$locationID,\$continent,\$waterBody,\$islandGroup,\$island,\$eventDate2) = "";/g;' *dups.pl
+
+
 use strict;
 #use warnings;
 #use diagnostics;
+
+
 use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
 my $today_JD = &CCH::get_today;
 #my $today_JD = &get_today_julian_day;
+$today_JD =~ s/ *PDT//;
 
 open(DUPLOG, ">>input/AID_GUID/DUPS/dup_log_".$today_JD.".txt") || die; 
 
@@ -16,14 +23,18 @@ my $herb = "BFRS";
 #my $dirdate = "2021_APR16";
 #my $dirdate="2021_AUG28";
 #my $dirdate="2022_JAN26";
-my $dirdate="2022_MAR02";
+#my $dirdate = "2022_MAR02";
+my $dirdate = "2022_JUL07";
+#$filedate = "2022JUL07";
+my $filedate = "2023MAR08";
+
 #$filedate="11072019";
 #my $filedate="12052019";
 #my $filedate = "01292020";
 #my $filedate = "04162021";
 #my $filedate="08282021";
 #my $filedate="01262022";
-my $filedate="03022022";
+#my $filedate = "03022022";
 
 
 my %month_hash = &CCH::month_hash;
@@ -58,15 +69,15 @@ my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "
 my ($collId, $recordId, $references) = "";#83
 my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+my ($locationID,$continent,$waterBody,$islandGroup,$island,$eventDate2) = "";
 
 
-open(OUT, ">input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
+open(OUT, ">>input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
 
 	print OUT "herb\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tscientificName\tcounty\n";
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
 my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
-
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
 	chomp;
@@ -79,16 +90,16 @@ Record: while(<IN>){
 		my @fields=split(/\t/,$_,100);
 
 		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
-		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		#unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		unless( $#fields == 96){  #if the number of values in the columns array is exactly 97, this is for Darwin Core
 
-			warn "$#fields bad field number $_\n";
+			#warn "$#fields bad field number $_\n";
 
 			next Record;
 		}
 
-
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
-#higherClassification	kingdom	
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	
+#occurrenceID	catalogNumber	otherCatalogNumbers	higherClassification	kingdom	
 ($CCH2id,
 $institutionCode,
 $collectionCode,
@@ -101,10 +112,8 @@ $otherCatalogNumbers,
 $higherClassification,
 $kingdom,
 #10
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
-#specificEpithet	
-#$kingdom,
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	
+#genus	subgenus	specificEpithet	
 $phylum,
 $class,
 $order,
@@ -116,8 +125,9 @@ $genus,
 $subgenus,
 $specificEpithet,
 #20
-#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
-#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	
+#identificationReferences	identificationRemarks	taxonRemarks	identificationQualifier	
+#typeStatus	
 $verbatimTaxonRank,
 $infraspecificEpithet,
 $taxonRank,
@@ -129,21 +139,22 @@ $taxonRemarks,
 $identificationQualifier,
 $typeStatus,
 #30
-#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
-#verbatimEventDate	
+#recordedBy	associatedCollectors	recordNumber	eventDate	eventDate2	
+#year	month	day	startDayOfYear	endDayOfYear	
 $recordedBy,
 $associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
+$eventDate2,
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
-$verbatimEventDate,
 #40
-#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
-#dynamicProperties	associatedOccurrences	
+#verbatimEventDate	occurrenceRemarks	habitat	substrate	verbatimAttributes	
+#fieldNumber	eventID	informationWithheld	dataGeneralizations	dynamicProperties	
+$verbatimEventDate,
 $occurrenceRemarks,
 $habitat,
 $substrate, #This is in Symbiota Native and not Darwin Core
@@ -153,13 +164,10 @@ $eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
 $dataGeneralizations,
 $dynamicProperties,
-$associatedOccurrences,
-#$associatedTaxa,
-#$reproductiveCondition,
-#$establishmentMeans,
 #50
-#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
-#individualCount	preparations	country	
+#associatedOccurrences	associatedSequences	associatedTaxa	reproductiveCondition	
+#establishmentMeans	cultivationStatus	lifeStage	sex	individualCount	preparations	
+$associatedOccurrences,
 $associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
@@ -169,72 +177,61 @@ $lifeStage,
 $sex,
 $individualCount,
 $preparations,
-$country,
-#$stateProvince,
-#$verbatimCounty,
-#$municipality,
-#$locality,
-#$locationRemarks,
 #60
-#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
-#decimalLatitude	decimalLongitude	geodeticDatum	
+#locationID	continent	waterBody	islandGroup	island	country
+#stateProvince	county	municipality	locality	
+$locationID,
+$continent,
+$waterBody,
+$islandGroup,
+$island,
+$country,
 $stateProvince,
 $verbatimCounty,
 $municipality,
 $locality,
+#70
+#locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	
+#verbatimCoordinates	georeferencedBy	georeferenceProtocol	
 $locationRemarks,
 $localitySecurity, #This is in Symbiota Native and not Darwin Core
 $localitySecurityReason, #This is in Symbiota Native and not Darwin Core
 $latitude,
 $longitude,
 $geodeticDatum,
-#$coordinateUncertaintyInMeters,
-#$verbatimCoordinates,
-#$georeferencedBy,
-#$georeferenceProtocol,
-#$georeferenceSources,
-#$georeferenceVerificationStatus,
-#$georeferenceRemarks,
-#70
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
-#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
 $georeferencedBy,
 $georeferenceProtocol,
+#80
+#georeferenceSources	georeferenceVerificationStatus	georeferenceRemarks
+#minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters	
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
 $georeferenceSources,
 $georeferenceVerificationStatus,
 $georeferenceRemarks,
 $minimumElevationInMeters,
 $maximumElevationInMeters,
 $minimumDepthInMeters,
-#$verbatimDepth,
-#$verbatimElevation,
-#$disposition,
-#$language,
-#$recordEnteredBy,
-#$modified,
-#80
-#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
-#sourcePrimaryKey-dbpk	collId	recordId	references
 $maximumDepthInMeters,
 $verbatimDepth,
 $verbatimElevation,
 $disposition,
+#90
+#language	recordEnteredBy	modified	sourcePrimaryKey-dbpk	collID	recordID	
+#references
 $language,
 $recordEnteredBy,
 $modified,
 $sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
-#$rights,  #This is in Darwin Core and not Symbiota Native
-#$rightsHolder, #This is in Darwin Core and not Symbiota Native
-#$accessRights, #This is in Darwin Core and not Symbiota Native
 $collId, #This is in Symbiota Native and not Darwin Core
 $recordId,
-#90
 $references	
 ) = @fields;	
 #The array @fields is made up on these 85 scalars, in this order, for Darwin Core
 #The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 97 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code
@@ -389,10 +386,11 @@ my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "
 my ($collId, $recordId, $references) = "";#83
 my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+my ($locationID,$continent,$waterBody,$islandGroup,$island,$eventDate2) = "";
 
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
-my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
+#my $mainFile='output/CCH2_CONVERTED_'.$filedate.'-utf8.txt';
 
 open (IN, $mainFile) or die $!;
 Record: while(<IN>){
@@ -406,15 +404,16 @@ Record: while(<IN>){
 		my @fields=split(/\t/,$_,100);
 
 		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
-		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		#unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		unless( $#fields == 96){  #if the number of values in the columns array is exactly 97, this is for Darwin Core
 
-			warn "$#fields bad field number $_\n";
+			#warn "$#fields bad field number $_\n";
 
 			next Record;
 		}
 
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
-#higherClassification	kingdom	
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	
+#occurrenceID	catalogNumber	otherCatalogNumbers	higherClassification	kingdom	
 ($CCH2id,
 $institutionCode,
 $collectionCode,
@@ -427,10 +426,8 @@ $otherCatalogNumbers,
 $higherClassification,
 $kingdom,
 #10
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
-#specificEpithet	
-#$kingdom,
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	
+#genus	subgenus	specificEpithet	
 $phylum,
 $class,
 $order,
@@ -442,8 +439,9 @@ $genus,
 $subgenus,
 $specificEpithet,
 #20
-#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
-#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	
+#identificationReferences	identificationRemarks	taxonRemarks	identificationQualifier	
+#typeStatus	
 $verbatimTaxonRank,
 $infraspecificEpithet,
 $taxonRank,
@@ -455,21 +453,22 @@ $taxonRemarks,
 $identificationQualifier,
 $typeStatus,
 #30
-#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
-#verbatimEventDate	
+#recordedBy	associatedCollectors	recordNumber	eventDate	eventDate2	
+#year	month	day	startDayOfYear	endDayOfYear	
 $recordedBy,
 $associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
+$eventDate2,
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
-$verbatimEventDate,
 #40
-#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
-#dynamicProperties	associatedOccurrences	
+#verbatimEventDate	occurrenceRemarks	habitat	substrate	verbatimAttributes	
+#fieldNumber	eventID	informationWithheld	dataGeneralizations	dynamicProperties	
+$verbatimEventDate,
 $occurrenceRemarks,
 $habitat,
 $substrate, #This is in Symbiota Native and not Darwin Core
@@ -479,13 +478,10 @@ $eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
 $dataGeneralizations,
 $dynamicProperties,
-$associatedOccurrences,
-#$associatedTaxa,
-#$reproductiveCondition,
-#$establishmentMeans,
 #50
-#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
-#individualCount	preparations	country	
+#associatedOccurrences	associatedSequences	associatedTaxa	reproductiveCondition	
+#establishmentMeans	cultivationStatus	lifeStage	sex	individualCount	preparations	
+$associatedOccurrences,
 $associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
@@ -495,72 +491,61 @@ $lifeStage,
 $sex,
 $individualCount,
 $preparations,
-$country,
-#$stateProvince,
-#$verbatimCounty,
-#$municipality,
-#$locality,
-#$locationRemarks,
 #60
-#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
-#decimalLatitude	decimalLongitude	geodeticDatum	
+#locationID	continent	waterBody	islandGroup	island	country
+#stateProvince	county	municipality	locality	
+$locationID,
+$continent,
+$waterBody,
+$islandGroup,
+$island,
+$country,
 $stateProvince,
 $verbatimCounty,
 $municipality,
 $locality,
+#70
+#locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	
+#verbatimCoordinates	georeferencedBy	georeferenceProtocol	
 $locationRemarks,
 $localitySecurity, #This is in Symbiota Native and not Darwin Core
 $localitySecurityReason, #This is in Symbiota Native and not Darwin Core
 $latitude,
 $longitude,
 $geodeticDatum,
-#$coordinateUncertaintyInMeters,
-#$verbatimCoordinates,
-#$georeferencedBy,
-#$georeferenceProtocol,
-#$georeferenceSources,
-#$georeferenceVerificationStatus,
-#$georeferenceRemarks,
-#70
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
-#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
 $georeferencedBy,
 $georeferenceProtocol,
+#80
+#georeferenceSources	georeferenceVerificationStatus	georeferenceRemarks
+#minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters	
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
 $georeferenceSources,
 $georeferenceVerificationStatus,
 $georeferenceRemarks,
 $minimumElevationInMeters,
 $maximumElevationInMeters,
 $minimumDepthInMeters,
-#$verbatimDepth,
-#$verbatimElevation,
-#$disposition,
-#$language,
-#$recordEnteredBy,
-#$modified,
-#80
-#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
-#sourcePrimaryKey-dbpk	collId	recordId	references
 $maximumDepthInMeters,
 $verbatimDepth,
 $verbatimElevation,
 $disposition,
+#90
+#language	recordEnteredBy	modified	sourcePrimaryKey-dbpk	collID	recordID	
+#references
 $language,
 $recordEnteredBy,
 $modified,
 $sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
-#$rights,  #This is in Darwin Core and not Symbiota Native
-#$rightsHolder, #This is in Darwin Core and not Symbiota Native
-#$accessRights, #This is in Darwin Core and not Symbiota Native
 $collId, #This is in Symbiota Native and not Darwin Core
 $recordId,
-#90
 $references	
 ) = @fields;	
 #The array @fields is made up on these 85 scalars, in this order, for Darwin Core
 #The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 97 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code

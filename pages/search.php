@@ -61,7 +61,6 @@ $db = new SQLite3($database_location);
 </div>
 
 
-
 <table id = "sideTable">
 	<tr>
 	<td style="vertical-align: top;width:200px;background-color:#C6C6E1;border-right-style: solid;border-right-color: #9090AA;border-left-style: solid;border-left-color: #9090AA;">
@@ -125,19 +124,43 @@ in stages and the website is being constantly upgraded as a result.</font></td>
   <table>
   <tr>
 	<td style="width: 60%;vertical-align: top;background-color:#FFFFFF;">
-<form method="POST" action="/consortium/cchlist.php" >
+
+<form method="POST" action="/consortium/list.php" >
+
+		<table style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
+  			<tr>
+				<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
+
 	<p class="pageSubheading"><b>Scientific Name Search</b><br />
  	<input id="query_text" type="text" name="taxon_name" size = 50 MAXLENGTH = 50></input><br />
-	<input type ="checkbox" name="SYNCHECK" value="1">Select to search all synonyms (leave unchecked for a keyword name search)
+	<input type ="checkbox" name="syncheck" value="1">Select to search all synonyms (leave unchecked for a keyword name search)
  	<br />
-		<span class="bodySmallerText">e.g.:<a href="/consortium/cchlist.php?taxon_name=Bromus">Bromus</a>;
+		<span class="bodySmallerText">e.g.:<a href="/consortium/list.php?taxon_name=Bromus">Bromus</a>;
 		</span>
 	</p>
+				</td>
+			</tr>
+<!--$current_request= ?taxon_name=$lookfor&nativity=$req_source&county=$county&collector=$collector&aid=$aid&collyear=$year&collmonth=$month&collday=$day&loc=$quote_loc&coll_num=$coll_num&max_rec=$max_return&make_tax_list=$make_tax_list&before_after=$before_after&last_comments=$last_comments&VV=$v_restrict&non_native=$include_nn&geo_only=$geo_only&geo_no=$geo_no&CNPS_listed=$include_CNPS&weed=$include_weed&sugg_loc=$sugg_loc$q_coords&tns=$tns&lo_e=$lo_e&hi_e=$hi_e&YF=$YF&VTM=$include_vtm&baja=$include_baja&cultivated=$include_cult};
+-->
+			<tr>
+				<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
+	</p>
+	<p class="pageSubheading"><b>Geographic Locality</b>
+	<br />
+ 	<input id="query_text" type="text" name = "loc" size = 40 MAXLENGTH = 50></input>
+ 	<br />
+		<span class="bodySmallerText">e.g.:
+		<a href="/consortium/list.php?loc=French%20Meadow">French Meadow</a>;
+		</span>
+	</p>
+				</td>
+			</tr>
+		</table>
 
 		<table style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 		<tr>
 			<td style="width: 45%;">
-	<p><span class="pageSubheading"><font color="red">(NEW FEATURE, not activated)</font><br />
+	<p><span class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
 	<label for="nativity">Nativity:<br /></label></span>
 	<select id="query_text" name="nativity" >
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_nativity_options.php'); ?>
@@ -146,13 +169,13 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText"><b>
 		Return only names with a nativity <br />
 		status sensu the Jepson eFlora<br />
-e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
+e.g.:<a href="/consortium/list.php?nativity=Waif">Waif</a></b>
 		</span>
 	</p>
 			</td>
 
 			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-	<p><span class="pageSubheading"><font color="red">(NEW FEATURE, not activated)</font><br />
+	<p><span class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
 	<label for="life">Life Form:<br /></label></span>
 	<select id="query_text" name="life">
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_life_form_options.php'); ?>
@@ -162,8 +185,8 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 		Return only names with a life 
 		<br />
 		form status sensu the Jepson eFlora<br />
-		e.g.:<a href="/consortium/cchlist.php?life=tree">tree</a></b>
-		</span>
+		e.g.:<a href="/consortium/list.php?life=tree">tree</a>
+		</b></span>
 	</p>
 			</td>
 		</tr>
@@ -172,35 +195,38 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 			<td style="width: 45%;">
 			
 	<p><span class="pageSubheading">
-	<label for="county">County:<br /></label></span>
+		<!-- County Mismatch checkbox-->
+		<label for="mismatch">County Mismatch<br /><font color="red">(NEW FEATURE)</font><br /></label></span>
+		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
+ 		<b>Search for specimens with georeferences that do not map to the label county name<br />
+ 		(select one from the list to the right)</b></span>
+		<br />
+
+	<br />
+	<p class="pageSubheading"><font color="red">(NEW FEATURE, not activated)</font><br />
+	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
+	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
+	<b>Search Elevation</b> <br />
+        <input name = "minELEV" size = 6>&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;<input name = "maxELEV" size = 6> (meters)
+	</p>
+
+				
+			</td>
+
+			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
+
+	<p><span class="pageSubheading"><label for="county">County<br /></label></span>
 	<select id="query_text" name="county" size=12>
 	<!--<select id="query_text" name="county" size=12 multiple>-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_county_options.php'); ?>
 	</select>
 	<br />
-		<span class="bodySmallerText">(default is all counties)<br />
-		<font color="red">(selecting multiple values not re-activated)</font>
+		<span class="bodySmallerText"><b>(default is all counties)</b><br />
+		<font color="firebrick"><b>(selecting multiple values not re-activated)</b></font>
 		</span>
-	</p>
-			</td>
 
-			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
+	</p>
 
-	<p class="pageSubheading"><b>Geographic Locality</b>
-	<br />
- 	<input id="query_text" type="text" name = "loc" size = 40 MAXLENGTH = 50></input>
- 	<br />
-		<span class="bodySmallerText">e.g.:
-		<a href="/consortium/cchlist.php?loc=French%20Meadow">French Meadow</a>;
-		</span>
-	</p>
-	<br />
-	<p class="pageSubheading"><font color="red">(NEW FEATURE, not activated)</font><br />
-	<input type ="checkbox" name="ELEVCHECK" value="1">Select to display only specimens with an elevation
-	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
-	<b>Search Elevation</b> <br />
-        <input name = "minelev" size = 6>&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;<input name = "maxelev" size = 6> (meters)
-	</p>
 <!-- Geographic Region Box, the code to implement this is very complicated in get_consort.pl.-->
 <!-- I am not sure at this point if I can translate it to PHP, so it is commented out for now-->
 <!-- In its place I have placed the locality box for now-->
@@ -228,8 +254,8 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 				&nbsp;&nbsp;&nbsp;&nbsp;(displays possible range discrepancies with yellow icons)
 				<br /><br />
 				<!-- CNPS checkbox-->
-				<input type ="checkbox" name="ENDEM" value="1">
-				Endemic <font color="firebrick">(NEW FEATURE, not activated)</font><br />
+				<input type ="checkbox" name="endem" value="1">
+				Endemic <font color="firebrick">(NEW FEATURE)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only endemics to California, sensu the Jepson eFlora)
 				<br /><br />
 				<!-- CNPS checkbox-->
@@ -238,29 +264,29 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only names in California Native Plant Society Inventory)
 				<br /><br />
 				<!-- CAL-IPC - CDFA checkbox-->
-				<input type ="checkbox" name="CALIPC" value="1">  
+				<input type ="checkbox" name="IPC" value="1">  
 				Noxious weeds <font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only records of CAL-IPC or CDFA listed weeds)
 				<br /><br />
 				<!-- CULT checkbox-->
-				<input type ="checkbox" name="cultivated" value="1">
-				Cultivated specimens <font color="firebrick">(NEW FEATURE, not activated)</font><br />
+				<input type ="checkbox" name="cult" value="1">
+				Cultivated specimens <font color="firebrick">(NEW FEATURE)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(enable purple flags and include specimens labeled as cultivated)
 				<br /><br />
 				<!-- GEO checkbox-->
 				<input type="checkbox" name="geo_only" value="1">
- 				Specimens with coordinates <font color="firebrick">(not re-activated)</font>
+ 				Specimens with coordinates
 				<br /><br />
 				<!-- NO GEO checkbox-->
 				<input type="checkbox" name="geo_no" value="1">
- 				Specimens without coordinates <font color="firebrick">(not re-activated)</font>
+ 				Specimens without coordinates
  				<br ><br />
  				<!-- VTM checkbox-->
  				<input type="checkbox" name="VTM" value="1">
  				Vegetation Type Map specimens <font color="firebrick">(not re-activated)</font>
 				<br><br />
 				<!-- TAX LIST checkbox-->
-				<input type ="checkbox" name="make_tax_list" value="1">
+				<input type ="checkbox" name="LIST" value="1">
  				Name list <font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only one record for each name)
 				<br /><br />
@@ -282,31 +308,31 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 	</select>
 	<br />
 		<span class="bodySmallerText">(default is all sources)<br />
-		<font color="red">(selecting multiple values not re-activated)</font></span>
+		<b><font color="firebrick">(selecting multiple values not re-activated)</font></b></span>
 	</p>
 	<br /><br />
-	<p class="pageSubheading"><b>Collector</b> <font color="red">(not re-activated)</font>
-        <input name = "collector" size = 50 MAXLENGTH = 100><br />
+	<p class="pageSubheading"><b>Collector</b>
+        <input name = "coll" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(last name only; e.g.:
-			<a href="/consortium/cchlist.php?collector=Muir">Muir</a>;
-  			<a href="/consortium/cchlist.php??collector=Moref">Moref</a>)
+			<a href="/consortium/list.php?collector=Muir">Muir</a>;
+  			<a href="/consortium/list.php??collector=Moref">Moref</a>)
 		</span>
 	</p>
 
-	<p class="pageSubheading"><b>Collector Number</b> <font color="red">(not re-activated)</font>
+	<p class="pageSubheading"><b>Collector Number</b>
         <input name = "collnum" size = 50 MAXLENGTH = 50><br />
     	<span class="bodySmallerText">(any type, including strictly numerical or alpha-numeric <br />e.g.:
-			<a href="/consortium/cchlist.php?collnum=2334">2334</a>)
+			<a href="/consortium/list.php?collnum=2334">2334</a>)
 		</span>
 	</p>
 	<br /><br />
-	<p class="pageSubheading"><input type ="checkbox" name="TYPECHECK" value="1">Select to display all specimens with a type status
+	<p class="pageSubheading"><input type ="checkbox" name="typecheck" value="1">Select to display only specimens with a type status
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
-	<b>Search Type Status</b> <font color="red">(NEW FEATURE, not activated)</font>
+	<b>Search Type Status</b> <font color="red">(NEW FEATURE)</font>
         <input name = "type" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(search for a specific or more general type phrase <br />e.g.:
-			<a href="/consortium/cchlist.php?type=holotype">holotype</a>;
-  			<a href="/consortium/cchlist.php??type=type">type</a>)
+			<a href="/consortium/list.php?type=holotype">holotype</a>;
+  			<a href="/consortium/list.php??type=type">type</a>)
 		</span>
 	</p>
 	</td>
@@ -319,10 +345,10 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 
 		<td style="height: 40px;padding: 10px;vertical-align: top;background-color:#FFFFFF;">
 <hr>
-			<input TYPE="submit" VALUE="Accept data-use terms, submit search" >&nbsp;&nbsp;&nbsp;&nbsp;			
-			<span class="pageSubheading"><b><a href="/consortium/data_use_terms.html">Read&nbsp;use&nbsp;terms</a></b></span>
+			<p><input TYPE="submit" VALUE="Accept data-use terms, submit search" >&nbsp;&nbsp;&nbsp;&nbsp;</p>			
+			<p><span class="pageSubheading"><b><a href="/consortium/data_use_terms.html">Read&nbsp;use&nbsp;terms</a></b></span>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input TYPE="reset" VALUE="Reset Form">
+			<input TYPE="reset" VALUE="Reset Form"></p>
 		</td>
 <!-- END USE TERMS LEFT-->
 <!--END LEFT Side LOWER Content-->	
@@ -331,7 +357,7 @@ e.g.:<a href="/consortium/cchlist.php?nativity=Waif">Waif</a></b>
 <!-- BEGIN USE TERMS RIGHT-->		
 		<td style="padding: 10px;vertical-align: top;background-color:#FFFFFF;">
 <hr>
-			<span class="pageSubheading"><b>2000 records is the default maximum. For larger data requests contact</b>
+			<span class="pageSubheading"><b>2000 records is the default maximum for all downloads. For custom data requests contact</b>
 				<a href="mailto:jason_alexander@berkeley.edu">Jason Alexander (jason_alexander@berkeley.edu)</a>
 			</span>
 		</td>

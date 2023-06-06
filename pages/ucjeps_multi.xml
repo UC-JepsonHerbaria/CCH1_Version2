@@ -36,7 +36,6 @@
 	  <concept viewlist="1" datatype="darwin:county" alias="County" />
 	  <concept viewlist="0" datatype="darwin:decimallatitude" alias="DecimalLatitude" />
 	  <concept viewlist="0" datatype="darwin:decimallongitude" alias="DecimalLongitude" />
-	  <concept viewlist="0" datatype="darwin:horizontaldatum" alias="HorizontalDatum" />
 	  </concepts>
 	  <annotation show="1">
 	  <annotation_replyto_email value="consortium_ch@lists.berkeley.edu" />

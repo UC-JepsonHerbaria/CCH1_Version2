@@ -7,6 +7,7 @@ use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max coun
 
 my $today_JD = &CCH::get_today;
 #my $today_JD = &get_today_julian_day;
+$today_JD =~ s/ *PDT//;
 
 open(DUPLOG, ">>input/AID_GUID/DUPS/dup_log_".$today_JD.".txt") || die; 
 
@@ -17,14 +18,18 @@ my $herb = "RSA";
 #my $dirdate = "2021_APR16";
 #my $dirdate="2021_AUG28";
 #my $dirdate="2022_JAN26";
-my $dirdate="2022_MAR02";
+#my $dirdate = "2022_MAR02";
+my $dirdate = "2022_JUL07";
+#$filedate = "2022JUL07";
+my $filedate = "2023MAR08";
+
 #$filedate="11072019";
 #my $filedate="12052019";
 #my $filedate = "01292020";
 #my $filedate = "04162021";
 #my $filedate="08282021";
 #my $filedate="01262022";
-my $filedate="03022022";
+#my $filedate = "03022022";
 
 
 my %month_hash = &CCH::month_hash;
@@ -59,6 +64,7 @@ my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "
 my ($collId, $recordId, $references) = "";#83
 my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+my ($locationID,$continent,$waterBody,$islandGroup,$island,$eventDate2) = "";
 
 
 open(OUT, ">input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
@@ -80,16 +86,16 @@ Record: while(<IN>){
 		my @fields=split(/\t/,$_,100);
 
 		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
-		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		#unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		unless( $#fields == 96){  #if the number of values in the columns array is exactly 97, this is for Darwin Core
 
-			warn "$#fields bad field number $_\n";
+			#warn "$#fields bad field number $_\n";
 
 			next Record;
 		}
 
-
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
-#higherClassification	kingdom	
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	
+#occurrenceID	catalogNumber	otherCatalogNumbers	higherClassification	kingdom	
 ($CCH2id,
 $institutionCode,
 $collectionCode,
@@ -102,10 +108,8 @@ $otherCatalogNumbers,
 $higherClassification,
 $kingdom,
 #10
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
-#specificEpithet	
-#$kingdom,
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	
+#genus	subgenus	specificEpithet	
 $phylum,
 $class,
 $order,
@@ -117,8 +121,9 @@ $genus,
 $subgenus,
 $specificEpithet,
 #20
-#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
-#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	
+#identificationReferences	identificationRemarks	taxonRemarks	identificationQualifier	
+#typeStatus	
 $verbatimTaxonRank,
 $infraspecificEpithet,
 $taxonRank,
@@ -130,21 +135,22 @@ $taxonRemarks,
 $identificationQualifier,
 $typeStatus,
 #30
-#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
-#verbatimEventDate	
+#recordedBy	associatedCollectors	recordNumber	eventDate	eventDate2	
+#year	month	day	startDayOfYear	endDayOfYear	
 $recordedBy,
 $associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
+$eventDate2,
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
-$verbatimEventDate,
 #40
-#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
-#dynamicProperties	associatedOccurrences	
+#verbatimEventDate	occurrenceRemarks	habitat	substrate	verbatimAttributes	
+#fieldNumber	eventID	informationWithheld	dataGeneralizations	dynamicProperties	
+$verbatimEventDate,
 $occurrenceRemarks,
 $habitat,
 $substrate, #This is in Symbiota Native and not Darwin Core
@@ -154,13 +160,10 @@ $eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
 $dataGeneralizations,
 $dynamicProperties,
-$associatedOccurrences,
-#$associatedTaxa,
-#$reproductiveCondition,
-#$establishmentMeans,
 #50
-#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
-#individualCount	preparations	country	
+#associatedOccurrences	associatedSequences	associatedTaxa	reproductiveCondition	
+#establishmentMeans	cultivationStatus	lifeStage	sex	individualCount	preparations	
+$associatedOccurrences,
 $associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
@@ -170,72 +173,61 @@ $lifeStage,
 $sex,
 $individualCount,
 $preparations,
-$country,
-#$stateProvince,
-#$verbatimCounty,
-#$municipality,
-#$locality,
-#$locationRemarks,
 #60
-#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
-#decimalLatitude	decimalLongitude	geodeticDatum	
+#locationID	continent	waterBody	islandGroup	island	country
+#stateProvince	county	municipality	locality	
+$locationID,
+$continent,
+$waterBody,
+$islandGroup,
+$island,
+$country,
 $stateProvince,
 $verbatimCounty,
 $municipality,
 $locality,
+#70
+#locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	
+#verbatimCoordinates	georeferencedBy	georeferenceProtocol	
 $locationRemarks,
 $localitySecurity, #This is in Symbiota Native and not Darwin Core
 $localitySecurityReason, #This is in Symbiota Native and not Darwin Core
 $latitude,
 $longitude,
 $geodeticDatum,
-#$coordinateUncertaintyInMeters,
-#$verbatimCoordinates,
-#$georeferencedBy,
-#$georeferenceProtocol,
-#$georeferenceSources,
-#$georeferenceVerificationStatus,
-#$georeferenceRemarks,
-#70
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
-#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
 $georeferencedBy,
 $georeferenceProtocol,
+#80
+#georeferenceSources	georeferenceVerificationStatus	georeferenceRemarks
+#minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters	
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
 $georeferenceSources,
 $georeferenceVerificationStatus,
 $georeferenceRemarks,
 $minimumElevationInMeters,
 $maximumElevationInMeters,
 $minimumDepthInMeters,
-#$verbatimDepth,
-#$verbatimElevation,
-#$disposition,
-#$language,
-#$recordEnteredBy,
-#$modified,
-#80
-#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
-#sourcePrimaryKey-dbpk	collId	recordId	references
 $maximumDepthInMeters,
 $verbatimDepth,
 $verbatimElevation,
 $disposition,
+#90
+#language	recordEnteredBy	modified	sourcePrimaryKey-dbpk	collID	recordID	
+#references
 $language,
 $recordEnteredBy,
 $modified,
 $sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
-#$rights,  #This is in Darwin Core and not Symbiota Native
-#$rightsHolder, #This is in Darwin Core and not Symbiota Native
-#$accessRights, #This is in Darwin Core and not Symbiota Native
 $collId, #This is in Symbiota Native and not Darwin Core
 $recordId,
-#90
 $references	
 ) = @fields;	
 #The array @fields is made up on these 85 scalars, in this order, for Darwin Core
 #The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 97 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code
@@ -254,45 +246,79 @@ printf {*STDERR} "%d\r", ++$count_record;
 		next Record;
 	}
 	
-	$catalogNumber =~ s/^rsa/RSA/i;
-	$otherCatalogNumbers =~ s/RSA accession \# /RSA accession #: /i;
-	$otherCatalogNumbers =~ s/RSA accession: /RSA accession #: /i;
-	$otherCatalogNumbers =~ s/RSA Accession\#: /RSA accession #: /;
+	$collectionCode=~ s/^Vascular *Plants$/RSA/i;
+	
+	$otherCatalogNumbers =~ s/ +[acesion]+ *\#: */ accession: /i;
+	$otherCatalogNumbers =~ s/ +[acesion]+ *: */ accession: /i;
+
+	$otherCatalogNumbers =~ s/(POM|RSA) accession +/$1 accession: /i;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession: +/$1 accession: /i;
+	$otherCatalogNumbers =~ s/(POM|RSA) Accession: +/$1 accession: /;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession: +/$1 accession: /i;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession (\d)/$1 accession: $2/i;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession (\d)/$1 accession: $2/i;
+#RSA accession #: RSA2722
+	$otherCatalogNumbers =~ s/(POM|RSA) accession *: *(POM|RSA)(\d)/$1 accession: $3/i;
 	
 #extract old herbarium and aid numbers
 if (length ($otherCatalogNumbers) >= 1){
 
-	if ($otherCatalogNumbers =~ m/^(POM) *accession *\#: *(0+)([1-9][0-9]*)([A-Za-z]*);?.*$/){
+
+		$otherCatalogNumbers =~ s/`+//;
+		$otherCatalogNumbers =~ s/\.$//;
+
+
+	if ($otherCatalogNumbers =~ m/^(POM) *[acesion]+ *: *(0+)([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$3;
 		$oldA = $1.$2.$3.$4;
 		$duplicate_OTH{$old_AID}++;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(POM) *accession *\#: *([1-9][0-9]*)([A-Za-z]+);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(POM) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$2;
-		$oldA = $1.$2.$3.$4;
+		$oldA = $1.$2.$3;
 		$duplicate_OTH{$old_AID}++;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(POM) *accession *\#: *([1-9][0-9]*);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(POM) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*)$/){
 		$old_AID = $1.$2;
-		$oldA = "";
+		$oldA = $1.$2.$3;
 		$duplicate_OTH{$old_AID}++;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(RSA) *accession *\#: *(0+)([1-9][0-9]*)([A-Za-z]*);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA) *[acesion]+ *: *(0+)([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$3;
 		$oldA = $1.$2.$3.$4;
 		$duplicate_OTH{$old_AID}++;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(RSA) *accession *\#: *([1-9][0-9]*)([A-Za-z]+);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$2;
-		$oldA = $1.$2.$3.$4;
+		$oldA = $1.$2.$3;
 		$duplicate_OTH{$old_AID}++;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(RSA) *accession *\#: *([1-9][0-9]*);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*)$/){
+		$old_AID = $1.$2;
+		$oldA = $1.$2.$3;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^living.+; *(RSA|POM) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*)$/){
+		$old_AID = $1.$2;
+		$oldA = $1.$2.$3;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^[Pp]rop.+; *(RSA|POM) *[acesion]+ *: *([1-9][0-9]*)$/){
 		$old_AID = $1.$2;
 		$oldA = "";
 		$duplicate_OTH{$old_AID}++;
 	}
-	elsif ($otherCatalogNumbers =~ m/^([1-9][0-9]*)[A-Za-z]*;?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA|POM) *[acesion]+ *: *(0+)([1-9][0-9]+)$/){
+		$old_AID = $1.$3;
+		$oldA = $1.$2.$3;
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^([1-9][0-9]*)[A-Za-z]*; .*$/){
+		$old_AID = $collectionCode.$1;
+		$oldA = "";
+		$duplicate_OTH{$old_AID}++;
+	}
+	elsif ($otherCatalogNumbers =~ m/^([1-9][0-9]*)[A-Za-z]*$/){
 		$old_AID = $collectionCode.$1;
 		$oldA = "";
 		$duplicate_OTH{$old_AID}++;
@@ -321,6 +347,11 @@ if (length ($otherCatalogNumbers) >= 1){
 #construct catalog numbers
    if (length ($catalogNumber) >= 1){
 
+		if ($catalogNumber =~ m/^(rsa)(\d+)$/){
+			&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
+			$catalogNumber = "RSA".$2; #fix some lack of capitalizations in IRVC accessions
+		}
+
 	if ($catalogNumber =~ m/^(RSA)(0*[1-9][0-9]*)$/){
 		$ALT_CCH_BARCODE = $1.$2."-BARCODE";
 		$duplicate_CAT{$ALT_CCH_BARCODE}++;#count to find duplicates
@@ -331,16 +362,59 @@ if (length ($otherCatalogNumbers) >= 1){
 		$ALT_CCH_BARCODE = "";
 	}
 	else{
-		&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
-		print "BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
-		$catalogNumber = "";
-		$ALT_CCH_BARCODE = "";
-	}
+		#RSA has some special cases where as long as the barcode has errors, 
+		#then we use the old RSA accession number
+		if ($CCH2id =~ m/^(1007683|1007683|1108773|1138576|3831359|3894242|4129414)$/){
+#BAD catalogNumber==>1007683==>RSA00.Y==>RSA accession #: 226913
+#BAD catalogNumber==>1014497==>47120==>RSA accession #: 47120
+#BAD catalogNumber==>1108773==>103693==>RSA accession #: 853430
+#BAD catalogNumber==>1138576==>TA0069642==>RSA accession #: 835400
+#BAD catalogNumber==>3831359==>RSAP154959==>RSA accession #: 874904
+			if ($otherCatalogNumbers =~ m/^(RSA|POM) *accession *: *([1-9][0-9]*)$/){
+				$old_AID = $1.$2;
+				$ALT_CCH_BARCODE = "";
+				$oldA = "";
+				$duplicate_OTH{$old_AID}++;
+			}
+			else{
+				print "BAD otherCatalogNumbers(1)==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
+				$ALT_CCH_BARCODE = "";
+				$oldA = $old_AID = "";
+			}
+		}
+		elsif ($CCH2id =~ m/^(666328|725329|795125|908414|917353|939018)$/){
+#BAD catalogNumber==>666328==>RSA0038W==>RSA accession #: 575119
+#BAD catalogNumber==>725329==>TA0318410==>RSA accession #: 619072
+#BAD catalogNumber==>795125==>RSA0016192-==>POM accession #: 6763
+#BAD catalogNumber==>908414==>JA0067718==>RSA accession #: 834352
+#BAD catalogNumber==>917353==>RSA0124439`==>POM accession #: 320164
+#BAD catalogNumber==>939018==>c==>RSA accession #: 124712
+			if ($otherCatalogNumbers =~ m/^(POM|RSA) *accession *: *([1-9][0-9]*)$/){
+				$old_AID = $1.$2;
+				$ALT_CCH_BARCODE = "";
+				$oldA = "";
+				$duplicate_OTH{$old_AID}++;
+			}
+			else{
+				print "BAD otherCatalogNumbers(2)==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
+				$ALT_CCH_BARCODE = "";
+				$oldA = $old_AID = "";
+			}
+		}
+		else{
+			&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
+			print "BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\n";
+			$catalogNumber = "";
+			$ALT_CCH_BARCODE = "";
+		}
+	}	
    }
    else{
 		$catalogNumber = "";
 		$ALT_CCH_BARCODE = "";
    }
+
+
 
    if (length ($catalogNumber) >= 1){
 	if ($duplicate_CAT{$ALT_CCH_BARCODE} >= 2){
@@ -416,6 +490,7 @@ my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "
 my ($collId, $recordId, $references) = "";#83
 my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+my ($locationID,$continent,$waterBody,$islandGroup,$island,$eventDate2) = "";
 
 
 #my $mainFile = '/Users/Shared/Jepson-Master/CCHV2/bulkload/input/CCH2-exports/'.$dirdate.'/CCH2_export_'.$filedate.'-utf8.txt';
@@ -433,15 +508,16 @@ Record: while(<IN>){
 		my @fields=split(/\t/,$_,100);
 
 		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
-		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		#unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		unless( $#fields == 96){  #if the number of values in the columns array is exactly 97, this is for Darwin Core
 
-			warn "$#fields bad field number $_\n";
+			#warn "$#fields bad field number $_\n";
 
 			next Record;
 		}
 
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
-#higherClassification	kingdom	
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	
+#occurrenceID	catalogNumber	otherCatalogNumbers	higherClassification	kingdom	
 ($CCH2id,
 $institutionCode,
 $collectionCode,
@@ -454,10 +530,8 @@ $otherCatalogNumbers,
 $higherClassification,
 $kingdom,
 #10
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
-#specificEpithet	
-#$kingdom,
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	
+#genus	subgenus	specificEpithet	
 $phylum,
 $class,
 $order,
@@ -469,8 +543,9 @@ $genus,
 $subgenus,
 $specificEpithet,
 #20
-#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
-#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	
+#identificationReferences	identificationRemarks	taxonRemarks	identificationQualifier	
+#typeStatus	
 $verbatimTaxonRank,
 $infraspecificEpithet,
 $taxonRank,
@@ -482,21 +557,22 @@ $taxonRemarks,
 $identificationQualifier,
 $typeStatus,
 #30
-#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
-#verbatimEventDate	
+#recordedBy	associatedCollectors	recordNumber	eventDate	eventDate2	
+#year	month	day	startDayOfYear	endDayOfYear	
 $recordedBy,
 $associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
+$eventDate2,
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
-$verbatimEventDate,
 #40
-#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
-#dynamicProperties	associatedOccurrences	
+#verbatimEventDate	occurrenceRemarks	habitat	substrate	verbatimAttributes	
+#fieldNumber	eventID	informationWithheld	dataGeneralizations	dynamicProperties	
+$verbatimEventDate,
 $occurrenceRemarks,
 $habitat,
 $substrate, #This is in Symbiota Native and not Darwin Core
@@ -506,13 +582,10 @@ $eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
 $dataGeneralizations,
 $dynamicProperties,
-$associatedOccurrences,
-#$associatedTaxa,
-#$reproductiveCondition,
-#$establishmentMeans,
 #50
-#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
-#individualCount	preparations	country	
+#associatedOccurrences	associatedSequences	associatedTaxa	reproductiveCondition	
+#establishmentMeans	cultivationStatus	lifeStage	sex	individualCount	preparations	
+$associatedOccurrences,
 $associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
@@ -522,72 +595,61 @@ $lifeStage,
 $sex,
 $individualCount,
 $preparations,
-$country,
-#$stateProvince,
-#$verbatimCounty,
-#$municipality,
-#$locality,
-#$locationRemarks,
 #60
-#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
-#decimalLatitude	decimalLongitude	geodeticDatum	
+#locationID	continent	waterBody	islandGroup	island	country
+#stateProvince	county	municipality	locality	
+$locationID,
+$continent,
+$waterBody,
+$islandGroup,
+$island,
+$country,
 $stateProvince,
 $verbatimCounty,
 $municipality,
 $locality,
+#70
+#locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	
+#verbatimCoordinates	georeferencedBy	georeferenceProtocol	
 $locationRemarks,
 $localitySecurity, #This is in Symbiota Native and not Darwin Core
 $localitySecurityReason, #This is in Symbiota Native and not Darwin Core
 $latitude,
 $longitude,
 $geodeticDatum,
-#$coordinateUncertaintyInMeters,
-#$verbatimCoordinates,
-#$georeferencedBy,
-#$georeferenceProtocol,
-#$georeferenceSources,
-#$georeferenceVerificationStatus,
-#$georeferenceRemarks,
-#70
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
-#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
 $georeferencedBy,
 $georeferenceProtocol,
+#80
+#georeferenceSources	georeferenceVerificationStatus	georeferenceRemarks
+#minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters	
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
 $georeferenceSources,
 $georeferenceVerificationStatus,
 $georeferenceRemarks,
 $minimumElevationInMeters,
 $maximumElevationInMeters,
 $minimumDepthInMeters,
-#$verbatimDepth,
-#$verbatimElevation,
-#$disposition,
-#$language,
-#$recordEnteredBy,
-#$modified,
-#80
-#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
-#sourcePrimaryKey-dbpk	collId	recordId	references
 $maximumDepthInMeters,
 $verbatimDepth,
 $verbatimElevation,
 $disposition,
+#90
+#language	recordEnteredBy	modified	sourcePrimaryKey-dbpk	collID	recordID	
+#references
 $language,
 $recordEnteredBy,
 $modified,
 $sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
-#$rights,  #This is in Darwin Core and not Symbiota Native
-#$rightsHolder, #This is in Darwin Core and not Symbiota Native
-#$accessRights, #This is in Darwin Core and not Symbiota Native
 $collId, #This is in Symbiota Native and not Darwin Core
 $recordId,
-#90
 $references	
 ) = @fields;	
 #The array @fields is made up on these 85 scalars, in this order, for Darwin Core
 #The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 97 scalars, in this order, for Symbiota Native
 
 
 #filter by herbarium code
@@ -598,47 +660,76 @@ $references
 printf {*STDERR} "%d\r", ++$count_record;
 
 
-########ACCESSION NUMBER
 #check for nulls
 	if ($CCH2id =~ m/^ *$/){
 		&CCH::log_skip("Record with no CCH2 ID $_");
 		++$skipped;
 		next Record;
 	}
+	
+	$collectionCode=~ s/^Vascular *Plants$/RSA/i;
+	
+	$otherCatalogNumbers =~ s/ +[acesion]+ *\#: */ accession: /i;
+	$otherCatalogNumbers =~ s/ +[acesion]+ *: */ accession: /i;
 
-	$catalogNumber =~ s/^rsa/RSA/i;
-	$otherCatalogNumbers =~ s/RSA accession \# /RSA accession #: /i;
-	$otherCatalogNumbers =~ s/RSA accession: /RSA accession #: /i;
-	$otherCatalogNumbers =~ s/RSA Accession\#: /RSA accession #: /;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession +/$1 accession: /i;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession: +/$1 accession: /i;
+	$otherCatalogNumbers =~ s/(POM|RSA) Accession: +/$1 accession: /;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession: +/$1 accession: /i;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession (\d)/$1 accession: $2/i;
+	$otherCatalogNumbers =~ s/(POM|RSA) accession (\d)/$1 accession: $2/i;
+#RSA accession #: RSA2722
+	$otherCatalogNumbers =~ s/(POM|RSA) accession *: *(POM|RSA)(\d)/$1 accession: $3/i;
 	
 #extract old herbarium and aid numbers
 if (length ($otherCatalogNumbers) >= 1){
 
-	if ($otherCatalogNumbers =~ m/^(POM) *accession *\#: *(0+)([1-9][0-9]*)([A-Za-z]*);?.*$/){
+
+		$otherCatalogNumbers =~ s/`+//;
+		$otherCatalogNumbers =~ s/\.$//;
+
+
+	if ($otherCatalogNumbers =~ m/^(POM) *[acesion]+ *: *(0+)([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$3;
 		$oldA = $1.$2.$3.$4;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(POM) *accession *\#: *([1-9][0-9]*)([A-Za-z]+);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(POM) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$2;
-		$oldA = $1.$2.$3.$4;
+		$oldA = $1.$2.$3;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(POM) *accession *\#: *([1-9][0-9]*);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(POM) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*)$/){
 		$old_AID = $1.$2;
-		$oldA = "";
+		$oldA = $1.$2.$3;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(RSA) *accession *\#: *(0+)([1-9][0-9]*)([A-Za-z]*);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA) *[acesion]+ *: *(0+)([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$3;
 		$oldA = $1.$2.$3.$4;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(RSA) *accession *\#: *([1-9][0-9]*)([A-Za-z]+);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*); .*$/){
 		$old_AID = $1.$2;
-		$oldA = $1.$2.$3.$4;
+		$oldA = $1.$2.$3;
 	}
-	elsif ($otherCatalogNumbers =~ m/^(RSA) *accession *\#: *([1-9][0-9]*);?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*)$/){
+		$old_AID = $1.$2;
+		$oldA = $1.$2.$3;
+	}
+	elsif ($otherCatalogNumbers =~ m/^living.+; *(RSA|POM) *[acesion]+ *: *([1-9][0-9]*)([A-Za-z]*)$/){
+		$old_AID = $1.$2;
+		$oldA = $1.$2.$3;
+	}
+	elsif ($otherCatalogNumbers =~ m/^[Pp]rop.+; *(RSA|POM) *[acesion]+ *: *([1-9][0-9]*)$/){
 		$old_AID = $1.$2;
 		$oldA = "";
 	}
-	elsif ($otherCatalogNumbers =~ m/^([1-9][0-9]*)[A-Za-z]*;?.*$/){
+	elsif ($otherCatalogNumbers =~ m/^(RSA|POM) *[acesion]+ *: *(0+)([1-9][0-9]+)$/){
+		$old_AID = $1.$3;
+		$oldA = $1.$2.$3;
+	}
+	elsif ($otherCatalogNumbers =~ m/^([1-9][0-9]*)[A-Za-z]*; .*$/){
+		$old_AID = $collectionCode.$1;
+		$oldA = "";
+	}
+	elsif ($otherCatalogNumbers =~ m/^([1-9][0-9]*)[A-Za-z]*$/){
 		$old_AID = $collectionCode.$1;
 		$oldA = "";
 	}
@@ -658,7 +749,16 @@ if (length ($otherCatalogNumbers) >= 1){
 
 	
 #construct catalog numbers
+#catalog numbers are RSA barcodes and these have leading zeros
+#skip removing leading zeros, as this is new and I think we can skip any linked resources that use the barcodes without leading zeros
+#they probably were not added to CCH1 without zeros anyway,  If they were, it was by mistake
+#construct catalog numbers
    if (length ($catalogNumber) >= 1){
+
+		if ($catalogNumber =~ m/^(rsa)(\d+)$/){
+			&CCH::log_change("BAD catalogNumber==>$CCH2id==>$catalogNumber==>$otherCatalogNumbers\t$_");
+			$catalogNumber = "RSA".$2; #fix some lack of capitalizations in IRVC accessions
+		}
 
 	if ($catalogNumber =~ m/^(RSA)(0*[1-9][0-9]*)$/){
 		$ALT_CCH_BARCODE = $1.$2."-BARCODE";
@@ -668,15 +768,40 @@ if (length ($otherCatalogNumbers) >= 1){
 		$ALT_CCH_BARCODE = "";
 	}
 	else{
-		$catalogNumber = "";
-		$ALT_CCH_BARCODE = "";
+		#RSA has some special cases where as long as the barcode has errors, 
+		#then we use the old RSA accession number
+		if ($CCH2id =~ m/^(1007683|1007683|1108773|1138576|3831359|3894242|4129414)$/){
+			if ($otherCatalogNumbers =~ m/^(RSA|POM) *[accesion]+ *: *([1-9][0-9]*)$/){
+				$old_AID = $1.$2;
+				$ALT_CCH_BARCODE = "";
+				$oldA = "";
+			}
+			else{
+				$ALT_CCH_BARCODE = "";
+				$oldA = $old_AID = "";
+			}
+		}
+		elsif ($CCH2id =~ m/^(666328|725329|795125|908414|917353|939018)$/){
+			if ($otherCatalogNumbers =~ m/^(POM|RSA) *[accesion]+ *: *([1-9][0-9]*)$/){
+				$old_AID = $1.$2;
+				$ALT_CCH_BARCODE = "";
+				$oldA = "";
+			}
+			else{
+				$ALT_CCH_BARCODE = "";
+				$oldA = $old_AID = "";
+			}
+		}
+		else{
+			$catalogNumber = "";
+			$ALT_CCH_BARCODE = "";
+		}
 	}
    }
    else{
 		$catalogNumber = "";
 		$ALT_CCH_BARCODE = "";
    }
-   
 
 
 #exclude ALL duplicates 

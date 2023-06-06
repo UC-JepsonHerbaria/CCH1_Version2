@@ -8,19 +8,24 @@ use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max coun
 #my $dirdate = "2021_APR16";
 #my $dirdate="2021_AUG28";
 #my $dirdate="2022_JAN26";
-my $dirdate="2022_MAR02";
+#my $dirdate = "2022_MAR02";
+my $dirdate = "2022_JUL07";
+#$filedate = "2022JUL07";
+my $filedate = "2023MAR08";
+
 #$filedate="11072019";
 #my $filedate="12052019";
 #my $filedate = "01292020";
 #my $filedate = "04162021";
 #my $filedate="08282021";
 #my $filedate="01262022";
-my $filedate="03022022";
+#my $filedate = "03022022";
 
 
 
 my $today_JD = &CCH::get_today;
 #my $today_JD = &get_today_julian_day;
+$today_JD =~ s/ *PDT//;
 
 my %ACC_HERB;
 my %ACC_MOD;
@@ -63,14 +68,14 @@ $| = 1; #forces a flush after every write or print, so the output appears as soo
 open(BAD, ">output/AID_to_ADD_CCH2_missing.txt") || die;
 
 open(OUT, ">output/AID_to_ADD_CCH2_mod.txt") || die;
-open(NON, ">../../output/bulkload_nonvasc_excluded.txt") || die;
+open(NON, ">output/bulkload_nonvasc_excluded.txt") || die;
 
 	print OUT "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\n";
 	print BAD "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\n";
 
 		
 
-open(IN, "/Users/Shared/Jepson-Master/Jepson-eFlora/synonymy/input/mosses.txt") || die "CCH.pm couldnt open mosses for non-vascular exclusion $!\n";
+open(IN, "../../Jepson-eFlora/synonymy/input/mosses.txt") || die "CCH.pm couldnt open mosses for non-vascular exclusion $!\n";
 while(<IN>){
 	chomp;
 	($gg)=split(/\n/);
@@ -315,11 +320,11 @@ my $included;
 #my $file = "2459325"; #LJD of the date AID file was processed
 #my $file = "2459518";
 #my $file = "2459522";
-my $file = "2459648";
+#my $file = "2459648";
+my $file = "2022-07-11"; #changed to a date string
 
 
-
-my $addFile = 'output/AID_to_ADD_'.$file.'.txt';
+my $addFile = 'input/AID_GUID/output/AID_to_ADD_'.$file.'.txt';
 open (IN, $addFile) or die $!;
 	while(<IN>){
 		chomp;

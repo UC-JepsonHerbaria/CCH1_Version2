@@ -7,6 +7,7 @@ use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max coun
 
 my $today_JD = &CCH::get_today;
 #my $today_JD = &get_today_julian_day;
+$today_JD =~ s/ *PDT//;
 
 open(BULKLOG, ">>output/CCH2_bulkload_log_".$today_JD.".txt") || die; 
 
@@ -31,7 +32,7 @@ my ($dups,$dups_B,$ALTER, $ORTH, %DUP_FOUND,%duplicate_OTH,%duplicate_CAT) = "";
 my ($count_record,@fields,$null) = "";
 
 #out file variables for CCH2 compatibility
-my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+my ($ALT_CCH_BARCODE,$oldA,$old_AID,$formatted_EJD,$formatted_LJD) = "";
 
 #HUH occid infile
 my ($OC,$IC,$CO,$OCC,$CA,$OCA,%OCCID) = "";
@@ -90,7 +91,7 @@ open(OUT2, ">>input/AID_GUID/output/AID_to_ADD_".$today_JD.".txt") || die;
 print OUT2 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 print OUT3 "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_BARCODE_ID\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\n";
 
-my $mainFile='../../output/US-CCH2_out_'.$filedate.'.txt';
+my $mainFile='output/US-CCH2_out_'.$filedate.'.txt';
 #only harvesting the CCH2 ID's and CCH1 ids from this file here
 open (IN, "<", $mainFile) or die $!;
 Record: while(<IN>){
@@ -103,7 +104,7 @@ Record: while(<IN>){
 
 		my @fields=split(/\t/,$_,100);
 
-		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+		unless($#fields == 47){  #if the number of values in the columns array is exactly 48, this is for Darwin Core
 
 			warn "$#fields bad field number $_\n";
 
@@ -114,8 +115,6 @@ Record: while(<IN>){
 		$institutionCode,
 		$catalogNumber,
 		$otherCatalogNumbers,
-		$CCHbarcode,
-		$oldCCHID,
 		$occurrenceID,
 		$scientificName,
 		$displayName,
@@ -129,7 +128,8 @@ Record: while(<IN>){
 		$recordedBy,
 		$recordNumber,
 		$verbatimDate,
-		$eventDate_parse,
+		$formatted_EJD,
+		$formatted_LJD,
 		$EJD,
 		$LJD,
 		$country,
@@ -147,6 +147,8 @@ Record: while(<IN>){
 		$elevationInFeet,
 		$verbatimElevation,
 		$verbatimCoordinates,
+		$latitude,
+		$longitude,
 		$decimalLatitude,
 		$decimalLongitude,
 		$geodeticDatum,
@@ -159,9 +161,7 @@ Record: while(<IN>){
 		$county
 		) = @fields;	
 #The array @fields is made up on these 47 scalars, in this order, GBIF modified export
-
-#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
-#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 48 scalars, in this order, GBIF modified export
 
 
 #filter by herbarium code
@@ -181,7 +181,7 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 #extract old herbarium and aid numbers
 
-	if ($oldCCHID =~ m/^(US) *([0-9]+)[a-zA-Z]*$/){
+	if ($otherCatalogNumbers =~ m/^(US) *([0-9]+)[a-zA-Z]*$/){
 		$oldCCHID = $1.$2;
 		$duplicate_OTH{$oldCCHID}++;
 	}
@@ -194,12 +194,14 @@ printf {*STDERR} "%d\r", ++$count_record;
 		$oldCCHID="";
 	}
 
-
 #construct catalog numbers
-	if ($CCHbarcode =~ m/^(US)([0-9]+)[a-zA-Z]*(-BARCODE)$/){
+	if ($catalogNumber =~ m/^(US) *([0-9]+)[a-zA-Z]*$/){
+		$CCHbarcode = $1.$2."-BARCODE";
+	}
+	elsif ($catalogNumber =~ m/^(US) *([0-9]+)[a-zA-Z]*(-BARCODE)$/){
 		$CCHbarcode = $1.$2.$3;
 	}
-	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
+	elsif ($catalogNumber =~ m/^(NULL| *)$/){
 		$catalogNumber = "";
 		$CCHbarcode="";
 	}
@@ -221,7 +223,7 @@ printf {*STDERR} "%d\r", ++$count_record;
 ++$dups;
 	}
 	else{
-		print OUT2 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$oldCCHID\t$CCHbarcode\t\tNONDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\n";
+		print OUT2 "$institutionCode\t$catalogNumber\t$otherCatalogNumbers\t$CCH2id\t$oldCCHID\t$CCHbarcode\t\tNONDUP\t$occurrenceID\t$scientificName\t$verbatimCounty\t$modified\n";
 #print "INCL $old_AID\n";
 ++$included;
 	}

@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set('America/Los_Angeles');
-require '/usr/local/web/ucjeps_data/cch_config/config.php';
+require '../../ucjeps_data/ucjeps_data/config/members.php';
 $db = new SQLite3($database_location);
 
 ?>
@@ -66,8 +66,6 @@ $db = new SQLite3($database_location);
 <!-- COMMON HEADER ENDS -->
  </div>
 
-<div >
-
 
 <table id = "sideTable">
 	<tr>
@@ -91,8 +89,6 @@ $db = new SQLite3($database_location);
 
 <table id ="list">
 
-		<tr><td><img alt="" src="construct.bmp"></td><td><font color="red"> This site is under re-development.  This page is now reading from the CCH2 member table.  Format and contents of the Member table are incomplete. The format will closely match the old page when finished.</font></td>
-
   <tr>
     <td bgcolor="black" style="color:white">Members</td>
 	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
@@ -107,7 +103,7 @@ $db = new SQLite3($database_location);
 
 <?php
 
-$results = $db->query('SELECT *
+$results = $db->query('SELECT DISTINCT *
 						FROM cch_members
 						ORDER BY institutionCode');
 

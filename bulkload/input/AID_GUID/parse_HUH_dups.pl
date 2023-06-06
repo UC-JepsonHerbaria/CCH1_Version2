@@ -8,6 +8,8 @@ use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max coun
 my $today_JD = &CCH::get_today;
 #my $today_JD = &get_today_julian_day;
 
+
+
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
 
 my $herb="HUH";
@@ -19,8 +21,9 @@ my $filedate="02282022";
 
 my %month_hash = &CCH::month_hash;
 
-my $records_file='../../output/HUH-CCH2_out_'.$filedate.'.txt';
+my $records_file='output/HUH-CCH2_out_'.$filedate.'.txt';
 #only harvesting the CCH2 ID's and CCH1 ids from this file here
+$today_JD =~ s/ *PDT//;
 
 open(DUPLOG, ">>input/AID_GUID/DUPS/dup_log_".$today_JD.".txt") || die; 
 open(OUT, ">input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
@@ -36,7 +39,7 @@ my ($dups,$dups_B,$ALTER, $ORTH, %DUP_FOUND,%duplicate_OTH,%duplicate_CAT,$count
 
 
 #out file variables for CCH2 compatibility
-my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+my ($ALT_CCH_BARCODE,$oldA,$old_AID,$formatted_EJD,$formatted_LJD) = "";
 
 #HUH occid infile
 my ($OC,$IC,$CO,$OCC,$CA,$OCA,%OCCID) = "";
@@ -76,19 +79,24 @@ Record: while(<IN>){
 
 		my @fields=split(/\t/,$_,100);
 
-		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+		unless($#fields == 47){  #if the number of values in the columns array is exactly 48, this is for Darwin Core
 
 			warn "$#fields bad field number $_\n";
 
 			next Record;
 		}
 
+
+#0036fff8-fa5f-49b3-bbad-8ab97c436984	GH	barcode-01709620		0036fff8-fa5f-49b3-bbad-8ab97c436984	Aquilegia formosa Fischer	Aquilegia formosa	Aquilegia formosa	NULL	NULL					G. B. Rossbach ; A. R. Hodgdon			1934-07-20	1934-07-20	19340720	19340720	USA	California	Tuolumne County	on ledges by cascade on tributary to Leevining Creek, 5 miles east of Tioga Lake		Wet turf			NotDetermined	NULL										NULL					2020-06-25T15:48:08Z		Tuolumne
+#ea7874e7-4c52-4057-8a6a-1d9b497aff2e	GH	barcode-02001711		ea7874e7-4c52-4057-8a6a-1d9b497aff2e	Nuttallanthus texanus (Scheele) D. A. Sutton	Nuttallanthus texanus	Nuttallanthus texanus	NULL	NULL					M. M. Miles			1886-02-01	1886-02-28	18860201	18860228	USA	California	San Luis Obispo County	&lsqb;data not captured&rsqb;					NotDetermined	NULL										NULL					2022-01-13T20:43:07Z		San Luis Obispo
+#00c55a04-e201-455b-8455-5519424d35f6	GH	barcode-02023616		00c55a04-e201-455b-8455-5519424d35f6	Cryptantha flaccida (Douglas ex Lehmann) Greene	Cryptantha flaccida	Cryptantha flaccida	NULL	NULL					;lsqb;data not captured;rsqb;			1886-02-01	1886-02-28	18860201	18860228	USA	California	Fresno County	&lsqb;data not captured&rsqb;					NotDetermined	NULL										NULL					2019-07-23T18:17:17Z		Fresno
+#eaeb69fd-fcaa-45ae-b1f7-03665ee77dbf	GH	barcode-00379397		eaeb69fd-fcaa-45ae-b1f7-03665ee77dbf	Erysimum capitatum (Douglas ex Hooker) Greene	Erysimum capitatum	Erysimum capitatum	NULL	NULL					L. E. Smith	196		1913-05-09	1913-05-09	19130509	19130509	USA	California	Siskiyou County	Weed					NotDetermined	NULL										NULL					2012-08-30T10:57:56Z		Siskiyou
+
+
 		($CCH2id,
 		$institutionCode,
 		$catalogNumber,
 		$otherCatalogNumbers,
-		$CCHbarcode,
-		$oldCCHID,
 		$occurrenceID,
 		$scientificName,
 		$displayName,
@@ -102,7 +110,8 @@ Record: while(<IN>){
 		$recordedBy,
 		$recordNumber,
 		$verbatimDate,
-		$eventDate_parse,
+		$formatted_EJD,
+		$formatted_LJD,
 		$EJD,
 		$LJD,
 		$country,
@@ -120,6 +129,8 @@ Record: while(<IN>){
 		$elevationInFeet,
 		$verbatimElevation,
 		$verbatimCoordinates,
+		$latitude,
+		$longitude,
 		$decimalLatitude,
 		$decimalLongitude,
 		$geodeticDatum,
@@ -132,9 +143,7 @@ Record: while(<IN>){
 		$county
 		) = @fields;	
 #The array @fields is made up on these 47 scalars, in this order, GBIF modified export
-
-#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
-#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 48 scalars, in this order, GBIF modified export
 
 
 #filter by herbarium code
@@ -152,10 +161,22 @@ printf {*STDERR} "%d\r", ++$count_record;
 		next Record;
 	}
 
+#BAD otherCatalogNumbers==>422e0127-1942-499d-b177-27ee815ed413==>barcode-02045005==>AMES-accession-80342
+
 #extract old herbarium and aid numbers
 
-	if ($oldCCHID =~ m/^(GH|A|AMES|ECON) *0*([1-9][0-9]*)[a-zA-Z]*$/){
+	if ($otherCatalogNumbers =~ m/^(GH|A|AMES|ECON) *- *[acesion]+ *- *0*([1-9][0-9]*)[a-zA-Z]*$/){
 		$oldCCHID = $1.$2;
+		$duplicate_OTH{$oldCCHID}++;
+		#print "HERB(2)\t$old_AID\t$id==>$catalogNumber==>$otherCatalogNumbers\n"";
+	}
+	elsif ($otherCatalogNumbers =~ m/^(GH|A|AMES|ECON)[- ]*0*([1-9][0-9]*)[a-zA-Z]*$/){
+		$oldCCHID = $1.$2;
+		$duplicate_OTH{$oldCCHID}++;
+		#print "HERB(2)\t$old_AID\t$id==>$catalogNumber==>$otherCatalogNumbers\n"";
+	}
+	elsif ($otherCatalogNumbers =~ m/^0*([1-9][0-9]*)[a-zA-Z]*$/){
+		$oldCCHID = $institutionCode.$1;
 		$duplicate_OTH{$oldCCHID}++;
 		#print "HERB(2)\t$old_AID\t$id==>$catalogNumber==>$otherCatalogNumbers\n"";
 	}
@@ -173,12 +194,19 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 
 #construct catalog numbers
-	if ($CCHbarcode =~ m/^(GH|A|AMES|ECON)([0-9]+)-BARCODE$/){
+	if ($catalogNumber =~ m/^(GH|A|AMES|ECON)([0-9]+)-BARCODE$/){
+		$CCHbarcode = $catalogNumber;
+		$ALT_CCH_BARCODE = $1.$2;
 		$duplicate_CAT{$CCHbarcode}++;#count to find duplicates
 		#print "HERB(3)\t$ALT_CCH_BARCODE\t$id==>$catalogNumber==>$otherCatalogNumbers\n";
 	}
-	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
-		$catalogNumber = "";
+	elsif ($catalogNumber =~ m/^barcode-(0*)([1-9][0-9]+)$/){
+		$CCHbarcode = $institutionCode.$1.$2."-BARCODE";
+		$ALT_CCH_BARCODE = $institutionCode.$2;
+		$duplicate_CAT{$CCHbarcode}++;#count to find duplicates
+		#print "HERB(3)\t$ALT_CCH_BARCODE\t$id==>$catalogNumber==>$otherCatalogNumbers\n";
+	}
+	elsif ($catalogNumber =~ m/^(NULL| *)$/){
 		$CCHbarcode="";
 	}
 	else{
@@ -190,7 +218,7 @@ printf {*STDERR} "%d\r", ++$count_record;
 	}
 
    if (length ($catalogNumber) >= 1){
-	if ($duplicate_CAT{$CCHbarcode} >= 2){
+	if ($duplicate_CAT{$catalogNumber} >= 2){
 		$duplicate_FOUND_CAT{$CCHbarcode}++;
 		++$dups;
 	}
@@ -244,7 +272,7 @@ my ($skipped, $included, %seen) = "";
 my ($dups,$dups_B,$ALTER, $ORTH, $count_record) = "";
 
 #out file variables for CCH2 compatibility
-my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+my ($ALT_CCH_BARCODE,$oldA,$old_AID,$formatted_EJD,$formatted_LJD) = "";
 
 #HUH IN file
 my ($institutionCode, $CCH2id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
@@ -282,7 +310,7 @@ Record: while(<IN>){
 
 		my @fields=split(/\t/,$_,100);
 
-		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+		unless($#fields == 47){  #if the number of values in the columns array is exactly 48, this is for Darwin Core
 
 			warn "$#fields bad field number $_\n";
 
@@ -293,8 +321,6 @@ Record: while(<IN>){
 		$institutionCode,
 		$catalogNumber,
 		$otherCatalogNumbers,
-		$CCHbarcode,
-		$oldCCHID,
 		$occurrenceID,
 		$scientificName,
 		$displayName,
@@ -308,7 +334,8 @@ Record: while(<IN>){
 		$recordedBy,
 		$recordNumber,
 		$verbatimDate,
-		$eventDate_parse,
+		$formatted_EJD,
+		$formatted_LJD,
 		$EJD,
 		$LJD,
 		$country,
@@ -326,6 +353,8 @@ Record: while(<IN>){
 		$elevationInFeet,
 		$verbatimElevation,
 		$verbatimCoordinates,
+		$latitude,
+		$longitude,
 		$decimalLatitude,
 		$decimalLongitude,
 		$geodeticDatum,
@@ -338,9 +367,7 @@ Record: while(<IN>){
 		$county
 		) = @fields;	
 #The array @fields is made up on these 47 scalars, in this order, GBIF modified export
-
-#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
-#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 48 scalars, in this order, GBIF modified export
 
 
 #filter by herbarium code
@@ -358,10 +385,18 @@ printf {*STDERR} "%d\r", ++$count_record;
 		next Record;
 	}
 
+#BAD otherCatalogNumbers==>422e0127-1942-499d-b177-27ee815ed413==>barcode-02045005==>AMES-accession-80342
+
 #extract old herbarium and aid numbers
 
-	if ($oldCCHID =~ m/^(GH|A|AMES|ECON) *0*([1-9][0-9]*)[a-zA-Z]*$/){
+	if ($otherCatalogNumbers =~ m/^(GH|A|AMES|ECON) *- *[acesion]+ *- *0*([1-9][0-9]*)[a-zA-Z]*$/){
 		$oldCCHID = $1.$2;
+	}
+	elsif ($otherCatalogNumbers =~ m/^(GH|A|AMES|ECON)[- ]*0*([1-9][0-9]*)[a-zA-Z]*$/){
+		$oldCCHID = $1.$2;
+	}
+	elsif ($otherCatalogNumbers =~ m/^0*([1-9][0-9]*)[a-zA-Z]*$/){
+		$oldCCHID = $institutionCode.$1;
 	}
 	elsif ($otherCatalogNumbers =~ m/^(NULL| *)$/){
 		$otherCatalogNumbers = "";
@@ -374,16 +409,20 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 
 #construct catalog numbers
-	if ($CCHbarcode =~ m/^(GH|A|AMES|ECON)([0-9]+)-BARCODE$/){
-		#do nothing
+	if ($catalogNumber =~ m/^(GH|A|AMES|ECON)([0-9]+)-BARCODE$/){
+		$CCHbarcode = $catalogNumber;
+		$ALT_CCH_BARCODE = $1.$2;
 	}
-	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
-		$catalogNumber = "";
+	elsif ($catalogNumber =~ m/^barcode-(0*)([1-9][0-9]+)$/){
+		$CCHbarcode = $institutionCode.$1.$2."-BARCODE";
+		$ALT_CCH_BARCODE = $institutionCode.$2;
+	}
+	elsif ($catalogNumber =~ m/^(NULL| *)$/){
 		$CCHbarcode="";
 	}
 	else{
 		$catalogNumber = "";
-		$CCHbarcode="";
+		$ALT_CCH_BARCODE="";
 	}
 
 #exclude ALL duplicates 

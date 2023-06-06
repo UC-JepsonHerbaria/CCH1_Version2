@@ -2,39 +2,18 @@
 
 date_default_timezone_set('America/Los_Angeles');
 
-//georef not in databade yet, comment out for now
-//$TaxonID = htmlspecialchars($_GET["tid"]);
+#Output file to store data for Berkeley Mapper
+$timestamp = time();
+$tab_file_name="CHC_".$timestamp."_CCH1_GEOREF";
+$map_file_path="/BerkeleyMapper/";
+$map_file_out= $map_file_path.$tab_file_name;
+$map_file_URL="https://ucjeps.berkeley.edu".$map_file_out.".txt";
 
-//require 'config/config.php';
-//$db = new SQLite3($database_location);
-
-
-//$results = $db->query('SELECT ID, ScientificName, TaxonAuthor, FormattedDisplayName, CommonName, NativeStatus, TJM2Author, ScientificEditor, Habit, PlantBody, Stem, SterileStem, FertileStem, Leaf, Spines, Inflorescence, StaminateHead, RayOrPistillateFlower, PistillateHead, StaminateInflorescence, PistillateOrBisexualInflorescence, PistillateInflorescence, Spikelet, FertileSpikelet, SterileSpikelet, DistalSpikelet, CentralSpikelet, LateralSpikelet, StaminateSpikelet, PistillateSpikelet, Flower, StaminateFlower, PistillateFlower, RayFlower, DiskFlower, Cone, PollenCone, SeedCone, BisexualFlower, Fruit, Seed, Sporangia, SporangiumCase, MaleSporangiumCase, FemaleSporangiumCase, Spores, Chromosomes, Ecology, RarityStatus, Elevation, BioregionalDistribution, OutsideCA, SpeciesInGenus, GeneraInFamily, Etymology, Toxicity, Synonyms, UnabridgedSynonyms, Reference, UnabridgedReference, Note, UnabridgedNote, FLFRTimeCode, FloweringTime, FruitingTime, SporConeTime, Weediness, IsTerminalTaxon, HasKey, RevisionNumber, RevisionDate, DistCode 
-//						FROM eflora_taxa
-//						WHERE TaxonID='.$TaxonID.''); //16711 is the TaxonID for Calochortus amabilis, for example
-
-//while ($row = $results->fetchArray()) {
-
-//add database schema and search code here
-
-
-//change this to a CCH relevant version below, this is from eflora_display.php
-//Before doing anything, if the TID isn't recognized, give a plain error screen
-//if (!$ID){ //if TaxonID (pulled from URL) did not match a line in the database...
-//  echo "Taxon not recognized TID=".$TaxonID;
-
-
-//header("Location: /cgi-bin/get_cpn.pl?".$TaxonID, true, 301);
-//exit();
-
-//}
 ?>
 
-<!DOCTYPE html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<?php 
-//add note or other code here for variables
-?>
 
 <head>
 <title>CCH1: Coordinate Search Tool</title> 
@@ -46,25 +25,32 @@ date_default_timezone_set('America/Los_Angeles');
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<!-- Global site tag (gtag.js) - Google Universal Analytics (OLD FORMAT, GOOGLE retires in July 2023)-->
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>-->
+<!--<script>-->
+<!--  window.dataLayer = window.dataLayer || [];-->
+<!--  function gtag(){dataLayer.push(arguments);}-->
+<!--  gtag('js', new Date());-->
+<!--  gtag('config', 'UA-43909100-3');-->
+<!--</script>-->
+
+
+<!-- Google G4 Global site tag (gtag.js) - Google Analytics, replaces old UA tag-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HWJ1N1S6S4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-43909100-3');
-
+  gtag('config', 'G-HWJ1N1S6S4');
 </script>
-
-<!-- jquery functions -->
 
 </head>
 <body>
 
-<table id="normaltable" style="vertical-align: top;">
+<table id="normaltable">
   <tr>
-   <td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
 	<td>
 	 <table id="cchpageback">
 	  <tr>
@@ -73,41 +59,46 @@ date_default_timezone_set('America/Los_Angeles');
 <!-- COMMON HEADER -->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
-</div>
-
+ </div>
 <div>
+
 <table id = "sideTable">
 	<tr>
-	<td style="vertical-align: top;width: 175px;">
-		<table id = "sideLinks">
+	<td style="vertical-align: top;width:200px;background-color:#C6C6E1;border-right-style: solid;border-right-color: #9090AA;border-left-style: solid;border-left-color: #9090AA;">
+		<table id = "sideLinks" style="width:100%;">
 		<tr>
-			<td style="background-color: #9090AA;width: 175px;"> <!--background test -->
+			<td> <!-- <<background test>> -->
+		<div style="border-bottom-style: solid;border-bottom-color: #9090AA;">
 <!-- Start of sidebar menu-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
 <!-- End of sidebar --> 
+		</div>
 			</td>
 		</tr>
 		</table>
 	</td>
-	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
-	<td style="vertical-align: top;">
+	<td style="vertical-align: top;background-color:#FFFFFF;"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td style="padding-top: 5px;vertical-align: top;width=80vw;">
+
+<!-- Begin body section-->
+
+	<span class="generalText">
 	
 <p><span class="pageNameB">&nbsp;CCH1 Coordinate Search Tool</span></p>
 
 
 <div >
- <ol id = "menu" type="A">
+ <ul id = "menu">
   <li> <a name="coords"></a><span class="generalText"><b> Search georeferenced specimens based on a free-hand polygon in Berkeley Mapper</b></span><br />
  <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-   <td style="width: 50px;">
-   </td>
-    <td class="bodyFull">
+    <td class="bodyFull" style="vertical-align: top;background-color:#FFFFFF;">
 	 <div class="shadow-color">
 	  <span class="generalText">
 	   <div class="color-box" style="background-color: #eeeeee;">
 		<ol>
-		<li>&nbsp;&nbsp;&nbsp;The default is to not show any specimens on map.</li>
+		<li>&nbsp;&nbsp;&nbsp;This will load all georeferenced CCH1 data with marker cluster Display or invisible point markers.</li>
+		<li>&nbsp;&nbsp;&nbsp;After zooming in, the BerkeleyMapper custom shape tool (top-center control, right-most button) can be used to filter the database.</li>
 		<li>&nbsp;&nbsp;&nbsp;The specimens inside the polygon will show at the bottom of the window.</li>
 		<li>&nbsp;&nbsp;&nbsp;The results can be downloaded using the links on the left.</li>
 		<li>&nbsp;&nbsp;&nbsp;The downloads are a limited subset fields in CCH1.</li>
@@ -115,42 +106,38 @@ date_default_timezone_set('America/Los_Angeles');
 		<a href="mailto:jason_alexander@berkeley.edu">jason_alexander@berkeley.edu</a></li>
 		</ol>
 
-			<p><b>&nbsp;&nbsp;&nbsp;&nbsp;To begin, search CCH1 by using polygon tool on the map in <b />
-			<a href="http://berkeleymapper.berkeley.edu/index.html?ViewResults=tab&tabfile=https://ucjeps.berkeley.edu/consortium/CCH_all.txt&configfile=https%3A%2F%2Fucjeps.berkeley.edu%2Fucjeps_GR_new.xml&sourcename=Consortium+of+California+Herbaria+result+set&&maptype=Terrain&pointDisplay=none">BerkeleyMapper (without showing point locations to load faster)</a> 
-			</b></p>
+			<p><b>&nbsp;&nbsp;&nbsp;&nbsp;Search CCH1 by polygon with <a href="http://berkeleymapper.berkeley.edu/index.html?ViewResults=tab&tabfile=https://ucjeps.berkeley.edu/consortium/logs/CCH_GEOREF.txt&configfile=https%3A%2F%2Fucjeps.berkeley.edu%2Fucjeps_geo_search.xml&sourcename=Consortium+of+California+Herbaria+result+set&pointDisplay=markerclusteron">marker cluster enabled</a>.<b />
+		
+			</p>
+			<p><b>&nbsp;&nbsp;&nbsp;&nbsp;Search CCH1 by polygon with <a href="http://berkeleymapper.berkeley.edu/index.html?ViewResults=tab&tabfile=https://ucjeps.berkeley.edu/consortium/logs/CCH_GEOREF.txt&configfile=https%3A%2F%2Fucjeps.berkeley.edu%2Fucjeps_geo_search.xml&sourcename=Consortium+of+California+Herbaria+result+set&pointDisplay=none">invisible point markers.</a><b />
+			
+			</p>
  <p>&nbsp;&nbsp;&nbsp;&nbsp;
- Warning: Use only with the default None or MarkerCluster Display. Activating the display of individual 
- specimens may cause lag, since over 2.5 million icons will need to loaded.
+ Warning: When viewing the entire state of California, do not select individual marker colors. Activating the display of individual 
+ point locations will cause lag and may crash your browser.  Loading over 1.8 million icons takes a very long time.
  </p>
-	   </div>
-	  </span>
-	 </div>
-   </td>
-  </tr>
- </table>
 
-<br />
-<br />
-  </li>
-  
-  
-  <li> <a name="coords"></a><span class="generalText"><b> Search by rectangular polygons on the CCH1 georeference map</b></span><br />
- <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-   <td style="width: 50px;">
-   </td>
-    <td class="bodyFull">
-	 <div class="shadow-color">
-	  <span class="generalText">
-	   <div class="color-box" style="background-color: #eeeeee;">
-		<ol>
-		<li>&nbsp;&nbsp;&nbsp;This is a simplified map of all of the georeferences specimens in CCH1.</li>
-		<li>&nbsp;&nbsp;&nbsp;The dots show the density of collections within that area.</li>
-		<li>&nbsp;&nbsp;&nbsp;Clicking on the rectangle will query CCH1 and bring up all specimens within that area.</li>
+
+<!--
+ <p>&nbsp;&nbsp;&nbsp;&nbsp;Create a new CCH1 georef file for Berkeley Mapper
+ 
+ 		<ol>
+		<li>&nbsp;&nbsp;&nbsp;Uncomment the button below.</li>
+		<li>&nbsp;&nbsp;&nbsp;Click the button to start the query.</li>
+		<li>&nbsp;&nbsp;&nbsp;Look at results to see if the expected number of georeferene records were obtained</li>
+		<li>&nbsp;&nbsp;&nbsp;Find the file from the tmp Berkeley Mapper directory.</li>
+		<li>&nbsp;&nbsp;&nbsp;Copy it to the logs directory.</li>
+		<li>&nbsp;&nbsp;&nbsp;Rename it CCH1_GEOREF.txt</li>
 		</ol>
-			<p><b>&nbsp;&nbsp;&nbsp;&nbsp;To begin, search CCH1 by selecting a rectangle on the map displayed on this page: <b />
-			<a href="/consortium/load_hartman.html">https://ucjeps.berkeley.edu/consortium/load_hartman.html</a>.
-			</b></p>
+</p>
+<form method="GET" action="/consortium/georef_create.php">
+			<input type="hidden" name="geo_only" value="1">
+			<p><input TYPE="submit" VALUE="Create CCH1_GEOREF" >&nbsp;&nbsp;&nbsp;&nbsp;</p>			
+
+</form>
+ 
+-->
+
 	   </div>
 	  </span>
 	 </div>
@@ -158,109 +145,12 @@ date_default_timezone_set('America/Los_Angeles');
   </tr>
  </table>
 
-<br />
-<br />
-  </li>  
-  
-  
-  <li id = "menu"><span class="generalText"><b>Search CCH1 by user-provided coordinates for the centroid of a circle and a radius</b>
- <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-   <td style="width: 50px;">
-   </td>
-    <td class="bodyFull">
-	<div class="shadow-color">
-	  <span class="generalText">
-	   <div class="color-box" style="background-color: #eeeeee;">
-		<p>
-	<form method = "POST" action="/cgi-bin/get_consort.pl">
-		<ol>
-		<li>&nbsp;&nbsp;&nbsp;Paste the coordinates and error radius using the circle-drawing tool at the top of the Berkeley </b>
-			<a href="http://berkeleymapper.berkeley.edu/index.html?ViewResults=tab&tabfile=https://ucjeps.berkeley.edu/consortium/basemap.txt&configfile=https%3A%2F%2Fucjeps.berkeley.edu%2Fucjeps_GR.xml&sourcename=Consortium+of+California+Herbaria+result+set&">
-			<b>BerkeleyMapper</b> (click to get map).</a>
-		</li>
-		<p>&nbsp;OR</p>
-		<li>&nbsp;&nbsp;&nbsp;Paste user-defined point coordinate and radius information into the box below<br />
-			<b>&nbsp;&nbsp;&nbsp;Example of information to be copied from tool and pasted into form:</b>
-		</li>
-		<p>&nbsp;&nbsp;&nbsp;<b>Coordinate: 37.87654 / -121.93076 (3077 meters radius)</b></p>
-	<div style = "align: left;"><textarea name="sugg_loc" cols="50" rows="6"></textarea>
-				<br /></div>
-		</p>
-	<p>&nbsp;&nbsp;&nbsp;If you only want a list of names, not all the records:<br />
-	&nbsp;&nbsp;&nbsp;<input type ="checkbox" name="make_tax_list" value=1 ><b class="pageSubheading">Taxon List</b>
-		</p>
-
-		<p>&nbsp;&nbsp;&nbsp;
-		<b>Submit Search Button</b> <br />&nbsp;&nbsp;&nbsp;<input TYPE="submit" VALUE="Submit coordinates, return records, and generate map">
-		</p>
-	</form>
-	   </div>
-	  </span>
-	 </div>
-   </td>
-  </tr>
- </table>
 <br />
 <br />
   </li>
-  <li><span class="generalText"><b>Map records of all specimens with coordinate data for a county. Select source and county</b>
- <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-   <td style="width: 50px;">
-   </td>
-    <td class="bodyFull">
-	<div class="shadow-color">
-	  <span class="generalText">
-	   <div class="color-box" style="background-color: #eeeeee;">
-		<p>
-	<form method = "POST" action="/cgi-bin/map_county_stripped.pl">
-			<span class="pageSubheading2"><b>Source</b> </span><span class="bodySmallerText">(1 or more; default is all sources)</span>
-			<br />
-			<select NAME="source" size=27 multiple>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_participants_options.php'); ?>
-			</select>	
-			</p>	
-			<p>
-			<span class="pageSubheading">County </span><br />
-			<select name="county" size = 12 multiple>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_county_options.php'); ?>
-			</select>
-			<br />
-			(1 or more; default is all counties)&nbsp;
-			</p>
-			<p>	<span class="pageSubheading2">Note: Not all counties have been uniformly georeferenced!</span><br />
-			</p>
+  
 
-			<p class="bodysmallerText">
-				<b class="pageSubheading">
-					If you want only the yellow-flagged records ...
-				</b>
-				<input type ="checkbox" name="marginal" value=1 >
-				<br />
-			</p>
-			<p>
-				<input TYPE="submit" VALUE="Submit Query">
-				<br />
-				<input TYPE="reset" VALUE="Reset Form">
-			</p>
-	</form>
-	   </div>
-	  </span>
-	 </div>
-   </td>
-  </tr>
- </table>
-<br />
-<br />
-  </li>
-</ol>
-   <h3>Links</h3>
-	<ul>
-		<li><a href="http://publications.newberry.org/ahcbp/map/map.html#CA">Historical boundaries of California counties</a></LI>
-		<li><a href="https://getlatlong.net/">Get coordinates if you have an address using getLatLong.net on iTouchmap.com</a></LI>
-		<li><a href="https://california.hometownlocator.com/"> California Home Town Locator</a></LI>
-	</ul>
+</ul>
 
 </div>
 

@@ -47,8 +47,6 @@ date_default_timezone_set('America/Los_Angeles');
 
 <!--</script>-->
 
-<!-- jquery functions -->
-
 </head>
 <body>
 
@@ -59,31 +57,34 @@ date_default_timezone_set('America/Los_Angeles');
 	 <table id="cchpageback">
 	  <tr>
 	   <td>
-<div class="cch-top-image-xy5crop">
+ <div class="cch-top-image-xy5crop">
 <!-- COMMON HEADER -->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cchv2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
 </div>
-<div>
 
 <table id = "sideTable">
 	<tr>
-	<td style="vertical-align: top;width:200px;">
+	<td style="vertical-align: top;width:200px;background-color:#C6C6E1;border-right-style: solid;border-right-color: #9090AA;border-left-style: solid;border-left-color: #9090AA;">
 		<table id = "sideLinks" style="width:100%;">
 		<tr>
 			<td> <!-- <<background test>> -->
-				<div style="border-right-style: solid;border-right-color: #9090AA;border-left-style: solid;border-left-color: #9090AA;">
+		<div style="border-bottom-style: solid;border-bottom-color: #9090AA;">
 <!-- Start of sidebar menu-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
 <!-- End of sidebar --> 
-				</div>
+		</div>
 			</td>
 		</tr>
 		</table>
 	</td>
-	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
+	<td style="vertical-align: top;background-color:#FFFFFF;"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
 	<td style="padding-top: 5px;vertical-align: top;width=80vw;">
-	<span class="aboutAbove">
+
+<!-- Begin body section-->
+
+	<span class="generalText">
+	
 
     <p>
 	<span class="pageName">About the Consortium</span><br />
@@ -96,13 +97,15 @@ date_default_timezone_set('America/Los_Angeles');
 		<iframe src="https://mapsengine.google.com/map/u/1/embed?mid=zMVZ2T1tY_6c.kA8Lhz7Y8vBo" style="height:550px;width:300px;" title="Locations of CCH California Participants"></iframe>
 </span>
 
-The Consortium of California Herbaria is the organization that supports all herbaria in California. In 2003, the Consortium initially included only herbaria in the University of California system.  It now includes records from <b>48 California institutions</b>. Membership is open to all California herbaria<!--that agree to the terms of the 
+The Consortium of California Herbaria is the organization that supports all herbaria in California. In 2003, the Consortium initially included only herbaria in the University of California system.  It now includes records from <b>48 California institutions</b>. <!--Membership is open to all California herbaria.--> Herbaria in California are encouraged to apply for membership. Herbaria located outside California are occasionally accepted as members as well<!--that agree to the terms of the 
 <a href="memorandum.html"> MOU</a>-->. 
 
 Data providers need to meet this set of<a href="/consortium/requirements.html"> minimum requirements</a>. 
 Current members of CCH are listed at<a href="/consortium/participants.html"> ucjeps.berkeley.edu/consortium/participants.html</a>.</p>  
 <!--The California holdings of members are listed in a<a href="/consortium/CCH_numbers_table.html"> bar graph</a> and a<a href="/consortium/CCH_numbers.html"> chart</a>.; the county record breakdown is depicted in a set of <a href="bargraphs/">bar graphs.--></p>
-<p >The CCH began as a data aggregator for California vascular plant specimen data and that remains its primary purpose to date. Responding to requests from participants to display specimen data from all groups of plants and fungi, from all locations (including those outside California), we have developed a new portal. There are now two CCH portals and each has a special purpose.</p>
+<p >The CCH began as a data aggregator for California vascular plant specimen data and that remains its primary purpose to date. 
+Responding to requests from participants to display specimen data from all groups of plants and fungi, from all locations 
+(including those outside California), we have developed a new portal. There are now two CCH portals and each has a special purpose.</p>
 <p><a href="/consortium/"><b>The Consortium of California Herbaria Portal 1 (CCH1)</b></a> serves as a gateway to information for <b>California vascular plant specimens</b> housed in herbaria, worldwide. Originally developed in 2003 around botanical collections from University of California herbaria, the Consortium has grown significantly and now contains over <b>2.2 million specimen records</b> from over 50 participants throughout North America. Records from Herbaria outside North America will be added in future updates. </p> 
 <p><b>CCH1</b> is an updated version of the original CCH portal.  CCH1 is a specialized portal for presenting highly curated specimen data about the <b>California vascular flora</b>, tightly linked to the active statewide flora project (the <i>Jepson eFlora</i>: http://ucjeps.berkeley.edu/eflora/). It is restricted to vascular plant specimens of native and naturalized taxa from California. This portal includes all California vascular plants from CCH members, but also includes California specimen records from other sources worldwide. The Index of California Plants Names (ICPN) will continue to be developed to record details about each of the different categories of names for these taxa and will be used for both the <i>Jepson eFlora</i> and CCH1.</p>
 <p>For more information about CCH1, see the following articles - 
@@ -111,7 +114,7 @@ The Consortium of California Herbaria Reaches Two Million Specimens</a>,
 published in <a href="http://www.cnps.org/cnps/publications/fremontia/">Fremontia</a> (2016); 
 <a href="https://insideucr.ucr.edu/stories/2020/11/23/ucr-helps-grow-massive-plant-portal">UCR helps grow massive plant portal</a>: Project makes a million specimens publicly available, published in <a href="https://insideucr.ucr.edu">Inside UCR</a> (2020)</p>
 
-<p><a href="http://cch2.org/portal/"><b>The Consortium of California Herbaria Portal 2 (CCH2)</b></a> serves as a gateway to information for herbarium specimens housed by all participating CCH members.  CCH2 is a general Symbiota portal for managing and presenting data from CCH members.  This portal serves all specimen data from all participating CCH members and will be worldwide scope and have a broad taxonomic coverage of land plants, algae, and fungi. Unlike the original CCH database, some members will use CCH2 for data entry and collections management directly and they will be responsible for their own data quality control.  In the next 4 years, CCH2 will add nearly a million images of specimens from California Herbaria.  Additionally, the portal will capture phenological data: information about the timing of, e.g., flowering or fruiting.</p>
+<p><a href="https://cch2.org/portal/"><b>The Consortium of California Herbaria Portal 2 (CCH2)</b></a> serves as a gateway to information for herbarium specimens housed by all participating CCH members.  CCH2 is a general Symbiota portal for managing and presenting data from CCH members.  This portal serves all specimen data from all participating CCH members and will be worldwide scope and have a broad taxonomic coverage of land plants, algae, and fungi. Unlike the original CCH database, some members will use CCH2 for data entry and collections management directly and they will be responsible for their own data quality control.  In the next 4 years, CCH2 will add nearly a million images of specimens from California Herbaria.  Additionally, the portal will capture phenological data: information about the timing of, e.g., flowering or fruiting.</p>
 
 <p><span class="pageSubheading">CCH in the Scientific Literature</span></p>
 <p>The CCH maintains a <a href="/consortium/citations/">Google Scholar profile</a> of publications since 2007 that have cited data from the CCH. This list is periodically updated and is not exhaustive, although we would like it to be! If you know of or have published an article citing data from the CCH that you would like to see on this list, please contact (<a href="mailto:smarkos@berkeley.edu">Staci Markos</a>).
@@ -124,14 +127,14 @@ published in <a href="http://www.cnps.org/cnps/publications/fremontia/">Fremonti
 <p><span class="pageSubheading">Geographic Data</span></p>
 <span class = "aboutSizeRight">
 <table width="144" border="0" align="right" cellpadding="5" cellspacing="0">
-  <tr><td><a href="/images/georef_map.html">
-<img src="/images/dots.gif" alt="Georeferencing progress map (click for larger version)" width="400" height="400" border="0"></a></td>
+  <tr><td style="vertical-align: top;background-color:#FFFFFF;"><a href="/consortium/georef_map.html">
+<img src="/consortium/hartman/dots.gif" alt="Georeferencing progress map (click for larger version)" width="400" height="400" border="0"></a></td>
   </tr>
   <tr>
-    <td class="caption" align="center"><a href="/consortium/georef_map.html">Consortium georeferencing progress</a></td>
+    <td class="caption" style="vertical-align: top;background-color:#FFFFFF;"><a href="/consortium/georef_map.html">Consortium georeferencing progress</a></td>
   </tr>
   <tr>
-    <td height="50" align="center" class="caption">&nbsp;</td>
+    <td class="caption" style="vertical-align: top;background-color:#FFFFFF;">&nbsp;</td>
   </tr>
 </table>
 	</span>
@@ -142,17 +145,22 @@ published in <a href="http://www.cnps.org/cnps/publications/fremontia/">Fremonti
 <!--As of January 2015, <b>~1,402,000 records (over 70%)</b>-->
 <!--As of October 2015, <b>~1,531,000 records (over 74%)</b>-->
 <!--As of January 2016, <b>~1,559,000 records (over three quarters)</b>-->
-As of August 2018, <b>~1,700,000 records (over three quarters)</b>
+<!--As of August 2018, <b>~1,700,000 records (over three quarters)</b>-->
+As of Dec 2021, <b>~1,882,000 records (over three quarters)</b>
 include latitude and longitude. Georeferenced records returned from any Consortium search can be mapped directly from the Consortium accession results page. 
-		<br />See the <a href="news.html">CCH news</a> page for detailed information about our most recent refresh.  
+		<br />See the <a href="/consortium/news.html">CCH news</a> page for detailed information about our most recent refresh.  
 		<!--Additional search options are available from the draft <a href="/consortium/georef_tools.html">georeferencing tools page</a>.--><br />
-<br>
-<span class="pageSubheading"><a href="https://sites.google.com/a/rsabg.org/cch_georeferencing_resources/home">RSABG Georeferencing</a>:</span> a repository of California-centric georeferencing resources maintained by Rancho Santa Ana Botanic Garden<br /> 
+</p>
 
+<p>
+<span class="pageSubheading"><a href="https://www.capturingcaliforniasflowers.org/georeferencing-protocols-and-guides.html">CCH2 Georeferencing</a>:</span> a repository of California-centric georeferencing resources produced for the CAP TCN NSF Grant<br />
+<br /> 
+<span class="pageSubheading"><a href="https://sites.google.com/a/rsabg.org/cch_georeferencing_resources/home">RSABG Georeferencing</a>:</span> a repository of California-centric georeferencing resources maintained by Rancho Santa Ana Botanic Garden<br /> 
 <br />
-<span class="pageSubheading"><a href="about_yellow.html">The Yellow Flag Project</a>:</span> an effort to bring attention to incongruencies between georeferenced records and geographic ranges included in the <a href="http://ucjeps.berkeley.edu/IJM.html">Jepson eFlora</a>.<br>
-<br />
-<br />
+<span class="pageSubheading"><a href="about_yellow.html">The Yellow Flag Project</a>:</span> an effort to bring 
+attention to incongruencies between georeferenced records and geographic ranges included in the <a href="/eflora/">Jepson eFlora</a>.<br>
+</p>
+
   <span class="pageSubheading">Citation</span><br /> 
     Please cite data retrieved from the Consortium database: <em>Data provided by the participants of the Consortium of California Herbaria (ucjeps.berkeley.edu/consortium/).</em>
 <br />
@@ -196,6 +204,9 @@ include latitude and longitude. Georeferenced records returned from any Consorti
 		</span>
 
 	</span>
+
+		<!--END Content Table-->	
+
 		</td>
 	</tr>
 	</table> <!--close sideNav table-->

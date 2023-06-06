@@ -21,6 +21,7 @@ my %month_hash = &CCH::month_hash;
 
 my $records_file='output/NY-CCH2_out_'.$filedate.'.txt';
 #only harvesting the CCH2 ID's and CCH1 ids from this file here
+$today_JD =~ s/ *PDT//;
 
 open(DUPLOG, ">>input/AID_GUID/DUPS/dup_log_".$today_JD.".txt") || die; 
 open(OUT, ">input/AID_GUID/DUPS/DUPS_".$herb.$today_JD.".txt") || die; #this only needs to be active once to generate a list of duplicated accessions
@@ -36,7 +37,7 @@ my ($dups,$dups_B,$ALTER, $ORTH, %DUP_FOUND,%duplicate_OTH,%duplicate_CAT,$count
 
 
 #out file variables for CCH2 compatibility
-my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+my ($ALT_CCH_BARCODE,$oldA,$old_AID,$formatted_EJD,$formatted_LJD) = "";
 
 #NY occid infile
 my ($OC,$IC,$CO,$OCC,$CA,$OCA,%OCCID) = "";
@@ -76,7 +77,7 @@ Record: while(<IN>){
 
 		my @fields=split(/\t/,$_,100);
 
-		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+		unless($#fields == 47){  #if the number of values in the columns array is exactly 48, this is for Darwin Core
 
 			warn "$#fields bad field number $_\n";
 
@@ -87,8 +88,6 @@ Record: while(<IN>){
 		$institutionCode,
 		$catalogNumber,
 		$otherCatalogNumbers,
-		$CCHbarcode,
-		$oldCCHID,
 		$occurrenceID,
 		$scientificName,
 		$displayName,
@@ -102,7 +101,8 @@ Record: while(<IN>){
 		$recordedBy,
 		$recordNumber,
 		$verbatimDate,
-		$eventDate_parse,
+		$formatted_EJD,
+		$formatted_LJD,
 		$EJD,
 		$LJD,
 		$country,
@@ -120,6 +120,8 @@ Record: while(<IN>){
 		$elevationInFeet,
 		$verbatimElevation,
 		$verbatimCoordinates,
+		$latitude,
+		$longitude,
 		$decimalLatitude,
 		$decimalLongitude,
 		$geodeticDatum,
@@ -132,9 +134,12 @@ Record: while(<IN>){
 		$county
 		) = @fields;	
 #The array @fields is made up on these 47 scalars, in this order, GBIF modified export
+#The array @fields is made up on these 48 scalars, in this order, GBIF modified export
 
-#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
-#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#4db1f34f-a300-49d5-b261-465b128d5771	NY	00044685		4db1f34f-a300-49d5-b261-465b128d5771	Datisca glomerata (C.Presl) Baill.	Datisca glomerata	Datisca glomerata	NULL	NULL	J. B. Walker	1996-01-01T00:00:00			J. B. Walker	1922	12 Jul 1996	1996-07-12	1996-07-12	19960712	19960712	USA	California	San Diego Co.	Cleveland National Forest, Palomar district at jct. of USFS Rd. 12S07& 12S05		Growing in rocky creekbed in chaparral				NULL		449	1476	1476 ft		33.120000	-116.820000	33.120000	-116.820000	WGS84							San Diego
+#1240f38c-ef26-45e8-83a6-b8f7da0248cf	NY	01393092		1240f38c-ef26-45e8-83a6-b8f7da0248cf	Chlorogalum pomeridianum (DC.) Kunth	Chlorogalum pomeridianum	Chlorogalum pomeridianum	NULL	NULL					M. C. Pace	707	23 May 2014	2014-05-23	2014-05-23	20140523	20140523	USA	California	Napa Co.	Property of Erik Martella, Butts Canyon Road, Pope Valley. South-southeast of the intersection of Butts Canyon Road and Snell Valley Road. 7 miles north of Pope Valley town center.		Central California Foothills and Coastal Mountains, North Coast Range Eastern Slopes ecoregion. Manzanita, Oak, and Pine &lpar;Arctostaphylos, Quercus, and Pinus&rpar; chaparral woodland interspersed w				NULL						38.688754	-122.439087	38.688754	-122.439087	WGS84			GPS				Napa
+#8160600a-86a3-4737-8b5b-05ba0cfe7c72	NY	01393052		8160600a-86a3-4737-8b5b-05ba0cfe7c72	Plantago erecta Morris	Plantago erecta	Plantago erecta	NULL	NULL					M. C. Pace	731	23 May 2014	2014-05-23	2014-05-23	20140523	20140523	USA	California	Napa Co.	Property of Erik Martella, Butts Canyon Road, Pope Valley. South-southeast of the intersection of Butts Canyon Road and Snell Valley Road. 7 miles north of Pope Valley town center.		Central California Foothills and Coastal Mountains, North Coast Range Eastern Slopes ecoregion. Manzanita, Oak, and Pine &lpar;Arctostaphylos, Quercus, and Pinus&rpar; chaparral woodland interspersed w				NULL						38.688754	-122.439087	38.688754	-122.439087	WGS84			GPS				Napa
+#748e67cb-127f-461d-a08d-3f28a9cf6c3a	NY	01393064		748e67cb-127f-461d-a08d-3f28a9cf6c3a	Delphinium hesperium subsp. hesperium	Delphinium hesperium subsp. hesperium	Delphinium hesperium subsp. hesperium	NULL	NULL					M. C. Pace	725	23 May 2014	2014-05-23	2014-05-23	20140523	20140523	USA	California	Napa Co.	Property of Erik Martella, Butts Canyon Road, Pope Valley. South-southeast of the intersection of Butts Canyon Road and Snell Valley Road. 7 miles north of Pope Valley town center.		Central California Foothills and Coastal Mountains, North Coast Range Eastern Slopes ecoregion. Manzanita, Oak, and Pine &lpar;Arctostaphylos, Quercus, and Pinus&rpar; chaparral woodland interspersed w				NULL						38.688754	-122.439087	38.688754	-122.439087	WGS84			GPS				Napa
 
 
 #filter by herbarium code
@@ -154,7 +159,7 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 #extract old herbarium and aid numbers
 
-	if ($oldCCHID =~ m/^(NY) *([0-9]+)[a-zA-Z]*$/){
+	if ($otherCatalogNumbers =~ m/^(NY) *([0-9]+)[a-zA-Z]*$/){
 		$oldCCHID = $1.$2;
 		$duplicate_OTH{$oldCCHID}++;
 		#print "HERB(2)\t$old_AID\t$id==>$catalogNumber==>$otherCatalogNumbers\n"";
@@ -173,12 +178,13 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 
 #construct catalog numbers
-	if ($CCHbarcode =~ m/^(NY)([0-9]+)[a-zA-Z]*(-BARCODE)$/){
-		$CCHbarcode = $1.$2.$3;
+	if ($catalogNumber =~ m/^(0*)([1-9][0-9]+)[a-zA-Z]*$/){
+		$CCHbarcode = $institutionCode.$1.$2."-BARCODE";
+		$ALT_CCH_BARCODE = $institutionCode.$2; #this is the reconstructed old CCH1 accession from 2012
 		$duplicate_CAT{$CCHbarcode}++;#count to find duplicates
 		#print "HERB(3)\t$ALT_CCH_BARCODE\t$id==>$catalogNumber==>$otherCatalogNumbers\n";
 	}
-	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
+	elsif ($catalogNumber =~ m/^(NULL| *)$/){
 		$catalogNumber = "";
 		$CCHbarcode="";
 	}
@@ -245,7 +251,7 @@ my ($skipped, $included, %seen) = "";
 my ($dups,$dups_B,$ALTER, $ORTH, $count_record) = "";
 
 #out file variables for CCH2 compatibility
-my ($ALT_CCH_BARCODE,$oldA,$old_AID) = "";
+my ($ALT_CCH_BARCODE,$oldA,$old_AID,$formatted_EJD,$formatted_LJD) = "";
 
 #NY IN file
 my ($institutionCode, $CCH2id, $collectionCode, $ownerInstitutionCode, $basisOfRecord) = ""; #5
@@ -283,7 +289,7 @@ Record: while(<IN>){
 
 		my @fields=split(/\t/,$_,100);
 
-		unless($#fields == 46){  #if the number of values in the columns array is exactly 47, this is for Darwin Core
+		unless($#fields == 47){  #if the number of values in the columns array is exactly 48, this is for Darwin Core
 
 			warn "$#fields bad field number $_\n";
 
@@ -294,8 +300,6 @@ Record: while(<IN>){
 		$institutionCode,
 		$catalogNumber,
 		$otherCatalogNumbers,
-		$CCHbarcode,
-		$oldCCHID,
 		$occurrenceID,
 		$scientificName,
 		$displayName,
@@ -309,7 +313,8 @@ Record: while(<IN>){
 		$recordedBy,
 		$recordNumber,
 		$verbatimDate,
-		$eventDate_parse,
+		$formatted_EJD,
+		$formatted_LJD,
 		$EJD,
 		$LJD,
 		$country,
@@ -327,6 +332,8 @@ Record: while(<IN>){
 		$elevationInFeet,
 		$verbatimElevation,
 		$verbatimCoordinates,
+		$latitude,
+		$longitude,
 		$decimalLatitude,
 		$decimalLongitude,
 		$geodeticDatum,
@@ -339,9 +346,7 @@ Record: while(<IN>){
 		$county
 		) = @fields;	
 #The array @fields is made up on these 47 scalars, in this order, GBIF modified export
-
-#The array @fields is made up on these 85 scalars, in this order, for Darwin Core
-#The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 48 scalars, in this order, GBIF modified export
 
 
 #filter by herbarium code
@@ -361,7 +366,7 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 #extract old herbarium and aid numbers
 
-	if ($oldCCHID =~ m/^(NY) *([0-9]+)[a-zA-Z]*$/){
+	if ($otherCatalogNumbers =~ m/^(NY) *([0-9]+)[a-zA-Z]*$/){
 		$oldCCHID = $1.$2;
 		$duplicate_OTH{$oldCCHID}++;
 	}
@@ -376,8 +381,9 @@ printf {*STDERR} "%d\r", ++$count_record;
 
 
 #construct catalog numbers
-	if ($CCHbarcode =~ m/^(NY)([0-9]+)[a-zA-Z]*(-BARCODE)$/){
-		$CCHbarcode = $1.$2.$3;
+	if ($catalogNumber =~ m/^(0*)([1-9][0-9]+)[a-zA-Z]*$/){
+		$CCHbarcode = $institutionCode.$1.$2."-BARCODE";
+		$ALT_CCH_BARCODE = $institutionCode.$2; #this is the reconstructed old CCH1 accession from 2012
 	}
 	elsif ($CCHbarcode =~ m/^(NULL| *)$/){
 		$catalogNumber = "";

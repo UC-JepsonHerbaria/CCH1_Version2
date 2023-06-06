@@ -1,200 +1,390 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+//add note or other code here for variables
+?>
+
 <head>
-<title>
-UCJEPS: Consortium detail page help
-</title>
-<Meta NAME="ROBOTS" CONTENT="NOFOLLOW">
-<Meta Name="keywords" Content="UC Berkeley Herbarium,
-California floristics, Consortium of California Herbaria, UC Santa Barbara,
-UC Irvine, UC Riverside, UC Davis, UC Santa Cruz, Santa Barbara Botanic Garden,
-Jepson Herbarium
-">
-</head>
-
-<body>
+<title>CCH1: Search Page</title> 
+<meta charset="UTF-8">
+<meta name="description" content="The Consortium of California Herbaria is the organization that supports all herbaria in California.">
+  <meta name="keywords" content="Consortium of California Herbaria, CCH1, georeferencing, coordinates, biogeography, California Flora, Flora of California, Vascular Plants of California, Jepson Flora Project, Jepson eFlora">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="/common/css/style_consortium.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-43909100-3');
+
+</script>
+
+</head>
+<body>
+
+<table id="normaltable">
+  <tr>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td>
+	 <table id="cchpageback">
+	  <tr>
+	   <td>
+<div class="cch-top-image-xy002crop">
 <!-- COMMON HEADER -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch1v2img_header.php'); ?>
 <!-- COMMON HEADER ENDS -->
+</div>
 
 
+<table id = "sideTable">
+	<tr>
+	<td style="vertical-align: top;width:200px;background-color:#C6C6E1;border-right-style: solid;border-right-color: #9090AA;border-left-style: solid;border-left-color: #9090AA;">
+		<table id = "sideLinks" style="width:100%;">
+		<tr>
+			<td> <!-- <<background test>> -->
+		<div style="border-bottom-style: solid;border-bottom-color: #9090AA;">
+<!-- Start of sidebar menu-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/localnav_cch_home.php'); ?>
+<!-- End of sidebar --> 
+		</div>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td style="vertical-align: top;background-color:#FFFFFF;"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+	<td style="padding-top: 5px;vertical-align: top;width=80vw;">
 
+<!-- Begin body section-->
 
-<table cellpadding=5><tr><td>
-<h2 class="pageName">Supplementary information for CCH search and detail pages</h2>
+	<span class="generalText">
+
+<span class="pageName">Supplementary information for CCH search and detail pages</span>
+
+<br />
+
 <h3 class="pageSubheading"><a name="About the records displayed">About the records displayed</a></h3>
-<span class = "bodyText">
-Records are from botanical specimens. Collection dates may
+<p>Records are from botanical specimens. Collection dates may
 range from the mid-19th Century to the present. Applicable taxonomy and geographic distributions may have changed since collection.
-Curation of specimens varies by institution and
-accuracy of data varies by collector.
+Curation of specimens varies by institution and accuracy of data varies by collector.</p>
 
 <h3 class="pageSubheading"><a name="Accession number">Specimen number</a></h3>
-<span class = "bodyText">
-Most of the herbaria have a number fixed to each specimen. This number, sometimes called the accession number, serves as a unique identifier in the database when associated with a herbarium abbreviation. Some herbaria have such a number only for the database, and it does not appear on the sheet.
+<p>Most of the herbaria have a number fixed to each specimen. 
+This number, sometimes called the accession number, serves as a unique identifier in the database when associated with a 
+herbarium abbreviation. Some herbaria have such a number only for the database, and it does not appear on the sheet.</p>
 
 <h3 class="pageSubheading"><a name="Determination">Determination; scientific name</a></h3>
-<P>The name under which the specimen is currently filed. Note that participating herbaria may use different names for what is the same taxon. The author of the name is not given, but may be retrieved, along with other taxonomic information, by clicking on "More information: Jepson Online Interchange".
-</P>
-<P>Botanical "scientific" names ("taxon" names) of plants are governed by an internationally agreed upon Code. Forms of botanical names differ according to the classificatory rank of the taxon being named. For example, names of families and genera are single words (uninomials), such as Pinaceae, Fabaceae, <i>Juniperus</i>, <i>Astragalus</i>, and so on.</p>
-<P>Names of taxa at species rank comprise two words (they are binomials): <i>Pinus alba</i>, <i>Rosa woodsii</i>, and so on.</p>
-<P>Names of taxa at ranks below species comprise four elements: genus nmae, species epithet, indicator of rank (forma, subspecies, or variety), and infraspecific epithet: <i>Rosa woodsii</i> subsp. <i>gratissima</i>, <i>Rosa woodsii</i> var. <i>gratissima</i>, <i>Rosa woodsii</i> var. <i>glabrata</i> and so on. Note that statements such as <i>Rosa woodsii</i> subsp. <i> gratissima</i> var. <i>glabrata</i>, consisting of more than four elements, do not constitue botanical names, though they may be thought of as statements of classification.</p>
-<h3 class="pageSubheading"><a name="Collector, number, date">Collector, number, date</a></h3>
-The collector is the person or people recorded on the label as having collected the specimen. Only the last name of the first collector is used for searching and sorting. That is, Hall and Michener will sort with H. M. Hall and a search for Michener will not turn up specimens collected by Hall and Michener. The collector name is linked to the Harvard Index of Botanists, or for a few collectors, to other sources of biographical information. The collector number is the number used by the collector to index the specimen. Collector numbers have a variety of formats. For the purposes of searching and sorting, the collector number is assumed to contain an alphanumeric prefix followed by a numeric stem followed by an alphanumeric suffix, of which only the stem is pertinent. The date is the date or date range on which the specimen was collected. It is stored in the database both as it occurs on the label, and as early and late    <a href="http://en.wikipedia.org/wiki/Julian_day">Julian dates</a>. The Julian dates, which are used for searches, accommodate date ranges. Searches for specific dates (e.g., June 6 1946), will also retrieve specimen data with a date range that includes the specific date (e.g., Jun 1946 or 1946). The date on the detail display is formatted as in the database. The date in the primary result set is formatted consistently: month, day, year.
-Jepson's collection numbers are linked to images of his <a href="/images/fieldbooks/jepson_fieldbooks.html">field books</a>, as are Brewer's and Bolander's Geological Survey collection numbers, and some of the numbers of C.A. Purpus and Annie Alexander.
+<p>The name under which the specimen is currently filed. 
+Note that participating herbaria may use different names for what is the same taxon. 
+The author of the name is not given, but may be retrieved, along with other taxonomic information, 
+by clicking on "More information: Jepson Online Interchange".
+</p>
+<p>Botanical "scientific" names ("taxon" names) of plants are governed by an internationally agreed upon Code. 
+Forms of botanical names differ according to the classificatory rank of the taxon being named. 
+For example, names of families and genera are single words (uninomials), such as Pinaceae, Fabaceae, <i>Juniperus</i>, <i>Astragalus</i>, 
+and so on.</p>
+<p>Names of taxa at species rank comprise two words (they are binomials): <i>Pinus alba</i>, <i>Rosa woodsii</i>, and so on.
+</p>
+<p>Names of taxa at ranks below species comprise four elements: genus name, species epithet, indicator of rank 
+(forma, subspecies, or variety), and infraspecific epithet: <i>Rosa woodsii</i> subsp. <i>gratissima</i>, 
+<i>Rosa woodsii</i> var. <i>gratissima</i>, <i>Rosa woodsii</i> var. <i>glabrata</i> and so on. 
+Note that statements such as <i>Rosa woodsii</i> subsp. <i> gratissima</i> var. <i>glabrata</i>, 
+consisting of more than four elements, are not supported in CCH1.
+They may be thought of a botanical name as well as a statement of classification.</p>
+
+<h3 class="pageSubheading"><a name="Collector-number-date">Collector, number, date</a></h3>
+<p>The collector is the person or people recorded on the label as having collected the specimen. 
+Only the last name of the first collector is used for searching and sorting. 
+That is, Hall and Michener will sort with H. M. Hall and a search for Michener will not turn up specimens collected by Hall and Michener. 
+The collector name is linked to the Harvard Index of Botanists, or for a few collectors, to other sources of biographical information. 
+The collector number is the number used by the collector to index the specimen. 
+Collector numbers have a variety of formats. For the purposes of searching and sorting, 
+the collector number is assumed to contain an alphanumeric prefix followed by a numeric stem followed by an alphanumeric suffix, 
+of which only the stem is pertinent. The date is the date or date range on which the specimen was collected. 
+It is stored in the database both as it occurs on the label, and as early and late 
+<a href="https://en.wikipedia.org/wiki/Julian_day">Julian dates</a>. 
+The Julian dates, which are used for searches, accommodate date ranges. 
+Searches for specific dates (e.g., June 6 1946), will also retrieve specimen data with a date range that includes the specific date 
+(e.g., Jun 1946 or 1946). The date on the detail display is formatted as in the database. 
+The date in the primary result set is formatted consistently: month, day, year.
+Jepson's collection numbers are linked to images of his <a href="/images/fieldbooks/jepson_fieldbooks.html">field books</a>, 
+as are Brewer's and Bolander's Geological Survey collection numbers, and some of the numbers of C.A. Purpus and Annie Alexander.
+</p>
 
 <h3 class="pageSubheading"><a name="County">County</a></h3>
-The California county (spelling standardized) as it appears on the label, unless that is in error. Note that during the history of botanical collection in California, county boundaries have been altered several times. If the county does not appear on the label it has either been entered as "Unknown" or secondarily determined by a data enterer or user.
+<p>The standardized California county from the label. Typos and misspellings are corrected in CCH1. 
+Note that during the history of botanical collection in California, county boundaries have been altered several times. 
+If the county does not appear on the label it has either been entered as "unknown" or secondarily determined by a data enterer or user.
+</p>
 
 <h3 class="pageSubheading"><a name="Locality">Locality</a></h3>
-The name of the place the specimen was collected, or a description of how to reach that place. Locality information is not standardized in any way and a wide variety of spellings or usages for the same place may be encountered. Users should not expect to retrieve the data for all specimens collected from Yosemite National Park by searching for "Yosemite". The SMASCH database at Berkeley was designed with four locality fields: loc_place, for a referenced place (e.g., Clark's Ranch); loc_distance, for an indication of direction or distance from the referenced place (e.g., 3 mi NW of); loc_other, for other locality terms on the label (e.g., Yosemite --usually more encompassing terms); loc_verbatim (a more or less verbatim capture of the label data, usually used in place of the other three fields). In the Consortium display, these four fields are concatenated, with 
-<!-- the pipe symbol "|" separating them (e.g., 3 mi NW of | Clark's Ranch | Yosemite |). --> an attempt made to approximate the original label and reduce redundancy. The attempt is algorithmic, and not 100% successful.
-<br />
-<font color="red">Locality searches:</font> Words in the locality search box are
-anded. Results will be returned only if all the words are found. Very common words
-are disregarded. If the search box is filled with a quoted 2 or 3 word phrase,
-only records containing that exact phrase will be returned.
-<br />
-<font color="red">Geographic region searches:</font> Geographic regions are defined by rectangular bounding boxes; therefore, it is likely that some anomalous records will be included. Furthermore, records can only be returned if they include coordinates, so some will be missed.
+<p>The name of the place the specimen was collected, or a description of how to reach that place. 
+Locality information may have a wide variety of spellings or usages for the same place may be encountered. 
+Users should not expect to retrieve the data for all specimens collected from Yosemite National Park by searching for "Yosemite". 
+ Results will be returned only if all the words are found. Very common words
+are disregarded. If the search box is filled with a quoted 2 or 3 word phrase, only records containing that exact phrase will be returned.
+</p>
+
+<!--<font color="red">Geographic region searches:</font> Geographic regions are defined by rectangular bounding boxes; therefore, it is likely that some anomalous records will be included. Furthermore, records can only be returned if they include coordinates, so some will be missed.
+-->
 
 <h3 class="pageSubheading"><a name="Elevation">Elevation</a></h3>
-<b>If you want to search within an elevation range, fill out both the Upper and the Lower field.</b>
-On the detail page the elevation in feet or meters (units indicated) of the collection site. Elevation may be determined by instrument, map, or estimation. Accuracy should not be relied upon. Apparent accuracy may result from conversion. For the primary result set, all elevations are displayed as meters.
+<p>If you want to search within an elevation range, fill out both the Upper and the Lower field.</b>
+On the detail page the elevation in feet or meters (units indicated) of the collection site. 
+Elevation may be determined by instrument, map, or estimation. Accuracy should not be relied upon. 
+For the primary result set, all elevations are displayed as meters.</p>
+<table style="vertical-align: top;background-color:#FF9944"><tr><td>orange color-coded flags</td></tr></table>
+<p>Orange flags indicate that the elevation of this record is higher than the highest elevation point for the county listed on the label.
+The discrepancy may have multiple causes. Not all specimens with this flag have an correct label county.  
+Sometimes the county boundaries have changed or the collector made an error on the label regarding the county or the elevation data.
+The corrected elevation and metadata fields are stored in a separate table and overwrite those present in the data from CCH2.
+</p>
 
 <h3 class="pageSubheading"><a name="Habitat">Habitat</a></h3>
-Physiographic or biological details about the collection site.
+<p>Physiographic or biological details about the collection site.</p>
 
-<h3 class="pageSubheading"><a name="Coordinates">Coordinates</a></h3>
-<OL>
-Here is a brief account of how longitude and latitude coordinates get into
-our database, which only includes California localities:
-<LI>
-From coordinates on the label or in a database (less than 10% of specimens).
-Source and precision is not known. Errors on
-the label are frequent and derive from misreading maps, mistyping figures,
-missetting GPS units, and computer operation errors. Labels are often not
-made by the collector, but are transcribed from a fieldbook or other
-medium by someone who may or may not be familiar with the collection
-region. The label typer sometimes adds coordinates
-<LI>
-From descriptive information on the label, evaluated using archival material
-at the herbaria: collector's field books/itineraries, historical maps, etc.
-<LI>
-Converted from TRS data on label.
-Many labels bear Township, Range, and Section data without other
-coordinate data. These figures can be converted using the program TRS2LL.
-If no section is given, we assign a section in the middle. Coordinates
-assigned this way can be off by several miles (or much more if the original TRS numbers are not
-accurately entered). We have found that TRS coordinates are troublesome because
-is easy to misenter them originally from a map, and easy to confuse east and
-west, north and south, or mistype the numbers. There is the additional
-complication of 3 baselines in California.
-<LI>
-These were assigned in the past by the Biogeomancer program, which has not been supported for a number of years.
-A replacement for Biogeomancer can be found on Manisnet.org:
-<a href="http://manisnet.org/gci2.html">Georeferencing Calculator</a>.
-<LI>
-This application can be used to supply coordinates for
-localities that are represented as one place--Coalinga, Peanut, Yreka.
-Other types can also be calculated, such as 4 miles W of Coalinga is georeferenced as 4 air miles due west of
+<h3 class="pageSubheading"><a name="Coordinates">Georeferencing and Coordinates</a></h3>
+	<p>From 2006 through 2018, georeferencing was completed using tools on the CCH website at UC/JEPS. Around 1.7 million georeferences were creating
+	during this period through several georeferencing grants.</p> 
+
+	<p>There is a paper on georeferencing protocol by Arthur D. Chapman
+	and John Wieczorek (the latter the developer of Biogeomancer) at
+	<a href="https://www.gbif.org/document/80536/biogeomancer-guide-to-best-practices-in-georeferencing">
+	https://www.gbif.org/document/80536/biogeomancer-guide-to-best-practices-in-georeferencing</a>. </p>
+
+	<p>The procedures and protocols for georeferencing are archived at the 
+	<a href="https://sites.google.com/a/rsabg.org/cch_georeferencing_resources/file-cabinet">
+	California Botanical Garden (RSA) georeferenecing website </a>.<br />
+	<p>Here is a brief account of how longitude and latitude coordinates for California localities have been georeferenced in CCH1:</p>
+
+<ol>
+<li>Coordinates from the collection label
+	<p>Less than 10% of specimens in CCH1 have latitude and longitude coordinates included on the specimen label.
+For the majority of these specimens, the geodetic datum, georeference source and coordinate uncertainty is not known. 
+The georeference is assumed to be by the collector, 
+but that is rarely ever entered into the <i>georeferencedBy</i> field.
+Some of these label coordinates require revision by specialists because errors on the label are frequent.  
+These errors and derive from a variety of sources inlcuding misreading maps, mistyping figures, missetting GPS units, and computer operation errors. 
+Additionally, labels are often not typed by the collector, but are transcribed from a fieldbook or other medium by someone
+ who may or may not be familiar with the collection region. The label transcriber sometimes adds coordinates.</p>
+
+<li>Coordinates from field notebooks.
+<p>If coordinates on the specimen label are absent, sometimes the localities are evaluated using archival material
+at the herbaria, including the collector's field notebooks, itineraries, historical maps, etc.</p>
+
+<li>Township Range and Section Coordinates (TRS)
+<p>Often, if a coordinate is included on a specimen label, it is in the TRS format. Prior to 2012, TRS coordinates were converted
+in CCH1 from the label data using the program TRS2LL. If no section is given, a section in the middle is assigned. 
+Coordinates assigned this way can be off by several miles (or much more if the original TRS numbers are not
+accurately entered). Over the years, TRS coordinates were found to be troublesome  due two severa factors:</p>
+	<ul>
+		<li>it is easy to transcribe an inaccurate TRS from a map, since it is easy to confuse E from W or N from S when assigning a township or range.
+		<li>It is also easy to reverse numbers when transcribing from a map to a label. 
+		<li>It is east to convert to the wrong coordinate if the baseline meridian is not specified on the label.
+	</ul>
+<p>Since In California, there are three baseline meridians: Humboldt, Mount Diablo, and San Bernardino. 
+An accurate conversion of TRS coordinates requires knowledge of the baseline for the region of the label locality.
+Since this is missing on most labels, the wrong meridian is too-often assigned by the georeference volunteer 
+when converting to latitude longitude coordinates.
+</p>
+
+<li>Assigned by staff or volunteers using Biogeomancer.
+<p>The Biogeomancer program was used to calculate coordinates prior to 2012.  It is now deprecated and no longer functional.
+Biogeomancer-supplied coordinates do not generally contain uncertainty estimates because the program was not in-development long enough to enable that capability.
+Most of the time, this application was used to supply coordinates for localities that are represented as one place -- Coalinga, Peanut, Yreka.
+</p>
+
+<li>Assigned by staff or volunteers using GEOLocate
+<p>This is a Tulane University application with aerial imagery, place name search feature, measure tool, error radius calculation, and copy/paste-able lat/longs. 
+Like Biogeomancer, GEOLocate can automatically parse an English locality description and assign latitude and longitude. 
+Projects using GEOLocate often use it to calculate corrdinated for specimens with distance-based localities. 
+The locality, <i>4 miles W of Coalinga</i>, is georeferenced as 4 air miles due west of
 Coalinga, whereas the location is probably 4 road miles along a road
-trending west rather than east. The location of a stream is georeferenced as as the
-mouth of the stream.
+trending northwest or southwest rather than due west. The location of a linear features like streams are georeferenced as as the
+mouth of the stream, which causes additional mapping-related problems.</p>
 
-<!-- Biogeomancer can automatically
-parse an English locality description and assign latitude and longitude.
-Unfortunately, it is (in its current incarnation) usually unhelpful
-because of its assumptions.
-For example, 4 miles W of Coalinga is placed 4 air miles due west of
-Coalinga, whereas the location is probably 4 road miles along a road
-trending west rather than east. The location of a stream is given as the
-mouth of the stream. We use Biogeomancer to supply coordinates for
-localities that are represented as one place--Coalinga, Peanut, Yreka. We
-don't currently supply an error for Biogeomancer-derived coordinates. The
-Biogeomancer program is being completely remade currently and should
-eventually be much smarter.-->
--->
-<LI>
-Assigned by people interpreting the databased locality data using the
-mapping program Terrain Navigator, which allows quick lookup of a
-referenced locality and fairly easy measuring along a road or line. We
-extract locality data into an Access file by county and one georeferencer
-works on one county. The error assigned in this process takes into account
-uncertainty of the reference point and other uncertainty. This system was
-developed by the Museum of Vertebrate Zoology at Berkeley.
-<LI>
-Regarding herbarium specimens from cultivation: In these cases there are two 
-localities of interest: the place where the plant was cultivated, and the 
-provenance of the source material: the place in the wild from which seeds, 
-bulbs, rhizomes, cuttings, etc. were derived. Both localities are useful and 
-interesting in different ways, but only one set of coordinates can be mapped. 
-In an effort to most accurately represent the biodiversity of California plants, 
-the CCH prefers to display coordinates for source material, if that 
-information is available. When only the locality of cultivation is available, 
-we prefer to still serve the record while masking the coordinates; in some 
-records, however, the fact that a plant was cultivated is not expressed precisely 
-enough that it can be automatically detected.
-When specimens are mapped to their garden location, they are very likely 
-to display as a yellow flag. In these cases we encourage users to write to
-<a href="mailto:jason_alexander@berkeley.edu">Jason Alexander</a> so that the record can be modified accordingly.
-</OL>
-There is a paper on georeferencing protocol by Arthur D. Chapman
-and John Wieczorek (the latter the developer of the system we are using) at
-<a href="https://www.gbif.org/document/80536/biogeomancer-guide-to-best-practices-in-georeferencing">
-https://www.gbif.org/document/80536/biogeomancer-guide-to-best-practices-in-georeferencing</a>
-<br>
-The BerkeleyMapper application plots position using the coordinates from the database; it does not assign coordinates.
-<br>
-<font color="red"><B>NOTE:</B> Coordinates have not yet (Winter, 2012) been systematically verified.</font>
+<li>Assigned by staff or volunteers using Terrain Navigator
+<p>The Terrain Navigator mapping program was used to georeference specimens for the NSF grants between 2012 and 2016. This system was
+developed by the <a href="https://mvzgis.wordpress.com/about/">Museum of Vertebrate Zoology</a> at Berkeley. 
+Staff and volunteers extracted the databased locality data into an Access file by county. Another georeferencer works on one county at a time, 
+ georeferencing using Terrain Navigator, which allows quick lookup of a databased locality. 
+The error assigned in this process takes into account uncertainty of the reference point and other uncertainty variables. 
+</p>
 
-<h3 class="pageSubheading"><a name="Coordinate source">Coordinate source</a></h3>
-Derivation of latitude and longitude figures. Herbaria participating in the Consortium use a variety of protocols for
-evaluating locality descriptions and obtaining coordinates. 
-At SBBG,
-coordinates for specimens that lack a longitude-latitude statement are found using
-MAPTECH Terrain Navigator, backed up by SBBG map archives and field notes
-(especially for Channel Islands and military bases). As of Winter, 2006, coordinates are not uniformly tagged
-as to their derivation. If the source is listed as "Not recorded", it could have come from a label or it could have been derived secondarily. If the coordinates are obtained by georeferencing at UC/JEPS using the Terrain Navigator, Biogeomancer, or TRS2LL programs, then this is indicated.
+<li>Assigned by staff or volunteers using BerkeleyMapper.
+<p><a href="https://berkeleymapper.berkeley.edu/">BerkeleyMapper</a> provides an interface for working with GoogleMaps's geocoding services, 
+in addition to tools for finding the latitude/longitude of a point, and measuring areas and lines</p>
+
+<li>Cultivated specimen georeferences
+<p>Specimens from cultivation have two localities of interest: the place where the plant was cultivated 
+and the place in the wild from which seeds, bulbs, rhizomes, cuttings, etc. were found. 
+Both localities are useful and interesting in different ways, but only one set of coordinates can be mapped. 
+Past efforts attempted to display coordinates for source material over that of the in-cultivation locality. 
+However that proved to be very difficult, since herbaria databased and georeferenced cultivated specimens inconsistently.
+Currently, cultivated specimens are flagged based on fields in CCH2. 
+An additional list of known cultivated specimens is tabulated for CCH1. 
+Most of these are not flaged as cultivated in CCH2. 
+ Both are added to the CCH1 database and used to flag cultivated records with purple map icons,
+whether or not the specimen is mapped to the cultivated or wild locality. No further checking is currently done to determine if a
+cultivated specimen is mapped as the wild or cultivated locality. 
+CCH1 currently does not add coordinates to cultivated specimens without a georeference.</p>
+</ol>
+
 
 <h3 class="pageSubheading"><a name="TRS">TRS</a></h3>
-<a href="http://en.wikipedia.org/wiki/Public_Land_Survey_System"> Township, Range, Section</a> are frequently indicated on labels, and not always correctly. It is easy to mistranscribe TRS from a map and easy to miscopy the combination of numbers and letters. In California, there is the additional complication of three meridians: Humboldt, Mount Diablo, and San Bernardino.
+<p><a href="https://en.wikipedia.org/wiki/Public_Land_Survey_System"> Township, Range, Section</a> are frequently indicated on labels. 
+Since is easy to mistranscribe TRS from a map and easy to miscopy the combination of numbers and letters, 
+TRS coordinates are not always correct on labels or in databases. 
+</p>
 
+<h3 class="pageSubheading"><a name="Source">Georeference source</a></h3>
+<p>Herbaria participating in the Consortium use a variety of protocols for evaluating locality descriptions and obtaining coordinates. 
+ If the source is blank or listed as "Not recorded", it could have come from a label or it could have been derived secondarily. 
+ If the coordinates are obtained by georeferencing using the Terrain Navigator, Biogeomancer, GEOLocate, BerkeleyMapper, or TRS2LL programs, 
+ then this is indicated.</p>
+
+<h3 class="pageSubheading"><a name="Uncertainty">Georeference coordinate uncertainty</a></h3>
+<p>Herbaria participating in the Consortium use a variety of protocols for estimating the uncertainty of georeferenced coordinates. 
+<ul>
+<li>Coordinates from the collection label or field notebooks
+	<p>Less than 10% of specimens in CCH1 have latitude and longitude coordinates included on the specimen label.
+For the majority of these specimens, coordinate uncertainty is not specified on the label and therefore null in the database.
+Coordinates on labels obtained from GPS units may be assumed to be accurate to within 25 to 100 meters. 
+That value if often added to the uncertainty field by CCH1 georeference staff working to verify the accuracy of coordinates</p>
+<li>Township Range and Section Coordinates (TRS)
+<p>Most coordinated derived by the program TRS2LL have no uncertainty estimates.  
+Coordinates derived from Township Ranges with sections can reasonably assumed to have an uncertainty radius between 0.5 and 1 miles</p>
+<li>Assigned by staff or volunteers using GEOLocate or Biogeomancer
+<p> These two programs provide an estimate of an uncertainty based on a mathematical algorithm.</p>  
+<li>Assigned by staff or volunteers using BerkeleyMapper.  
+<p> Users create an estimate of an uncertainty based the size of the error polygon drawn around the georeference.  This is a user-derived estimate and not computer-generated.</p> 
+<li>Assigned by staff or volunteers Terrain Navigator or other USGS Digital map software
+<p>Users create an estimate of an uncertainty based on the georeference.  This is a user-derived estimate and not computer-generated.</p> 
+</ul>
 
 <h3 class="pageSubheading"><a name="Datum">Datum</a></h3>
-<a href="http://en.wikipedia.org/wiki/Geodetic_datum">...Read Wikipedia article</a>
+<p><a href="https://en.wikipedia.org/wiki/Geodetic_datum">...Read Wikipedia article</a></p>
 
-<h3 class="pageSubheading"><a name="Voucher information">Voucher information</a></h3>
-Information from a variety of fields. Sometimes merely the fact that a certain kind of information occurs on the label is recorded.
+<h3 class="pageSubheading"><a name="Flag">Color-coded specimen status flags</a></h3>
+<p><ul>
+<li><a name="blue"></a><table style="vertical-align: top;background-color:#00308F;"><tr><td><font color = "white">Dark blue color-coded flags</font></td></tr></table>
+<p> This is the default color code for dots on the map. A dark blue colored dot means that the specimen falls within the 
+geographic range of the taxon as specifed in the Jepson eFlora.</p>
+
+<li><a name="green"></a><table style="vertical-align: top;background-color:#AAffAA;"><tr><td>Light green color-coded flags</td></tr></table>
+<p>Light green flags indicate that the geographic coordinate fields of this record are identical to those in CCH2. 
+</p>
+
+<li><a name="light_blue"></a><table style="vertical-align: top;background-color:#B2FFFF;"><tr><td>Light blue color-coded flags</td></tr></table>
+<p>Light blue flags indicate that the geographic coordinates of this record have been changed from those in CCH2. 
+These records in CCH1 have coordinates that have been corrected by various CCH1 volunteers (during georeferencing grants) 
+or staff at UC/JEPS, including Dick Moe and Jason Alexander. 
+The coordinate and metadata fields are stored in a separate table and overwrite those present in the data from CCH2.
+</p>
+
+<li><a name="yellow"></a><table style="vertical-align: top;background-color:#FFFD01;"><tr><td>Yellow color-coded flags</td></tr></table>
+<p>There is a discrepancy between the geographic coordinates of this record and the geographic range of the taxon as 
+specifed in the Jepson eFlora. The discrepancy may have multiple causes.
+<a href="/consortium/about_yellow.html">Read more ... </a><br />
+The yellow flags are stored in a separate table. This feature is unique to CCH1.</p>
+
+<li><a name="black"></a><table style="vertical-align: top;background-color:#1F1F1F;"><tr><td><font color = "white">Black color-coded flags</font></td></tr></table>
+<p>The locality of this record is too vague to be mapped and has an uncertinty polygon with a radius greater than 10,000 meters.
+Most records with just the county or a large geographic region as locality (San Bernardino County, Sierra Nevada, Mojave Desert, Salton Sea, Imperial Valley, etc)
+are have too great an uncertainty black-tinted or black flagged. The reason for black-flagging a specimens is variable.  
+Some of the black flags were created during previous CCH georeferencing grants. 
+For those the name of the georefereencer and the reason for black-flagging is displayed in the detailed specimen record page.
+Records with black flags have coordinate and metadata fields nulled and left intentionally blank in CCH1, even if there is data in CCH2. 
+This feature is unique to CCH1.</p>
+
+<li><a name="red"></a><table style="vertical-align: top;background-color:#BF0A30;"><tr><td><font color = "white">Red color-coded flags</font></td></tr></table>
+<p> Records that have this flag on the detailed specimen label page have a problem with the quality or value of the data. 
+<ul>
+<li>County red flag
+	<p>The spelling of the county has been changed from that displayed in CCH2. This can happen in four ways. 
+	<ul>
+	<li>A typographical or formatting error in CCH2 was corrected. County names were corrected by the CCH1 loading scripts.
+	<li>Extraneous text such as the word 'County' or 'Co.' were removed.  County names were corrected by the CCH1 loading scripts.
+	<li>An empty field or 'unknown' phrase was replaced with a suggested county.  County names were corrected from user comments in the original CCH1.
+	<li>There is a discrepancy between the georeferenced county and the herbarium label county.  
+Specifically, the georeferenced locality is not within the same county as listed on the herbarium label. County names were corrected by GIS software.
+	<p>This discrepancy may have multiple causes. Not all specimens with this flag have an incorrect label county. 
+For some historic specimens, the county was correct at the time of collection. 
+However, California county boundaries have been altered several times in the past hundred and fifty years 
+and these boundary changes may be the source of these discrepancies.</p>
+	</ul>
+
+<li>Date red flag
+	<p>The year value for the date is either before 1800 or greater than the current year. 
+	The discrepancy may have multiple causes, but the most common is that there is a typo in the year (i.e. 1097 instead of 1997)</p>
+
+<li>Scientific Name red flag
+	<p>The scientific name in the determination field has been significantly changed from the determination in CCH2.  When there
+	The name can be just a error correction completed by the CCH1 loading scripts, a determination update from a comment database (usually with an author, date and comment added)
+	or a the verbatim determination is questioned (a comment indicates that the ID likely to be incorrect, but a new determination was not specified).</p>
+
+</ul>
+
+<li><a name="purple"></a><table style="vertical-align: top;background-color:#6A0DAD;"><tr><td><font color = "white">Purple color-coded flags</font></td></tr></table>
+<p>This record has been found to be cultivated specimen.  Cultivated flag data has been collected over the years by staff at UC/JEPS. Some of these records are marked as cultivated in CCH2 itself, and others are only so marked in CCH1.
+The cultivated flags are stored in a separate table and overwrite data present in the data from CCH2 when appropriate.
+</p>
+
+<li><a name="orange"></a><table style="vertical-align: top;background-color:#FF9944;"><tr><td>orange color-coded flags</td></tr></table>
+<p>Orange flags indicate that the elevation of this record is higher than the highest elevation point for the county listed on the label.
+The discrepancy may have multiple causes. Not all specimens with this flag have an correct label county.  
+Sometimes the county boundaries have changed or the collector made an error on the label regarding the county or the elevation data.
+The corrected elevation and metadata fields are stored in a separate table and overwrite those present in the data from CCH2.
+</p>
+
+<li>No Color change in headings or checkboxes
+<p>This record has not been georeferenced in CCH1 or CCH2 and it has an unknown status with regards to its yellow flag, black flag, or purple flag status.
+</p>
+</ul>
+
+<h3 class="pageSubheading"><a name="Notes">Voucher information</a></h3>
+<p>Information about a variety of other sources on the label.</p>
 
 <h3 class="pageSubheading"><a name="Annotations and/or Curatorial actions">Annotations and/or curatorial actions</a></h3>
-Some of the participant databases store annotations that have been posted on the specimen sheet: reidentifications, assignments to an infraspecific rank, etc. Sometimes, in accordance with a recent taxonomic treatment, a curator transfers all specimens assigned to a species from one genus to another, without evaluating the specimens. This is what is meant by "curatorial action". Usually, but not always, the specimen is filed in accordance with the most recent annotation.
+<p>Some of the participant databases store annotations that have been posted on the specimen sheet: reidentifications, 
+assignments to an infraspecific rank, etc. Sometimes, in accordance with a recent taxonomic treatment, 
+a curator transfers all specimens assigned to a species from one genus to another, without evaluating the specimens. 
+This is what is meant by "curatorial action". Usually, but not always, the specimen is filed in accordance with the most recent annotation.
+</p>
 
 <h3 class="pageSubheading"><a name="Comments">Comments</a></h3>
-We welcome comments and corrections of the specimen data that we display here. Action on the comments will be taken by the curators of the participating herbaria. You should provide helpful explanatory information if you can. Incorporating the comments into the database is time-consuming because in most cases it is necessary to examine the specimen label before amending the database. Often a discrepancy can be caused by more than one error, and investigation of an error sometimes reveals related problems. 
+<p>We welcome comments and corrections of the specimen data that we display here. 
+Action on the comments will be taken by the curators of the participating herbaria. 
+You should provide helpful explanatory information if you can. 
+Often a discrepancy can be caused by more than one error, and investigation of an error sometimes reveals related problems. </p>
+<br />
 
-<h3 class="pageSubheading"><a name="Related">Related searches</a></h3>
-These are searches that users (especially curatorial users cleaning up data) are likely to want to run next. For example, <a href="http://ucjeps.berkeley.edu/cgi-bin/new_detail.pl?JEPS37677">from this search</a>:
-<OL>
-Related searches:<br>
-<LI><a href="/cgi-bin/get_consort.pl?taxon_name=Quercus%20wislizeni">taxon=Quercus wislizeni</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=SOLANO&source=All&taxon_name=Quercus%20wislizeni&collector=&excl_collector=&aid=&year=&month=0&day=0&loc=&coll_num=&max_rec=500&SO=0"> county=Solano; taxon=Quercus wislizeni</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=SOLANO&source=All&taxon_name=&collector=Jepson&excl_collector=&aid=&year=&month=0&day=0&loc=&coll_num=&max_rec=500&SO=8"> county=Solano; collector=Jepson</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=&source=All&taxon_name=Quercus%20wislizeni&collector=Jepson&excl_collector=&aid=&year=&month=0&day=0&loc=&coll_num=&max_rec=500&SO=0"> collector=Jepson; taxon=Quercus wislizeni</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=&source=All&taxon_name=&collector=Jepson&excl_collector=&aid=&year=&month=0&day=0&loc=&coll_num=2378&max_rec=500&SO=8">collector=Jepson; number=2378</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=&source=All&taxon_name=&collector=Jepson&excl_collector=&aid=&year=&month=0&day=0&loc=&coll_num=2378&adj_num=1&max_rec=500&SO=8">collector=Jepson; number=2378; include nearby numbers</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=&source=All&taxon_name=&collector=Jepson&excl_collector=&aid=&year=1903&month=10&day=18&loc=&coll_num=&max_rec=500&SO=3">date=Oct 18 1903; collector=Jepson</a>
-<LI><a href="/cgi-bin/get_consort.pl?county=SOLANO&source=All&taxon_name=&collector=&excl_collector=&aid=&year=1903&month=10&day=18&loc=&coll_num=&max_rec=500&SO=0"> date=Oct 18 1903; county=Solano</a>
-<LI><a href="/cgi-bin/get_consort.pl?lat_max=38.356&lat_min=38.256&long_max=-122.121&long_min=-122.221">Return geographically nearby records (within ~3 mi)</a>.
-<a href="/cgi-bin/get_consort.pl?make_tax_list=1&lat_max=38.356&lat_min=38.256&long_max=-122.121&long_min=-122.221">&nbsp;&nbsp;List of names, 1 record each</a>
-<LI> <a href="/cgi-bin/map_cch_elev.pl?taxon_name=Quercus%20wislizeni&t=38.306&g=304"  target=_blank>Plot elevation range (from Jepson Manual) against latitude</a>
-<!-- <LI><a href="/cgi-bin/get_consort.pl?county=SOLANO&source=All&taxon_name=Quercus%20wislizeni&collector=Jepson&excl_collector=yes&aid=&year=&month=0&day=0&loc=&coll_num=&max_rec=500&SO=1">taxon=Quercus wislizeni; county=Solano; collector=not Jepson</a> N.B. this is slow -->
-<LI><a href="http://data.gbif.org/species/Quercus%20wislizeni">Possible GBIF records</a> <font color="red">[External]</font>
+		<!--END Content Table-->	
+	
+		</td>
+	</tr>
+	</table> <!--close sideNav table-->
+<!--begin footer-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_footer.php'); ?>
+<!--end footer-->
 
-</OL>
-</span>
-</td></tr>
-</table>
+	</div>
+   </td>
+  </tr>
+</table> <!--close box outline table-->
+  
+
+ 
+ 	</td>
+   <td class="spacer1"><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:15px;"></td>
+  </tr>
+ </table> <!--close outside normal table-->
+
+
 </body>
+</html>

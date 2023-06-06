@@ -50,7 +50,7 @@ date_default_timezone_set('America/Los_Angeles');
 <div>
 <table id = "sideTable">
 	<tr>
-	<td style="vertical-align: top;width: 175px;">
+	<td style="vertical-align: top;width: 175px;background-color: #9090AA;">
 		<table id = "sideLinks">
 		<tr>
 			<td style="background-color: #9090AA;width: 175px;"> <!--background test -->
@@ -64,13 +64,381 @@ date_default_timezone_set('America/Los_Angeles');
 	<td><img src="/common/images/common_spacer.gif" alt="" style="height:1px;width:25px;"></td>
 	<td style="vertical-align: top;">
 
-<p><img alt="" src="construct.bmp"><br /><font color="red"> This site is under re-development.  This page page will display accurate update data as soon as CCH2 data are imported into CCH1.</font>
-    </p>
 
 	<p><span class="pageNameB">CCH1 Recent Updates</span><br /><br />
     </p>
+	<p><span class="pageAuthorLineB">Updates for 2023</span></p>
+<!--BEGIN DATE ENTRY-->
+<!--<p class="pageAuthorLineB">&nbsp;&nbsp;April 28&nbsp;&nbsp;&mdash;&nbsp;&nbsp; Major Update</p>-->
+<!--	<p class="generalText">-->
+<!--<ol>-->
+<!--<li>&nbsp;The following are welcomed as data providers, newly added from CCH2 since March 2022: -->
+<!--<br />&nbsp;&mdash;&nbsp;NY&nbsp;&mdash;&nbsp;US National Herbarium, Smithsonian-->
+<!--<br />&nbsp;&mdash;&nbsp;GH&nbsp;&mdash;&nbsp;US National Herbarium, Smithsonian-->
+<!--<br />&nbsp;&mdash;&nbsp;ECON&nbsp;&mdash;&nbsp;US National Herbarium, Smithsonian-->
+<!--<br />&nbsp;&mdash;&nbsp;A&nbsp;&mdash;&nbsp;US National Herbarium, Smithsonian-->
+<!--<br />&nbsp;&mdash;&nbsp;AMES&nbsp;&mdash;&nbsp;US National Herbarium, Smithsonian-->
+<!--<br />&nbsp;&mdash;&nbsp;US&nbsp;&mdash;&nbsp;US National Herbarium, Smithsonian-->
+
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;March 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, Major Feature Update</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;<b>The search and list page has been redesigned due to recent hacker and web crawler attacks overloading the CCH1 server</b></li>
+<br />&nbsp;&mdash;&nbsp;The search page will block attackers by not allowing users to search CCH1 more than 5 times in a few seconds</b></li>
+<br />&nbsp;&mdash;&nbsp;These same limitations are present on the other Berkeley Natural History Museum websites</b></li>
+<br />&nbsp;&mdash;&nbsp;The output and format of the query results page has been greatly exapanded and new features added</b></li>
+<br />&nbsp;&mdash;&nbsp;Most of the features from the original CCH1 results page are now active</b></li>
+<br />
+<li>&nbsp;<b>County distribution maps from the ICPN now read live from the current version of CCH1</b></li>
+<br />&nbsp;&mdash;&nbsp;see this example page for <a href="/cgi-bin/get_smasch_county?taxon_id=100467">Sedum kiersteadiae</a>
+<br />&nbsp;&mdash;&nbsp;clicking on the blue dots searches the current CCH1 (not the archived pre-2018 CCH)
+<li>&nbsp;<b>The first "F" column (Flag Color/Checkbox) on the Results page can be sorted according to flag color</b></li>
+<br />&nbsp;&mdash;&nbsp;sort order --> yellow (if applicable), blue, green, black, purple, no color</b></li>
+<br />&nbsp;&mdash;&nbsp;This column used to sort by accession number due to the checkbox value
+<br />&nbsp;&mdash;&nbsp;This field now has multiple-functionalities
+<li>&nbsp;<b>Downloading Search Results in Excel-compatible CSV text format has been re-developed</b></li>
+<li>&nbsp;<b>An anonymous download user survey (i.e. how are you using this data) has been created</b></li>
+<li>&nbsp;Bug Fixes:</li>
+<br />&nbsp;&mdash;&nbsp;numerous bug fixes resulting from the changeover to a new database have been fixed
+</ol>
+	</p>
+
+
+	<p><span class="pageAuthorLineB">Updates for 2022</span></p>
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;August 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, Major Feature Update</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;<b>The CCH1 database has been moved to Maria DB</b></li>
+<br />&nbsp;&mdash;&nbsp;this software is more IT-secure than SQLite</b></li>
+<br />&nbsp;&mdash;&nbsp;CCH1 resources are being redeveloped for this new database</b></li>
+<li>&nbsp;Bug Fixes:</li>
+
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;July 11&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, Major Update</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;The following are welcomed as data providers, newly added from CCH2 since March 2022: 
+<br />&nbsp;&mdash;&nbsp;INF&nbsp;&mdash;&nbsp;Inyo National Forest Herbarium, Bishop
+<br />&nbsp;&mdash;&nbsp;SPIF&nbsp;&mdash;&nbsp;Sierra Pacific Industries-Forestry Herbarium
+<br />
+<li>&nbsp;Update statistics:</li>
+&nbsp;&mdash;&nbsp;2,427,527 records in CCH1
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;18,045 records newly added to CCH1 since last update
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;7,224 records marked as cultivated (purple flags)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;XXXX records with new determinations last update 
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="/consortium/logs/counts-2022JUL11.html">Summary list of counts for each herbarium can be found here.</a>
+<br />
+<li>&nbsp;Georeference statistics:</li>
+&nbsp;&mdash;&nbsp;
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;691,161 coordinates corrected using CCH1 resources
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;68,033 records with county mapped to by the georeference is different than label county
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;22,248 ambiguous or unmappable localities with georeferences nulled (<a href="flag_colors.html#black">black flags</a>)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;181,399 yellow-flagged records
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XXXXX CCH1 2018 blue flags now yellow flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XXXXX new specimens yellow flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XXXX CCH1 2018 yellow flags now blue flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;XXXXX new specimens blue flagged
+<br />&nbsp;<b>Record count: 2,427,527 </b><a href="/consortium/georef_map.html" class="navText">(XXXXXXXXX of which are georeferenced)</a>
+<br />
+<li>&nbsp;Corrections:</li>
+&nbsp;&mdash;XXXXX Taxon name errors corrected
+<br />&nbsp;&mdash;&nbsp;&nbsp;1789 elevations higher or lower than the state maximum/minimum (<a href="flag_colors.html#orange">orange flags</a>)
+<br />&nbsp;&mdash;&nbsp;&nbsp;XXXX elevations corrected (minor typos and errors corrected)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;57 collection dates flagged as before 1800 or after current year
+<br />&nbsp;&mdash;&nbsp;&nbsp;24,717 County names corrected from a total of 2,389,648 records from CCH2 with county values
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="/consortium/logs/county_list_2022JUL11.html">Summary list of Verbatim Counties and Counts can be found here.</a>
+
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;April 22&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, Major Feature Update</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;<b>The ability to use BerkeleyMapper to map the search results has been re-developed</b></li>
+<li>&nbsp;Bug Fixes:</li>
+<br />&nbsp;&mdash;&nbsp;Results are now sortable by collection number; this has been bugged in previous versions.
+
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;March 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, Major Update</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;The following are welcomed as data providers, newly added from CCH2 since December 2021: 
+<br />&nbsp;&mdash;&nbsp;ELH&nbsp;&mdash;&nbsp;Eagle Lake Field Office Herbarium
+<br />&nbsp;&mdash;&nbsp;GDRC&nbsp;&mdash;&nbsp;Green Diamond Resource Co. Herbarium
+<br />&nbsp;&mdash;&nbsp;KNFY&nbsp;&mdash;&nbsp;Klamath National Forest Herbarium
+<br />&nbsp;&mdash;&nbsp;LVNP&nbsp;&mdash;&nbsp;Lassen Volcanic National Park Herbarium
+<br />&nbsp;&mdash;&nbsp;NCC&nbsp;&mdash;&nbsp;Sonoma State University Herbarium Herbarium
+<br />&nbsp;&mdash;&nbsp;PPWD&nbsp;&mdash;&nbsp;Stephen J. Barnhart Herbarium at Pepperwood Preserve
+<br />&nbsp;&mdash;&nbsp;PUA&nbsp;&mdash;&nbsp;Pacific Union College Herbarium
+<br />&nbsp;&mdash;&nbsp;SSRD&nbsp;&mdash;&nbsp;Salmon-Scott Ranger District Herbarium
+<br />&nbsp;&mdash;&nbsp;STNF&nbsp;&mdash;&nbsp;Shasta-Trinity National Forest Herbarium
+<br />&nbsp;&mdash;&nbsp;THRI&nbsp;&mdash;&nbsp;Sequoia and Kings Canyon National Parks Herbarium
+<br />
+<li>&nbsp;Update statistics:</li>
+&nbsp;&mdash;&nbsp;2,409,482 records in CCH1
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;98,698 records newly added to CCH1 since last update
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;8,968 records with new determinations last update 
+<br />&nbsp;&mdash;&nbsp;XXXXX elevations higher or lower than the label county maximum (<a href="flag_colors.html#orange">orange flags</a>)
+<br />
+<li>&nbsp;Georeference statistics:</li>
+&nbsp;&mdash;&nbsp;
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4447 coordinates corrected using CCH1 resources
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;15342 inaccurate georeferences nulled (<a href="flag_colors.html#black">black flags</a>)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2503 records marked as cultivated (purple flags)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;143449 yellow-flagged records (11% increase compared to CCH1 2018)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20996 CCH1 2018 blue flags now yellow flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23328 new specimens yellow flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6302 CCH1 2018 yellow flags now blue flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;227330 new specimens blue flagged
+<br />&nbsp;<b>Record count: 2,313,930 </b><a href="/consortium/georef_map.html" class="navText">(1,882,441 of which are georeferenced)</a>
+<br />
+<li>&nbsp;Corrections:</li>
+&nbsp;&mdash;21842 Taxon name errors corrected
+<br />&nbsp;&mdash;&nbsp;&nbsp;1822 elevations corrected
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;70 collection dates flagged as before 1800 or after current year
+<br />&nbsp;&mdash;&nbsp;&nbsp;9209 County names corrected from a total of 2313902 records from CCH2 with county values
+<!--<br />&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="consortium/logs/county_list_2021NOV1.html">Summary list of Verbatim Counties and Counts can be found here.</a>
+-->
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="/consortium/logs/county_list_2022JAN26.html">Summary list of Verbatim Counties and Counts can be found here.</a>
+
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;January 31&nbsp;&nbsp;&mdash;&nbsp;&nbsp;feature restored</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;The processing script used to create Hartman Maps (georeference progress dot maps) has been entirely re-written.  
+New maps can now be access on this page, which has also been updated (<a href="/consortium/georef_map.html">https://ucjeps.berkeley.edu/consortium/georef_map.html</a>)</li>
+The red-dot map on the <a href="/consortium/about.html">About page</a> has also been updated.  All of these maps show CCH2 data now.
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;January 5&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;A bug in the SQL search for names at the genus-level was fixed, 
+all specimens having a determination that starts with the matching genus name will now 
+display in search results.  Genus-only searches were coming up with no records previously due to updates in December.</li>
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+	<p><span class="pageAuthorLineB">Updates for 2021</span></p>
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;December 6&nbsp;&nbsp;&mdash;&nbsp;&nbsp;new and restored features</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;New Records log for each update is active again (<a href="/consortium/new_log_name.html">https://ucjeps.berkeley.edu/consortium/new_log_name.html</a>)</li>
+<li>&nbsp;New Determinations log for each update is active again (<a href="/consortium/new_det_log_name.html">https://ucjeps.berkeley.edu/consortium/new_det_log_name.html</a>)</li>
+<li>&nbsp;Name Change log for each update added as a new feature (<a href="/consortium/name_change_log.html">https://ucjeps.berkeley.edu/consortium/name_change_log.html</a>)</li>
+
+<br />&nbsp;&mdash;&nbsp;All three links to the most current update logs can be found under the 
+webpage header "Update History/Recent Update Logs".
+A comprehensive log of all CCH1 updates from 2008 onward can be found in the header link 
+"Update History/CCH1 Record Log Archive" which leads to this webpage:
+<a href="/consortium/record_log_archive.html">https://ucjeps.berkeley.edu/consortium/record_log_archive.html</a>.
+<br />&nbsp;&mdash;&nbsp;Name changes used to happen in the background in the original CCH.  
+Scripts altered problem names during the loading process.  Many changed names
+were reported to herbaria in the error logs.  None of these changes were apparent online to users.
+Most of these problem names are unpublished names on the herbarium label and are still the currrent ID even in CCH2.  
+In the past, unpublished names were altered to just the genus or skipped entirely.  
+Since the original CCH did not have a comprehensive determination history field, 
+one could not determine if a specimen name was changed from that in the home database  This is no longer done in CCH1.  
+Hcanged names can be found on the Name Change log (see link above). The ICPN keeps track of unpublished or illegitimate names researched by the editor.
+That tracking is now applied in CCH1.  If a unpublished name is not in the ICPN, 
+it is placed into a Not In EFlora (NIEF) <b>nomen_rej.txt</b> holding table and marked as an
+unpublished name in the details page. For example see the many unpublished Trifolium species 
+names by Randall Morgan, including Trifolium fax -  
+(<a href="/consortium/details.php?aid=UCSC100002137-BARCODE">UCSC100002137</a>.)
+<br />
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;November 30&nbsp;&nbsp;&mdash;&nbsp;&nbsp;new features</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;First loading date and determination added to the detailed specimen record.
+<br />&nbsp;&mdash;&nbsp;CCH1 has a long-recorded history of the names and the dates for each specimen was loaded into the database. 
+Eventually, there will be a database determination log avalable for all specimens, showing the date for each time a name was changed for a CCH1 record. 
+The first step of this process has been to add the date for the first time a specimen was loaded into the original CCH and determination for that first load. 
+<br />
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;November 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes, Major Update</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;The following are welcomed as data providers, newly added from CCH2 since October 1st: 
+<br />&nbsp;&mdash;&nbsp;MCCC&nbsp;&mdash;&nbsp;Mendocino College Coast Center Herbarium
+<br />&nbsp;&mdash;&nbsp;SFSU&nbsp;&mdash;&nbsp;Harry D. Thiers Herbarium, San Francisco State University
+<br />&nbsp;&mdash;&nbsp;SHTC&nbsp;&mdash;&nbsp;California State University, Stanislaus Herbarium
+<br />&nbsp;&mdash;&nbsp;SPIF&nbsp;&mdash;&nbsp;Sierra Pacific Industries-Forestry Herbarium
+<br />
+<li>&nbsp;Update statistics:</li>
+&nbsp;&mdash;&nbsp;2313930 records added to CCH1
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;9211 records newly added to CCH1 since last update
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;521 records with new determinations last update 
+<br />&nbsp;&mdash;&nbsp;XXXXX elevations higher or lower than the label county maximum (<a href="flag_colors.html#orange">orange flags</a>)
+<br />
+<li>&nbsp;Georeference statistics:</li>
+&nbsp;&mdash;&nbsp;
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4447 coordinates corrected using CCH1 resources
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;17564 inaccurate georeferences nulled (<a href="flag_colors.html#black">black flags</a>)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2503 records marked as cultivated (purple flags)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;143449 yellow-flagged records (11% increase compared to CCH1 2018)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20996 CCH1 2018 blue flags now yellow flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23328 new specimens yellow flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6302 CCH1 2018 yellow flags now blue flagged
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;227330 new specimens blue flagged
+<br />&nbsp;<b>Record count: 2,313,930 </b><a href="/consortium/georef_map.html" class="navText">(1,882,441 of which are georeferenced)</a>
+<br />
+<li>&nbsp;Corrections:</li>
+&nbsp;&mdash;19397 Taxon name errors corrected
+<br />&nbsp;&mdash;&nbsp;&nbsp;1747 elevations corrected
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;60 collection dates flagged as before 1800 or after current year
+<br />&nbsp;&mdash;&nbsp;&nbsp;9525 County names corrected from a total of 2313902 records from CCH2 with county-level data
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="/consortium/logs/county_list_2021NOV1.html">Summary list of Verbatim Counties and Counts can be found here.</a>
+
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;October 28&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;Specimens with unpublished taxon names used to be tossed out completely or modified 
+to just the genus in CCH1 prior to 2018. One goal of the new CCH1 is to be more transparent 
+with changes made to data.  For the past two months, unpublished taxon names were replaced 
+with a phrase from the ICPN used for names studies by editors: <b>unpublished, invalidly 
+published, illegitimate, or rejected name</b>. However, not having a name in the display name 
+field created bugs in searches, sorting, and other website functions.
+This phrase is better placed in status, even though many of these names have no offical 
+ICPN status and have never been vetted by Jepson Flora editors.  
+Now, the unpublished name is used as a display name and a NIEF (Not In EFlora) status phrase 
+is provided for the eflora status. None of these can be given an actual accepted name 
+because Jepson Flora editors have not investigated them, unlike similar 
+unpublished names treated in ranks 1b, 2b, etc in the ICPN.</li>
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;October 10&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;Queries of specimens determined as an eflora accepted name that have no synonyms 
+(such as <i>Eriodictyon capitatum</i>) were resulting in a query of all specimen records. 
+This bug has been fixed. Searches using eflora names without synonyms now appear to 
+display correctly in search results.</li>
+</ol>
+	</p>
+<!--END DATE ENTRY-->
+
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;October 5&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug fixes</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;A bug in the SQL search for synonyms was fixed, 
+synonyms will now display in search results.</li>
+</ol>
+	</p>
+
+<!--END DATE ENTRY-->
+
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;October 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Launch of the new CCH1</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;The new CCH1 website is now live.  
+<li>&nbsp;The CCH1 database now contains a CCH2 data upload from September 28th.  
+<li>&nbsp;All 2018 data from the old CCH1 has been replaced and updated.
+<li>&nbsp;The following are welcomed as new data providers, added since the last old-format refresh in 2018:  
+<br />&nbsp;&mdash;&nbsp;BSCA&nbsp;&mdash;&nbsp;Colorado Desert District, California Department of Parks and Recreation Herbarium
+<br />&nbsp;&mdash;&nbsp;BLMRD&nbsp;&mdash;&nbsp;BLM Redding Field Office 
+<br />&nbsp;&mdash;&nbsp;CSLA&nbsp;&mdash;&nbsp;California State University, Los Angeles Herbarium
+<br />&nbsp;&mdash;&nbsp;FSC&nbsp;&mdash;&nbsp;Fresno State Herbarium
+<br />&nbsp;&mdash;&nbsp;LOB&nbsp;&mdash;&nbsp;Long Beach Herbarium, California State University
+<br />
+<li>&nbsp;Update statistics:</li>
+&nbsp;&mdash;&nbsp;2304590 records added to CCH1
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;204238 records newly added to CCH1 since September 2018
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;93796 records with new determinations since September 2018 
+<br />&nbsp;&mdash;&nbsp;XXXXX elevations higher or lower than the label county maximum (<a href="flag_colors.html#orange">orange flags</a>)
+<br />
+<li>&nbsp;Georeference statistics:</li>
+&nbsp;&mdash;&nbsp;1616194 records with decimal Lat/Long, processed from coordinates on the label
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4447 coordinates corrected using CCH1 resources
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;17564 inaccurate georeferences nulled (<a href="flag_colors.html#black">black flags</a>)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2503 records marked as cultivated (purple flags)
+<br />&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XXXXX yellow-flagged records
+<br />&nbsp;&mdash;&nbsp;XXXXX georeferences outside the label county(<a href="flag_colors.html#red">red flags</a>)
+
+<br />
+<li>&nbsp;Corrections:</li>
+&nbsp;&mdash;&nbsp;1729 elevations corrected
+<br />&nbsp;&mdash;&nbsp;94937 County names corrected from a total of 2304588 records from CCH2 with county-level data
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="logs/county_list_2021OCT1.html">Summary list of Verbatim Counties and Counts can be found here.</a>
+
+</ol>
+	</p>
+
+<!--END DATE ENTRY-->
 
 	<p><span class="pageAuthorLineB">Updates for 2020</span></p>
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;May 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;CCH1 redevelopment</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;The redevelopment of CCH1 started with the creation of a new about and search page layout.  
+Redevelopment will continue during the shelter-at-home order caused by the COVID19 pandemic stage.
+</li>
+</ol>
+	</p>
+
+<!--END DATE ENTRY-->
+
+	<p><span class="pageAuthorLineB">Updates for 2019</span></p>
+
+<!--BEGIN DATE ENTRY-->
+<p class="pageAuthorLineB">&nbsp;&nbsp;July 1&nbsp;&nbsp;&mdash;&nbsp;&nbsp;CCH1 redevelopment</p>
+	<p class="generalText">
+<ol>
+<li>&nbsp;CCH2 development is mostly complete with the final loading of all CCH member databases. The redevelopment of CCH1 is now in the early planning stages.
+</li>
+</ol>
+	</p>
+
+<!--END DATE ENTRY-->
+
+
+	<p><span class="pageAuthorLineB">Updates for 2018</span></p>
 
 <!--BEGIN DATE ENTRY-->
 <p class="pageAuthorLineB">&nbsp;&nbsp;September 20&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Bug and georef. fixes</p>
