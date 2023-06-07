@@ -1,25 +1,27 @@
 
+#Add Last extract here
 #.output CCH1_det_log_extract2022JAN26.txt
+#change extract date below
 #harvest all current dets in cch1.db
 #export it to text file
 echo "\nExtracting det log from previous CCH_main"
 sqlite3 output/db/cch1.db <<'END_SQL'
 .timeout 2000
-.output CCH1_det_log_extract2022JAN26.txt
+.output CCH1_det_log_extract2022MAY23.txt
 SELECT CCH1_LINK_ID, TaxonID,displayName,currentDetermination
 FROM cch_main
 
 END_SQL
 
 
-echo "drop and recreate CCH1 MAIN databases"
-sqlite3 output/db/cch1.db < create_statements_cch.sql
+#echo "drop and recreate CCH1 MAIN databases"
+#sqlite3 output/db/cch1.db < create_statements_cch.sql
 
-echo "create CCH1 database indexes.........."
-sqlite3 output/db/cch1.db < create_indexes_cch.sql
+#echo "create CCH1 database indexes.........."
+#sqlite3 output/db/cch1.db < create_indexes_cch.sql
 
-echo "drop and recreate Member database"
-sqlite3 output/db/cch_members.db < create_statements_cch_members.sql
+#echo "drop and recreate Member database"
+#sqlite3 output/db/cch_members.db < create_statements_cch_members.sql
 
 #acrtivate these if you need to recreate the cch det log file
 #echo "drop and recreate CCH1 log database"
@@ -86,8 +88,8 @@ echo "\n\nrefresh SUGGS county comment insert statements"
 perl make_CCH1_county_comment_flags.pl
 
 echo "\n\nrefresh SUGGS det log insert statements"
-#processed_det_files/CCH1_suggs_det_log.txt
-#perl make_suggs_det_log_cch.pl
+#processed_det_files/CCH1_suggs_det_log_converted.txt
+perl make_suggs_det_log_cch.pl
 
 echo "\n\nrefresh first det log table insert statements"
 #perl make_first_det_log_cch.pl
