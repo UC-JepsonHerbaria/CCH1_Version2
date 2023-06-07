@@ -5,6 +5,18 @@ use strict;
 use lib '../../Jepson-eFlora/Modules';
 use CCH; #load non-vascular hash %exclude, alter_names hash %alter, and max county elevation hash %max_elev
 
+#my $prevfiledate = "2022-05-05"; #changed to a date string
+my $prevfiledate = "2022JUL11";
+
+
+#my $file = "2459325"; #LJD of the date AID file was processed
+#my $file = "2459518";
+#my $file = "2459522";
+#my $file = "2459648";
+my $dupfiledate = "2023APR27"; #changed to a date string
+
+
+
 #my $dirdate = "2021_APR16";
 #my $dirdate="2021_AUG28";
 #my $dirdate="2022_JAN26";
@@ -32,13 +44,28 @@ my %ACC_MOD;
 my %ACC_FOUND;
 my %UNQ_ID;
 my %skipped;
+my $changed;
+my $MOD_DATE;
 
-#IN files
-my ($BAD_REM, $CCH1_CAT, $excluded, $bad2, $bad1, $non, $skipped, $ocatb, $catb, $cch2idb, $occid) = "";
-my ($aidStatus, $aidName, $uniqueID, $aidCounty, $aidGUID, $herb, $included, $count_record) = "";
-my ($HERB, $gg, $NULL, $aidCounty, $aidGUID, $herb, $included, $herbcode) = "";
+#AID table variables
+my ($aidherb,$aidcat,$aidocat,$aidcch2id,$old_cchid,$cch_barcode,$cch_alt_aid,$aidStatus) = "";
+my ($aidGUID,$aidName,$aidCounty,$aidMod,$linkID) = "";
+my (%CONV_OLD,%CONV_BAR,%CONV_ALT,%ADD_OC,%ADD_CAT,%ADD_CCH,%ADD_BAR,%ADD_BAR_STRIPPED) = "";
+my (%ADD_ALT,%ADD_TSMOD,%ADD_IC,%ADD_SN,%ADD_CO,%ACC_EX,%ADD_LINK,%MOD_DATE) = "";
 
-my ($dups, $old_cchid,$cch_barcode,$cch_alt_aid, $null, $barcode) = "";
+#DUP variables
+my ($hc,$cat,$ocat,$CCH2ID,$cchid,$cchbarcode,$altcchid,$n,$r,$l,$d) = ""; 
+my (%DUP_CCH, %DUP_BAR, %DUP_ALT, %DUP_FOUND) = ""; 
+
+my ($aid,$gid,$CCH1_LINK_ID,$cch1id,%LINKID_FOUND,%GID_A,%GID_B,%CCH1_A,%CCH1_B) = "";
+
+#mosses
+my (%exclude,$gg) = "";
+
+#counts
+my ($skipped, $NULL, $non, $included, $c, $PM, $GC) = "";
+my ($count_record,$CCH1_LINK_ID,$UNIQUE_GEO_ID,$CCH1acc,$value,$key,$ID,$parseLat,$parseLong) = "";
+
 
 #IN TABLE
 #CCH2 symbiota table
@@ -61,19 +88,27 @@ my ($disposition, $language, $recordEnteredBy, $modified, $sourcePrimaryKey) = "
 my ($collId, $recordId, $references) = "";#83
 my ($accessRights,$subgenus,$higherClassification,$collectionID,$verbatimTaxonRank) = "";
 my ($rightsHolder,$rights,$associatedOccurrences,$eventID,$associatedSequences) = "";
+my ($locationID,$continent,$waterBody,$islandGroup,$island,$eventDate2) = "";
 
 
 $| = 1; #forces a flush after every write or print, so the output appears as soon as it's generated rather than being buffered.
 
-open(BAD, ">output/AID_to_ADD_CCH2_missing.txt") || die;
+open(LOAD, ">output/CCH1_convert_log_".$dupfiledate.".txt") || die;
 
-open(OUT, ">output/AID_to_ADD_CCH2_mod.txt") || die;
+open(BAD, ">input/AID_GUID/output/AID_to_ADD_CCH2_missing.txt") || die;
+
+open(OUT, '>input/AID_GUID/output/AID_to_ADD_CCH2_mod_'.$dupfiledate.'.txt') || die;
+open(DATE, '>input/AID_GUID/output/AID_CCH2_NEW_'.$dupfiledate.'.txt') || die;
+
+open(PROB, '>input/AID_GUID/output/AID_changed_'.$dupfiledate.'.txt') || die;
 open(NON, ">output/bulkload_nonvasc_excluded.txt") || die;
 
-	print OUT "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\n";
-	print BAD "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\n";
+	print OUT "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\tLINK_ID\n";
+	print BAD "herbcode\tCCH2_catalogNumber\tCCH2_otherCatalogNumbers\tCCH2_ID\tOLD_CCH_AID\tCCH_ID_BARCODE\tALT_CCH_AID\tStatus\tGUID-occurrenceID\tSciName\tCounty\tCCH2_dateLastModified\tLINK_ID\n";
+	print DATE "herbcode\tLINK_ID\tDATEMOD_VALUE\tCCH2_dateLastModified\n";
 
-		
+	print LOAD "\n\nconverting CCH1 AID file....  'perl add_to_cumulative.pl'\n";
+	
 
 open(IN, "../../Jepson-eFlora/synonymy/input/mosses.txt") || die "CCH.pm couldnt open mosses for non-vascular exclusion $!\n";
 while(<IN>){
@@ -82,6 +117,59 @@ while(<IN>){
 	$exclude{$gg}++;
 
 }
+close(IN);
+
+
+my $aidfile = 'input/AID_GUID/output/AID_to_ADD_CCH2_mod_'.$prevfiledate.'.txt';
+open (IN, $aidfile) or die $!;
+	while(<IN>){
+		chomp;
+	($aidherb,$aidcat,$aidocat,$aidcch2id,$old_cchid,$cch_barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$aidMod)=split(/\t/);
+	#($aidherb,$aidcat,$aidocat,$aidcch2id,$old_cchid,$cch_barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$aidMod,$link_id)=split(/\t/);
+	#($aidherb,$aidcat,$aidocat,$aidcch2id,$old_cchid,$cch_barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty)=split(/\t/);
+	
+#remove the barcode tag so it can match the CCH1 accession
+my $nobarcode = $cch_barcode;
+$nobarcode =~ s/[ -]+BARCODE$//;
+
+
+my $OLD = $old_cchid;
+
+my $BAR = $nobarcode;
+
+my $ALT = $cch_alt_aid;
+
+#find CCH1 link ID
+	if ($BAR !~ m/^( *|NULL)$/){
+		$cch1id = $BAR;
+		$CCH1_LINK_ID = $BAR."->".$aidcch2id;
+	}
+	elsif ($OLD !~ m/^( *|NULL)$/){
+		$cch1id = $OLD;
+		$CCH1_LINK_ID = $OLD."->".$aidcch2id;
+	}
+	elsif ($ALT !~ m/^( *|NULL)$/){
+		$cch1id = $ALT;
+		$CCH1_LINK_ID = $ALT."->".$aidcch2id;
+	}
+	else{
+		$CCH1_LINK_ID = "NULL";
+	}
+
+	if ($CCH1_LINK_ID !~ m/^( *|NULL)$/){
+		if ($old_cchid !~ m/^(SEINET)\d+/){
+			$LINKID_FOUND{$CCH1_LINK_ID}++;
+			$CCH1_A{$cch1id}++;
+			$CCH1_B{$cch1id}=$aidcch2id;
+			$GID_A{$aidcch2id}++;
+			$GID_B{$aidcch2id}=$cch1id;
+		}
+	}
+
+
+}
+
+
 close(IN);
 
 
@@ -100,15 +188,16 @@ Record: while(<IN>){
 		my @fields=split(/\t/,$_,100);
 
 		#unless( $#fields == 84){  #if the number of values in the columns array is exactly 85, this is for Darwin Core
-		unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		#unless( $#fields == 90){  #if the number of values in the columns array is exactly 91, this is for Darwin Core
+		unless( $#fields == 96){  #if the number of values in the columns array is exactly 97, this is for Darwin Core
 
-			warn "$#fields bad field number $_\n";
+			#warn "$#fields bad field number $_\n";
 
 			next Record;
 		}
 
-#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	occurrenceID	catalogNumber	otherCatalogNumbers	
-#higherClassification	kingdom	
+#id	institutionCode	collectionCode	ownerInstitutionCode	basisOfRecord	
+#occurrenceID	catalogNumber	otherCatalogNumbers	higherClassification	kingdom	
 ($id,
 $institutionCode,
 $collectionCode,
@@ -121,10 +210,8 @@ $otherCatalogNumbers,
 $higherClassification,
 $kingdom,
 #10
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	
-#specificEpithet	
-#$kingdom,
-#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	genus	subgenus	specificEpithet	
+#phylum	class	order	family	scientificName	taxonID	scientificNameAuthorship	
+#genus	subgenus	specificEpithet	
 $phylum,
 $class,
 $order,
@@ -136,8 +223,9 @@ $genus,
 $subgenus,
 $specificEpithet,
 #20
-#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	identificationReferences	
-#identificationRemarks	taxonRemarks	identificationQualifier	typeStatus	
+#verbatimTaxonRank	infraspecificEpithet	taxonRank	identifiedBy	dateIdentified	
+#identificationReferences	identificationRemarks	taxonRemarks	identificationQualifier	
+#typeStatus	
 $verbatimTaxonRank,
 $infraspecificEpithet,
 $taxonRank,
@@ -149,21 +237,22 @@ $taxonRemarks,
 $identificationQualifier,
 $typeStatus,
 #30
-#recordedBy	associatedCollectors	recordNumber	eventDate	year	month	day	startDayOfYear	endDayOfYear	
-#verbatimEventDate	
+#recordedBy	associatedCollectors	recordNumber	eventDate	eventDate2	
+#year	month	day	startDayOfYear	endDayOfYear	
 $recordedBy,
 $associatedCollectors, #This is in Symbiota Native and not Darwin Core
 $recordNumber,
 $eventDate,
+$eventDate2,
 $year,
 $month,
 $day,
 $startDayOfYear,
 $endDayOfYear,
-$verbatimEventDate,
 #40
-#occurrenceRemarks	habitat	substrate	verbatimAttributes	fieldNumber	eventID	informationWithheld	dataGeneralizations	
-#dynamicProperties	associatedOccurrences	
+#verbatimEventDate	occurrenceRemarks	habitat	substrate	verbatimAttributes	
+#fieldNumber	eventID	informationWithheld	dataGeneralizations	dynamicProperties	
+$verbatimEventDate,
 $occurrenceRemarks,
 $habitat,
 $substrate, #This is in Symbiota Native and not Darwin Core
@@ -173,13 +262,10 @@ $eventID, #This is in Symbiota Native and not Darwin Core
 $informationWithheld,
 $dataGeneralizations,
 $dynamicProperties,
-$associatedOccurrences,
-#$associatedTaxa,
-#$reproductiveCondition,
-#$establishmentMeans,
 #50
-#associatedSequences	associatedTaxa	reproductiveCondition	establishmentMeans	cultivationStatus	lifeStage	sex	
-#individualCount	preparations	country	
+#associatedOccurrences	associatedSequences	associatedTaxa	reproductiveCondition	
+#establishmentMeans	cultivationStatus	lifeStage	sex	individualCount	preparations	
+$associatedOccurrences,
 $associatedSequences, #This is in Symbiota Native and not Darwin Core
 $associatedTaxa,
 $reproductiveCondition,
@@ -189,82 +275,72 @@ $lifeStage,
 $sex,
 $individualCount,
 $preparations,
-$country,
-#$stateProvince,
-#$verbatimCounty,
-#$municipality,
-#$locality,
-#$locationRemarks,
 #60
-#stateProvince	county	municipality	locality	locationRemarks	localitySecurity	localitySecurityReason	
-#decimalLatitude	decimalLongitude	geodeticDatum	
+#locationID	continent	waterBody	islandGroup	island	country
+#stateProvince	county	municipality	locality	
+$locationID,
+$continent,
+$waterBody,
+$islandGroup,
+$island,
+$country,
 $stateProvince,
 $verbatimCounty,
 $municipality,
 $locality,
+#70
+#locationRemarks	localitySecurity	localitySecurityReason	
+#decimalLatitude	decimalLongitude	geodeticDatum	coordinateUncertaintyInMeters	
+#verbatimCoordinates	georeferencedBy	georeferenceProtocol	
 $locationRemarks,
 $localitySecurity, #This is in Symbiota Native and not Darwin Core
 $localitySecurityReason, #This is in Symbiota Native and not Darwin Core
 $latitude,
 $longitude,
 $geodeticDatum,
-#$coordinateUncertaintyInMeters,
-#$verbatimCoordinates,
-#$georeferencedBy,
-#$georeferenceProtocol,
-#$georeferenceSources,
-#$georeferenceVerificationStatus,
-#$georeferenceRemarks,
-#70
-#coordinateUncertaintyInMeters	verbatimCoordinates	georeferencedBy	georeferenceProtocol	georeferenceSources	
-#georeferenceVerificationStatus	georeferenceRemarks	minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters
 $coordinateUncertaintyInMeters,
 $verbatimCoordinates,
 $georeferencedBy,
 $georeferenceProtocol,
+#80
+#georeferenceSources	georeferenceVerificationStatus	georeferenceRemarks
+#minimumElevationInMeters	maximumElevationInMeters	minimumDepthInMeters	
+#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	
 $georeferenceSources,
 $georeferenceVerificationStatus,
 $georeferenceRemarks,
 $minimumElevationInMeters,
 $maximumElevationInMeters,
 $minimumDepthInMeters,
-#$verbatimDepth,
-#$verbatimElevation,
-#$disposition,
-#$language,
-#$recordEnteredBy,
-#$modified,
-#80
-#maximumDepthInMeters	verbatimDepth	verbatimElevation	disposition	language	recordEnteredBy	modified	
-#sourcePrimaryKey-dbpk	collId	recordId	references
 $maximumDepthInMeters,
 $verbatimDepth,
 $verbatimElevation,
 $disposition,
+#90
+#language	recordEnteredBy	modified	sourcePrimaryKey-dbpk	collID	recordID	
+#references
 $language,
 $recordEnteredBy,
 $modified,
 $sourcePrimaryKey, #This is in Symbiota Native and not Darwin Core
-#$rights,  #This is in Darwin Core and not Symbiota Native
-#$rightsHolder, #This is in Darwin Core and not Symbiota Native
-#$accessRights, #This is in Darwin Core and not Symbiota Native
 $collId, #This is in Symbiota Native and not Darwin Core
 $recordId,
-#90
 $references	
 ) = @fields;	
 #The array @fields is made up on these 85 scalars, in this order, for Darwin Core
 #The array @fields is made up on these 91 scalars, in this order, for Symbiota Native
+#The array @fields is made up on these 97 scalars, in this order, for Symbiota Native
 
 
 ++$included;
 
-$herb = $institutionCode;
+my $herb = $institutionCode;
 
+printf {*STDERR} "%d\r", ++$count_record;
 
 	if (length ($genus) > 1){
 		if($exclude{$genus}){	
-			print NON "$HERB ERR TAXON $genus(1): Non-vascular plant ($scientificName)\t$occid==>$_\n";
+			print NON "$institutionCode ERR TAXON $genus(1): Non-vascular plant ($scientificName)==>$_\n";
 			++$non;
 			next Record;
 		}
@@ -273,7 +349,7 @@ $herb = $institutionCode;
 	$genus = $scientificName;
 	$genus =~ s/^([A-Z][a-z-]+) *.*$/$1/;	
 		if($exclude{$genus}){	
-			print NON "$HERB ERR TAXON $genus(2): Non-vascular plant ($scientificName)\t$occid==>$_\n";
+			print NON "$institutionCode ERR TAXON $genus(2): Non-vascular plant ($scientificName)==>$_\n";
 			++$non;
 			next Record;
 		}
@@ -309,22 +385,32 @@ CCH2 NONVASC EXCL: $non
 
 EOP
 
+print LOAD <<EOP;
+CCH2 TOTAL RECORDS: $included
+
+CCH2 NULL Barcodes and CatNumbers: $skipped
+
+CCH2 records without OCCID: $NULL
+
+CCH2 NONVASC EXCL: $non
+
+EOP
 
 close(IN);
 close(NON);
 
 
 
-
 my $included;
-#my $file = "2459325"; #LJD of the date AID file was processed
-#my $file = "2459518";
-#my $file = "2459522";
-#my $file = "2459648";
-my $file = "2022-07-11"; #changed to a date string
+my ($count_record, $link_found,$aid,$gid,$cch1id,$null) = "";
+my ($GIDCHANGE,$AIDCHANGE,$CCH1_CAT,$CCH1_LINK_ID) = "";
+#AID table variables reset
+my ($herbcode,$catb,$ocatb,$cch2idb,$old_cchid,$cch_barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty) = "";
+my (%CONV_OLD,%CONV_BAR,%CONV_ALT,%ADD_OC,%ADD_CAT,%ADD_CCH,%ADD_BAR,%ADD_BAR_STRIPPED) = "";
+my (%ADD_ALT,%ADD_TSMOD,%ADD_IC,%ADD_SN,%ADD_CO,%ACC_EX,%ADD_LINK) = "";
 
 
-my $addFile = 'input/AID_GUID/output/AID_to_ADD_'.$file.'.txt';
+my $addFile = 'input/AID_GUID/output/AID_to_ADD_'.$dupfiledate.'.txt';
 open (IN, $addFile) or die $!;
 	while(<IN>){
 		chomp;
@@ -336,9 +422,13 @@ open (IN, $addFile) or die $!;
 #RSA	RSA0196312	POM accession #: 452	3883920	POM452	RSA0196312 BARCODE		NONDUP	4291dd75-d3a6-4068-b295-d109038cb918	Tropidocarpum gracile var. dubium	Los Angeles
 #RSA	RSA0205106	RSA accession #: 678528	3912466	RSA678528	RSA0205106 BARCODE		NONDUP	142fa477-637a-4d7e-9933-e7eb166ea76e	Verbena tenuisecta	Ventura
 
+next if (m/^herbcode/i);
 
-$barcode = $cch_barcode;
-$barcode =~ s/ +BARCODE$/-BARCODE/;
+my $nobarcode = $cch_barcode;
+$nobarcode =~ s/[ -]+BARCODE$//; #remove this for comparisons below
+
+my $barcode = $cch_barcode;
+$barcode =~ s/[ -]+BARCODE$/-BARCODE/; 
 
 
 ++$included;
@@ -352,16 +442,98 @@ $barcode =~ s/ +BARCODE$/-BARCODE/;
 #warn "$count_record\n" unless $count_record % 1009;
 printf {*STDERR} "%d\r", ++$count_record;
 
+my $OLD = $old_cchid;
 
-   if (($catb =~ m/^ *$/) && ($ocatb =~ m/^ *$/)){
+my $BAR = $nobarcode;
+
+my $ALT = $cch_alt_aid;
+
+#find CCH1 link ID
+	if ($BAR !~ m/^( *|NULL)$/){
+		$cch1id = $BAR;
+		$CCH1_LINK_ID = $BAR."->".$cch2idb;
+	}
+	elsif ($OLD !~ m/^( *|NULL)$/){
+		$cch1id = $OLD;
+		$CCH1_LINK_ID = $OLD."->".$cch2idb;
+	}
+	elsif ($ALT !~ m/^( *|NULL)$/){
+		$cch1id = $ALT;
+		$CCH1_LINK_ID = $ALT."->".$cch2idb;
+	}
+	else{
+		$cch1id = $CCH1_LINK_ID = "NULL";
+	}
+
+
+#find problem records
+	if ($CCH1_LINK_ID !~ m/^( *|NULL)$/){
+		if ($LINKID_FOUND{$CCH1_LINK_ID}){
+			++$link_found;
+		}
+		else{
+			$aid = $CCH1_LINK_ID;
+			$aid =~ s/^(.+)->(.+)$/$1/;
+			#print "$aid\n";
+			$gid = $CCH1_LINK_ID;
+			$gid =~ s/^(.+)->(.+)$/$2/;
+
+			if ($GID_A{$cch2idb}){#DOES THE CCH2 ID MATCH IN A LINK ID, but the AID changed
+				my $temp = $GID_B{$cch2idb};
+				if ($aid ne $temp){
+					++$AIDCHANGE;
+					print PROB "GID EQUAL BUT AID CHANGED==>$CCH1_LINK_ID-->OLD:$temp-->NEW:$aid\n";
+				}
+				
+			
+			}
+			
+			if ($CCH1_B{$cch1id}){
+			#THE CCH2 ID DOES NOT MATCH IN A LINK ID
+				my $temp = $CCH1_B{$cch1id};
+				if ($gid ne $temp){
+					++$GIDCHANGE;
+					print PROB "AID EQUAL BUT GID CHANGED==>$CCH1_LINK_ID-->OLD:$temp-->NEW:$aid\n";
+				}
+				
+			}
+
+
+
+
+
+		}
+	}
+#2023-03-06 02:38:29
+	my $MOD = $ACC_MOD{$cch2idb};
+		$MOD =~ s/[-:]+//g;
+		$MOD =~ s/ +//g;
+#20230306023829
+
+	if (($catb =~ m/^ *$/) && ($ocatb =~ m/^ *$/)){
+		++$null;
+		my $STATUS = "NULL CAT SKIPPED==>".$herbcode;
+		print PROB join("\t",$STATUS,$catb,$ocatb,$cch2idb,$old_cchid,$barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$ACC_MOD{$cch2idb},$CCH1_LINK_ID),"\n";
+		next;
+	}
+	else{
+		if ($CCH1_LINK_ID =~ m/^(NULL| *)$/){
+			my $STATUS = "NULL LINK ID SKIPPED==>".$herbcode;
+			print PROB join("\t",$STATUS,$catb,$ocatb,$cch2idb,$old_cchid,$barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$ACC_MOD{$cch2idb},$CCH1_LINK_ID),"\n";
 		++$null;
 		next;
-   }
-   else{
-   
-print OUT join("\t",$herbcode,$catb,$ocatb,$cch2idb,$old_cchid,$barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$ACC_MOD{$cch2idb}),"\n";
-	++$CCH1_CAT;
-   }
+   		}
+   		else{
+   			print OUT join("\t",$herbcode,$catb,$ocatb,$cch2idb,$old_cchid,$barcode,$cch_alt_aid,$aidStatus,$aidGUID,$aidName,$aidCounty,$ACC_MOD{$cch2idb},$CCH1_LINK_ID),"\n";
+			++$CCH1_CAT;
+
+#change this to previous load date for each new load date
+			if ($MOD >= 20220708000000){
+   				print DATE join("\t",$herbcode,$CCH1_LINK_ID,$MOD,$ACC_MOD{$cch2idb}),"\n";
+				++$changed;
+			}
+		}
+	}
 
 }
 print <<EOP;
@@ -373,8 +545,30 @@ CCH MAIN null Barcodes and CatNumbers: $null (this should be null, if not someth
 
 processed CCH1 accessions linked to CCH2 ID: $CCH1_CAT
 
+AID CHANGED:$AIDCHANGE
+GID CHANGED:$GIDCHANGE
+
+Records changed or added since $prevfiledate: $changed
+
+
 EOP
 
+print LOAD <<EOP;
+
+AID PROCESSED REPORT:
+CCH MAIN TOTAL RECORDS: $included
+
+CCH MAIN null Barcodes and CatNumbers: $null (this should be null, if not something is wrong)
+
+processed CCH1 accessions linked to CCH2 ID: $CCH1_CAT
+
+AID CHANGED:$AIDCHANGE
+GID CHANGED:$GIDCHANGE
+
+Records changed or added since $prevfiledate: $changed
+
+
+EOP
 
 close(IN);
 close(OUT);

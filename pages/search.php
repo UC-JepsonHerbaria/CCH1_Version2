@@ -133,9 +133,13 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 
 	<p class="pageSubheading"><b>Scientific Name Search</b><br />
  	<input id="query_text" type="text" name="taxon_name" size = 50 MAXLENGTH = 50></input><br />
-	<input type ="checkbox" name="syncheck" value="1">Select to search all synonyms (leave unchecked for a keyword name search)
+	<input type ="checkbox" name="syncheck" value="1">Select to search for only the entered name <br />(leave unchecked to search all synonyms)
  	<br />
-		<span class="bodySmallerText">e.g.:<a href="/consortium/list.php?taxon_name=Bromus">Bromus</a>;
+		<span class="bodySmallerText">e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae">Dudleya blochmaniae</a></span>
+		<span class="bodySmallerText">&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=>Dudleya blochmaniae insul">Dudleya blochmaniae insul</a></span>
+		<span class="bodySmallerText">&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=>Quercus X alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a></span>
+
+
 		</span>
 	</p>
 				</td>
@@ -152,7 +156,16 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText">e.g.:
 		<a href="/consortium/list.php?loc=French%20Meadow">French Meadow</a>;
 		</span>
+	<!--</p>
+	<p class="pageSubheading"><b>Phenology</b>
+	<br />
+ 	<input id="query_text" type="text" name = "phen" size = 40 MAXLENGTH = 50></input>
+ 	<br />
+		<span class="bodySmallerText">e.g.:
+		<a href="/consortium/list.php?phen=FRUIT">Fruit</a>;
+		</span>
 	</p>
+	-->
 				</td>
 			</tr>
 		</table>
@@ -169,7 +182,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText"><b>
 		Return only names with a nativity <br />
 		status sensu the Jepson eFlora<br />
-e.g.:<a href="/consortium/list.php?nativity=Waif">Waif</a></b>
+		<!--e.g.:<a href="/consortium/list.php?nativity=Waif">Waif</a></b>-->
 		</span>
 	</p>
 			</td>
@@ -185,7 +198,7 @@ e.g.:<a href="/consortium/list.php?nativity=Waif">Waif</a></b>
 		Return only names with a life 
 		<br />
 		form status sensu the Jepson eFlora<br />
-		e.g.:<a href="/consortium/list.php?life=tree">tree</a>
+		<!--e.g.:<a href="/consortium/list.php?life=TREE">tree</a>-->
 		</b></span>
 	</p>
 			</td>
