@@ -265,14 +265,9 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 			<td class="tagList" style="padding: 5px; background-color:#9090AA;">
 				<span class="pageSubheading">Refine or Expand Search</span>
 				<br /><hr>
-				<!-- TAX LIST checkbox-->
-				<input type ="checkbox" name="LIST" value="1">
- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
-				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)
-				<br /><br />
 				<!-- YF checkbox-->
 				<input type="checkbox" name="YF" value="1">
-				Enable yellow flags <a href="/consortium/search_help.html#yf"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
+				Enable yellow flags <a href="/consortium/search_help.html#yf"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(displays possible range discrepancies with yellow icons)
 				<br /><br />
 				<!-- CNPS checkbox-->
@@ -303,6 +298,11 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<input type="checkbox" name="geo_no" value="1">
  				Limit to specimens without coordinates<a href="/consortium/search_help.html#nogeo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
  				<br ><br />
+				<!-- TAX LIST checkbox-->
+				<input type ="checkbox" name="LIST" value="1">
+ 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)
+				<br /><br />
  				<!-- VTM checkbox-->
  				<input type="checkbox" name="VTM" value="1">
  				Vegetation Type Map specimens <a href="/consortium/search_help.html#vtm"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font>
