@@ -108,6 +108,16 @@ CCH1 Portal. <?php echo date("Y") ?>. Biodiversity data provided by the particip
 
 </table>
 <hr>
+<p><ul>
+<li><font color="red"><h2>Due to a high level of spammers overloading the server, most search parameters have been disabled</h2></font></li>
+<li><font color="red"><h2>Testing new anti-spamming code is on-going during this time</h2></font></li>
+<li><font color="red"><h2>New code is being developed for each search field to kill these endlessly-repetitive spam queries. </h2></font></li> 
+<li><font color="red"><h2>Search options will be re-enabled, one-by-one, after the code is tested.</h2></font></li>  
+<li><font color="red"><h2>Thank you for your patience during this emergency.</h2></font></li>
+
+</ul>
+
+<hr>
 
 <!--<table>
 <tr>
@@ -163,10 +173,10 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae insularis">Dudleya blochmaniae insularis</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Quercus alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a><br />
 		</span>
-	<input type ="checkbox" name="hybcheck" value="1">Select to include hybrid names<br />
-		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae&hybcheck=1">Dudleya blochmaniae</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Juglans regia&hybcheck=1">Juglans regia</a><br />
-	</span>
+<!--	<input type ="checkbox" name="hybcheck" value="1">Select to include hybrid names<br />-->
+<!--		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae&hybcheck=1">Dudleya blochmaniae</a><br />-->
+<!--		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Juglans regia&hybcheck=1">Juglans regia</a><br />-->
+<!--	</span>-->
 				</td>
 			</tr>
 <!--$current_request= ?taxon_name=$lookfor&nativity=$req_source&county=$county&collector=$collector&aid=$aid&collyear=$year&collmonth=$month&collday=$day&loc=$quote_loc&coll_num=$coll_num&max_rec=$max_return&make_tax_list=$make_tax_list&before_after=$before_after&last_comments=$last_comments&VV=$v_restrict&non_native=$include_nn&geo_only=$geo_only&geo_no=$geo_no&CNPS_listed=$include_CNPS&weed=$include_weed&sugg_loc=$sugg_loc$q_coords&tns=$tns&lo_e=$lo_e&hi_e=$hi_e&YF=$YF&VTM=$include_vtm&baja=$include_baja&cultivated=$include_cult};
@@ -180,8 +190,8 @@ Results of searches may occasionally not work as expected.</font></h3></td>
  	<br />
 		<span class="bodySmallerText">e.g.:
 		<a href="/consortium/list.php?loc=Round Meadow">Round Meadow</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Forester">Forester</a><br />
-		<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=M% Dana">Mt Dana</a> will search both 'Mount Dana' & 'Mt. Dana'<br />-->
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Mokelumne">Mokelumne</a><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Mount Dana">Mount Dana</a> will search both 'Mount Dana', 'Mt. Dana' and other variants<br />
 		</span>
 	<!--</p>
 	<p class="pageSubheading"><b>Phenology</b>
@@ -200,7 +210,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<table style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 		<tr>
 			<td style="width: 45%;">
-	<p><span class="pageSubheading"><br />
+<!--	<p><span class="pageSubheading"><br />
 	<label for="nativity">Nativity <a href="/consortium/search_help.html#nativity"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="nativity" >
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_nativity_options.php'); ?>
@@ -213,10 +223,11 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		e.g.:<a href="/consortium/list.php?nativity=Waif&loc=Yosemite">Waifs in Yosemite</a>
 		</span>
 	</p>
+	-->
 			</td>
 
 			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-	<p><span class="pageSubheading"><br />
+<!--	<p><span class="pageSubheading"><br />
 	<label for="life">Life Form <a href="/consortium/search_help.html#life"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="life">
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_life_form_options.php'); ?>
@@ -229,6 +240,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<a href="/consortium/list.php?life=TREE&county=ALAMEDA">trees of Alameda County</a>
 		</b></span>
 	</p>
+-->
 			</td>
 		</tr>
 
@@ -253,12 +265,13 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 
 		<p><span class="pageSubheading">
 		<!-- County Mismatch checkbox-->
-		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
+<!--		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
  		<b>Include specimens with the selected county listed on the label but for which georeferenced coordinates map outside the county.<br />
  		</b></span>
  		</p>
 	<br />
+-->
 <!-- Geographic Region Box, the code to implement this is very complicated in get_consort.pl.-->
 <!-- I am not sure at this point if I can translate it to PHP, so it is commented out for now-->
 <!-- In its place I have placed the locality box for now-->
@@ -270,7 +283,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 	<span class="bodySmallerText">(Regions defined by bounding-box)<br />
 	</span>
 	</p>-->
-
+<!--
 	<p class="pageSubheading"><br />
 	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
@@ -278,7 +291,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
         <input name = "minELEV" size = 6>&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;<input name = "maxELEV" size = 6> (meters)
 	</p>
 	<br />
-	
+-->	
 
 			</td>
 		</tr>
@@ -291,38 +304,52 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 				<span class="pageSubheading">Refine or Expand Search</span>
 				<br /><hr>
 				<!-- YF checkbox-->
+				<!--
 				<input type="checkbox" name="YF" value="1">
 				Enable yellow flags <a href="/consortium/search_help.html#yf"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(displays possible range discrepancies with yellow icons)
 				<br /><br />
-				<!-- CNPS checkbox-->
+				-->
+				<!-- endemic checkbox-->
+				<!--
 				<input type ="checkbox" name="endem" value="1">
 				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only accepted names or recognized synonyms for endemics found in the Jepson eFlora)
 				<br /><br />
+				-->
 				<!-- CNPS checkbox-->
+				<!--
 				<input type ="checkbox" name="CNPS" value="1">
 				CNPS Inventory <a href="/consortium/search_help.html#cnps"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only names in the California Native Plant Society Inventory)
 				<br /><br />
+				-->
 				<!-- CAL-IPC - CDFA checkbox-->
+				<!--
 				<input type ="checkbox" name="IPC" value="1">  
 				Weeds <a href="/consortium/search_help.html#weeds"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only records of CAL-IPC or CDFA listed weeds)
 				<br /><br />
+				-->
 				<!-- CULT checkbox-->
+				<!--
 				<input type ="checkbox" name="cult" value="1">
 				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(enable purple flags and include specimens labeled as cultivated)
 				<br /><br />
+				-->
 				<!-- GEO checkbox-->
+				<!--
 				<input type="checkbox" name="geo_only" value="1">
  				Limit to specimens with coordinates <a href="/consortium/search_help.html#geo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 				<br /><br />
+				-->
 				<!-- NO GEO checkbox-->
+				<!--
 				<input type="checkbox" name="geo_no" value="1">
  				Limit to specimens without coordinates<a href="/consortium/search_help.html#nogeo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
  				<br ><br />
+				-->
 				<!-- TAX LIST checkbox-->
 <!--				<input type ="checkbox" name="LIST" value="1">-->
 <!-- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />-->
@@ -342,7 +369,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 
 	<!--BEGIN RIGHT Side UPPER Content-->	
 	<td style="padding-left: 10px;padding-right: 10px;width: 40%;vertical-align: top;background-color:#FFFFFF;">
-	
+	<!--
 	<p class="pageSubheading"><b>Source</b> <a href="/consortium/search_help.html#source"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 	<br />
 	<select name="source" size=34>
@@ -353,8 +380,8 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<b><font color="firebrick">(selecting multiple values not re-activated)</font></b></span>
 	</p>
 	<br />
-	
-
+	-->
+	<!--
 	<p class="pageSubheading"><b>Collector</b> <a href="/consortium/search_help.html#coll"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
         <input name = "coll" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(last name only; e.g.:
@@ -362,13 +389,15 @@ Results of searches may occasionally not work as expected.</font></h3></td>
   			<a href="/consortium/list.php?coll=Moref">Moref</a>)
 		</span>
 	</p>
-
+	-->
+	<!--
 	<p class="pageSubheading"><b>Collector Number</b> <a href="/consortium/search_help.html#collnum"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
         <input name = "collnum" size = 50 MAXLENGTH = 50><br />
     	<span class="bodySmallerText">(any type, including strictly numerical or alpha-numeric <br />e.g.:
 			<a href="/consortium/list.php?collnum=2334">2334</a>)
 		</span>
 	</p>
+	-->
 	<br /><br />
 <!--	<p class="pageSubheading">Collection Date			 -->
 <!--	<span class="bodySmallerText">(Note: Before and After is by Year only)</span><br /> -->
@@ -416,6 +445,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 <!--	</p> -->
 <!-- END date grid -->
 
+	<!--
 	<p class="pageSubheading"><input type ="checkbox" name="typecheck" value="1">Select to display only specimens with a type status
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
 	<b>Search Type Status</b> <a href="/consortium/search_help.html#type"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
@@ -425,6 +455,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
   			<a href="/consortium/list.php??type=type">type</a>)
 		</span>
 	</p>
+	-->
 	</td>
 	<!--END RIGHT Side UPPER Content-->	
 	</tr>
