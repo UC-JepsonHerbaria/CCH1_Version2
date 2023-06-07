@@ -6,8 +6,6 @@ date_default_timezone_set('America/Los_Angeles');
 //connect to the database
 require '../../ucjeps_data/ucjeps_data/config/config_cch.php';
 $db = new SQLite3($database_location);
-$db->query("PRAGMA synchronous = OFF");
-$db->query("PRAGMA temp_store = MEMORY");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -148,11 +146,13 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	<input type ="checkbox" name="syncheck" value="1">Select to search for only the entered name <br />(leave unchecked to search all synonyms)
  	<br />
 		<span class="bodySmallerText">e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae">Dudleya blochmaniae</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae insul">Dudleya blochmaniae insul</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Quercus X alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Art% cal">Art+ cal</a> 'Artemisia californica' using wildcards<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae insularis">Dudleya blochmaniae insularis</a><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Quercus alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a><br />
 		</span>
-	</p>
+	<input type ="checkbox" name="hybcheck" value="1">Select to include hybrid names<br />
+		<span class="bodySmallerText">e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae&hybcheck=1">Dudleya blochmaniae</a><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Juglans regia&hybcheck=1">Juglans regia</a><br />
+		</p>
 				</td>
 			</tr>
 <!--$current_request= ?taxon_name=$lookfor&nativity=$req_source&county=$county&collector=$collector&aid=$aid&collyear=$year&collmonth=$month&collday=$day&loc=$quote_loc&coll_num=$coll_num&max_rec=$max_return&make_tax_list=$make_tax_list&before_after=$before_after&last_comments=$last_comments&VV=$v_restrict&non_native=$include_nn&geo_only=$geo_only&geo_no=$geo_no&CNPS_listed=$include_CNPS&weed=$include_weed&sugg_loc=$sugg_loc$q_coords&tns=$tns&lo_e=$lo_e&hi_e=$hi_e&YF=$YF&VTM=$include_vtm&baja=$include_baja&cultivated=$include_cult};
@@ -167,7 +167,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText">e.g.:
 		<a href="/consortium/list.php?loc=Round Meadow">Round Meadow</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Forester">Forester</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=M% Dana">M+ Dana</a> 'Mount Dana' & 'Mt. Dana' mostly, using wildcards<br />
+		<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=M% Dana">Mt Dana</a> will search both 'Mount Dana' & 'Mt. Dana'<br />-->
 		</span>
 	<!--</p>
 	<p class="pageSubheading"><b>Phenology</b>
@@ -186,7 +186,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<table style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 		<tr>
 			<td style="width: 45%;">
-	<p><span class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<p><span class="pageSubheading"><br />
 	<label for="nativity">Nativity <a href="/consortium/search_help.html#nativity"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="nativity" >
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_nativity_options.php'); ?>
@@ -202,7 +202,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 			</td>
 
 			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-	<p><span class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<p><span class="pageSubheading"><br />
 	<label for="life">Life Form <a href="/consortium/search_help.html#life"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="life">
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_life_form_options.php'); ?>
@@ -239,7 +239,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 
 		<p><span class="pageSubheading">
 		<!-- County Mismatch checkbox-->
-		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /><font color="red">(NEW FEATURE)</font><br /></label></span>
+		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
  		<b>Include specimens with the selected county listed on the label but for which georeferenced coordinates map outside the county.<br />
  		</b></span>
@@ -257,7 +257,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	</span>
 	</p>-->
 
-	<p class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<p class="pageSubheading"><br />
 	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
 	<b>Search Elevation</b> <a href="/consortium/search_help.html#elev"><sup>&nbsp;?&nbsp;&nbsp;</sup></a> <br />
@@ -283,7 +283,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<br /><br />
 				<!-- CNPS checkbox-->
 				<input type ="checkbox" name="endem" value="1">
-				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(NEW FEATURE)</font><br />
+				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only accepted names or recognized synonyms for endemics found in the Jepson eFlora)
 				<br /><br />
 				<!-- CNPS checkbox-->
@@ -298,7 +298,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<br /><br />
 				<!-- CULT checkbox-->
 				<input type ="checkbox" name="cult" value="1">
-				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(NEW FEATURE)</font><br />
+				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(enable purple flags and include specimens labeled as cultivated)
 				<br /><br />
 				<!-- GEO checkbox-->
@@ -311,7 +311,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
  				<br ><br />
 				<!-- TAX LIST checkbox-->
 				<input type ="checkbox" name="LIST" value="1">
- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
+ 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)
 				<br /><br />
  				<!-- VTM checkbox-->
@@ -358,7 +358,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	<br /><br />
 	<p class="pageSubheading"><input type ="checkbox" name="typecheck" value="1">Select to display only specimens with a type status
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
-	<b>Search Type Status</b> <a href="/consortium/search_help.html#type"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="red">(NEW FEATURE)</font>
+	<b>Search Type Status</b> <a href="/consortium/search_help.html#type"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
         <input name = "type" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(search for a specific or more general type phrase <br />e.g.:
 			<a href="/consortium/list.php?type=holotype">holotype</a>;
