@@ -75,8 +75,8 @@ $db = new SQLite3($database_location);
 	<span class="generalText">
 <p>If you are looking for non-California or non-vascular collections from CCH members, use CCH2 - <a href="https://cch2.org/portal/">cch2.org/portal/</a></p>
 
-<p>The 2003-2018 version of the CCH1 website is no longer updated and can be found here - <a href="https://ucjeps.berkeley.edu/cch_archive/">ucjeps.berkeley.edu/cch_archive/</a></p>
-
+<!--<p>The 2003-2018 version of the CCH1 website is no longer updated and can be found here - <a href="https://ucjeps.berkeley.edu/cch_archive/">ucjeps.berkeley.edu/cch_archive/</a></p>
+-->
 <hr>
 <table>
 <tr><td style="vertical-align: top;background-color:#FFFFFF;"><p class="generalText">Please cite data retrieved from this page:<br />
@@ -88,6 +88,15 @@ CCH1 Portal. <?php echo date("Y") ?>. Biodiversity data provided by the particip
 
 <tr><td style="vertical-align: top;background-color:#FFFFFF;"><p class="generalTextg">Records are made available under the <a href="/consortium/data_use_terms.html">CCH Data Use Terms</a>.</p>
 </td></tr>
+
+ <tr>
+	<td style="vertical-align: top;background-color:#FFFFFF;">
+<p>Please send questions or comments to Jason Alexander (<a href="mailto:jason_alexander@berkeley.edu">jason_alexander@berkeley.edu</a>).<br />
+</p>
+	</td>
+ </tr>
+
+
 </table>
 <hr>
 
@@ -106,7 +115,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 <center>
   <table style="width: 95%;vertical-align: top; background-color:#9090AA;">
 	<tr>
-		<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;"><center><span class="pageName">CCH1: <a name="TOP" id="TOP">Vascular Plants of California Search Page</a></span></center>
+		<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;"><center><span class="pageName"><a name="TOP" id="TOP">CCH1: Vascular Plants of California Search Page</a></span></center>
 		</td>
 	</tr>
   </table>
@@ -130,7 +139,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText">e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae">Dudleya blochmaniae</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae insul">Dudleya blochmaniae insul</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Quercus X alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Art* cal">Art* cal</a> 'Artemisia californica' using wildcards<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Art% cal">Art+ cal</a> 'Artemisia californica' using wildcards<br />
 		</span>
 	</p>
 				</td>
@@ -147,7 +156,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText">e.g.:
 		<a href="/consortium/list.php?loc=Round Meadow">Round Meadow</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Forester">Forester</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=M* Dana">M* Dana</a> 'Mount Dana' & 'Mt. Dana' using wildcards<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=M% Dana">M+ Dana</a> 'Mount Dana' & 'Mt. Dana' mostly, using wildcards<br />
 		</span>
 	<!--</p>
 	<p class="pageSubheading"><b>Phenology</b>
@@ -173,9 +182,10 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	</select>
 	<br />
 		<span class="bodySmallerText"><b>
-		Return only names with a nativity <br />
-		status sensu the Jepson eFlora<br />
-		<!--e.g.:<a href="/consortium/list.php?nativity=Waif">Waif</a></b>-->
+		Returns only records with <br />
+		accepted names or recognized synonyms <br />
+		included in the Jepson eFlora<br />
+		e.g.:<a href="/consortium/list.php?nativity=Waif&loc=Yosemite">Waifs in Yosemite</a>
 		</span>
 	</p>
 			</td>
@@ -188,10 +198,10 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	</select>
 	<br />
 		<span class="bodySmallerText"><b>
-		Return only names with a life 
-		<br />
-		form status sensu the Jepson eFlora<br />
-		<!--e.g.:<a href="/consortium/list.php?life=TREE">tree</a>-->
+		Returns only records with <br />
+		accepted names or recognized synonyms<br />
+		included in the Jepson eFlora<br />
+		<a href="/consortium/list.php?life=TREE&county=ALAMEDA">trees of Alameda County</a>
 		</b></span>
 	</p>
 			</td>
@@ -200,18 +210,6 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<tr>
 			<td style="width: 45%;">
 			
-	<p><span class="pageSubheading">
-		<!-- County Mismatch checkbox-->
-		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /><font color="red">(NEW FEATURE)</font><br /></label></span>
-		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
- 		<b>Search for specimens with georeferences that do not map to the label county name<br />
- 		(select one from the list to the right)</b></span>
-		<br />
-
-			</td>
-
-			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-
 	<p><span class="pageSubheading"><label for="county">County<a href="/consortium/search_help.html#county"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="county" size=12>
 	<!--<select id="query_text" name="county" size=12 multiple>-->
@@ -221,9 +219,21 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<span class="bodySmallerText"><b>(default is all counties)</b><br />
 		<font color="firebrick"><b>(selecting multiple values not re-activated)</b></font>
 		</span>
-
 	</p>
 
+
+			</td>
+
+			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
+
+		<p><span class="pageSubheading">
+		<!-- County Mismatch checkbox-->
+		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /><font color="red">(NEW FEATURE)</font><br /></label></span>
+		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
+ 		<b>Include specimens with the selected county listed on the label but for which georeferenced coordinates map outside the county.<br />
+ 		</b></span>
+ 		</p>
+	<br />
 <!-- Geographic Region Box, the code to implement this is very complicated in get_consort.pl.-->
 <!-- I am not sure at this point if I can translate it to PHP, so it is commented out for now-->
 <!-- In its place I have placed the locality box for now-->
@@ -235,6 +245,16 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	<span class="bodySmallerText">(Regions defined by bounding-box)<br />
 	</span>
 	</p>-->
+
+	<p class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
+	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
+	<b>Search Elevation</b> <a href="/consortium/search_help.html#elev"><sup>&nbsp;?&nbsp;&nbsp;</sup></a> <br />
+        <input name = "minELEV" size = 6>&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;<input name = "maxELEV" size = 6> (meters)
+	</p>
+	<br />
+	
+
 			</td>
 		</tr>
 		</table>
@@ -245,6 +265,11 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 			<td class="tagList" style="padding: 5px; background-color:#9090AA;">
 				<span class="pageSubheading">Refine or Expand Search</span>
 				<br /><hr>
+				<!-- TAX LIST checkbox-->
+				<input type ="checkbox" name="LIST" value="1">
+ 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)
+				<br /><br />
 				<!-- YF checkbox-->
 				<input type="checkbox" name="YF" value="1">
 				Enable yellow flags <a href="/consortium/search_help.html#yf"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
@@ -253,16 +278,16 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<!-- CNPS checkbox-->
 				<input type ="checkbox" name="endem" value="1">
 				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(NEW FEATURE)</font><br />
-				&nbsp;&nbsp;&nbsp;&nbsp;(return only endemics to California, sensu the Jepson eFlora)
+				&nbsp;&nbsp;&nbsp;&nbsp;(return only accepted names or recognized synonyms for endemics found in the Jepson eFlora)
 				<br /><br />
 				<!-- CNPS checkbox-->
 				<input type ="checkbox" name="CNPS" value="1">
 				CNPS Inventory <a href="/consortium/search_help.html#cnps"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
-				&nbsp;&nbsp;&nbsp;&nbsp;(return only names in California Native Plant Society Inventory)
+				&nbsp;&nbsp;&nbsp;&nbsp;(return only names in the California Native Plant Society Inventory)
 				<br /><br />
 				<!-- CAL-IPC - CDFA checkbox-->
 				<input type ="checkbox" name="IPC" value="1">  
-				Noxious weeds <a href="/consortium/search_help.html#weeds"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
+				Weeds <a href="/consortium/search_help.html#weeds"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only records of CAL-IPC or CDFA listed weeds)
 				<br /><br />
 				<!-- CULT checkbox-->
@@ -272,21 +297,16 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<br /><br />
 				<!-- GEO checkbox-->
 				<input type="checkbox" name="geo_only" value="1">
- 				Specimens with coordinates <a href="/consortium/search_help.html#geo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
+ 				Limit to specimens with coordinates <a href="/consortium/search_help.html#geo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 				<br /><br />
 				<!-- NO GEO checkbox-->
 				<input type="checkbox" name="geo_no" value="1">
- 				Specimens without coordinates<a href="/consortium/search_help.html#nogeo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
+ 				Limit to specimens without coordinates<a href="/consortium/search_help.html#nogeo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
  				<br ><br />
  				<!-- VTM checkbox-->
  				<input type="checkbox" name="VTM" value="1">
  				Vegetation Type Map specimens <a href="/consortium/search_help.html#vtm"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font>
 				<br><br />
-				<!-- TAX LIST checkbox-->
-				<input type ="checkbox" name="LIST" value="1">
- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
-				&nbsp;&nbsp;&nbsp;&nbsp;(return only one record for each name)
-				<br /><br />
 			</td>
 		</tr>
 		</table>
@@ -309,19 +329,12 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	</p>
 	<br />
 	
-	<p class="pageSubheading"><font color="red">(NEW FEATURE, not activated)</font><br />
-	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
-	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
-	<b>Search Elevation</b> <a href="/consortium/search_help.html#elev"><sup>&nbsp;?&nbsp;&nbsp;</sup></a> <br />
-        <input name = "minELEV" size = 6>&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;<input name = "maxELEV" size = 6> (meters)
-	</p>
-	<br />
-	
+
 	<p class="pageSubheading"><b>Collector</b> <a href="/consortium/search_help.html#coll"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
         <input name = "coll" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(last name only; e.g.:
-			<a href="/consortium/list.php?collector=Muir">Muir</a>;
-  			<a href="/consortium/list.php??collector=Moref">Moref</a>)
+			<a href="/consortium/list.php?coll=Muir">Muir</a>;
+  			<a href="/consortium/list.php?coll=Moref">Moref</a>)
 		</span>
 	</p>
 
@@ -346,9 +359,35 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	</tr>
 
 	<tr>
-<!--BEGIN LEFT Side LOWER Content-->	
-<!-- BEGIN USE TERMS LEFT-->
+<!--BEGIN LEFT Side LOWER Content A-->	
+<!-- BEGIN ACCESSION NUMBER SEARCH-->
+		<td style="height: 40px;padding: 10px;vertical-align: top;background-color:#FFFFFF;">
+<hr>
+			<p class="pageSubheading"><a href="/consortium/search_help.html">Search here using a specimen number<sup>&nbsp;?&nbsp;&nbsp;</sup></a>
+			<input name = "accnum" size = 20 MAXLENGTH = "25" value="" >
+			</p>
+		</td>
 
+<!--END LEFT Side LOWER Content A-->
+
+	
+<!--BEGIN RIGHT Side LOWER Content A-->	
+<!-- EMPTY SPACE FOR NOW-->
+		<td style="height: 40px;padding: 10px;vertical-align: top;background-color:#FFFFFF;">
+<hr>
+			<p class="pageSubheading"><!-- FILL-->
+			</p>
+		</td>
+	</tr>
+
+
+
+<!--END RIGHT Side LOWER Content A-->
+
+
+<!--BEGIN LEFT Side LOWER Content B-->			
+	<tr>
+<!-- BEGIN USE TERMS LEFT-->
 		<td style="height: 40px;padding: 10px;vertical-align: top;background-color:#FFFFFF;">
 <hr>
 			<p><input TYPE="submit" VALUE="Accept data-use terms, submit search" >&nbsp;&nbsp;&nbsp;&nbsp;</p>			
@@ -357,19 +396,23 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 			<input TYPE="reset" VALUE="Reset Form"></p>
 		</td>
 <!-- END USE TERMS LEFT-->
-<!--END LEFT Side LOWER Content-->	
+<!--END LEFT Side LOWER Content B-->	
 			
-<!--BEGIN RIGHT Side LOWER Content-->			
+<!--BEGIN RIGHT Side LOWER Content B-->			
+
 <!-- BEGIN USE TERMS RIGHT-->		
 		<td style="padding: 10px;vertical-align: top;background-color:#FFFFFF;">
 <hr>
-			<span class="pageSubheading"><b>2000 records is the default maximum for all downloads. For custom data requests contact</b>
+			<span class="pageSubheading"><b>5000 records is the default maximum for all downloads. For custom data requests contact</b>
 				<a href="mailto:jason_alexander@berkeley.edu">Jason Alexander (jason_alexander@berkeley.edu)</a>
 			</span>
 		</td>
 	</tr>
 <!-- END USE TERMS RIGHT-->
-<!--END RIGHT Side LOWER Content-->	
+<!--END RIGHT Side LOWER Content B-->	
+
+
+
 </form>
 
 	</table>
