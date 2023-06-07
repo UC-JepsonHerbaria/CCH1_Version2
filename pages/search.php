@@ -3,6 +3,9 @@ date_default_timezone_set('America/Los_Angeles');
 
 
 
+//connect to the database
+require '../../ucjeps_data/ucjeps_data/config/config_cch.php';
+$db = new SQLite3($database_location);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -146,43 +149,31 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 				<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 
 	<span class="pageSubheading"><b>Scientific Name Search</b><a href="/consortium/search_help.html#name"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
-					<table>
-						<tr>
-							<td>
-<!-- No Synonyms Checkbox-->
-<!--
-		<input type ="checkbox" name="syncheck" value="1">
+		<table>
+		<tr><td><input type ="checkbox" name="syncheck" value="1">
 			</td>
-			<td>
-				<span class="bodySmallerText" style="vertical-align: top;">
-					Select to search for only the entered name
-					<br />(leave unchecked to search all synonyms)</span>
--->
-							</td>
-
-							</tr>
-					</table>
-<!-- Taxon Search-->
+			<td><span class="bodySmallerText" style="vertical-align: top;">
+				Select to search for only the entered name
+				<br />(leave unchecked to search all synonyms)</span>
+			</td>
+		</tr>
+		</table>
 	<input id="query_text" type="text" name="taxon_name" size = 75 MAXLENGTH = 60></input><br />
-<!-- Taxon Search Hints-->
 		<span class="bodySmallerText">e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae">Dudleya blochmaniae</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae insularis">Dudleya blochmaniae insularis</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Quercus alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a><br />
 		</span>
-<!-- Hybrid Checkbox-->
-<!--
 	<input type ="checkbox" name="hybcheck" value="1">Select to include hybrid names<br />
 		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae&hybcheck=1">Dudleya blochmaniae</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Juglans regia&hybcheck=1">Juglans regia</a><br />
 	</span>
--->
 				</td>
 			</tr>
-
+<!--$current_request= ?taxon_name=$lookfor&nativity=$req_source&county=$county&collector=$collector&aid=$aid&collyear=$year&collmonth=$month&collday=$day&loc=$quote_loc&coll_num=$coll_num&max_rec=$max_return&make_tax_list=$make_tax_list&before_after=$before_after&last_comments=$last_comments&VV=$v_restrict&non_native=$include_nn&geo_only=$geo_only&geo_no=$geo_no&CNPS_listed=$include_CNPS&weed=$include_weed&sugg_loc=$sugg_loc$q_coords&tns=$tns&lo_e=$lo_e&hi_e=$hi_e&YF=$YF&VTM=$include_vtm&baja=$include_baja&cultivated=$include_cult};
+-->
 			<tr>
 				<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
-<!-- Locality Search-->
-
+	</p>
 	<p class="pageSubheading"><b>Geographic Locality</b><a href="/consortium/search_help.html#locality"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 	<br />
  	<input id="query_text" type="text" name = "loc" size = 40 MAXLENGTH = 50></input>
@@ -190,8 +181,18 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<span class="bodySmallerText">e.g.:
 		<a href="/consortium/list.php?loc=Round Meadow">Round Meadow</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Forester">Forester</a><br />
+		<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=M% Dana">Mt Dana</a> will search both 'Mount Dana' & 'Mt. Dana'<br />-->
+		</span>
+	<!--</p>
+	<p class="pageSubheading"><b>Phenology</b>
+	<br />
+ 	<input id="query_text" type="text" name = "phen" size = 40 MAXLENGTH = 50></input>
+ 	<br />
+		<span class="bodySmallerText">e.g.:
+		<a href="/consortium/list.php?phen=FRUIT">Fruit</a>;
 		</span>
 	</p>
+	-->
 				</td>
 			</tr>
 		</table>
@@ -199,8 +200,6 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<table style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 		<tr>
 			<td style="width: 45%;">
-<!-- Nativity List-->
-<!--
 	<p><span class="pageSubheading"><br />
 	<label for="nativity">Nativity <a href="/consortium/search_help.html#nativity"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="nativity" >
@@ -214,12 +213,9 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		e.g.:<a href="/consortium/list.php?nativity=Waif&loc=Yosemite">Waifs in Yosemite</a>
 		</span>
 	</p>
--->
 			</td>
 
 			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-<!-- Life Form List-->
-<!--
 	<p><span class="pageSubheading"><br />
 	<label for="life">Life Form <a href="/consortium/search_help.html#life"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="life">
@@ -233,19 +229,20 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<a href="/consortium/list.php?life=TREE&county=ALAMEDA">trees of Alameda County</a>
 		</b></span>
 	</p>
--->
 			</td>
 		</tr>
 
 		<tr>
 			<td style="width: 45%;">
-<!-- County List-->
+			
 	<p><span class="pageSubheading"><label for="county">County<a href="/consortium/search_help.html#county"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
-	<select id="query_text" name="county" size=12 multiple>
+	<select id="query_text" name="county" size=12>
+	<!--<select id="query_text" name="county" size=12 multiple>-->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_county_options.php'); ?>
 	</select>
 	<br />
 		<span class="bodySmallerText"><b>(default is all counties)</b><br />
+		<font color="firebrick"><b>(selecting multiple values not re-activated)</b></font>
 		</span>
 	</p>
 
@@ -253,18 +250,27 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 			</td>
 
 			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-<!-- County Mismatch checkbox-->
-<!--
+
 		<p><span class="pageSubheading">
+		<!-- County Mismatch checkbox-->
 		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
  		<b>Include specimens with the selected county listed on the label but for which georeferenced coordinates map outside the county.<br />
  		</b></span>
  		</p>
 	<br />
--->
-<!-- elevation checkbox-->
-<!--
+<!-- Geographic Region Box, the code to implement this is very complicated in get_consort.pl.-->
+<!-- I am not sure at this point if I can translate it to PHP, so it is commented out for now-->
+<!-- In its place I have placed the locality box for now-->
+<!--	<p><span class="pageSubheading"><font color="red">(not re-activated)</font><br />
+	<label for="region">Geographic Region:<br /></label></span>
+	<select id="query_text" name="region" size=12>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_region_options.php'); ?>
+	</select><br />
+	<span class="bodySmallerText">(Regions defined by bounding-box)<br />
+	</span>
+	</p>-->
+
 	<p class="pageSubheading"><br />
 	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
@@ -272,7 +278,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
         <input name = "minELEV" size = 6>&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;<input name = "maxELEV" size = 6> (meters)
 	</p>
 	<br />
--->	
+	
 
 			</td>
 		</tr>
@@ -289,56 +295,42 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 				Enable yellow flags <a href="/consortium/search_help.html#yf"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(displays possible range discrepancies with yellow icons)
 				<br /><br />
-				<!-- Endemic checkbox-->
-				<!--
+				<!-- CNPS checkbox-->
 				<input type ="checkbox" name="endem" value="1">
 				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only accepted names or recognized synonyms for endemics found in the Jepson eFlora)
 				<br /><br />
-				-->
 				<!-- CNPS checkbox-->
-				<!--
 				<input type ="checkbox" name="CNPS" value="1">
 				CNPS Inventory <a href="/consortium/search_help.html#cnps"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only names in the California Native Plant Society Inventory)
 				<br /><br />
-				-->
 				<!-- CAL-IPC - CDFA checkbox-->
-				<!--
 				<input type ="checkbox" name="IPC" value="1">  
 				Weeds <a href="/consortium/search_help.html#weeds"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only records of CAL-IPC or CDFA listed weeds)
 				<br /><br />
-				-->
 				<!-- CULT checkbox-->
-				<!--
 				<input type ="checkbox" name="cult" value="1">
 				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(enable purple flags and include specimens labeled as cultivated)
 				<br /><br />
-				-->
 				<!-- GEO checkbox-->
-				<!--
 				<input type="checkbox" name="geo_only" value="1">
  				Limit to specimens with coordinates <a href="/consortium/search_help.html#geo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 				<br /><br />
-				-->
 				<!-- NO GEO checkbox-->
-				<!--
 				<input type="checkbox" name="geo_no" value="1">
  				Limit to specimens without coordinates<a href="/consortium/search_help.html#nogeo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
  				<br ><br />
-				-->
 				<!-- TAX LIST checkbox-->
-				<input type ="checkbox" name="LIST" value="1">
- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
-				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)
-				<br /><br />
- 				<!-- VTM checkbox-->
- 				<!--
- 				<input type="checkbox" name="VTM" value="1">
- 				Vegetation Type Map specimens <a href="/consortium/search_help.html#vtm"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font>
-				-->
+<!--				<input type ="checkbox" name="LIST" value="1">-->
+<!-- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />-->
+<!--				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)-->
+<!--				<br /><br />-->
+<!-- 				<!-- VTM checkbox-->
+<!-- 				<input type="checkbox" name="VTM" value="1">-->
+<!-- 				Vegetation Type Map specimens <a href="/consortium/search_help.html#vtm"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font>-->
 				<br><br />
 			</td>
 		</tr>
@@ -349,20 +341,20 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 
 
 	<!--BEGIN RIGHT Side UPPER Content-->	
-<!-- herbarium source list-->
 	<td style="padding-left: 10px;padding-right: 10px;width: 40%;vertical-align: top;background-color:#FFFFFF;">
 	
 	<p class="pageSubheading"><b>Source</b> <a href="/consortium/search_help.html#source"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 	<br />
-	<select id="query_text" name="source" size=34 multiple>
+	<select name="source" size=34>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_participants_options_CCH2.php'); ?>
 	</select>
 	<br />
 		<span class="bodySmallerText">(default is all sources)<br />
+		<b><font color="firebrick">(selecting multiple values not re-activated)</font></b></span>
 	</p>
 	<br />
-<!-- collector-->	
-<!--
+	
+
 	<p class="pageSubheading"><b>Collector</b> <a href="/consortium/search_help.html#coll"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
         <input name = "coll" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(last name only; e.g.:
@@ -370,69 +362,60 @@ Results of searches may occasionally not work as expected.</font></h3></td>
   			<a href="/consortium/list.php?coll=Moref">Moref</a>)
 		</span>
 	</p>
-<!-- collection number -->	
-<!--
+
 	<p class="pageSubheading"><b>Collector Number</b> <a href="/consortium/search_help.html#collnum"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
         <input name = "collnum" size = 50 MAXLENGTH = 50><br />
     	<span class="bodySmallerText">(any type, including strictly numerical or alpha-numeric <br />e.g.:
 			<a href="/consortium/list.php?collnum=2334">2334</a>)
 		</span>
 	</p>
--->	
-<!-- collection date -->	
-<!--
+	<br /><br />
+<!--	<p class="pageSubheading">Collection Date			 -->
+<!--	<span class="bodySmallerText">(Note: Before and After is by Year only)</span><br /> -->
+<!-- date grid --> -->
+<!--	<table width="200" border="0" cellpadding="0" cellspacing="2" style="background-color:#FFFFFF;"> -->
+<!--		<tr> -->
+<!--		<td class="pageSubheading">Month</td> -->
+<!--		<td class="pageSubheading">Day </td> -->
+<!--		<td class="pageSubheading">Year </td> -->
+<!--		<td class="pageSubheading">Before </td> -->
+<!--		<td class="pageSubheading">After </td> -->
+<!--		<td class="pageSubheading">Exact Date</td> -->
+<!--		<td class="pageSubheading">Reset</td> -->
+<!--		</tr> -->
 
-	<br />
-	<p class="pageSubheading">Collection Date			
-	<span class="bodySmallerText">(Note: Before and After is by Year only)</span><br />
--->
-<!-- date grid -->
-<!--
-	<table width="200" border="0" cellpadding="0" cellspacing="2" style="background-color:#FFFFFF;">
-		<tr>
-		<td class="pageSubheading">Month</td>
-		<td class="pageSubheading">Day </td>
-		<td class="pageSubheading">Year </td>
-		<td class="pageSubheading">Before </td>
-		<td class="pageSubheading">After </td>
-		<td class="pageSubheading">Exact Date</td>
-		<td class="pageSubheading">Reset</td>
-		</tr>
-
-		<tr>
-		<td valign="top">
-	<select name="MO" size=15>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_month_list.php'); ?>
-	</select>
-		</td>
-		<td valign="top">
-		<select name="DAY" size=15>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_day_list.php'); ?>
-		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		</td>
-		<td valign="top">
-		<input NAME = "YR" SIZE = 4 MAXLENGTH = 4>
-		</td>
-		<td class="pageSubheading" valign="top" align="center">
-		<input type="radio" name="before_after" value="1">
-		</td>
-		<td class="pageSubheading" valign="top" align="center">
-		<input type="radio" name="before_after" value="2">
-		<br>
-		</td>
-		<td class="pageSubheading" valign="top" align="center">
-		<input type="radio" name="before_after" value="3">
-		</td>
-		<td class="pageSubheading" valign="top" align="center">
-		<input type="radio" name="before_after" value="0">
-		</td>
-		</tr>
-	</table>
-	</p>
--->
+<!--		<tr> -->
+<!--		<td valign="top"> -->
+<!--	<select name="MO" size=15> -->
+<!--<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_month_list.php'); ?> -->
+<!--	</select> -->
+<!--		</td> -->
+<!--		<td valign="top"> -->
+<!--		<select name="DAY" size=15> -->
+<!--<?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_day_list.php'); ?> -->
+<!--		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!--		</td> -->
+<!--		<td valign="top"> -->
+<!--		<input NAME = "YR" SIZE = 4 MAXLENGTH = 4> -->
+<!--		</td> -->
+<!--		<td class="pageSubheading" valign="top" align="center"> -->
+<!--		<input type="radio" name="before_after" value="1"> -->
+<!--		</td> -->
+<!--		<td class="pageSubheading" valign="top" align="center"> -->
+<!--		<input type="radio" name="before_after" value="2"> -->
+<!--		<br> -->
+<!--		</td> -->
+<!--		<td class="pageSubheading" valign="top" align="center"> -->
+<!--		<input type="radio" name="before_after" value="3"> -->
+<!--		</td> -->
+<!--		<td class="pageSubheading" valign="top" align="center"> -->
+<!--		<input type="radio" name="before_after" value="0"> -->
+<!--		</td> -->
+<!--		</tr> -->
+<!--	</table> -->
+<!--	</p> -->
 <!-- END date grid -->
 
-<!--
 	<p class="pageSubheading"><input type ="checkbox" name="typecheck" value="1">Select to display only specimens with a type status
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
 	<b>Search Type Status</b> <a href="/consortium/search_help.html#type"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
@@ -442,7 +425,6 @@ Results of searches may occasionally not work as expected.</font></h3></td>
   			<a href="/consortium/list.php??type=type">type</a>)
 		</span>
 	</p>
--->
 	</td>
 	<!--END RIGHT Side UPPER Content-->	
 	</tr>
@@ -452,9 +434,9 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 <!-- BEGIN ACCESSION NUMBER SEARCH-->
 		<td style="height: 40px;padding: 10px;vertical-align: top;background-color:#FFFFFF;">
 <hr>
-			<p class="pageSubheading"><a href="/consortium/search_help.html">Search here using a specimen number<sup>&nbsp;?&nbsp;&nbsp;</sup></a>
-			<input name = "accnum" size = 20 MAXLENGTH = "25" value="" >
-			</p>
+<!-- 			<p class="pageSubheading"><a href="/consortium/search_help.html">Search here using a specimen number<sup>&nbsp;?&nbsp;&nbsp;</sup></a>-->
+<!-- 			<input name = "accnum" size = 20 MAXLENGTH = "25" value="" >-->
+<!-- 			</p>-->
 		</td>
 
 <!--END LEFT Side LOWER Content A-->
@@ -492,7 +474,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 <!-- BEGIN USE TERMS RIGHT-->		
 		<td style="padding: 10px;vertical-align: top;background-color:#FFFFFF;">
 <hr>
-			<span class="pageSubheading"><b>2000 records is the default maximum for all downloads. For custom data requests contact</b>
+			<span class="pageSubheading"><b>5000 records is the default maximum for all downloads. For custom data requests contact</b>
 				<a href="mailto:jason_alexander@berkeley.edu">Jason Alexander (jason_alexander@berkeley.edu)</a>
 			</span>
 		</td>
