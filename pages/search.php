@@ -118,6 +118,14 @@ CCH1 Portal. <?php echo date("Y") ?>. Biodiversity data provided by the particip
 Results of searches may occasionally not work as expected. A CCH2-compatible data structure is being implemented 
 in stages and the website is being constantly upgraded as a result.</font></td>
 		</tr></table></p><br /><br />-->	
+
+<!--		<table><tr>
+			<td style="vertical-align: top;background-color:#FFFFFF;"><h3><font color="red"> The CCH1 database us being updated January 13-16, 2023.  
+Results of searches may occasionally not work as expected.</font></h3></td>
+		</tr>
+		</table>
+<hr>-->
+
 		
 	<!--BEGIN Left Side Content-->	
 
@@ -186,7 +194,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 		<table style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 		<tr>
 			<td style="width: 45%;">
-	<p><span class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<p><span class="pageSubheading"><br />
 	<label for="nativity">Nativity <a href="/consortium/search_help.html#nativity"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="nativity" >
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_nativity_options.php'); ?>
@@ -202,7 +210,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 			</td>
 
 			<td style="width: 45%;padding-left: 10px;padding-right 10px;">
-	<p><span class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<p><span class="pageSubheading"><br />
 	<label for="life">Life Form <a href="/consortium/search_help.html#life"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 	<select id="query_text" name="life">
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_eflora_life_form_options.php'); ?>
@@ -239,7 +247,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 
 		<p><span class="pageSubheading">
 		<!-- County Mismatch checkbox-->
-		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /><font color="red">(NEW FEATURE)</font><br /></label></span>
+		<label for="mismatch">County Mismatch<a href="/consortium/search_help.html#mis"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
 		<input type="checkbox" name="mismatch" value="1"><span class="bodySmallerText">
  		<b>Include specimens with the selected county listed on the label but for which georeferenced coordinates map outside the county.<br />
  		</b></span>
@@ -257,7 +265,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	</span>
 	</p>-->
 
-	<p class="pageSubheading"><font color="red">(NEW FEATURE)</font><br />
+	<p class="pageSubheading"><br />
 	<input type ="checkbox" name="elevcheck" value="1">Select to display only specimens with an elevation
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
 	<b>Search Elevation</b> <a href="/consortium/search_help.html#elev"><sup>&nbsp;?&nbsp;&nbsp;</sup></a> <br />
@@ -283,7 +291,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<br /><br />
 				<!-- CNPS checkbox-->
 				<input type ="checkbox" name="endem" value="1">
-				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(NEW FEATURE)</font><br />
+				Endemic <a href="/consortium/search_help.html#endemic"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(return only accepted names or recognized synonyms for endemics found in the Jepson eFlora)
 				<br /><br />
 				<!-- CNPS checkbox-->
@@ -298,7 +306,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 				<br /><br />
 				<!-- CULT checkbox-->
 				<input type ="checkbox" name="cult" value="1">
-				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(NEW FEATURE)</font><br />
+				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(enable purple flags and include specimens labeled as cultivated)
 				<br /><br />
 				<!-- GEO checkbox-->
@@ -358,7 +366,7 @@ in stages and the website is being constantly upgraded as a result.</font></td>
 	<br /><br />
 	<p class="pageSubheading"><input type ="checkbox" name="typecheck" value="1">Select to display only specimens with a type status
 	<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
-	<b>Search Type Status</b> <a href="/consortium/search_help.html#type"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="red">(NEW FEATURE)</font>
+	<b>Search Type Status</b> <a href="/consortium/search_help.html#type"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
         <input name = "type" size = 50 MAXLENGTH = 100><br />
     	<span class="bodySmallerText">(search for a specific or more general type phrase <br />e.g.:
 			<a href="/consortium/list.php?type=holotype">holotype</a>;
