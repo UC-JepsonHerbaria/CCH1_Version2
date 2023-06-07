@@ -162,10 +162,10 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<table>
 		<tr><td><input type ="checkbox" name="syncheck" value="1">
 			</td>
-			<td><span class="bodySmallerText" style="vertical-align: top;">
-				Select to search for only the entered name
-				<br />(leave unchecked to search all synonyms)</span>
-			</td>
+				<td><span class="bodySmallerText" style="vertical-align: top;">
+					&nbsp;&nbsp;&nbsp;Select to search for only the entered name
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;(leave unchecked to search all synonyms)</span>
+				</td>
 		</tr>
 		</table>
 	<input id="query_text" type="text" name="taxon_name" size = 75 MAXLENGTH = 60></input><br />
@@ -173,10 +173,10 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae insularis">Dudleya blochmaniae insularis</a><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Quercus alvordiana">Quercus&nbsp;X&nbsp;alvordiana</a><br />
 		</span>
-<!--	<input type ="checkbox" name="hybcheck" value="1">Select to include hybrid names<br />-->
-<!--		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae&hybcheck=1">Dudleya blochmaniae</a><br />-->
-<!--		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Juglans regia&hybcheck=1">Juglans regia</a><br />-->
-<!--	</span>-->
+	<input type ="checkbox" name="hybcheck" value="1">Select to search hybrid formula names<br />
+		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;e.g.:&nbsp;<a href="/consortium/list.php?taxon_name=Dudleya blochmaniae&hybcheck=1">Dudleya blochmaniae</a><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?taxon_name=Juglans regia&hybcheck=1">Juglans regia</a><br />
+	</span>
 				</td>
 			</tr>
 <!--$current_request= ?taxon_name=$lookfor&nativity=$req_source&county=$county&collector=$collector&aid=$aid&collyear=$year&collmonth=$month&collday=$day&loc=$quote_loc&coll_num=$coll_num&max_rec=$max_return&make_tax_list=$make_tax_list&before_after=$before_after&last_comments=$last_comments&VV=$v_restrict&non_native=$include_nn&geo_only=$geo_only&geo_no=$geo_no&CNPS_listed=$include_CNPS&weed=$include_weed&sugg_loc=$sugg_loc$q_coords&tns=$tns&lo_e=$lo_e&hi_e=$hi_e&YF=$YF&VTM=$include_vtm&baja=$include_baja&cultivated=$include_cult};
@@ -184,16 +184,33 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 			<tr>
 				<td style="width: 95%;vertical-align: top;background-color:#FFFFFF;">
 	</p>
-	<p class="pageSubheading"><b>Geographic Locality</b><a href="/consortium/search_help.html#locality"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
+	<p class="pageSubheading"><b>Geographic Locality (select one only)</b><a href="/consortium/search_help.html#locality"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
+	</p>
+	<p class="pageSubheading"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One or two-word, ordered locality search:</b><a href="/consortium/search_help.html#locality"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 	<br />
- 	<input id="query_text" type="text" name = "loc" size = 40 MAXLENGTH = 50></input>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="query_text" type="text" name = "loc" size = 30 MAXLENGTH = 30></input>
  	<br />
-		<span class="bodySmallerText">e.g.:
-		<a href="/consortium/list.php?loc=Round Meadow">Round Meadow</a><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Mokelumne">Mokelumne</a><br />
+		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one or two words; the last word can be a partial word;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;results will search for these words in order, e.g.:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Round Meadow">Round Meadow</a> returns only records with round and meadow in that order<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Mokel">Mokel</a> will return all records that have a word starting with 'Mokel'<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?loc=Mount Dana">Mount Dana</a> will search both 'Mount Dana', 'Mt. Dana' and other variants<br />
 		</span>
-	<!--</p>
+ 	<br />
+	<span class="pageSubheading"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multi-word, unordered, strict keyword search</b><a href="/consortium/search_help.html#locality"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
+	</span>
+	<br />
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="query_text" type="text" name = "keyword" size = 30 MAXLENGTH = 30></input>
+ 	<br />
+		<span class="bodySmallerText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;up to three words in any order; strict search, whole words only, e.g.:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?keyword=Round Meadow">Round Meadow</a> will return records with round and meadow found in <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any part of the locality<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?keyword=Mokelumne">Mokelumne</a> will only return records with this whole word present<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/consortium/list.php?keyword=Mount Dana">Mount Dana</a> will return both 'Mount Dana', 'Mt. Dana', but will also <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return variants where these words are present in any order on the label<br />
+		</span>
+<!--
+	</p>
 	<p class="pageSubheading"><b>Phenology</b>
 	<br />
  	<input id="query_text" type="text" name = "phen" size = 40 MAXLENGTH = 50></input>
@@ -247,14 +264,12 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 		<tr>
 			<td style="width: 45%;">
 			
-	<p><span class="pageSubheading"><label for="county">County<a href="/consortium/search_help.html#county"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
-	<select id="query_text" name="county" size=12>
-	<!--<select id="query_text" name="county" size=12 multiple>-->
+	<p><span class="pageSubheading"><label for="county">County (select one or more values)<a href="/consortium/search_help.html#county"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br /></label></span>
+	<select id="query_text" name="county" size=12 multiple="multiple">
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/php/cch_county_options.php'); ?>
 	</select>
 	<br />
 		<span class="bodySmallerText"><b>(default is all counties)</b><br />
-		<font color="firebrick"><b>(selecting multiple values not re-activated)</b></font>
 		</span>
 	</p>
 
@@ -304,12 +319,10 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 				<span class="pageSubheading">Refine or Expand Search</span>
 				<br /><hr>
 				<!-- YF checkbox-->
-				<!--
 				<input type="checkbox" name="YF" value="1">
 				Enable yellow flags <a href="/consortium/search_help.html#yf"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(displays possible range discrepancies with yellow icons)
 				<br /><br />
-				-->
 				<!-- endemic checkbox-->
 				<!--
 				<input type ="checkbox" name="endem" value="1">
@@ -332,30 +345,26 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 				<br /><br />
 				-->
 				<!-- CULT checkbox-->
-				<!--
+<!-- 
 				<input type ="checkbox" name="cult" value="1">
 				Cultivated specimens <a href="/consortium/search_help.html#cult"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />
 				&nbsp;&nbsp;&nbsp;&nbsp;(enable purple flags and include specimens labeled as cultivated)
 				<br /><br />
-				-->
+-->
 				<!-- GEO checkbox-->
-				<!--
 				<input type="checkbox" name="geo_only" value="1">
  				Limit to specimens with coordinates <a href="/consortium/search_help.html#geo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
 				<br /><br />
-				-->
 				<!-- NO GEO checkbox-->
-				<!--
 				<input type="checkbox" name="geo_no" value="1">
  				Limit to specimens without coordinates<a href="/consortium/search_help.html#nogeo"><sup>&nbsp;?&nbsp;&nbsp;</sup></a>
  				<br ><br />
-				-->
 				<!-- TAX LIST checkbox-->
 <!--				<input type ="checkbox" name="LIST" value="1">-->
 <!-- 				Name list <a href="/consortium/search_help.html#list"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><br />-->
 <!--				&nbsp;&nbsp;&nbsp;&nbsp;(returns only one record for each name)-->
 <!--				<br /><br />-->
-<!-- 				<!-- VTM checkbox-->
+				<!-- VTM checkbox-->
 <!-- 				<input type="checkbox" name="VTM" value="1">-->
 <!-- 				Vegetation Type Map specimens <a href="/consortium/search_help.html#vtm"><sup>&nbsp;?&nbsp;&nbsp;</sup></a><font color="firebrick">(not re-activated)</font>-->
 				<br><br />
@@ -401,7 +410,7 @@ Results of searches may occasionally not work as expected.</font></h3></td>
 	<br /><br />
 <!--	<p class="pageSubheading">Collection Date			 -->
 <!--	<span class="bodySmallerText">(Note: Before and After is by Year only)</span><br /> -->
-<!-- date grid --> -->
+<!-- date grid -->
 <!--	<table width="200" border="0" cellpadding="0" cellspacing="2" style="background-color:#FFFFFF;"> -->
 <!--		<tr> -->
 <!--		<td class="pageSubheading">Month</td> -->

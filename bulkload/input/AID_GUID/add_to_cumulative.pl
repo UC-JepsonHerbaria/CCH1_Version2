@@ -13,7 +13,8 @@ my $prevfiledate = "2022JUL11";
 #my $file = "2459518";
 #my $file = "2459522";
 #my $file = "2459648";
-my $dupfiledate = "2023APR27"; #changed to a date string
+
+my $dupfiledate = "2023APR28"; #changed to a date string
 
 
 
@@ -493,7 +494,7 @@ my $ALT = $cch_alt_aid;
 				my $temp = $CCH1_B{$cch1id};
 				if ($gid ne $temp){
 					++$GIDCHANGE;
-					print PROB "AID EQUAL BUT GID CHANGED==>$CCH1_LINK_ID-->OLD:$temp-->NEW:$aid\n";
+					print PROB "AID EQUAL BUT GID CHANGED==>$CCH1_LINK_ID-->OLDGID:$temp-->NEWGID:$gid NEWID:($cch1id)\n";
 				}
 				
 			}
