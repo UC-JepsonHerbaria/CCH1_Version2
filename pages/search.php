@@ -6,6 +6,8 @@ date_default_timezone_set('America/Los_Angeles');
 //connect to the database
 require '../../ucjeps_data/ucjeps_data/config/config_cch.php';
 $db = new SQLite3($database_location);
+$db->query("PRAGMA synchronous = OFF");
+$db->query("PRAGMA temp_store = MEMORY");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,15 +26,24 @@ $db = new SQLite3($database_location);
 	<link rel="shortcut icon" href="/common/images/cch/CCH_logo_02_80.png" type="image/x-icon" />
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>
+<!-- Global site tag (gtag.js) - Google Universal Analytics (OLD FORMAT, GOOGLE retires in July 2023)-->
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43909100-3"></script>-->
+<!--<script>-->
+<!--  window.dataLayer = window.dataLayer || [];-->
+<!--  function gtag(){dataLayer.push(arguments);}-->
+<!--  gtag('js', new Date());-->
+<!--  gtag('config', 'UA-43909100-3');-->
+<!--</script>-->
+
+
+<!-- Google G4 Global site tag (gtag.js) - Google Analytics, replaces old UA tag-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HWJ1N1S6S4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-43909100-3');
-
+  gtag('config', 'G-HWJ1N1S6S4');
 </script>
 
 </head>
