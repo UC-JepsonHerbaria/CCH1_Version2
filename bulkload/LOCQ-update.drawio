@@ -4,10 +4,10 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for LOCQ update" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for locQ update" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" vertex="1" parent="1">
           <mxGeometry x="-210" y="35.5" width="390" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;LOCQ&lt;/b&gt;&lt;/font&gt; is a field in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc&lt;/font&gt;&lt;/b&gt;, derived from &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locality&lt;/b&gt;&lt;/font&gt; in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch&lt;font&gt;_main&lt;/font&gt;&lt;/font&gt;&lt;/b&gt;, that is used by &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;search.php&lt;/font&gt;&lt;/b&gt;&amp;nbsp;and &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;list.php&lt;/font&gt;&lt;/b&gt; to process various types of locality keyword searches" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locQ&lt;/b&gt;&lt;/font&gt; is a field in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc&lt;/font&gt;&lt;/b&gt;, derived from &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locality&lt;/b&gt;&lt;/font&gt; in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch&lt;font&gt;_main&lt;/font&gt;&lt;/font&gt;&lt;/b&gt;, that is used by &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;search.php&lt;/font&gt;&lt;/b&gt;&amp;nbsp;and &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;list.php&lt;/font&gt;&lt;/b&gt; to process various types of locality keyword searches" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" vertex="1" parent="1">
           <mxGeometry x="-210" y="85.5" width="1200" height="30" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-14" value="" style="line;strokeWidth=2;html=1;fontSize=14;" vertex="1" parent="1">
@@ -16,38 +16,32 @@
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-15" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAEDED;fontSize=22;fontColor=#FFFFFF;strokeColor=none;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1106.5" y="52" width="583.5" height="969" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-16" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1124.5" y="64" width="40" height="38" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-17" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1123" y="63" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-17" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1123" y="155" width="40" height="38" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-18" value="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1123" y="374" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-18" value="3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1123" y="306" width="40" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-19" value="4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-19" value="2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1123" y="420" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-20" value="5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-20" value="3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1124.5" y="537" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-21" value="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-21" value="4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1125.5" y="652" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-22" value="7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-22" value="5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1125" y="768" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-23" value="8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-23" value="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1125.5" y="886" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-24" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run." style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
-          <mxGeometry x="1176" y="63.5" width="504" height="96.5" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-25" value="This procedure is run after all updates to the main database. &amp;nbsp;New records will not have LOCQ field data needed for searches. &amp;nbsp;Updated specimens will have inaccurate LOCQ data leftover from a previous version. &amp;nbsp;The locality field is analyzed, error corrected, and grouped by keyword frequency into 3 text tables,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_HIGH.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_MED.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_LOW.out&lt;/b&gt;&lt;/font&gt;. &amp;nbsp;These are searched to perform 1-3 unordered, keyword searches. &amp;nbsp;For the ordered, as-is, keyword search, a third table is created with the full processed locality data,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_FULL.out&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
-          <mxGeometry x="1175" y="155.5" width="505" height="144.5" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-25" value="This procedure is run after all locality updates to the main database have been completed for a particular refresh. &amp;nbsp;New records will not have locQ field data needed for searches. &amp;nbsp;Updated specimens will have inaccurate locQ data leftover from a previous version. &amp;nbsp;The locality field is analyzed, error corrected, and grouped by keyword frequency into 3 text tables,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_HIGH.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_MED.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_LOW.out&lt;/b&gt;&lt;/font&gt;. &amp;nbsp;These are searched to perform 1-3 unordered, keyword searches. &amp;nbsp;For the ordered, as-is, keyword search, a third table is created with the full processed locality data,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_FULL.out&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="63.5" width="505" height="164.5" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-26" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="1175" y="304.5" width="450" height="117" as="geometry" />
+          <mxGeometry x="1175" y="372.5" width="450" height="117" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-27" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="1175" y="420.5" width="450" height="121" as="geometry" />
@@ -89,7 +83,7 @@
           <mxGeometry x="12" y="80" width="190" height="240" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-47" value="" style="whiteSpace=wrap;html=1;dashed=0;fontColor=#AAB7B8;fontStyle=0;align=left;verticalAlign=top;strokeColor=#660033;fillColor=none;gradientColor=none;spacingLeft=30;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;strokeWidth=2;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-38">
-          <mxGeometry x="111.75" y="10" width="274.5" height="50" as="geometry" />
+          <mxGeometry x="111.75" y="30" width="274.5" height="50" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-48" value="cynips BIM user directory" style="text;strokeColor=none;fillColor=none;html=1;fontSize=15;fontStyle=1;verticalAlign=middle;align=center;fontFamily=Tahoma;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-47">
           <mxGeometry x="40.55" width="212.5" height="40" as="geometry" />
@@ -105,9 +99,6 @@
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-101" value="BNHM&amp;nbsp;&lt;div&gt;server&amp;nbsp;&lt;/div&gt;&lt;div&gt;cluster&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;fontFamily=Tahoma;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-38">
           <mxGeometry x="12.5" y="60" width="87.5" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-60" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-38">
-          <mxGeometry x="12.5" y="160" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-111" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=3;entryX=-0.012;entryY=0.136;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="e8SXs3Ux3NLzT9OmCRad-38" source="e8SXs3Ux3NLzT9OmCRad-47" target="e8SXs3Ux3NLzT9OmCRad-44">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -139,7 +130,7 @@
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-53" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.azure.laptop" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-51">
           <mxGeometry x="9" y="13" width="71.67" height="43" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-61" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-51">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-61" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-51">
           <mxGeometry x="287.25" y="15" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-96" value="«command line»&lt;br&gt;&lt;b&gt;login to andricus via cynips&lt;/b&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-51">
@@ -235,7 +226,7 @@
             <mxPoint x="645.5" y="1170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-106" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.389;exitY=0.96;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.294;entryY=-0.025;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=3;" edge="1" parent="1" source="e8SXs3Ux3NLzT9OmCRad-96" target="e8SXs3Ux3NLzT9OmCRad-48">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-106" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.294;entryY=-0.025;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=3;exitX=0.422;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="e8SXs3Ux3NLzT9OmCRad-96" target="e8SXs3Ux3NLzT9OmCRad-48">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint y="400" as="sourcePoint" />
             <mxPoint x="50" y="350" as="targetPoint" />
@@ -268,19 +259,19 @@
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-128" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.azure.laptop" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
           <mxGeometry x="9" y="13" width="71.67" height="43" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-129" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-129" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
           <mxGeometry x="210" y="13" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-130" value="«command line»&lt;br&gt;&lt;b&gt;login to andricus via cynips&lt;/b&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Tahoma;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
-          <mxGeometry x="52.5" y="201" width="180" height="50" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-130" value="«command line»&lt;br&gt;&lt;b&gt;exit all logins&lt;/b&gt;&lt;div&gt;&lt;b&gt;change to the local directory:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;UCJEPS-MASTER/CCHV2/bulkload/&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Tahoma;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
+          <mxGeometry x="52.5" y="201" width="180" height="69" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-131" value="«command line»&lt;br&gt;&lt;b&gt;perform SQL query&lt;/b&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Tahoma;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
-          <mxGeometry x="50" y="411" width="181.25" height="50" as="geometry" />
+          <mxGeometry x="53.75" y="411" width="182.5" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-132" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;labelBackgroundColor=#000000;fillColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="e8SXs3Ux3NLzT9OmCRad-126" source="e8SXs3Ux3NLzT9OmCRad-130" target="e8SXs3Ux3NLzT9OmCRad-131">
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-132" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;labelBackgroundColor=#000000;fillColor=#000000;exitX=0.547;exitY=1.029;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.539;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="e8SXs3Ux3NLzT9OmCRad-126" source="e8SXs3Ux3NLzT9OmCRad-130" target="e8SXs3Ux3NLzT9OmCRad-131">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="234.25" y="267" as="sourcePoint" />
-            <mxPoint x="284.25" y="217" as="targetPoint" />
+            <mxPoint x="151" y="408" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-134" value="5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
@@ -297,6 +288,15 @@
               <mxPoint x="980" y="265" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-143" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="210" y="37.5" width="40" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-144" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1124.5" y="224" width="40" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-145" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/CCHV2/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run." style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="1176" y="223.5" width="504" height="96.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
