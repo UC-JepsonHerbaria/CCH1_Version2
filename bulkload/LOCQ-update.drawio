@@ -28,11 +28,11 @@
             <mxPoint x="485.5" y="496" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for LOCQ update" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-210" y="63.5" width="400" height="40" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for LOCQ update" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="-210" y="63.5" width="390" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="LOCQ is a derived field in cch_main that is used by search.php to process various types of locality keyword searches" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16" vertex="1" parent="1">
-          <mxGeometry x="-210" y="113.5" width="850" height="30" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;LOCQ&lt;/b&gt;&lt;/font&gt; is a field in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc&lt;/font&gt;&lt;/b&gt;, derived from &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locality&lt;/b&gt;&lt;/font&gt; in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch&lt;font&gt;_main&lt;/font&gt;&lt;/font&gt;&lt;/b&gt;, that is used by &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;search.php&lt;/font&gt;&lt;/b&gt; to process various types of locality keyword searches" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="-210" y="113.5" width="1090" height="30" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-14" value="" style="line;strokeWidth=2;html=1;fontSize=14;" vertex="1" parent="1">
           <mxGeometry x="-210" y="133.5" width="1060" height="10" as="geometry" />
