@@ -38,13 +38,13 @@
           <mxGeometry x="-210" y="133.5" width="1180" height="10" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-15" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAEDED;fontSize=22;fontColor=#FFFFFF;strokeColor=none;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1106.5" y="52" width="539" height="969" as="geometry" />
+          <mxGeometry x="1106.5" y="52" width="583.5" height="969" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-16" value="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1124.5" y="64" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-17" value="2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1123" y="186" width="40" height="38" as="geometry" />
+          <mxGeometry x="1123" y="155" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-18" value="3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1123" y="306" width="40" height="38" as="geometry" />
@@ -65,10 +65,10 @@
           <mxGeometry x="1125.5" y="886" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-24" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run." style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
-          <mxGeometry x="1176" y="63.5" width="449" height="96.5" as="geometry" />
+          <mxGeometry x="1176" y="63.5" width="504" height="96.5" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-25" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
-          <mxGeometry x="1175" y="186.5" width="450" height="115" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-25" value="This procedure is run after all updates to the main database. &amp;nbsp;New records will not have LOCQ field data needed for searches. &amp;nbsp;Updated specimens will have inaccurate LOCQ data leftover from a previous version. &amp;nbsp;The locality field is analyzed, error corrected, and grouped by keyword frequency into 3 text tables,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_HIGH.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_MED.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_LOW.out&lt;/b&gt;&lt;/font&gt;. &amp;nbsp;These are searched to perform 1-3 unordered, keyword searches. &amp;nbsp;For the ordered, as-is, keyword search, a third table is created with the full processed locality data,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_FULL.out&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="155.5" width="505" height="144.5" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-26" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="1175" y="304.5" width="450" height="117" as="geometry" />
@@ -228,6 +228,9 @@
             <mxPoint x="474.0000000000002" y="300" as="sourcePoint" />
             <mxPoint x="614.5" y="300" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-61" value="2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-51">
+          <mxGeometry x="570" y="4" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-54" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;Interface&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field1: Type&lt;br/&gt;+ field2: Type&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ method1(Type): Type&lt;br/&gt;+ method2(Type, Type): Type&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" vertex="1" parent="1">
           <mxGeometry x="190" y="744" width="190" height="140" as="geometry" />
