@@ -262,11 +262,11 @@
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-129" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
           <mxGeometry x="210" y="13" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-130" value="«command line»&lt;br&gt;&lt;b&gt;exit all logins&lt;/b&gt;&lt;div&gt;&lt;b&gt;change to the local directory:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;UCJEPS-MASTER/CCHV2/bulkload/&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Tahoma;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
-          <mxGeometry x="52.5" y="201" width="180" height="69" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-130" value="«command line»&lt;br&gt;&lt;b&gt;exit all logins&lt;/b&gt;&lt;div&gt;&lt;b&gt;change to the local directory:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;/Shared/&lt;/b&gt;&lt;/font&gt;Jepson-Master/&lt;b style=&quot;font-family: &amp;quot;Courier New&amp;quot;;&quot;&gt;CCHV2/bulkload/&lt;/b&gt;&lt;/div&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Tahoma;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
+          <mxGeometry x="40" y="201" width="210" height="69" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-131" value="«command line»&lt;br&gt;&lt;b&gt;perform SQL query&lt;/b&gt;" style="html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Tahoma;fontSize=10;align=center;" vertex="1" parent="e8SXs3Ux3NLzT9OmCRad-126">
-          <mxGeometry x="53.75" y="411" width="182.5" height="50" as="geometry" />
+          <mxGeometry x="55.75" y="411" width="182.5" height="50" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-132" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;labelBackgroundColor=#000000;fillColor=#000000;exitX=0.547;exitY=1.029;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.539;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="e8SXs3Ux3NLzT9OmCRad-126" source="e8SXs3Ux3NLzT9OmCRad-130" target="e8SXs3Ux3NLzT9OmCRad-131">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -295,8 +295,8 @@
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-144" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
           <mxGeometry x="1124.5" y="224" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-145" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/CCHV2/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run." style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
-          <mxGeometry x="1176" y="223.5" width="504" height="96.5" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-145" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/CCHV2/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run. &amp;nbsp;All of these steps must be performed using the campus VPN unless you are in VLSB" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="1176" y="223.5" width="504" height="106.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
