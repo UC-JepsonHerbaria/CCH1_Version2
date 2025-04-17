@@ -4,11 +4,11 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for updating Heteroduplicates without georeferences" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="-280" y="37.5" width="860" height="40" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for updating Heteroduplicates with NULL georeferences" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" parent="1" vertex="1">
+          <mxGeometry x="-280" y="37.5" width="900" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="Heteroduplicates are specimens with nearly identical&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locQ&lt;/b&gt;&lt;/font&gt;&amp;nbsp;field values in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc;&amp;nbsp;&lt;/font&gt;&lt;/b&gt;this process copies georeferences to heteroduplicates without georeferences&amp;nbsp;" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="-280" y="85.5" width="1170" height="30" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="Heteroduplicates are specimens with nearly identical&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locQ&lt;/b&gt;&lt;/font&gt;&amp;nbsp;field values in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc;&amp;nbsp;&lt;/font&gt;&lt;/b&gt;this process copies georeferences to specimens without georeferences&amp;nbsp;" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" parent="1" vertex="1">
+          <mxGeometry x="-280" y="85.5" width="1130" height="30" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-14" value="" style="line;strokeWidth=2;html=1;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="-279" y="108.5" width="1180" height="10" as="geometry" />
