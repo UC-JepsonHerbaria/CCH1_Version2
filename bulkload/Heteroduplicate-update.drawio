@@ -4,59 +4,35 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for locQ update" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="-210" y="35.5" width="390" height="40" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-12" value="Procedure for updating Heteroduplicates without georeferences" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=30;fontStyle=1;fontFamily=Tahoma;" parent="1" vertex="1">
+          <mxGeometry x="-280" y="37.5" width="860" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locQ&lt;/b&gt;&lt;/font&gt; is a field in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc&lt;/font&gt;&lt;/b&gt;, derived from &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locality&lt;/b&gt;&lt;/font&gt; in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch&lt;font&gt;_main&lt;/font&gt;&lt;/font&gt;&lt;/b&gt;, that is used by &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;search.php&lt;/font&gt;&lt;/b&gt;&amp;nbsp;and &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;list.php&lt;/font&gt;&lt;/b&gt; to process various types of locality keyword searches" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="-210" y="85.5" width="1200" height="30" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-13" value="Heteroduplicates are specimens with nearly identical&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locQ&lt;/b&gt;&lt;/font&gt;&amp;nbsp;field values in &lt;b&gt;&lt;font face=&quot;Courier New&quot;&gt;cch_loc;&amp;nbsp;&lt;/font&gt;&lt;/b&gt;this process copies georeferences to heteroduplicates without georeferences&amp;nbsp;" style="text;html=1;resizable=0;points=[];autosize=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=16;fontFamily=Tahoma;" parent="1" vertex="1">
+          <mxGeometry x="-280" y="85.5" width="1170" height="30" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-14" value="" style="line;strokeWidth=2;html=1;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="-210" y="108.5" width="1180" height="10" as="geometry" />
+          <mxGeometry x="-279" y="108.5" width="1180" height="10" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-15" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAEDED;fontSize=22;fontColor=#FFFFFF;strokeColor=none;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1106.5" y="52" width="583.5" height="969" as="geometry" />
+          <mxGeometry x="1106.5" y="52" width="583.5" height="1568" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-17" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry x="1123" y="63" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-18" value="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1123" y="374" width="40" height="38" as="geometry" />
+          <mxGeometry x="1125.5" y="1010" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-19" value="2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1123" y="420" width="40" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-20" value="3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1124.5" y="537" width="40" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-21" value="4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1125.5" y="652" width="40" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-22" value="5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1125" y="768" width="40" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-23" value="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1125.5" y="886" width="40" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-25" value="This procedure is run after all locality updates to the main database have been completed for a particular refresh. &amp;nbsp;New records will not have locQ field data needed for searches. &amp;nbsp;Updated specimens will have inaccurate locQ data leftover from a previous version. &amp;nbsp;The locality field is analyzed, error corrected, and grouped by keyword frequency into 3 text tables,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_HIGH.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_MED.out&lt;/b&gt;&lt;/font&gt;,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_LOW.out&lt;/b&gt;&lt;/font&gt;. &amp;nbsp;These are searched to perform 1-3 unordered, keyword searches. &amp;nbsp;For the ordered, as-is, keyword search, a third table is created with the full processed locality data,&amp;nbsp;&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;CCH1_LOCS_FULL.out&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="1175" y="63.5" width="505" height="164.5" as="geometry" />
+        <mxCell id="e8SXs3Ux3NLzT9OmCRad-25" value="&lt;div&gt;Heteroduplicates are specimens submitted to a herbarium that were collected at the same location and date by the same collector.&amp;nbsp; The only thing that is different is the taxon name. It includes all specimens from a collecting trip sent to any herbaria in the CCH1 database,&amp;nbsp; For CCH1, the term includes true duplicates which all have the same taxon name.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;This procedure is run after all locality updates to the main database have been completed in &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;cch_main&lt;/b&gt;&lt;/font&gt;, all &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;locQ&lt;/b&gt;&lt;/font&gt; fields have been updated in &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;cch_loc&lt;/b&gt;&lt;/font&gt;, and all CCH1 revised georeferences have been added to &lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt;cch_main&lt;/b&gt;&lt;/font&gt;.&amp;nbsp; This is a variant of the original heteroduplicate page in pre-2018 CCH (see below).&amp;nbsp; In this version, heteroduplicate locations are found by this procedure, regardless of where or when they were collected.&amp;nbsp; In a strict sense the specimens found are not true heteroduplicates, but more like topo-duplicates, or specimens collected at a nearly identical location by anyone at anytime.&amp;nbsp; Of all of these specimens with identical locQ values, if one has a georeference, then a record is added to the SQL update file which allows that georeference to be added to all others without a georeference.&amp;nbsp; If more than one georeference exists, then the last one in the series with a georeference theoretically populates the others. The goal is to quickly match as many specimens with georeferences as possible without the need for manually adding these to the Georeference Revisions spreadsheet.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;In the future some estimate of accuracy needs to be added such that only the best georeference is added to the ones without georeferences.&amp;nbsp; How this is done is an ongoing project.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Dick Moe developed this process sometime between 2006 and 2010 to find records with similar localities and collectors and publish them on the CCH curatorial page.&amp;nbsp; Herbarium database managers could use that page to find heteroduplicates of thier specimens that were databased in other collections.&amp;nbsp; They could then update thier records if a heteroduplicate with the same taxon name (i.e. a true duplicate) was annotated by an authority.&amp;nbsp; They could also look at all other specimen heteroduplicates with other taxon names collected at the same place and time in order to fix typographical errors or look for other anomalies or look for updated georeferences.&amp;nbsp; This provided a way for users to correct data in their own databases.&amp;nbsp; It is a predecessor to the Duplicate Harvesting procedure in Symbiota.&amp;nbsp; Due to limitations at the time, CCH users could not automatically copy data from the heteroduplicate list into their home database.&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="62" width="509" height="658" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-26" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1175" y="372.5" width="450" height="117" as="geometry" />
+          <mxGeometry x="1175" y="1073" width="450" height="117" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-27" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1175" y="420.5" width="450" height="121" as="geometry" />
+          <mxGeometry x="1175" y="1212" width="450" height="121" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-28" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1176" y="537.5" width="449" height="114" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-29" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1176" y="653.5" width="450" height="118" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-30" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1176" y="768.5" width="449" height="113" as="geometry" />
-        </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-31" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1176" y="887.5" width="449" height="124" as="geometry" />
+          <mxGeometry x="1177" y="1121" width="449" height="114" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-38" value="" style="whiteSpace=wrap;html=1;dashed=1;fontColor=#AAB7B8;fontStyle=0;align=left;verticalAlign=top;strokeColor=#3333FF;fillColor=none;gradientColor=none;spacingLeft=30;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;strokeWidth=1;dashPattern=8 8;fontFamily=Tahoma;" parent="1" vertex="1">
           <mxGeometry x="-331.75" y="340" width="1131.75" height="720" as="geometry" />
@@ -290,13 +266,37 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-143" value="A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="210" y="37.5" width="40" height="38" as="geometry" />
+          <mxGeometry x="-280" width="40" height="38" as="geometry" />
         </mxCell>
         <mxCell id="e8SXs3Ux3NLzT9OmCRad-144" value="B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1124.5" y="224" width="40" height="38" as="geometry" />
+          <mxGeometry x="1127.13" y="727" width="40" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="e8SXs3Ux3NLzT9OmCRad-145" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/CCHV2/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run. &amp;nbsp;All of these steps must be performed using the campus VPN unless you are in VLSB" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="1176" y="223.5" width="504" height="106.5" as="geometry" />
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-10" value="2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1123" y="1159" width="40" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-11" value="3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1124.5" y="1134" width="45.26" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-12" value="4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1125.5" y="1249" width="40" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-13" value="5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="1365" width="40" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-14" value="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#007CBD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=22;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1125.5" y="1483" width="40" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-15" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1176" y="1250.5" width="450" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-16" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1176" y="1365.5" width="449" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-17" value="&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/span&gt;&lt;br&gt;" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1176" y="1484.5" width="449" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="XvdSCV77hnBQ89ca84Pc-18" value="This is the BIM or Biological Informatics Manager user directory on cynips. Each new BIM will have their own directory and the data from the previous manager will need to be copied to the new manager&#39;s user login directory. &amp;nbsp;From the&lt;font face=&quot;Courier New&quot;&gt;&lt;b&gt; /UCJEPS-clone/CCHV2/bulkload/ &lt;/b&gt;&lt;/font&gt;directory, all database update SQL and SH scripts are run. &amp;nbsp;All of these steps must be performed using the campus VPN unless you are in VLSB" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;labelBackgroundColor=none;whiteSpace=wrap;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="727" width="504" height="106.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
